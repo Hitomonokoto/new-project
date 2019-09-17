@@ -1,0 +1,29 @@
+{
+  "name": "test-type",
+  "version": "1.0.0",
+  "description": "My good Nuxt.js project",
+  "author": "",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/apollo": "^4.0.0-rc12",
+    "@nuxtjs/axios": "^5.3.6",
+    "@nuxtjs/dotenv": "^1.4.0",
+    "@nuxtjs/markdownit": "^1.2.6",
+    "contentful": "^7.9.1",
+    "dotenv": "^8.1.0",
+    "firebase": "^6.2.4",
+    "node-fetch": "^2.6.0",
+    "node-sass": "^4.12.0",
+    "nuxt": "^2.0.0",
+    "nuxt-shopify": "^1.4.1",
+    "sass-loader": "^8.0.0",
+    "shopify-buy": "^2.7.1"
+  },
+  "devDependencies": {}
+}
