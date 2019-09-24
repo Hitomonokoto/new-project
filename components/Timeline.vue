@@ -1,115 +1,82 @@
 <template>
   <div class="timeline">
-    <div
-      class="post"
-      v-for="(post, index) in $store.state.posts.posts"
-      :key="index"
-    >
-      <div class="user">
-        <div class="user_icon">
-          <img src="samplein.jpg" alt />
-        </div>
-        <div class="name_time">
-          <p class="nickname">{{ post.user_name }}</p>
-          <p class="time">{{ post.created_date.seconds | timestampToDate }}</p>
-        </div>
-        <div class="edit">
-          <button>編集</button>
-        </div>
+    <div class="timeline_menu">
+      <button v-if="$store.state.login.user_2.user_type==1" @click="post">投稿する</button>
+      <div class="timeline_btns">
+        <button class="all_posts">タイムライン</button>
+        <button class="my_posts">マイライン</button>
       </div>
-      <div class="text">
-        <p>{{ post.text }}</p>
-      </div>
-
-      <img class="post_img" :src="post.image" alt />
-
-      <div class="actions">
-        <div class="good_btn">いいね！</div>
-        <div class="comment_btn">コメントする</div>
-      </div>
-      <comments :postId="post.post_id" />
+    </div>
+    <div class="post" v-for="(post, index) in this.timeline.posts" :key="index">
+      <posts
+        :name="post.user_name"
+        :created="post.created_date.seconds"
+        :text="post.text"
+        :image="post.image"
+        :postId="post.post_id"
+        :comments="post.comments"
+      />
     </div>
   </div>
 </template>
 
+
+
 <script>
-import db from "~/plugins/firebase";
-import comments from "~/components/Comments";
+// コンポーネント
+import posts from "~/components/Posts";
+
+// その他
+import { mapState } from "vuex";
 
 export default {
   components: {
-    comments
+    posts
   },
-  data() {
-    return {
-      comment: null
-    };
-  },
-  methods: {},
-  filters: {
-    timestampToDate(value) {
-      const d = new Date(value * 1000);
-      const year = d.getFullYear();
-      const month = `0${d.getMonth() + 1}`.slice(-2);
-      const day = `0${d.getDate()}`.slice(-2);
-      const hour = `0${d.getHours()}`.slice(-2);
-      const minute = `0${d.getMinutes()}`.slice(-2);
-      const second = `0${d.getSeconds()}`.slice(-2);
-      return `${year}年${month}月${day}日${hour}時${minute}分`;
+  methods: {
+    post() {
+      this.$emit("post");
     }
-  }
+  },
+  computed: mapState({ timeline: "timeline" })
 };
 </script>
 
+
+
 <style scoped>
 .timeline {
-  margin: 10px 0;
-}
-.post {
-  border-radius: 5px;
-  width: 580px;
-  box-shadow: 0px 0px 6px 3px #d1d1d1;
-  margin-bottom: 20px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
-.user {
+.timeline_menu {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  margin-bottom: 10px;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.timeline_btns {
   width: 100%;
-  padding: 10px;
-}
-
-.user_icon > img {
-  width: 50px;
-  border-radius: 10%;
-}
-.text {
-  width: 100%;
-  padding: 10px;
-}
-.post_img {
-  width: 100%;
-}
-
-.actions {
   display: flex;
-  width: 100%;
+  margin-bottom: 10px;
 }
-
-.good_btn {
+.timeline_btns > button {
   width: 50%;
   height: 40px;
   background-color: rgb(110, 206, 110);
   text-align: center;
   line-height: 40px;
 }
-.comment_btn {
-  width: 50%;
-  height: 40px;
-  background-color: rgb(81, 161, 199);
-  text-align: center;
-  line-height: 40px;
+
+.post {
+  width: 580px;
+  box-shadow: 0px 0px 6px 3px #d1d1d1;
+  margin-bottom: 20px;
 }
 </style>

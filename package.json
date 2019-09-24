@@ -15,15 +15,16 @@
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/dotenv": "^1.4.0",
     "@nuxtjs/markdownit": "^1.2.6",
+    "apollo-link-http": "^1.5.16",
     "contentful": "^7.9.1",
     "dotenv": "^8.1.0",
     "firebase": "^6.2.4",
-    "node-fetch": "^2.6.0",
+    "graphql": "^14.5.7",
+    "graphql-request": "^1.8.2",
     "node-sass": "^4.12.0",
     "nuxt": "^2.0.0",
     "nuxt-shopify": "^1.4.1",
-    "sass-loader": "^8.0.0",
-    "shopify-buy": "^2.7.1"
+    "sass-loader": "^8.0.0"
   },
   "devDependencies": {}
 }

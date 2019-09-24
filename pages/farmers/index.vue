@@ -13,26 +13,21 @@
           <br />価値だけでは表現することの出来ない"モノの価値"。
           <br />そんなこだわりのある創り手を紹介します。
         </p>
-        <div v-if="this.farmers.farmers.length" class="farmers">
-          <nuxt-link
-            v-for="(farmer, index) in $store.state.farmers.farmers"
-            :to="'farmers/farmer/'+farmer.sys.id"
-            class="farmer"
-            :key="index"
-          >
-            <div class="farmer_img">
-              <img
-                class="main_img"
-                :src="farmer.fields.mainImage.fields.file.url"
-              />
-            </div>
+        <nuxt-link
+          v-for="(farmer, index) in this.farmers.farmers"
+          :to="'/farmers/farmer/'+farmer.sys.id"
+          class="farmer"
+          :key="index"
+        >
+          <div class="farmer_img">
+            <img :src="farmer.fields.mainImage.fields.file.url" />
+          </div>
 
-            <div class="farmer_text">
-              <h2>{{ farmer.fields.farmName }}</h2>
-              <p>{{ farmer.fields.farmerName }}</p>
-            </div>
-          </nuxt-link>
-        </div>
+          <div class="farmer_text">
+            <h2>{{ farmer.fields.farmName }}</h2>
+            <p>{{ farmer.fields.farmerName }}</p>
+          </div>
+        </nuxt-link>
       </div>
       <div class="box_right">
         <h3>地域から探す</h3>
@@ -45,12 +40,17 @@
   </main>
 </template>
 
+
+
 <script>
-import { mapState } from "vuex";
+//コンポーネント
 import mainImage from "~/components/MainImage";
 import myFarm from "~/components/MyFarm";
 import foodIndex from "~/components/FoodIndex";
 import prefectureIndex from "~/components/PrefectureIndex";
+
+//その他
+import { mapState } from "vuex";
 
 export default {
   components: {
@@ -69,6 +69,8 @@ export default {
 };
 </script>
 
+
+
 <style scoped>
 .box_left {
   width: 700px;
@@ -83,7 +85,7 @@ export default {
 .farmer {
   display: flex;
   background-color: white;
-  margin: 20px 0;
+  margin-bottom: 20px;
   border-radius: 5px;
   box-shadow: 0px 0px 6px 3px #d1d1d1;
 }
@@ -91,11 +93,8 @@ export default {
   width: 300px;
 }
 .farmer_img > img {
-  height: 100%;
-  border-radius: 5px 0 0 5px;
-}
-.main_img {
   width: 100%;
+  border-radius: 5px 0 0 5px;
 }
 .farmer_text {
   width: 360px;

@@ -1,23 +1,25 @@
 <template>
   <div class="banners">
-    <router-link to="/aboutMyFarm">
-      <div class="banner">
-        <img src="/bannerImage/damy1.jpg" />
-        <h3>マイファームとは</h3>
-      </div>
-    </router-link>
-    <router-link to="/farmers">
-      <div class="banner">
-        <img src=/bannerImage/damy2.jpg />
-        <h3>生産者紹介</h3>
-      </div>
-    </router-link>
-    <router-link to="/aboutUs">
-      <div class="banner">
-        <img src="/bannerImage/damy3.jpg" />
-        <h3>私たちについて</h3>
-      </div>
-    </router-link>
+    <div class="banners_sticky">
+      <router-link to="/aboutMyFarm">
+        <div class="banner">
+          <img src="/bannerImage/damy1.jpg" />
+          <h3>マイファームとは</h3>
+        </div>
+      </router-link>
+      <router-link to="/farmers">
+        <div class="banner">
+          <img src=/bannerImage/damy2.jpg />
+          <h3>生産者紹介</h3>
+        </div>
+      </router-link>
+      <a href="https://c-hitomonokoto.jp/about/">
+        <div class="banner">
+          <img src="/bannerImage/damy3.jpg" />
+          <h3>私たちについて</h3>
+        </div>
+      </a>
+    </div>
   </div>
 </template>
 
@@ -32,6 +34,13 @@ export default {
 </script>
 
 <style scoped>
+.banners {
+  height: 100%;
+}
+.banners_sticky {
+  position: sticky;
+  top: 0;
+}
 .banner {
   position: relative;
 }

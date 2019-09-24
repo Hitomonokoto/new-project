@@ -1,16 +1,37 @@
 <template>
-  <div>
-    <img src="~/assets/myfarm_damy.jpg" alt />
-    <p>パッケージ名</p>
+  <div class="products">
+    <nuxt-link
+      v-for="(myFarm,index) in this.shopify.myFarms"
+      :to="'/myFarms/myFarm/' + myFarm.node.id"
+      :key="index"
+    >
+      <div class="product">
+        <img :src="myFarm.node.images.edges[0].node.originalSrc" />
+        <p>{{myFarm.node.title}}</p>
+      </div>
+    </nuxt-link>
   </div>
 </template>
 
+
+
 <script>
-export default {};
+//その他
+import { mapState } from "vuex";
+
+export default {
+  computed: mapState({ shopify: "shopify" })
+};
 </script>
 
+
+
 <style scoped>
-div {
+.products {
+  display: flex;
+  justify-content: center;
+}
+.product {
   display: flex;
   flex-direction: column;
   align-items: center;

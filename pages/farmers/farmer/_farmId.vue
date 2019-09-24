@@ -5,8 +5,8 @@
       :src="this.farmers.farmer.fields.mainImage.fields.file.url"
       alt
     />
-    <div class="main_contents">
-      <div class="main_left">
+    <div class="box">
+      <div class="box_left">
         <div class="single">
           <h1 class="farmer-title">{{ this.farmers.farmer.fields.farmName }}</h1>
           <h2 class="farmer-title">{{ this.farmers.farmer.fields.farmerName }}</h2>
@@ -16,23 +16,58 @@
           ></div>
         </div>
       </div>
-      <div class="main_right"></div>
+      <div class="box_right">
+        <div class="products">
+          <h3>マイファーム</h3>
+          <nuxt-link
+            :to="'/myFarms/myFarm/'+product.node.id"
+            v-for="(product, index) in products"
+            :key="index"
+          >
+            <img
+              class="product_img"
+              :src="product.node.images.edges[0].node.originalSrc"
+              alt
+            />
+            <p>{{ product.node.title }}</p>
+          </nuxt-link>
+        </div>
+      </div>
     </div>
   </main>
 </template>
 
 <script>
-import { mapState } from "vuex";
+// コンポーネント
 import mainImage from "~/components/MainImage";
 import myFarm from "~/components/MyFarm";
+
+// その他
+import { mapState } from "vuex";
+import GetProducts from "~/apollo/gql/GetProducts";
 
 export default {
   components: {
     mainImage,
     myFarm
   },
+  data() {
+    return {
+      products: []
+    };
+  },
   async fetch({ params, store }) {
     await store.dispatch("farmers/getFarmerAction", params);
+  },
+  async created() {
+    const data = await this.$apollo.query({
+      query: GetProducts
+    });
+    console.log(data.data.products.edges);
+    this.products = data.data.products.edges.filter(d => {
+      return d.node.productType === this.farmers.farmer.fields.farmName;
+    });
+    console.log(this.products);
   },
   computed: mapState({ farmers: "farmers" }),
   head() {
@@ -53,27 +88,25 @@ main {
 .top_img {
   width: 1000px;
 }
-
-.main_contents {
-  display: flex;
-}
-.main_left {
-  width: 600px;
+.box_left {
+  width: 700px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: lightpink;
 }
 
-.myFarm_contents {
-  display: flex;
-  justify-content: center;
+.farmer-content {
+  text-align: center;
+  padding: 0 20px;
 }
-.main_right {
-  width: 400px;
+.box_right {
+  width: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: lightblue;
+}
+.product_img {
+  width: 200px;
 }
 </style>

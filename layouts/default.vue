@@ -1,37 +1,25 @@
 <template>
   <div class="container">
     <div class="nav">
-      <div>
+      <div class="nav_sticky">
         <nuxt-link to="/">
           <img class="nav_logo_img" src="~/assets/mainlogo2.png" alt />
         </nuxt-link>
         <nuxt-link to="/">
           <p class="nav_p">ホーム</p>
         </nuxt-link>
-        <nuxt-link to="/myFarm">
+        <nuxt-link to="/myFarms">
           <p class="nav_p">マイファームを探す</p>
-        </nuxt-link>
-        <nuxt-link to="/myFarm">
-          <p class="nav_p">イベントを探す</p>
         </nuxt-link>
         <nuxt-link to="/farmers">
           <p class="nav_p">生産者紹介</p>
         </nuxt-link>
-
-        <div class="nav_myPage">
-          <div class="nav_myInfo">
-            <img src="/samplein.jpg" alt />
-            <p class="nav_nickname">yuppiさん</p>
-          </div>
-
-          <linkButton cls="nav_prof_img" linkTo="/myPage" text="マイページ" />
-        </div>
         <nuxt-link to="/login">
           <p class="nav_p_sub">ログイン</p>
         </nuxt-link>
-        <nuxt-link to="/aboutUs">
+        <a href="https://c-hitomonokoto.jp/about/">
           <p class="nav_p_sub">私たちについて</p>
-        </nuxt-link>
+        </a>
         <nuxt-link to="/info">
           <p class="nav_p_sub">お問い合わせ</p>
         </nuxt-link>
@@ -44,11 +32,6 @@
       </div>
     </div>
     <nuxt />
-    <!-- <div class="page_top"></div>
-    <div class="box">
-      <div class="box_left"></div>
-      <div class="box_right"></div>
-    </div>-->
   </div>
 </template>
 
@@ -82,7 +65,7 @@ body {
   width: 200px;
   background-color: rgb(246, 255, 220);
 }
-.nav > div {
+.nav_sticky {
   position: sticky;
   top: 0;
   display: flex;
@@ -93,27 +76,11 @@ body {
   width: 100px;
   margin: 30px 0 60px 0;
 }
-.nav_myPage {
-  margin: 30px 0 100px 0;
-}
-.nav_myInfo {
-  display: flex;
-  align-items: center;
-  margin-bottom: 5px;
-}
-.nav_myInfo > img {
-  width: 50px;
-  border-radius: 5px;
-  margin-right: 5px;
-}
 .nav_p {
   padding-bottom: 30px;
   color: rgb(75, 94, 19);
 }
 .nav_p_sub {
-  color: rgb(75, 94, 19);
-}
-.nav_nickname {
   color: rgb(75, 94, 19);
 }
 main {

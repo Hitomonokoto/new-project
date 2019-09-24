@@ -5,17 +5,10 @@
         <img src="~/assets/mainlogo1.png" alt />
       </div>
 
-      <form>
-        <input
-          id="name"
-          name="name"
-          type="text"
-          size="30"
-          placeholder="メールアドレスまたは電話番号"
-        />
-        <input id="name" name="name" type="text" size="30" placeholder="パスワード" />
-        <button class="login_btn">ログイン</button>
-      </form>
+      <input v-model="input.email" type="text" placeholder="メールアドレス" />
+      <input v-model="input.password" type="text" placeholder="パスワード" />
+      <button class="login_btn" @click="save">ログイン</button>
+
       <div class="foget_pass">
         <hr />
         <nuxt-link to="/">
@@ -37,10 +30,52 @@
 </template>
 
 <script>
+// コンポーネント
 import linkButton from "~/components/LinkButton";
 
+// その他
+import customerAccessTokenCreate from "~/apollo/gql/customerAccessTokenCreate";
+import getCustomer from "~/apollo/gql/getCustomer";
+
 export default {
-  components: { linkButton }
+  components: { linkButton },
+  data: () => ({
+    input: {
+      email: null,
+      password: null
+    }
+  }),
+  methods: {
+    save() {
+      this.login(this.input);
+    },
+    async login({ email, password }) {
+      const xxx = await this.$apollo.mutate({
+        mutation: customerAccessTokenCreate,
+        variables: {
+          input: {
+            email,
+            password
+          }
+        }
+      });
+      const token =
+        xxx.data.customerAccessTokenCreate.customerAccessToken.accessToken;
+      this.$store.commit("login/getToken", token);
+      this.getUser(token);
+    },
+    async getUser(token) {
+      const user = await this.$apollo.query({
+        query: getCustomer,
+        variables: {
+          customerAccessToken: token
+        }
+      });
+      this.$store.commit("login/getUser_1", user.data.customer);
+      this.$store.dispatch("login/getUserAction_2", user.data.customer.id);
+      this.$router.push("/");
+    }
+  }
 };
 </script>
 

@@ -11,14 +11,14 @@ export const state = () => ({
         { name: "沖縄" }
     ],
     foods: [
-        { name: "りんご" },
-        { name: "みかん" },
-        { name: "ぶどう" },
-        { name: "なし" },
-        { name: "いちご" },
-        { name: "かき" },
-        { name: "すいか" },
-        { name: "めろん" }
+        { name: "米" },
+        { name: "卵" },
+        { name: "なすび" },
+        { name: "にんじん" },
+        { name: "きゅうり" },
+        { name: "チーズ" },
+        { name: "牛乳" },
+        { name: "トマト" }
     ]
 })
 

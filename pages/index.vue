@@ -2,29 +2,21 @@
   <main>
     <div class="page_top">
       <mainImage url="/mainImage/mainDamy1.jpg" />
+
       <div class="box">
         <div class="box_left">
-          <h2>新着・オススメのマイファーム</h2>
-          <div class="myFarm_contents">
+          <div v-show="!isPost" class="myFarm_contents">
+            <h2>新着・オススメのマイファーム</h2>
             <myFarm />
-            <myFarm />
-            <myFarm />
+            <linkButton cls="type1" linkTo="/myFarms" text="もっと見る" />
           </div>
-          <linkButton cls="type1" linkTo="/myFarm" text="もっと見る" />
-          <h2>新着・オススメのイベント</h2>
-          <div class="myFarm_contents">
-            <myFarm />
-            <myFarm />
-            <myFarm />
-          </div>
-          <linkButton cls="type2" linkTo="/myFarm" text="もっと見る" />
-          <h2>タイムライン</h2>
-          <button v-if="!isPost" @click="post">投稿する</button>
-          <timeline v-if="!isPost" />
+
+          <timeline v-show="!isPost" @post="post" />
           <post v-if="isPost" @emitBack="back" @emitSendPost="back" />
         </div>
         <div class="box_right">
-          <banners />
+          <myData v-if="$store.state.login.token" />
+          <banners v-if="!$store.state.login.token" />
         </div>
       </div>
     </div>
@@ -33,8 +25,10 @@
 
 
 <script>
+// コンポーネント
 import mainImage from "~/components/MainImage";
 import banners from "~/components/Banners";
+import myData from "~/components/MyData";
 import myFarm from "~/components/MyFarm";
 import linkButton from "~/components/LinkButton";
 import timeline from "~/components/Timeline";
@@ -44,6 +38,7 @@ export default {
   components: {
     mainImage,
     banners,
+    myData,
     myFarm,
     linkButton,
     timeline,
@@ -51,12 +46,14 @@ export default {
   },
   data() {
     return {
-      isPost: false
+      isLogin: false,
+      isPost: false,
+      test: null
     };
   },
   async fetch({ store }) {
-    await store.dispatch("posts/getPostsAction");
-    await store.dispatch("comments/getCommentsAction");
+    await store.dispatch("timeline/getPostsAction");
+    await store.dispatch("shopify/getProductsAction");
   },
   methods: {
     post() {
@@ -69,6 +66,8 @@ export default {
 };
 </script>
 
+
+
 <style scoped>
 .box_left {
   width: 600px;
@@ -76,10 +75,7 @@ export default {
   flex-direction: column;
   align-items: center;
 }
-.myFarm_contents {
-  display: flex;
-  justify-content: center;
-}
+
 .box_right {
   width: 400px;
   display: flex;

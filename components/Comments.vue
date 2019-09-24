@@ -1,7 +1,6 @@
 <template>
   <div class="comments">
-    <!-- {{ comments | wherePostId }} -->
-    <div class="write_comment">
+    <div v-if="$store.state.login.token" class="write_comment">
       <div class="commenter_icon">
         <img src="samplein.jpg" alt />
       </div>
@@ -14,7 +13,7 @@
 
     <div
       class="comment_list"
-      v-for="(comment, index) in $store.state.comments.comments"
+      v-for="(comment, index) in this.comments"
       :key="index"
     >
       <div class="commenter">
@@ -23,10 +22,10 @@
         </div>
         <div class="name_time">
           <p class="nickname">{{ comment.user_name }}</p>
-          <p class="time">{{ comment.created_date.seconds | timestampToDate }}</p>
+          <p class="time">{{ comment.created.seconds | timestampToDate }}</p>
         </div>
         <div class="edit">
-          <button @click="yuhi">編集</button>
+          <button>編集</button>
         </div>
       </div>
       <div class="comment">
@@ -42,14 +41,16 @@ import db from "~/plugins/firebase";
 export default {
   data() {
     return {
-      comment: null,
-      comments: this.$store.state.comments.comments,
-      xxx: this.postId
+      comment: null
     };
   },
   props: {
     postId: {
       type: String,
+      default: ""
+    },
+    comments: {
+      type: Array,
       default: ""
     }
   },
@@ -61,22 +62,13 @@ export default {
       const firebase = require("firebase/app");
       const docRef = db.collection("comments").doc();
       const setAda = docRef.set({
-        comment_id: "1",
+        user_name: this.$store.state.login.user_2.nickname,
         post_id: this.postId,
-        user_name: "yuhi",
         text: this.comment,
-        created_date: firebase.firestore.Timestamp.fromDate(new Date())
+        created: firebase.firestore.Timestamp.fromDate(new Date())
       });
       this.comment = "";
-      this.$store.dispatch("comments/getCommentsAction");
-    },
-    yuhi() {
-      console.log(this.postId);
-      const whereComment = this.comments.filter(v => {
-        // return v.post_id == "5LX2L18pP3fX06tKAQqS";
-        return v.post_id == this.postId;
-      });
-      console.log(whereComment);
+      this.$store.dispatch("timeline/getPostsAction");
     }
   },
   filters: {
@@ -89,18 +81,6 @@ export default {
       const minute = `0${d.getMinutes()}`.slice(-2);
       const second = `0${d.getSeconds()}`.slice(-2);
       return `${year}年${month}月${day}日${hour}時${minute}分`;
-    }
-    // wherePostId(value) {
-    //   const whereComment = value.filter(v => {
-    //     // return v.post_id == "5LX2L18pP3fX06tKAQqS";
-    //     return v.post_id == this.postId;
-    //   });
-    //   return whereComment;
-    // }
-  },
-  watch: {
-    xxx() {
-      alert("ok");
     }
   }
 };

@@ -2,9 +2,7 @@ require("dotenv").config(); //一番上に
 
 export default {
   mode: 'universal',
-  /*
-  ** Headers of the page
-  */
+
   head: {
     title: process.env.npm_package_name || '',
     meta: [
@@ -16,36 +14,43 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
-  /*
-  ** Customize the progress-bar color
-  */
+
   loading: { color: '#fff' },
-  /*
-  ** Global CSS
-  */
+
   css: [
   ],
-  /*
-  ** Plugins to load before mounting the App
-  */
+
   plugins: [
-    '~/plugins/firebase',
-    '~/plugins/shopify'
+    '~/plugins/firebase'
   ],
+
   modules: [
+    '@nuxtjs/apollo',
     '@nuxtjs/axios',
     '@nuxtjs/dotenv',
     '@nuxtjs/markdownit'
   ],
+
+  apollo: {
+    clientConfigs: {
+      default: '~/apollo/client-configs/default.js'
+    }
+  },
+
   markdownit: {
     injected: true,
     html: true,
     linkify: true,
     typography: true,
   },
+
   env: {
+    // contentful
     CTF_SPACE_ID: process.env.CTF_SPACE_ID,
     CTF_ACCESS_TOKEN: process.env.CTF_ACCESS_TOKEN,
+    // shopify
+    STORE_FRONT_ACCESS_TOKEN: process.env.STORE_FRONT_ACCESS_TOKEN,
+    // firebase
     apiKey: process.env.FB_API_KEY,
     authDomain: process.env.FB_AUTH_DOMAIN,
     databaseURL: process.env.FB_DATABASE_URL,
@@ -53,13 +58,8 @@ export default {
     messagingSenderId: process.env.FB_MESSAGING_SENDER_ID,
     appId: process.env.FB_APP_ID
   },
-  /*
-  ** Build configuration
-  */
+
   build: {
-    /*
-    ** You can extend webpack config here
-    */
     extend(config, ctx) {
     }
   }
