@@ -8,16 +8,13 @@
 export default {
   props: {
     cls: {
-      type: String,
-      default: ""
+      type: String
     },
     text: {
-      type: String,
-      default: ""
+      type: String
     },
     linkTo: {
-      type: String,
-      default: ""
+      type: String
     }
   }
 };

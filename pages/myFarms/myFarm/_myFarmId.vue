@@ -23,7 +23,7 @@
           </nuxt-link>
         </div>
         <div class="purchase">
-          <button @click="checkout">種主になる</button>
+          <basicButton @emitClick="checkout">種主になる</basicButton>
         </div>
       </div>
     </div>
@@ -31,16 +31,19 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+// コンポーネント
+import basicButton from "~/components/BasicButton";
 import mainImage from "~/components/MainImage";
 
 //その他
+import { mapState } from "vuex";
 import getProduct from "~/apollo/gql/getProduct";
 import checkoutCreate from "~/apollo/gql/checkoutCreate";
 
 export default {
   components: {
-    mainImage
+    mainImage,
+    basicButton
   },
   data() {
     return {
@@ -49,6 +52,9 @@ export default {
       variant: null
     };
   },
+  // async fetch({ params, store }) {
+  //   await store.dispatch("shopify/getProductsAction", params.serchId);
+  // },
   async created() {
     const data = await this.$apollo.query({
       query: getProduct,

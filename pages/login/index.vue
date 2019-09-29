@@ -6,14 +6,16 @@
       </div>
 
       <input v-model="input.email" type="text" placeholder="メールアドレス" />
-      <input v-model="input.password" type="text" placeholder="パスワード" />
-      <button class="login_btn" @click="save">ログイン</button>
+      <input v-model="input.password" type="password" placeholder="パスワード" />
+      <basicButton class="login_btn" @emitClick="save">ログイン</basicButton>
 
       <div class="foget_pass">
         <hr />
-        <nuxt-link to="/">
-          <p class="foget_pass_p">パスワードをお忘れの方</p>
-        </nuxt-link>
+        <linkButton
+          cls="type1"
+          linkTo="/login/passWordReset"
+          text="パスワードをお忘れの方"
+        />
       </div>
     </div>
 
@@ -24,7 +26,7 @@
         <br />こちらからマイファームのご案内をさせていただきます。
         <br />ご共感頂き登録していただけると幸いです。
       </p>
-      <linkButton cls="type3" linkTo="/myFarm" text="マイファームについて" />
+      <linkButton cls="type3" linkTo="/aboutMyFarm" text="マイファームについて" />
     </div>
   </main>
 </template>
@@ -32,13 +34,14 @@
 <script>
 // コンポーネント
 import linkButton from "~/components/LinkButton";
+import basicButton from "~/components/BasicButton";
 
 // その他
 import customerAccessTokenCreate from "~/apollo/gql/customerAccessTokenCreate";
 import getCustomer from "~/apollo/gql/getCustomer";
 
 export default {
-  components: { linkButton },
+  components: { linkButton, basicButton },
   data: () => ({
     input: {
       email: null,

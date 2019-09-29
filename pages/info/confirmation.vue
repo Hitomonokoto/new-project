@@ -9,35 +9,54 @@
       <div>
         <dl>
           <dt>お名前</dt>
-          <dd>aaajdfnloubfdsgl;jnbsdfgkjnlajsdkbg;kasbd;glknasd;gjn;alsdbg;ads</dd>
+          <dd>{{ this.info.info_data.name }}</dd>
         </dl>
         <dl>
           <dt>メールアドレス</dt>
-          <dd>sss</dd>
+          <dd>{{ this.info.info_data.email }}</dd>
         </dl>
         <dl>
           <dt>タイトル</dt>
-          <dd>ddd</dd>
+          <dd>{{ this.info.info_data.title }}</dd>
         </dl>
         <dl>
           <dt>お問い合わせ内容</dt>
-          <dd>fff</dd>
+          <dd>{{ this.info.info_data.message }}</dd>
         </dl>
       </div>
-      <linkButton cls="type1" linkTo="/myFarm" text="送信する" />
+      <basicButton class="login_btn" @emitClick="editForm">修正する</basicButton>
+      <basicButton class="login_btn" @emitClick="sendForm">送信する</basicButton>
     </div>
   </main>
 </template>
 
 <script>
+// コンポーネント
 import mainImage from "~/components/MainImage";
-import linkButton from "~/components/LinkButton";
+import basicButton from "~/components/BasicButton";
+
+// その他
+import { mapState } from "vuex";
 
 export default {
   components: {
     mainImage,
-    linkButton
-  }
+    basicButton
+  },
+  methods: {
+    editForm() {
+      this.$router.push("/info");
+    },
+    sendForm() {
+      this.$store.dispatch("info/sendFormAction", {
+        name: this.info.info_data.name,
+        email: this.info.info_data.email,
+        title: this.info.info_data.title,
+        message: this.info.info_data.message
+      });
+    }
+  },
+  computed: mapState({ info: "info" })
 };
 </script>
 

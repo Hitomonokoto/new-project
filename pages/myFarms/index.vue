@@ -16,13 +16,24 @@
     </div>
 
     <div class="box">
-      <div class="box_left">
-        <h3>地域から探す</h3>
-        <prefectureIndex page="/myFarms/" />
-      </div>
-      <div class="box_right">
-        <h3>作物から探す</h3>
-        <foodIndex page="/myFarms/" />
+      <div v-if="this.products.length" class="myFarms">
+        <nuxt-link
+          v-for="(product, index) in this.products"
+          :to="'/myFarms/myFarm/' + product.node.id"
+          class="myFarm"
+          :key="index"
+        >
+          <div class="farmer_img">
+            <img
+              class="main_img"
+              :src="product.node.images.edges[0].node.originalSrc"
+            />
+          </div>
+          <div class="myFarm_text">
+            <h2>{{ product.node.title }}</h2>
+            <p>{{ product.node.productType }}</p>
+          </div>
+        </nuxt-link>
       </div>
     </div>
   </main>
@@ -30,35 +41,46 @@
 
 <script>
 import mainImage from "~/components/MainImage";
-import foodIndex from "~/components/FoodIndex";
-import prefectureIndex from "~/components/PrefectureIndex";
+
+// その他
+import { mapState } from "vuex";
+import getProducts from "~/apollo/gql/getProducts";
 
 export default {
   components: {
-    mainImage,
-    foodIndex,
-    prefectureIndex
+    mainImage
   },
   data() {
-    return {};
-  }
+    return {
+      products: []
+    };
+  },
+  async created() {
+    const data = await this.$apollo.query({
+      query: getProducts
+    });
+    this.products = data.data.products.edges;
+  },
+  computed: mapState({ shopify: "shopify" })
 };
 </script>
 
 <style scoped>
-.box_left {
-  width: 500px;
+.myFarm {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: lightpink;
+  background-color: white;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 6px 3px #d1d1d1;
 }
-
-.box_right {
-  width: 500px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: lightblue;
+.farmer_img {
+  width: 300px;
+}
+.farmer_img > img {
+  width: 100%;
+  border-radius: 5px 0 0 5px;
+}
+.myFarm_text {
+  width: 360px;
 }
 </style>

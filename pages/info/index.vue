@@ -8,7 +8,7 @@
         <br />お気軽にこちらからお問い合わせ下さい。
       </p>
     </div>
-    <form action="/info/confirmation" @submit="checkForm" method="post">
+    <div>
       <input
         class="formtype1"
         id="name"
@@ -41,24 +41,26 @@
         placeholder="お問い合わせ内容"
       ></textarea>
       <p v-if="error" class="error_text">※未入力項目があります。</p>
-      <input class="form_btn" type="submit" value="確認する" />
-    </form>
+      <basicButton class="login_btn" @emitClick="checkForm">確認する</basicButton>
+    </div>
   </main>
 </template>
 
 <script>
 import mainImage from "~/components/MainImage";
 import linkButton from "~/components/LinkButton";
+import basicButton from "~/components/BasicButton";
 
 export default {
   components: {
     mainImage,
-    linkButton
+    linkButton,
+    basicButton
   },
   data() {
     return {
-      name: null,
-      email: null,
+      name: this.$store.state.login.user_2.nickname,
+      email: this.$store.state.login.user_1.email,
       title: null,
       message: null,
       error: false
@@ -67,7 +69,13 @@ export default {
   methods: {
     checkForm: function(e) {
       if (this.name && this.email && this.title && this.message) {
-        return true;
+        this.$store.commit("info/input", {
+          name: this.name,
+          email: this.email,
+          title: this.title,
+          message: this.message
+        });
+        this.$router.push("/info/confirmation");
       } else {
         this.error = true;
         if (!this.name) {
@@ -82,7 +90,6 @@ export default {
         if (!this.message) {
           document.getElementById("message").classList.add("error");
         }
-        e.preventDefault();
       }
     }
   },

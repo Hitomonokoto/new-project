@@ -1,0 +1,117 @@
+<template>
+  <div class="post">
+    <div class="user">
+      <img class="user_icon" src="samplein.jpg" alt />
+      <p class="nickname">{{$store.state.login.user_2.nickname}}</p>
+      <div class="edit">
+        <basicButton @emitClick="back">戻る</basicButton>
+      </div>
+    </div>
+    <textarea
+      v-model="text"
+      name="text"
+      id
+      cols="30"
+      rows="10"
+      placeholder="入力してください..."
+    ></textarea>
+    <img v-if="this.fileUrl" class="post_img" :src="this.fileUrl" />
+    <input type="file" @change="setFiles($event)" />
+    <div class="edit">
+      <basicButton @emitClick="sendPost">投稿</basicButton>
+    </div>
+  </div>
+</template>
+
+<script>
+// コンポーネント
+import basicButton from "~/components/BasicButton";
+import linkButton from "~/components/LinkButton";
+
+// その他
+import uuid from "uuid";
+
+export default {
+  components: { basicButton, linkButton },
+  data() {
+    return {
+      text: "",
+      fileName: null,
+      fileUrl: null
+    };
+  },
+  methods: {
+    back() {
+      this.$emit("emitBack");
+    },
+    setFiles(e) {
+      const file = (e.target.files || e.dataTransfer.files)[0];
+      console.log("1->" + file);
+      if (file) {
+        const fileName = uuid();
+        console.log("2->" + fileName);
+        this.$store
+          .dispatch("timeline/uploadImage", {
+            name: fileName,
+            file: file
+          })
+          .then(url => {
+            this.fileName = fileName;
+            this.fileUrl = url;
+            console.log("3->" + this.fileName);
+            console.log("4->" + this.fileUrl);
+          });
+        console.log("5->" + this.fileName);
+        console.log("6->" + this.fileUrl);
+      }
+    },
+    sendPost() {
+      if (this.text == "" && !this.fileName) {
+        return;
+      }
+      this.$store.dispatch("timeline/PostAction", {
+        user_id: this.$store.state.login.user_2.user_id,
+        name: this.$store.state.login.user_2.nickname,
+        text: this.text,
+        fileName: this.fileName,
+        fileUrl: this.fileUrl
+      });
+      this.$emit("emitBack");
+    }
+  }
+};
+</script>
+
+<style scoped>
+.post {
+  border-radius: 5px;
+  width: 580px;
+  box-shadow: 0px 0px 6px 3px #d1d1d1;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+}
+
+.user_icon {
+  width: 50px;
+  border-radius: 10%;
+}
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background-color: #efefef;
+}
+.post_img {
+  width: 100%;
+}
+</style>

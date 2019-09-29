@@ -13,7 +13,7 @@
         <br />ーーーーーーーーーーーーーーーーーーーーーーーーーーーー
         <br />
       </div>
-      <linkButton cls="type2" linkTo="/regist" text="種主になる" />
+      <linkButton cls="type2" linkTo="/regist" text="パートナーになる" />
     </div>
     <div class="box"></div>
   </main>

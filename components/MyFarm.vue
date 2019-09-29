@@ -1,7 +1,7 @@
 <template>
   <div class="products">
     <nuxt-link
-      v-for="(myFarm,index) in this.shopify.myFarms"
+      v-for="(myFarm,index) in this.myFarms"
       :to="'/myFarms/myFarm/' + myFarm.node.id"
       :key="index"
     >
@@ -20,6 +20,11 @@
 import { mapState } from "vuex";
 
 export default {
+  props: {
+    myFarms: {
+      type: Array
+    }
+  },
   computed: mapState({ shopify: "shopify" })
 };
 </script>

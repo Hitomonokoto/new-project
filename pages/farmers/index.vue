@@ -2,17 +2,17 @@
   <main>
     <div class="page_top">
       <mainImage url="/mainImage/mainDamy1.jpg" />
+      <h2>こだわりの創り手</h2>
+      <p class="myfarm-about-text">
+        九州を４週周り、
+        <br />350人以上の作り手に出会いました。
+        <br />価値だけでは表現することの出来ない"モノの価値"。
+        <br />そんなこだわりのある創り手を紹介します。
+      </p>
     </div>
 
     <div class="box">
-      <div class="box_left">
-        <h2 class="page_title">こだわりの創り手</h2>
-        <p>
-          九州を４週周り、
-          <br />350人以上の作り手に出会いました。
-          <br />価値だけでは表現することの出来ない"モノの価値"。
-          <br />そんなこだわりのある創り手を紹介します。
-        </p>
+      <div class="farmers">
         <nuxt-link
           v-for="(farmer, index) in this.farmers.farmers"
           :to="'/farmers/farmer/'+farmer.sys.id"
@@ -28,13 +28,6 @@
             <p>{{ farmer.fields.farmerName }}</p>
           </div>
         </nuxt-link>
-      </div>
-      <div class="box_right">
-        <h3>地域から探す</h3>
-        <prefectureIndex page="farmers/" />
-
-        <h3>作物から探す</h3>
-        <foodIndex page="farmers/" />
       </div>
     </div>
   </main>
@@ -72,15 +65,14 @@ export default {
 
 
 <style scoped>
-.box_left {
-  width: 700px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.box_left > p {
+.myfarm-about-text {
   padding: 20px 0 40px 0;
   text-align: center;
+}
+.farmers {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .farmer {
   display: flex;
@@ -102,12 +94,5 @@ export default {
 .myFarm_contents {
   display: flex;
   justify-content: center;
-}
-.box_right {
-  width: 300px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: cornsilk;
 }
 </style>

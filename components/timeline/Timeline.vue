@@ -1,20 +1,24 @@
 <template>
   <div class="timeline">
     <div class="timeline_menu">
-      <button v-if="$store.state.login.user_2.user_type==1" @click="post">投稿する</button>
+      <basicButton v-if="isPost" @emitClick="post">投稿する</basicButton>
       <div class="timeline_btns">
-        <button class="all_posts">タイムライン</button>
-        <button class="my_posts">マイライン</button>
+        <basicButton class="all_posts">タイムライン</basicButton>
+        <basicButton class="my_posts">マイライン</basicButton>
       </div>
     </div>
     <div class="post" v-for="(post, index) in this.timeline.posts" :key="index">
       <posts
-        :name="post.user_name"
-        :created="post.created_date.seconds"
+        @postEdit="postEdit"
+        :user_id="post.user_id"
+        :name="post.name"
+        :created="post.created.seconds"
         :text="post.text"
-        :image="post.image"
-        :postId="post.post_id"
+        :fileName="post.fileName"
+        :fileUrl="post.fileUrl"
         :comments="post.comments"
+        :post_id="post.post_id"
+        :comment_count="post.comment_count"
       />
     </div>
   </div>
@@ -24,18 +28,36 @@
 
 <script>
 // コンポーネント
-import posts from "~/components/Posts";
+import posts from "~/components/timeline/Posts";
+import basicButton from "~/components/BasicButton";
 
 // その他
 import { mapState } from "vuex";
 
 export default {
   components: {
-    posts
+    posts,
+    basicButton
+  },
+  data() {
+    return {
+      isPost: false
+    };
+  },
+  created() {
+    if (this.$store.state.login.user_2) {
+      if (this.$store.state.login.user_2.user_type == 1) {
+        this.isPost = true;
+      }
+    }
   },
   methods: {
     post() {
       this.$emit("post");
+    },
+    postEdit(post_data) {
+      console.log(post_data);
+      this.$emit("post_edit", post_data);
     }
   },
   computed: mapState({ timeline: "timeline" })

@@ -19,7 +19,8 @@ export const state = () => ({
         { name: "チーズ" },
         { name: "牛乳" },
         { name: "トマト" }
-    ]
+    ],
+
 })
 
 

@@ -4,19 +4,20 @@ query getCustomer($customerAccessToken: String!){
         lastName
         firstName
         email
-        # orders(first: 100){
-        #     edges{
-        #         node{
-        #             name
-        #             lineItems(first: 100){
-        #                 edges{
-        #                     node{
-        #                         title
-        #                     }
-        #                 }
-        #             }
-        #         }
-        #     }
-        # }
+        defaultAddress{
+            address1
+            address2
+            city
+            company
+            country
+            firstName
+            lastName
+            name
+            zip
+            provinceCode
+            province
+            phone
+            id
+        }
     }
 }
