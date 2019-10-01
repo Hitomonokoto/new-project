@@ -1,8 +1,4 @@
-const contentful = require('contentful');
-const client = contentful.createClient({
-    space: process.env.CTF_SPACE_ID,
-    accessToken: process.env.CTF_ACCESS_TOKEN
-});
+import client from "~/plugins/contentful";
 
 export const state = () => ({
     farmers: [],

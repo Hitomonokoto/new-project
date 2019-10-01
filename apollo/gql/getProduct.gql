@@ -1,4 +1,4 @@
-query GetProducts($productId: ID!){
+query getProduct($productId: ID!){
     node(id: $productId) {
         ... on Product {
             title

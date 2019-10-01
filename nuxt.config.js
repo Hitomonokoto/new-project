@@ -1,5 +1,3 @@
-require("dotenv").config(); //一番上に
-
 export default {
   mode: 'universal',
 
@@ -22,7 +20,7 @@ export default {
 
   plugins: [
     '~/plugins/firebase',
-    '~/plugins/graphql'
+    '~/plugins/contentful'
   ],
 
   modules: [

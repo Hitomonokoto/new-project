@@ -5,27 +5,36 @@
         <img src="samplein.jpg" alt />
       </div>
       <div class="name_time">
-        <p class="nickname">{{ name }}</p>
-        <p class="time">{{ created | timestampToDate }}</p>
+        <p class="nickname">{{ post_data.name }}</p>
+        <p class="time">{{ post_data.created.seconds | timestampToDate }}</p>
       </div>
-      <div v-if="this.$store.state.login.user_id == this.user_id">
+      <div v-if="this.$store.state.login.user_id == this.post_data.user_id">
         <basicButton @emitClick="edit">編集</basicButton>
       </div>
     </div>
     <div class="post_content">
       <div class="text">
-        <p>{{ text }}</p>
+        <p>{{ post_data.text }}</p>
       </div>
-      <img class="post_img" :src="this.fileUrl" />
+      <img class="post_img" :src="this.post_data.fileUrl" />
       <div class="actions">
-        <basicButton class="like_btn" @emitClick="like">いいね！</basicButton>
+        <basicButton class="like_btn" v-if="!isLike_btn" @emitClick="getLike">
+          いいね！
+          <span v-show="post_data.like_count!=0">{{ post_data.like_count }}</span>
+        </basicButton>
+        <basicButton class="like_btn" v-if="isLike_btn" @emitClick="loseLike">
+          いいね！
+          <span v-show="post_data.like_count!=0">{{ post_data.like_count }}</span>
+        </basicButton>
         <basicButton
           class="comment_btn"
           v-if="!isComment_btn"
           @emitClick="getComments"
         >
           コメント
-          <span v-show="comment_count!=0">{{ comment_count }}</span>
+          <span
+            v-show="post_data.comment_count!=0"
+          >{{ post_data.comment_count }}</span>
         </basicButton>
         <basicButton
           class="comment_btn"
@@ -33,14 +42,16 @@
           @emitClick="closeComments"
         >
           コメント
-          <span v-show="comment_count!=0">{{ comment_count }}</span>
+          <span
+            v-show="post_data.comment_count!=0"
+          >{{ post_data.comment_count }}</span>
         </basicButton>
       </div>
       <comments
         v-if="isComments"
-        :comment_count="this.comment_count"
-        :post_id="this.post_id"
-        :comments="this.comments"
+        :comment_count="this.post_data.comment_count"
+        :post_id="this.post_data.post_id"
+        :comments="this.post_data.comments"
         :login_user_id="this.$store.state.login.user_id"
       />
     </div>
@@ -57,47 +68,41 @@ import comments from "~/components/timeline/Comments";
 export default {
   components: { basicButton, comments },
   props: {
-    user_id: {
-      type: String
-    },
-    name: {
-      type: String
-    },
-    created: {
-      type: Number
-    },
-    text: {
-      type: String
-    },
-    fileName: {
-      type: String
-    },
-    fileUrl: {
-      type: String
-    },
-    post_id: {
-      type: String
-    },
-    comments: {
-      type: Array
-    },
-    comment_count: {
-      type: Number
+    post_data: {
+      type: Object
     }
   },
   data() {
     return {
       isComments: false,
-      isComment_btn: false
+      isComment_btn: false,
+      isLike_btn: false
     };
   },
   methods: {
-    like() {
-      alert("ok!");
+    getLike() {
+      if (!this.$store.state.login.token) {
+        return;
+      }
+      this.isLike_btn = true;
+      this.$store.dispatch("timeline/getLikeAction", {
+        post_data: this.post_data,
+        user_id: this.$store.state.login.user_id
+      });
+    },
+    loseLike() {
+      this.isLike_btn = false;
+      this.$store.dispatch("timeline/loseLikeAction", {
+        post_data: this.post_data,
+        user_id: this.$store.state.login.user_id
+      });
     },
     getComments() {
       this.isComments = true;
-      this.$store.dispatch("timeline/getCommentsAction", this.post_id);
+      this.$store.dispatch(
+        "timeline/getCommentsAction",
+        this.post_data.post_id
+      );
       this.isComment_btn = true;
     },
     closeComments() {
@@ -106,13 +111,7 @@ export default {
     },
     edit() {
       console.log("okokok");
-      this.$emit("postEdit", {
-        post_id: this.post_id,
-        name: this.name,
-        text: this.text,
-        fileUrl: this.fileUrl,
-        fileName: this.fileName
-      });
+      this.$emit("postEdit", this.post_data);
     }
   },
   filters: {

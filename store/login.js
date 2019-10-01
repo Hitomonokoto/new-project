@@ -1,3 +1,4 @@
+import customerUpdate from "~/apollo/gql/customerUpdate";
 import firebase from "~/plugins/firebase";
 require('firebase/firestore');
 const db = firebase.firestore();
@@ -29,18 +30,50 @@ export const mutations = {
 }
 
 export const actions = {
-
-  async createUserAction(context, data) {
-    const docRef = await db.collection("users").doc();
+  // 新規ユーザー登録
+  async createUserAction(context, payload) {
+    const docRef = await db.collection("users").doc(payload.user_id);
     const setAda = docRef.set({
-      user_id: data.user_id,
-      nickname: data.nickname,
+      user_id: payload.user_id,
+      nickname: payload.nickname,
       user_type: 0
     });
   },
-  async getUserAction_2(context, data) {
-    const user = await db.collection('users').where("user_id", "==", data).get();
-    context.commit('getUser_2', user.docs[0].data());
+  // ユーザー情報を取得
+  async getUserAction_2(context, payload) {
+    // const user = await db.collection('users').where("user_id", "==", payload).get();
+    const user = await db.collection('users').doc(payload).get();
+    // context.commit('getUser_2', user.docs[0].payload());
+    console.log(user.data())
+    context.commit('getUser_2', user.data());
+  },
+  // ニックネームを変更
+  async changeNicknameAction(context, payload) {
+    const docRef = await db.collection("users").doc(payload.user_id);
+    const setAda = docRef.update({
+      nickname: payload.new_nickname
+    });
+    context.dispatch("getUserAction_2", payload.user_id)
+  },
+  // 基本情報を変更
+  async changeBasicDataAction(context, payload) {
+
+    const yyy = await this.$apollo.mutate({
+      mutation: customerUpdate,
+      variables: {
+        customerAccessToken: payload.token,
+        customer: payload.data
+      }
+    });
+    console.log(yyy);
+
+
+
+
+
+
+
+    context.dispatch("getUserAction_2", payload.user_id)
   }
 }
 

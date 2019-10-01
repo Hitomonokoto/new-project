@@ -44,7 +44,7 @@ import myFarm from "~/components/MyFarm";
 
 // その他
 import { mapState } from "vuex";
-import GetProducts from "~/apollo/gql/GetProducts";
+import getProducts from "~/apollo/gql/getProducts";
 
 export default {
   components: {
@@ -61,7 +61,7 @@ export default {
   },
   async created() {
     const data = await this.$apollo.query({
-      query: GetProducts
+      query: getProducts
     });
     console.log(data.data.products.edges);
     this.products = data.data.products.edges.filter(d => {

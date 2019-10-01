@@ -26,9 +26,6 @@
         <nuxt-link to="/aboutMyFarm">
           <p class="nav_p_sub">パートナーになる</p>
         </nuxt-link>
-        <nuxt-link to="/unsub">
-          <p class="nav_p_sub">退会する</p>
-        </nuxt-link>
       </div>
     </div>
     <nuxt />

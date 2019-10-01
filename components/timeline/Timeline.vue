@@ -8,18 +8,7 @@
       </div>
     </div>
     <div class="post" v-for="(post, index) in this.timeline.posts" :key="index">
-      <posts
-        @postEdit="postEdit"
-        :user_id="post.user_id"
-        :name="post.name"
-        :created="post.created.seconds"
-        :text="post.text"
-        :fileName="post.fileName"
-        :fileUrl="post.fileUrl"
-        :comments="post.comments"
-        :post_id="post.post_id"
-        :comment_count="post.comment_count"
-      />
+      <posts @postEdit="postEdit" :post_data="post" />
     </div>
   </div>
 </template>

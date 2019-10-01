@@ -52,9 +52,6 @@ export default {
       variant: null
     };
   },
-  // async fetch({ params, store }) {
-  //   await store.dispatch("shopify/getProductsAction", params.serchId);
-  // },
   async created() {
     const data = await this.$apollo.query({
       query: getProduct,
