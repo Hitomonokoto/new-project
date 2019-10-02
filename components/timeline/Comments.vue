@@ -1,5 +1,5 @@
 <template>
-  <div class="comments">
+  <div v-show="this.comments" class="comments">
     <div v-show="this.login.token" class="send_comment">
       <div class="commenter_icon">
         <img src="samplein.jpg" alt />
@@ -11,24 +11,23 @@
       </div>
     </div>
     <p v-show="!this.login.token">パートナーになるとコメントをすることが出来ます。</p>
-    <div v-show="this.comments">
-      <div v-for="(comment, index) in comments" :key="index">
-        <div class="commenter">
-          <div class="commenter_icon">
-            <img src="samplein.jpg" alt />
-          </div>
-          <div class="name_time">
-            <p class="nickname">{{ comment.name }}</p>
 
-            <p class="time">{{ comment.created.seconds | timestampToDate }}</p>
-          </div>
-          <div v-if="login_user_id == comment.user_id" class="commentDelete">
-            <basicButton @emitClick="commentDelete(comment)">編集</basicButton>
-          </div>
+    <div v-for="(comment, index) in comments" :key="index">
+      <div class="commenter">
+        <div class="commenter_icon">
+          <img src="samplein.jpg" alt />
         </div>
-        <div class="comment">
-          <p>{{ comment.text }}</p>
+        <div class="name_time">
+          <p class="nickname">{{ comment.name }}</p>
+
+          <p class="time">{{ comment.created.seconds | timestampToDate }}</p>
         </div>
+        <div v-if="login_user_id == comment.user_id" class="commentDelete">
+          <basicButton @emitClick="commentDelete(comment)">編集</basicButton>
+        </div>
+      </div>
+      <div class="comment">
+        <p>{{ comment.text }}</p>
       </div>
     </div>
   </div>

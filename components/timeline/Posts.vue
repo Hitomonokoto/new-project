@@ -8,7 +8,7 @@
         <p class="nickname">{{ post_data.name }}</p>
         <p class="time">{{ post_data.created.seconds | timestampToDate }}</p>
       </div>
-      <div v-if="this.$store.state.login.user_id == this.post_data.user_id">
+      <div v-if="this.$store.state.login.user_id == this.user_id">
         <basicButton @emitClick="edit">編集</basicButton>
       </div>
     </div>
@@ -73,6 +73,9 @@ export default {
     },
     comments: {
       type: Array
+    },
+    user_id: {
+      type: String
     }
   },
   data() {

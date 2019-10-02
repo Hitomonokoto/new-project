@@ -28,7 +28,40 @@ export const mutations = {
                 return -1;
             }
         })
-        console.log(state.posts)
+    },
+    commentCountAdjust(state, data) {
+        const x = state.posts.filter(post => {
+            return post.post_id == data;
+        })
+        const y = state.posts.filter(post => {
+            return post.post_id != data;
+        })
+        x[0].comment_count++;
+        const z = y.concat(x);
+        state.posts = z.sort(function (a, b) {
+            if (a.created.seconds < b.created.seconds) {
+                return 1;
+            } else {
+                return -1;
+            }
+        })
+    },
+    commentDiscountAdjust(state, data) {
+        const x = state.posts.filter(post => {
+            return post.post_id == data;
+        })
+        const y = state.posts.filter(post => {
+            return post.post_id != data;
+        })
+        x[0].comment_count--;
+        const z = y.concat(x);
+        state.posts = z.sort(function (a, b) {
+            if (a.created.seconds < b.created.seconds) {
+                return 1;
+            } else {
+                return -1;
+            }
+        })
     }
 }
 
@@ -66,10 +99,8 @@ export const actions = {
         let fileName = payload.fileName;
         if (!payload.fileUrl) {
             const storageRef = firebase.storage().ref(payload.fileName);
-            storageRef.delete().then(function () {
-                console.log("削除成功");
-            }).catch(function (error) {
-                console.log("削除失敗");
+            storageRef.delete().catch(function (error) {
+                console.log(error);
             });
             fileName = null;
         }
@@ -121,38 +152,47 @@ export const actions = {
         context.dispatch("getPostsAction");
     },
     // コメントする
-    commentAction(context, data) {
-        const docRef = db.collection("timeline").doc(data.post_id).collection("comments").doc();
+    commentAction(context, payload) {
+        const docRef = db.collection("timeline").doc(payload.post_id).collection("comments").doc();
         const setAda = docRef.set({
-            user_id: data.user_id,
-            name: data.name,
-            text: data.text,
+            user_id: payload.user_id,
+            name: payload.name,
+            text: payload.text,
             created: firebase.firestore.Timestamp.fromDate(new Date())
         });
-        const docRef2 = db.collection("timeline").doc(data.post_id);
-        const setAda2 = docRef2.update({
-            comment_count: data.comment_count + 1
-        });
-        console.log(data.comment_count)
-        console.log('カウントしました！')
-        context.dispatch("getCommentsAction", data.post_id);
+        const docRef2 = db.collection("timeline").doc(payload.post_id);
+        let xxx = docRef2.get()
+            .then(doc => {
+                const comment_count = doc.data().comment_count;
+                const setAda2 = docRef2.update({
+                    comment_count: comment_count + 1
+                });
+                console.log(comment_count + 1)
+                console.log('カウントしました！')
+                context.dispatch("getCommentsAction", payload.post_id);
+                context.commit("commentCountAdjust", payload.post_id);
+            })
     },
     // コメントを削除する
     commentDeleteAction(context, data) {
         const commentDelete = db.collection("timeline").doc(data.post_id).collection("comments").doc(data.comment_id).delete();
         const docRef = db.collection("timeline").doc(data.post_id);
-        const discount = docRef.update({
-            comment_count: data.comment_count - 1
-        });
-        console.log(data.comment_count)
-        console.log('ディスカウントしました！')
-        context.dispatch("getCommentsAction", data.post_id);
+        let xxx = docRef.get()
+            .then(doc => {
+                const comment_count = doc.data().comment_count;
+                const setAda2 = docRef.update({
+                    comment_count: comment_count - 1
+                });
+                console.log(comment_count - 1)
+                console.log('ディスカウントしました！')
+                context.dispatch("getCommentsAction", data.post_id);
+                context.commit("commentDiscountAdjust", data.post_id);
+            })
     },
     // コメントを読み込む
     async getCommentsAction(context, payload) {
         try {
-            // console.log(payload);
-            context.dispatch("getPostsAction");
+            // context.dispatch("getPostsAction");
             const comments = [];
             const commentSnapShots = await db.collection('timeline').doc(payload).collection('comments').orderBy('created', 'desc').get();
             commentSnapShots.forEach(comment => {
@@ -161,7 +201,6 @@ export const actions = {
                 comments.push(comment_data);
             });
             context.commit('getComments', { comments: comments, post_id: payload });
-            // console.log(comments);
         } catch (e) {
             console.log("firestore-getCommentsActionがエラー！", e);
         }
