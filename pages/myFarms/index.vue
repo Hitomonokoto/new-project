@@ -24,10 +24,7 @@
           :key="index"
         >
           <div class="farmer_img">
-            <img
-              class="main_img"
-              :src="product.node.images.edges[0].node.originalSrc"
-            />
+            <img :src="product.node.images.edges[0].node.originalSrc" />
           </div>
           <div class="myFarm_text">
             <h2>{{ product.node.title }}</h2>
@@ -66,7 +63,14 @@ export default {
 </script>
 
 <style scoped>
+.myFarms {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .myFarm {
+  width: 90%;
   display: flex;
   background-color: white;
   margin-bottom: 20px;
@@ -74,13 +78,18 @@ export default {
   box-shadow: 0px 0px 6px 3px #d1d1d1;
 }
 .farmer_img {
-  width: 300px;
+  width: 50%;
 }
 .farmer_img > img {
   width: 100%;
   border-radius: 5px 0 0 5px;
+  display: block;
 }
 .myFarm_text {
-  width: 360px;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 </style>

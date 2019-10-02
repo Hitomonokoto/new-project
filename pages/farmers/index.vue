@@ -70,11 +70,13 @@ export default {
   text-align: center;
 }
 .farmers {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
 }
 .farmer {
+  width: 90%;
   display: flex;
   background-color: white;
   margin-bottom: 20px;
@@ -82,14 +84,19 @@ export default {
   box-shadow: 0px 0px 6px 3px #d1d1d1;
 }
 .farmer_img {
-  width: 300px;
+  width: 50%;
 }
 .farmer_img > img {
   width: 100%;
   border-radius: 5px 0 0 5px;
+  display: block;
 }
 .farmer_text {
-  width: 360px;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .myFarm_contents {
   display: flex;

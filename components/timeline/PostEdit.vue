@@ -4,7 +4,7 @@
       <img class="user_icon" src="samplein.jpg" alt />
       <p class="nickname">{{post_data.name}}</p>
       <div class="edit">
-        <basicButton @emitClick="back">戻る</basicButton>
+        <basicButton cls="back_btn" @emitClick="back">戻る</basicButton>
       </div>
     </div>
     <textarea
@@ -19,8 +19,8 @@
     <basicButton v-show="this.fileUrl" @emitClick="fileDalete">画像削除</basicButton>
     <input type="file" @change="setFiles($event)" />
     <div class="edit">
-      <basicButton @emitClick="postDalete">削除</basicButton>
-      <basicButton @emitClick="update">更新</basicButton>
+      <basicButton cls="delete_btn" @emitClick="postDalete">削除</basicButton>
+      <basicButton cls="update_btn" @emitClick="update">更新</basicButton>
     </div>
   </div>
 </template>

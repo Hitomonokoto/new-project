@@ -7,7 +7,7 @@
       <textarea v-model="new_comment" placeholder="コメントを書く..."></textarea>
 
       <div class="send_comment">
-        <basicButton @emitClick="sendComment">送信</basicButton>
+        <basicButton cls="send_btn" @emitClick="sendComment">送信</basicButton>
       </div>
     </div>
     <p v-show="!this.login.token">パートナーになるとコメントをすることが出来ます。</p>
@@ -23,7 +23,7 @@
           <p class="time">{{ comment.created.seconds | timestampToDate }}</p>
         </div>
         <div v-if="login_user_id == comment.user_id" class="commentDelete">
-          <basicButton @emitClick="commentDelete(comment)">編集</basicButton>
+          <basicButton cls="delete_btn" @emitClick="commentDelete(comment)">削除</basicButton>
         </div>
       </div>
       <div class="comment">

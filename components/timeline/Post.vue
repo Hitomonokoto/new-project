@@ -4,7 +4,7 @@
       <img class="user_icon" src="samplein.jpg" alt />
       <p class="nickname">{{$store.state.login.user_2.nickname}}</p>
       <div class="edit">
-        <basicButton @emitClick="back">戻る</basicButton>
+        <basicButton cls="back_btn" @emitClick="back">戻る</basicButton>
       </div>
     </div>
     <textarea
@@ -18,7 +18,7 @@
     <img v-if="this.fileUrl" class="post_img" :src="this.fileUrl" />
     <input type="file" @change="setFiles($event)" />
     <div class="edit">
-      <basicButton @emitClick="sendPost">投稿</basicButton>
+      <basicButton cls="send_btn" @emitClick="sendPost">投稿</basicButton>
     </div>
   </div>
 </template>

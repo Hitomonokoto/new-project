@@ -1,17 +1,19 @@
 <template>
   <main>
-    <img class="top_img" :src="imgUrl" alt />
+    <mainImage :src="imgUrl" alt />
     <div class="box">
       <div class="box_left">
-        <div class="single">
-          <h2 class="farmer-title">{{ product.title }}</h2>
-          <div class="myFarm_content" v-html="product.descriptionHtml"></div>
-        </div>
+        <h2 class="farmer-title">{{ product.title }}</h2>
+        <div class="myFarm_content" v-html="product.descriptionHtml"></div>
       </div>
       <div class="box_right">
-        <div class="farmer" v-if="$store.state.farmers.farmerByMyfarm.length">
+        <div
+          class="aboutFarmer"
+          v-if="$store.state.farmers.farmerByMyfarm.length"
+        >
           <h3>生産者を知る</h3>
           <nuxt-link
+            class="farmer"
             :to="'/farmers/farmer/'+$store.state.farmers.farmerByMyfarm[0].sys.id"
           >
             <img
@@ -22,9 +24,7 @@
             <P>{{$store.state.farmers.farmerByMyfarm[0].fields.farmName}}</P>
           </nuxt-link>
         </div>
-        <div class="purchase">
-          <basicButton @emitClick="checkout">種主になる</basicButton>
-        </div>
+        <basicButton cls="checkout_btn" @emitClick="checkout">種主になる</basicButton>
       </div>
     </div>
   </main>
@@ -93,19 +93,30 @@ main {
   width: 1000px;
 }
 .box_left {
-  width: 700px;
+  width: 70%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 .box_right {
-  width: 300px;
+  width: 30%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: lightblue;
+  background-color: rgb(229, 243, 245);
+}
+.aboutFarmer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.farmer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .farmer_img {
-  width: 200px;
+  width: 90%;
+  border-radius: 5px;
 }
 </style>

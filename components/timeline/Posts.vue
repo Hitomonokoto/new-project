@@ -9,7 +9,7 @@
         <p class="time">{{ post_data.created.seconds | timestampToDate }}</p>
       </div>
       <div v-if="this.$store.state.login.user_id == this.user_id">
-        <basicButton @emitClick="edit">編集</basicButton>
+        <basicButton cls="edit_btn" @emitClick="edit">編集</basicButton>
       </div>
     </div>
     <div class="post_content">
@@ -18,34 +18,26 @@
       </div>
       <img class="post_img" :src="this.post_data.fileUrl" />
       <div class="actions">
-        <basicButton class="like_btn" v-if="!isLike_btn" @emitClick="getLike">
+        <div class="like_btn" v-if="!isLike_btn" @click="getLike">
           いいね！
           <span v-show="post_data.like_count!=0">{{ post_data.like_count }}</span>
-        </basicButton>
-        <basicButton class="like_btn" v-if="isLike_btn" @emitClick="loseLike">
+        </div>
+        <div class="like_btn" v-if="isLike_btn" @click="loseLike">
           いいね！
           <span v-show="post_data.like_count!=0">{{ post_data.like_count }}</span>
-        </basicButton>
-        <basicButton
-          class="comment_btn"
-          v-if="!isComment_btn"
-          @emitClick="getComments"
-        >
+        </div>
+        <div class="comment_btn" v-if="!isComment_btn" @click="getComments">
           コメント
           <span
             v-show="post_data.comment_count!=0"
           >{{ post_data.comment_count }}</span>
-        </basicButton>
-        <basicButton
-          class="comment_btn"
-          v-if="isComment_btn"
-          @emitClick="closeComments"
-        >
+        </div>
+        <div class="comment_btn" v-if="isComment_btn" @click="closeComments">
           コメント
           <span
             v-show="post_data.comment_count!=0"
           >{{ post_data.comment_count }}</span>
-        </basicButton>
+        </div>
       </div>
       <comments
         v-if="isComments"
@@ -163,7 +155,9 @@ export default {
   display: flex;
   width: 100%;
 }
-
+.actions > div {
+  text-align: center;
+}
 .like_btn {
   width: 50%;
   height: 40px;

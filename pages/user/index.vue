@@ -2,7 +2,7 @@
   <main>
     <div v-if="isData">
       <div>
-        <img src="/samplein.jpg" alt />
+        <mainImage src="/samplein.jpg" alt />
         <basicButton>変更</basicButton>
       </div>
 

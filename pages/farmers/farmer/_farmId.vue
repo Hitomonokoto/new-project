@@ -1,25 +1,20 @@
 <template>
   <main>
-    <img
-      class="top_img"
-      :src="this.farmers.farmer.fields.mainImage.fields.file.url"
-      alt
-    />
+    <mainImage :src="this.farmers.farmer.fields.mainImage.fields.file.url" alt />
     <div class="box">
       <div class="box_left">
-        <div class="single">
-          <h1 class="farmer-title">{{ this.farmers.farmer.fields.farmName }}</h1>
-          <h2 class="farmer-title">{{ this.farmers.farmer.fields.farmerName }}</h2>
-          <div
-            class="farmer-content"
-            v-html="$md.render(this.farmers.farmer.fields.content)"
-          ></div>
-        </div>
+        <h1 class="farmer-title">{{ this.farmers.farmer.fields.farmName }}</h1>
+        <h2 class="farmer-title">{{ this.farmers.farmer.fields.farmerName }}</h2>
+        <div
+          class="farmer-content"
+          v-html="$md.render(this.farmers.farmer.fields.content)"
+        ></div>
       </div>
       <div class="box_right">
         <div class="products">
           <h3>マイファーム</h3>
           <nuxt-link
+            class="products"
             :to="'/myFarms/myFarm/'+product.node.id"
             v-for="(product, index) in products"
             :key="index"
@@ -89,7 +84,7 @@ main {
   width: 1000px;
 }
 .box_left {
-  width: 700px;
+  width: 70%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -100,13 +95,19 @@ main {
   padding: 0 20px;
 }
 .box_right {
-  width: 300px;
+  width: 30%;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: lightblue;
 }
+.products {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .product_img {
-  width: 200px;
+  width: 90%;
+  border-radius: 5px;
 }
 </style>

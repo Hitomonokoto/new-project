@@ -137,8 +137,10 @@ export const actions = {
                 console.log("削除失敗");
             });
         }
-        const deletePost = db.collection('timeline').doc(post_data.post_id).delete();
-        context.dispatch("getPostsAction");
+        const deletePost = db.collection('timeline').doc(post_data.post_id).delete().then(() => {
+            context.dispatch("getPostsAction");
+        })
+
     },
     // 画像をストレージから削除する
     deleteImageAction(context, fileName) {

@@ -1,8 +1,5 @@
 <template>
-  <div>
-    <img :src="url" />
-    <button>サブメニュー</button>
-  </div>
+  <img :src="url" />
 </template>
 
 
@@ -24,15 +21,8 @@ export default {
 
 
 <style scoped>
-div {
-  position: relative;
-}
 img {
   width: 100%;
-}
-よ button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
+  display: block;
 }
 </style>
