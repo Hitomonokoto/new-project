@@ -4,14 +4,14 @@
       <div class="commenter_icon">
         <img src="samplein.jpg" alt />
       </div>
-      <textarea v-model="comment" placeholder="コメントを書く..."></textarea>
+      <textarea v-model="new_comment" placeholder="コメントを書く..."></textarea>
 
       <div class="send_comment">
         <basicButton @emitClick="sendComment">送信</basicButton>
       </div>
     </div>
     <p v-show="!this.login.token">パートナーになるとコメントをすることが出来ます。</p>
-    <div v-if="this.comments">
+    <div v-show="this.comments">
       <div v-for="(comment, index) in comments" :key="index">
         <div class="commenter">
           <div class="commenter_icon">
@@ -44,7 +44,7 @@ export default {
   components: { basicButton },
   data() {
     return {
-      comment: null
+      new_comment: null
     };
   },
   props: {
@@ -63,17 +63,17 @@ export default {
   },
   methods: {
     sendComment() {
-      if (!this.comment) {
+      if (!this.new_comment) {
         return;
       }
       this.$store.dispatch("timeline/commentAction", {
         user_id: this.$store.state.login.user_2.user_id,
         name: this.$store.state.login.user_2.nickname,
         post_id: this.post_id,
-        text: this.comment,
+        text: this.new_comment,
         comment_count: this.comment_count
       });
-      this.comment = "";
+      this.new_comment = "";
     },
     commentDelete(comment) {
       console.log(this.post_id);
@@ -85,7 +85,6 @@ export default {
       });
     }
   },
-
   filters: {
     timestampToDate(value) {
       const d = new Date(value * 1000);

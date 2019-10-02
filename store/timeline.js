@@ -28,6 +28,7 @@ export const mutations = {
                 return -1;
             }
         })
+        console.log(state.posts)
     }
 }
 
@@ -148,18 +149,19 @@ export const actions = {
         context.dispatch("getCommentsAction", data.post_id);
     },
     // コメントを読み込む
-    async getCommentsAction(context, data) {
+    async getCommentsAction(context, payload) {
         try {
+            // console.log(payload);
             context.dispatch("getPostsAction");
             const comments = [];
-            const commentSnapShots = await db.collection('timeline').doc(data).collection('comments').orderBy('created', 'desc').get();
+            const commentSnapShots = await db.collection('timeline').doc(payload).collection('comments').orderBy('created', 'desc').get();
             commentSnapShots.forEach(comment => {
                 const comment_data = comment.data();
                 comment_data.comment_id = comment.id;
                 comments.push(comment_data);
             });
-            context.commit('getComments', { comments: comments, post_id: data });
-
+            context.commit('getComments', { comments: comments, post_id: payload });
+            // console.log(comments);
         } catch (e) {
             console.log("firestore-getCommentsActionがエラー！", e);
         }

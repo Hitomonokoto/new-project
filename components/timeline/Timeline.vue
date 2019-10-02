@@ -8,7 +8,7 @@
       </div>
     </div>
     <div class="post" v-for="(post, index) in this.timeline.posts" :key="index">
-      <posts @postEdit="postEdit" :post_data="post" />
+      <posts @postEdit="postEdit" :post_data="post" :comments="post.comments" />
     </div>
   </div>
 </template>

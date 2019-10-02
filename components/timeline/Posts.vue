@@ -51,7 +51,7 @@
         v-if="isComments"
         :comment_count="this.post_data.comment_count"
         :post_id="this.post_data.post_id"
-        :comments="this.post_data.comments"
+        :comments="this.comments"
         :login_user_id="this.$store.state.login.user_id"
       />
     </div>
@@ -70,6 +70,9 @@ export default {
   props: {
     post_data: {
       type: Object
+    },
+    comments: {
+      type: Array
     }
   },
   data() {

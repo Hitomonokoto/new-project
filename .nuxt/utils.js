@@ -131,14 +131,14 @@ export async function setContext(app, context) {
   if (!app.context) {
     app.context = {
       isStatic: process.static,
-      isDev: false,
+      isDev: true,
       isHMR: false,
       app,
       store: app.store,
       payload: context.payload,
       error: context.error,
       base: '/',
-      env: {"CTF_SPACE_ID":"r1vsvbpt0byq","CTF_ACCESS_TOKEN":"d0U1cBBXLtaoYsFDZWxCNxyU4YWQy-mVff4sCr2nrlQ","STORE_FRONT_ACCESS_TOKEN":"751a6be76c4928a1c85fa50c90593a1d","FB_API_KEY":"AIzaSyC99LzSsPtSWLOydNq6zZJI6jL8ptKRvZs","FB_AUTH_DOMAIN":"hitomonokoto-10509.firebaseapp.com","FB_DATABASE_URL":"https://hitomonokoto-10509.firebaseio.com","FB_PROJECTID":"hitomonokoto-10509","FB_STORAGE_BUCKET":"hitomonokoto-10509.appspot.com","FB_MESSAGING_SENDER_ID":"44273291748","FB_APP_ID":"1:44273291748:web:17fb01f34027ff012137f1"}
+      env: {"CTF_SPACE_ID":"r1vsvbpt0byq","CTF_ACCESS_TOKEN":"d0U1cBBXLtaoYsFDZWxCNxyU4YWQy-mVff4sCr2nrlQ","STORE_FRONT_ACCESS_TOKEN":"751a6be76c4928a1c85fa50c90593a1d","apiKey":"AIzaSyC99LzSsPtSWLOydNq6zZJI6jL8ptKRvZs","authDomain":"hitomonokoto-10509.firebaseapp.com","databaseURL":"https://hitomonokoto-10509.firebaseio.com","projectId":"hitomonokoto-10509","storageBucket":"hitomonokoto-10509.appspot.com","messagingSenderId":"44273291748","appId":"1:44273291748:web:17fb01f34027ff012137f1"}
     }
     // Only set once
     if (context.req) {
@@ -233,6 +233,9 @@ export function middlewareSeries(promises, appContext) {
 export function promisify(fn, context) {
   let promise
   if (fn.length === 2) {
+      console.warn('Callback-based asyncData, fetch or middleware calls are deprecated. ' +
+        'Please switch to promises or async/await syntax')
+
     // fn(context, callback)
     promise = new Promise((resolve) => {
       fn(context, function (err, data) {
