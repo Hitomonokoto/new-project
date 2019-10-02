@@ -26,9 +26,11 @@ export default {
   border-radius: 5px;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
 }
-.type1 {
-  background-color: blueviolet;
+.top_myfarm {
+  background-color: green;
   padding: 5px 20px;
+  margin-top: 10px;
+  margin-bottom: 30px;
 }
 
 .type2 {

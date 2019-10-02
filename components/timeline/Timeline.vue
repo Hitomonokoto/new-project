@@ -1,11 +1,13 @@
 <template>
   <div class="timeline">
     <div class="timeline_menu">
-      <basicButton v-if="isPost" @emitClick="post">投稿する</basicButton>
-      <div class="timeline_btns">
+      <h2>タイムライン</h2>
+      <sendPostBtn v-if="isPost" @emitClick="post" />
+
+      <!-- <div class="timeline_btns">
         <basicButton class="all_posts">タイムライン</basicButton>
         <basicButton class="my_posts">マイライン</basicButton>
-      </div>
+      </div>-->
     </div>
     <div class="post" v-for="(post, index) in this.timeline.posts" :key="index">
       <posts
@@ -24,6 +26,7 @@
 // コンポーネント
 import posts from "~/components/timeline/Posts";
 import basicButton from "~/components/BasicButton";
+import sendPostBtn from "~/components/timeline/SendPostBtn";
 
 // その他
 import { mapState } from "vuex";
@@ -31,7 +34,8 @@ import { mapState } from "vuex";
 export default {
   components: {
     posts,
-    basicButton
+    basicButton,
+    sendPostBtn
   },
   data() {
     return {
@@ -89,7 +93,11 @@ export default {
   text-align: center;
   line-height: 40px;
 }
-
+.send_post_btn {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
 .post {
   width: 580px;
   box-shadow: 0px 0px 6px 3px #d1d1d1;

@@ -5,10 +5,10 @@
 
       <div class="box">
         <div class="box_left">
-          <div v-show="!isPost" class="myFarm_contents">
+          <div v-show="!isPost" class="myfarm_contents">
             <h2>新着・オススメのマイファーム</h2>
             <myFarm :myFarms="this.products" />
-            <linkButton cls="type1" linkTo="/myFarms" text="もっと見る" />
+            <linkButton cls="top_myfarm" linkTo="/myFarms" text="もっと見る" />
           </div>
 
           <timeline v-if="isTimeline" @post="post" @post_edit="post_edit" />
@@ -113,6 +113,11 @@ export default {
 
 .box_right {
   width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.myfarm_contents {
   display: flex;
   flex-direction: column;
   align-items: center;
