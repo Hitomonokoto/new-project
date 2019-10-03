@@ -9,14 +9,11 @@
       <input v-model="input.password" type="password" placeholder="パスワード" />
       <basicButton class="login_btn" @emitClick="save">ログイン</basicButton>
 
-      <div class="foget_pass">
-        <hr />
-        <linkButton
-          cls="type1"
-          linkTo="/login/passWordReset"
-          text="パスワードをお忘れの方"
-        />
-      </div>
+      <linkButton
+        cls="foget_pass"
+        linkTo="/login/passWordReset"
+        text="パスワードをお忘れの方はこちら"
+      />
     </div>
 
     <div class="nomenber_form">
@@ -26,7 +23,7 @@
         <br />こちらからマイファームのご案内をさせていただきます。
         <br />ご共感頂き登録していただけると幸いです。
       </p>
-      <linkButton cls="type3" linkTo="/aboutMyFarm" text="マイファームについて" />
+      <linkButton cls="about_myfarm" linkTo="/aboutMyFarm" text="マイファームについて" />
     </div>
   </main>
 </template>
@@ -93,26 +90,14 @@ main {
   flex-direction: column;
   align-items: center;
   width: 80%;
-  margin: 50px 0;
-  border-radius: 10px;
-  box-shadow: 0px 0px 6px 3px #d1d1d1;
+  margin-bottom: 100px;
 }
 .logo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin-top: 50px;
+  margin-bottom: 100px;
 }
 .logo > img {
-  width: 150px;
-  margin-top: 50px;
-}
-
-form {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 50px 0;
+  width: 200px;
 }
 
 input {
@@ -149,17 +134,12 @@ input {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 50px 0;
+  margin-bottom: 200px;
 }
 
 .nomenber_form > p {
   text-align: center;
   color: #707070;
   padding: 50px 0;
-}
-
-.login-nonmember-link {
-  display: inline-block;
-  color: #6574ff;
 }
 </style>

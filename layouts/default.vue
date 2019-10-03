@@ -52,14 +52,14 @@ export default {
   text-decoration: none;
 }
 body {
-  background-color: lightgrey;
+  background-color: rgb(236, 236, 236);
 }
 .container {
   display: flex;
   justify-content: center;
 }
 .nav {
-  width: 200px;
+  width: 300px;
   background-color: rgb(246, 255, 220);
 }
 .nav_sticky {
@@ -81,7 +81,7 @@ body {
   color: rgb(75, 94, 19);
 }
 main {
-  width: 1000px;
+  width: 100%;
   background-color: white;
 }
 

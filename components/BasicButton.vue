@@ -31,6 +31,7 @@ export default {
   padding: 10px 0;
   margin-top: 20px;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  background-color: rgb(255, 80, 153);
 }
 .edit_btn {
   padding: 5px 10px;
@@ -50,6 +51,24 @@ export default {
 }
 .send_btn {
   padding: 5px 10px;
+  background-color: rgb(99, 209, 253);
+}
+.info_check_btn {
+  padding: 10px 30px;
+  background-color: rgb(99, 209, 253);
+  margin-bottom: 50px;
+}
+.info_back_btn {
+  padding: 10px 30px;
+  background-color: lightgray;
+  margin-bottom: 50px;
+}
+.info_edit_btn {
+  padding: 10px 30px;
+  background-color: lightgray;
+}
+.info_send_btn {
+  padding: 10px 30px;
   background-color: rgb(99, 209, 253);
 }
 </style>

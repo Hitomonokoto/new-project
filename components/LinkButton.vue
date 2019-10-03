@@ -22,29 +22,29 @@ export default {
 
 <style scoped>
 .basic {
-  color: white;
-  border-radius: 5px;
-  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
 }
 .top_myfarm {
+  color: white;
   background-color: green;
   padding: 5px 20px;
   margin-top: 10px;
   margin-bottom: 30px;
+  border-radius: 5px;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
 }
-
+.foget_pass {
+  color: #707070;
+}
 .type2 {
   background-color: green;
   padding: 5px 20px;
 }
-.type3 {
-  background-color: rgb(147, 192, 147);
+.about_myfarm {
+  color: white;
+  background-color: rgb(255, 211, 68);
   padding: 5px 20px;
-  margin-bottom: 30px;
-}
-.nav_prof_img {
-  background-color: rgb(216, 235, 159);
-  color: rgb(75, 94, 19);
-  padding: 5px 40px;
+  margin-bottom: 50px;
+  border-radius: 5px;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
 }
 </style>

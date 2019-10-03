@@ -27,7 +27,6 @@ export default {
     '@nuxtjs/apollo',
     '@nuxtjs/axios',
     '@nuxtjs/dotenv',
-    '@nuxtjs/markdownit'
   ],
 
   apollo: {

@@ -5,10 +5,7 @@
       <div class="box_left">
         <h1 class="farmer-title">{{ this.farmers.farmer.fields.farmName }}</h1>
         <h2 class="farmer-title">{{ this.farmers.farmer.fields.farmerName }}</h2>
-        <div
-          class="farmer-content"
-          v-html="$md.render(this.farmers.farmer.fields.content)"
-        ></div>
+        <div class="farmer-content" v-html="this.farmers.farmer.fields.content"></div>
       </div>
       <div class="box_right">
         <div class="products">
@@ -74,12 +71,6 @@ export default {
 </script>
 
 <style scoped>
-.navi_container {
-  background-color: lightseagreen;
-}
-main {
-  width: 1000px;
-}
 .top_img {
   width: 1000px;
 }
@@ -89,7 +80,6 @@ main {
   flex-direction: column;
   align-items: center;
 }
-
 .farmer-content {
   text-align: center;
   padding: 0 20px;
@@ -99,7 +89,6 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: lightblue;
 }
 .products {
   display: flex;

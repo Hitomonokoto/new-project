@@ -83,12 +83,6 @@ export default {
 </script>
 
 <style scoped>
-.navi_container {
-  background-color: lightseagreen;
-}
-main {
-  width: 1000px;
-}
 .top_img {
   width: 1000px;
 }
@@ -103,7 +97,6 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgb(229, 243, 245);
 }
 .aboutFarmer {
   display: flex;
