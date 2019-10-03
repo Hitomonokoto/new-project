@@ -14,17 +14,17 @@
         <nuxt-link to="/farmers">
           <p class="nav_p">生産者紹介</p>
         </nuxt-link>
-        <nuxt-link to="/login">
-          <p class="nav_p_sub">ログイン</p>
-        </nuxt-link>
-        <a href="https://c-hitomonokoto.jp/about/">
-          <p class="nav_p_sub">私たちについて</p>
-        </a>
-        <nuxt-link to="/info">
-          <p class="nav_p_sub">お問い合わせ</p>
+        <nuxt-link v-if="!this.$store.state.login.token" to="/login">
+          <p class="nav_p">ログイン</p>
         </nuxt-link>
         <nuxt-link to="/aboutMyFarm">
-          <p class="nav_p_sub">パートナーになる</p>
+          <p class="nav_p">私たちについて</p>
+        </nuxt-link>
+        <nuxt-link to="/info">
+          <p class="nav_p">お問い合わせ</p>
+        </nuxt-link>
+        <nuxt-link to="/aboutMyFarm">
+          <p class="nav_p">パートナーになる</p>
         </nuxt-link>
       </div>
     </div>
@@ -77,15 +77,13 @@ body {
   padding-bottom: 30px;
   color: rgb(75, 94, 19);
 }
-.nav_p_sub {
-  color: rgb(75, 94, 19);
-}
 main {
   width: 100%;
   background-color: white;
 }
 
 .box {
+  width: 100%;
   display: flex;
   justify-content: center;
 }

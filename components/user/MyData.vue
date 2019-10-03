@@ -2,11 +2,16 @@
   <div class="myData">
     <div class="myData_sticky">
       <div class="myInfo">
-        <img :src="$store.state.login.user_2.profile_image" alt />
-        <p>{{ $store.state.login.user_2.nickname }}さん</p>
+        <img :src="this.$store.state.login.user_2.profile_img" alt />
+        <div>
+          <p>こんにちは！</p>
+          <p>{{ $store.state.login.user_2.nickname }}さん</p>
+        </div>
       </div>
-      <linkButton cls="type2" linkTo="/user" text="アカウント管理" />
-      <basicButton @emitClick="logout">ログアウト</basicButton>
+      <div class="actions">
+        <linkButton cls="acount" linkTo="/user" text="アカウント管理" />
+        <basicButton cls="acount_btn" @emitClick="logout">ログアウト</basicButton>
+      </div>
     </div>
   </div>
 </template>
@@ -49,17 +54,23 @@ export default {
 }
 .myData_sticky {
   position: sticky;
-  top: 0;
+  top: 10px;
+  border-radius: 5px;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
 }
 .myInfo {
   display: flex;
   align-items: center;
   margin: 5px 0;
-  background-color: aqua;
 }
 .myInfo > img {
-  width: 100px;
+  width: 80px;
   border-radius: 5px;
-  margin-right: 5px;
+  margin: 10px;
+}
+.actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

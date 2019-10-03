@@ -53,4 +53,10 @@ export default {
   border-radius: 5px;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
 }
+.acount {
+  background-color: rgb(148, 247, 247);
+  padding: 5px 20px;
+  border-radius: 5px;
+  font-size: 12px;
+}
 </style>

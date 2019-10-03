@@ -36,6 +36,7 @@ export const actions = {
     const setAda = docRef.set({
       user_id: payload.user_id,
       nickname: payload.nickname,
+      profile_img: "/samplein.jpg",
       user_type: 0
     });
   },

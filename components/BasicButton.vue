@@ -76,4 +76,9 @@ export default {
   background-color: rgb(255, 211, 68);
   margin-bottom: 50px;
 }
+.acount_btn {
+  padding: 5px 10px;
+  background-color: rgb(253, 99, 99);
+  margin: 10px 20px;
+}
 </style>

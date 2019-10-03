@@ -105,14 +105,14 @@ export default {
 
 <style scoped>
 .box_left {
-  width: 600px;
+  width: 60%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .box_right {
-  width: 400px;
+  width: 40%;
   display: flex;
   flex-direction: column;
   align-items: center;
