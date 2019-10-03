@@ -27,7 +27,7 @@ export default {
   background-color: red;
 }
 .checkout_btn {
-  width: 90%;
+  width: 80%;
   padding: 10px 0;
   margin-top: 20px;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
@@ -70,5 +70,10 @@ export default {
 .info_send_btn {
   padding: 10px 30px;
   background-color: rgb(99, 209, 253);
+}
+.regist_btn {
+  padding: 10px 30px;
+  background-color: rgb(255, 211, 68);
+  margin-bottom: 50px;
 }
 </style>

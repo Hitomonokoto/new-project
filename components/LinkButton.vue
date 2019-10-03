@@ -21,8 +21,6 @@ export default {
 </script>
 
 <style scoped>
-.basic {
-}
 .top_myfarm {
   color: white;
   background-color: green;
@@ -40,6 +38,14 @@ export default {
   padding: 5px 20px;
 }
 .about_myfarm {
+  color: white;
+  background-color: rgb(255, 211, 68);
+  padding: 5px 20px;
+  margin-bottom: 50px;
+  border-radius: 5px;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+}
+.partner_btn {
   color: white;
   background-color: rgb(255, 211, 68);
   padding: 5px 20px;

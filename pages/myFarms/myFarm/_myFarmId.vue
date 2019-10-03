@@ -109,7 +109,8 @@ export default {
   align-items: center;
 }
 .farmer_img {
-  width: 90%;
+  width: 80%;
   border-radius: 5px;
+  box-shadow: 0px 0px 6px 3px #d1d1d1;
 }
 </style>

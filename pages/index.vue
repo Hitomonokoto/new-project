@@ -1,7 +1,7 @@
 <template>
   <main>
     <div class="page_top">
-      <mainImage url="/mainImage/mainDamy1.jpg" />
+      <mainImage url="/mainImage/top-img.jpg" />
 
       <div class="box">
         <div class="box_left">

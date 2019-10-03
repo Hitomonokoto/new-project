@@ -76,7 +76,7 @@ export default {
   align-items: center;
 }
 .farmer {
-  width: 90%;
+  width: 80%;
   display: flex;
   background-color: white;
   margin-bottom: 20px;
