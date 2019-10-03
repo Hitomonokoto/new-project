@@ -1,18 +1,15 @@
 <template>
   <main>
     <div class="page_top">
-      <mainImage url="mainImage/mainDamy1.jpg" />
+      <mainImage url="/mainImage/mainDamy1.jpg" />
       <h2>マイファームを探す</h2>
-      <div class="myfarm-about-text">
-        ーーーーーマイファーム（有料会員）についての詳細ーーーー
-        <br />ーーーーーーーーーーーーーーーーーーーーーーーーーーーー
-        <br />ーーーーーーーーーーーーーーーーーーーーーーーーーーーー
-        <br />ーーーーーーーーーーーーーーーーーーーーーーーーーーーー
-        <br />ーーーーーーーーーーーーーーーーーーーーーーーーーーーー
-        <br />ーーーーーーーーーーーーーーーーーーーーーーーーーーーー
-        <br />ーーーーーーーーーーーーーーーーーーーーーーーーーーーー
-        <br />
-      </div>
+      <p>
+        ーーーーー３〜５行程度の簡単な説明文が入りますーーーー
+        <br />ーーーーーーーーーーーーーーーーーーーーーーーーーーー
+        <br />ーーーーーーーーーーーーーーーーーーーーーーーーーーー
+        <br />ーーーーーーーーーーーーーーーーーーーーーーーーーーー
+        <br />ーーーーーーーーーーーーーーーーーーーーーーーーーーー
+      </p>
     </div>
 
     <div class="box">
@@ -63,6 +60,9 @@ export default {
 </script>
 
 <style scoped>
+.page_top > p {
+  margin-bottom: 50px;
+}
 .myFarms {
   width: 100%;
   display: flex;

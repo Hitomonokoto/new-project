@@ -1,18 +1,18 @@
 <template>
   <main>
     <div class="page_top">
-      <mainImage url="mainImage/mainDamy1.jpg" />
+      <mainImage url="/mainImage/mainDamy1.jpg" />
       <h2>マイファームについて</h2>
-      <div class="myfarm-about-text">
-        ーーーーーマイファーム（有料会員）についての詳細ーーーー
-        <br />ーーーーーーーーーーーーーーーーーーーーーーーーーーーー
-        <br />ーーーーーーーーーーーーーーーーーーーーーーーーーーーー
-        <br />ーーーーーーーーーーーーーーーーーーーーーーーーーーーー
-        <br />ーーーーーーーーーーーーーーーーーーーーーーーーーーーー
-        <br />ーーーーーーーーーーーーーーーーーーーーーーーーーーーー
-        <br />ーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+      <p>
+        このページはパートナー登録に誘導するために、
+        <br />このサービスについての説明やパートナーになるメリットや
+        <br />特典などの説明をするページになります。
         <br />
-      </div>
+        <br />HTMLとSCCのみの静的なページになるため、
+        <br />ページ作成を後回しにしています。
+        <br />
+        <br />下のボタンから登録フォームにアクセス出来ます。
+      </p>
       <linkButton cls="partner_btn" linkTo="/regist" text="パートナーになる" />
     </div>
     <div class="box"></div>
@@ -30,3 +30,9 @@ export default {
   }
 };
 </script>
+<style scoped>
+.page_top > p {
+  margin-bottom: 200px;
+  text-align: center;
+}
+</style>

@@ -7,6 +7,7 @@
         <h2 class="farmer-title">{{ this.farmers.farmer.fields.farmerName }}</h2>
         <div class="farmer-content" v-html="this.farmers.farmer.fields.content"></div>
       </div>
+      <div></div>
       <div class="box_right">
         <div class="products">
           <h3>マイファーム</h3>
