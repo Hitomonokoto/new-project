@@ -2,8 +2,8 @@
   <main>
     <div v-if="isData">
       <div>
-        <mainImage src="/samplein.jpg" alt />
-        <basicButton>変更</basicButton>
+        <img :src="$store.state.login.user_2.profile_img" alt />
+        <basicButton @emitClick="editProfileImg">変更</basicButton>
       </div>
 
       <div>
@@ -66,6 +66,9 @@ export default {
   methods: {
     profileImgEdit() {
       alert("ok");
+    },
+    editProfileImg() {
+      alert("プロフィール画像の変更は未実装です");
     },
     editNickname() {
       this.isNickname = true;
