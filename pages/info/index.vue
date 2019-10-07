@@ -1,13 +1,11 @@
 <template>
   <main>
-    <div class="page_top">
-      <mainImage url="/mainImage/mainDamy1.jpg" />
-      <h2>お問い合わせ</h2>
-      <p>
-        ご不明な点がございましたら
-        <br />お気軽にこちらからお問い合わせ下さい。
-      </p>
-    </div>
+    <mainImage url="/mainImage/mainDamy1.jpg" />
+    <h2>お問い合わせ</h2>
+    <p class="top_text">
+      ご不明な点がございましたら
+      <br />お気軽にこちらからお問い合わせ下さい。
+    </p>
     <div class="form_area">
       <dl>
         <dt>お名前（ニックネーム可）</dt>
@@ -27,7 +25,6 @@
         <dd>
           <input
             class="formtype1"
-            id="email"
             v-model="email"
             name="email"
             type="email"
@@ -149,8 +146,9 @@ export default {
 </script>
 
 <style scoped>
-.page_top > p {
+.top_text {
   margin-bottom: 50px;
+  text-align: center;
 }
 .form_area {
   width: 100%;

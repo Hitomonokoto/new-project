@@ -56,4 +56,12 @@ export default {
 </script>
 
 <style scoped>
+input {
+  width: 300px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #efefef;
+  margin: 10px 0;
+}
 </style>

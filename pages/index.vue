@@ -1,28 +1,25 @@
 <template>
   <main>
-    <div class="page_top">
-      <mainImage url="/mainImage/top-img.jpg" />
-
-      <div class="box">
-        <div class="box_left">
-          <div v-show="!isPost" class="myfarm_contents">
-            <h2>新着・オススメのマイファーム</h2>
-            <myFarm :myFarms="this.products" />
-            <linkButton cls="top_myfarm" linkTo="/myFarms" text="もっと見る" />
-          </div>
-
-          <timeline v-if="isTimeline" @post="post" @post_edit="post_edit" />
-          <post v-if="isPost" @emitBack="postBack" />
-          <postEdit
-            v-if="isPostEdit"
-            @editBack="editBack"
-            :post_data="this.post_data"
-          />
+    <mainImage url="/mainImage/top-img.jpg" />
+    <div class="box">
+      <div class="box_left">
+        <div v-show="!isPost" class="myfarm_contents">
+          <h2>新着・オススメのマイファーム</h2>
+          <myFarm :myFarms="this.products" />
+          <linkButton cls="top_myfarm" linkTo="/myFarms" text="もっと見る" />
         </div>
-        <div class="box_right">
-          <myData v-if="$store.state.login.token" @pageInit="pageInit" />
-          <banners v-if="!$store.state.login.token" />
-        </div>
+
+        <timeline v-if="isTimeline" @post="post" @post_edit="post_edit" />
+        <post v-if="isPost" @emitBack="postBack" />
+        <postEdit
+          v-if="isPostEdit"
+          @editBack="editBack"
+          :post_data="this.post_data"
+        />
+      </div>
+      <div class="box_right">
+        <myData v-if="$store.state.login.token" @pageInit="pageInit" />
+        <banners v-if="!$store.state.login.token" />
       </div>
     </div>
   </main>
@@ -106,16 +103,9 @@ export default {
 <style scoped>
 .box_left {
   width: 60%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
-
 .box_right {
   width: 40%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 .myfarm_contents {
   display: flex;

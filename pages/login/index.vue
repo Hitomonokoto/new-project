@@ -80,11 +80,6 @@ export default {
 </script>
 
 <style scoped>
-main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 .login_form {
   display: flex;
   flex-direction: column;

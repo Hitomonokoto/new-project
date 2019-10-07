@@ -1,35 +1,32 @@
 <template>
   <main>
-    <div class="page_top">
-      <mainImage url="/mainImage/mainDamy1.jpg" />
-      <h2>確認画面</h2>
-      <p class="info_text">お問い合わせ内容に誤りがないかご確認ください。</p>
+    <mainImage url="/mainImage/mainDamy1.jpg" />
+    <h2>確認画面</h2>
+    <p class="top_text">お問い合わせ内容に誤りがないかご確認ください。</p>
+
+    <div class="form_area">
+      <div>
+        <dl>
+          <dt>お名前</dt>
+          <dd>{{ this.info.info_data.name }} さん</dd>
+        </dl>
+        <dl>
+          <dt>メールアドレス</dt>
+          <dd>{{ this.info.info_data.email }}</dd>
+        </dl>
+        <dl>
+          <dt>タイトル</dt>
+          <dd>{{ this.info.info_data.title }}</dd>
+        </dl>
+        <dl>
+          <dt>メッセージ</dt>
+          <dd>{{ this.info.info_data.message }}</dd>
+        </dl>
+      </div>
     </div>
-    <div class="page_top">
-      <div class="form_area">
-        <div>
-          <dl>
-            <dt>お名前</dt>
-            <dd>{{ this.info.info_data.name }} さん</dd>
-          </dl>
-          <dl>
-            <dt>メールアドレス</dt>
-            <dd>{{ this.info.info_data.email }}</dd>
-          </dl>
-          <dl>
-            <dt>タイトル</dt>
-            <dd>{{ this.info.info_data.title }}</dd>
-          </dl>
-          <dl>
-            <dt>メッセージ</dt>
-            <dd>{{ this.info.info_data.message }}</dd>
-          </dl>
-        </div>
-      </div>
-      <div class="actions">
-        <basicButton class="info_edit_btn" @emitClick="editForm">修正する</basicButton>
-        <basicButton class="info_send_btn" @emitClick="sendForm">送信する</basicButton>
-      </div>
+    <div class="actions">
+      <basicButton class="info_edit_btn" @emitClick="editForm">修正する</basicButton>
+      <basicButton class="info_send_btn" @emitClick="sendForm">送信する</basicButton>
     </div>
   </main>
 </template>
@@ -65,11 +62,8 @@ export default {
 </script>
 
 <style scoped>
-.page_top > p {
+.top_text {
   margin-bottom: 50px;
-}
-img {
-  width: 100%;
 }
 .form_area {
   box-shadow: 0px 0px 6px 3px #d1d1d1;

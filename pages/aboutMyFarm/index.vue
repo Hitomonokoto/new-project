@@ -2,7 +2,7 @@
   <main>
     <div class="page_top">
       <mainImage url="/mainImage/mainDamy1.jpg" />
-      <h2>マイファームについて</h2>
+      <h1>マイファームについて</h1>
       <p>
         このページはパートナー登録に誘導するために、
         <br />このサービスについての説明やパートナーになるメリットや

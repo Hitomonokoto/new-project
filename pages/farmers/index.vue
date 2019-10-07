@@ -1,16 +1,13 @@
 <template>
   <main>
-    <div class="page_top">
-      <mainImage url="/mainImage/mainDamy1.jpg" />
-      <h2>こだわりの創り手</h2>
-      <p class="myfarm-about-text">
-        九州を４週周り、
-        <br />350人以上の作り手に出会いました。
-        <br />価値だけでは表現することの出来ない"モノの価値"。
-        <br />そんなこだわりのある創り手を紹介します。
-      </p>
-    </div>
-
+    <mainImage url="/mainImage/mainDamy1.jpg" />
+    <h2>こだわりの創り手</h2>
+    <p class="top_text">
+      九州を４週周り、
+      <br />350人以上の作り手に出会いました。
+      <br />価値だけでは表現することの出来ない"モノの価値"。
+      <br />そんなこだわりのある創り手を紹介します。
+    </p>
     <div class="box">
       <div class="farmers">
         <nuxt-link
@@ -65,7 +62,7 @@ export default {
 
 
 <style scoped>
-.myfarm-about-text {
+.top_text {
   padding: 20px 0 40px 0;
   text-align: center;
 }

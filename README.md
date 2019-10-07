@@ -1,3 +1,7 @@
 # new-project
 
-super!
+## 共通CSS
+
+main -> 縦
+
+box -> 横

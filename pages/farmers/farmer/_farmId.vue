@@ -3,11 +3,10 @@
     <mainImage :src="this.farmers.farmer.fields.mainImage.fields.file.url" alt />
     <div class="box">
       <div class="box_left">
-        <h1 class="farmer-title">{{ this.farmers.farmer.fields.farmName }}</h1>
-        <h2 class="farmer-title">{{ this.farmers.farmer.fields.farmerName }}</h2>
-        <div class="farmer-content" v-html="this.farmers.farmer.fields.content"></div>
+        <h1 class="farm_name">{{ this.farmers.farmer.fields.farmName }}</h1>
+        <h2 class="farmer_name">{{ this.farmers.farmer.fields.farmerName }}</h2>
+        <div class="content" v-html="this.farmers.farmer.fields.content"></div>
       </div>
-      <div></div>
       <div class="box_right">
         <div class="products">
           <h3>マイファーム</h3>
@@ -72,24 +71,15 @@ export default {
 </script>
 
 <style scoped>
-.top_img {
-  width: 1000px;
-}
 .box_left {
   width: 70%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
-.farmer-content {
+.content {
   text-align: center;
   padding: 0 20px;
 }
 .box_right {
   width: 30%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 .products {
   display: flex;

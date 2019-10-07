@@ -1,70 +1,68 @@
 <template>
   <main>
-    <div class="page_top">
-      <mainImage url="/mainImage/mainDamy1.jpg" />
-      <h2>パートナー登録画面</h2>
-      <div class="regist_form">
-        <dl>
-          <dt>ニックネーム</dt>
-          <dd>
-            <input
-              class="input_type1"
-              type="text"
-              v-model="nickname"
-              placeholder="ニックネーム"
-            />
-          </dd>
-        </dl>
-        <dl>
-          <dt>お名前</dt>
-          <dd>
-            <input
-              class="input_type1"
-              type="text"
-              v-model="createData.lastName"
-              placeholder="姓"
-            />
-            <input
-              class="input_type1"
-              type="text"
-              v-model="createData.firstName"
-              placeholder="名"
-            />
-          </dd>
-        </dl>
-        <dl>
-          <dt>メールアドレス</dt>
-          <dd>
-            <input
-              class="input_type2"
-              type="text"
-              v-model="createData.email"
-              placeholder="メールアドレス"
-            />
-          </dd>
-        </dl>
-        <dl>
-          <dt>パスワード</dt>
-          <dd class="dd_password">
-            <input
-              class="input_type2"
-              type="password"
-              v-model="createData.password"
-              placeholder="パスワード"
-            />
-            <input
-              class="input_type2"
-              type="password"
-              v-model="password_check"
-              placeholder="パスワード（確認用）"
-            />
-          </dd>
-        </dl>
-      </div>
-      <p v-if="error1" class="error_text">※未入力項目があります。</p>
-      <p v-if="error2" class="error_text">※パスワードに誤りがあります。</p>
-      <basicButton cls="regist_btn" @emitClick="regist">登録</basicButton>
+    <mainImage url="/mainImage/mainDamy1.jpg" />
+    <h2>パートナー登録画面</h2>
+    <div class="regist_form">
+      <dl>
+        <dt>ニックネーム</dt>
+        <dd>
+          <input
+            class="input_type1"
+            type="text"
+            v-model="nickname"
+            placeholder="ニックネーム"
+          />
+        </dd>
+      </dl>
+      <dl>
+        <dt>お名前</dt>
+        <dd>
+          <input
+            class="input_type1"
+            type="text"
+            v-model="createData.lastName"
+            placeholder="姓"
+          />
+          <input
+            class="input_type1"
+            type="text"
+            v-model="createData.firstName"
+            placeholder="名"
+          />
+        </dd>
+      </dl>
+      <dl>
+        <dt>メールアドレス</dt>
+        <dd>
+          <input
+            class="input_type2"
+            type="text"
+            v-model="createData.email"
+            placeholder="メールアドレス"
+          />
+        </dd>
+      </dl>
+      <dl>
+        <dt>パスワード</dt>
+        <dd class="dd_password">
+          <input
+            class="input_type2"
+            type="password"
+            v-model="createData.password"
+            placeholder="パスワード"
+          />
+          <input
+            class="input_type2"
+            type="password"
+            v-model="password_check"
+            placeholder="パスワード（確認用）"
+          />
+        </dd>
+      </dl>
     </div>
+    <p v-if="error1" class="error_text">※未入力項目があります。</p>
+    <p v-if="error2" class="error_text">※パスワードに誤りがあります。</p>
+    <basicButton cls="regist_btn" @emitClick="regist">登録</basicButton>
   </main>
 </template>
 

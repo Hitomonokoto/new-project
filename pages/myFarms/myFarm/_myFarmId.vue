@@ -83,20 +83,11 @@ export default {
 </script>
 
 <style scoped>
-.top_img {
-  width: 1000px;
-}
 .box_left {
   width: 70%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 .box_right {
   width: 30%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 .aboutFarmer {
   display: flex;

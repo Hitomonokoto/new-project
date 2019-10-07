@@ -1,34 +1,30 @@
 <template>
   <main>
-    <div class="page_top">
-      <mainImage url="/mainImage/mainDamy1.jpg" />
-      <h2>マイファームを探す</h2>
-      <p>
-        ーーーーー３〜５行程度の簡単な説明文が入りますーーーー
-        <br />ーーーーーーーーーーーーーーーーーーーーーーーーーーー
-        <br />ーーーーーーーーーーーーーーーーーーーーーーーーーーー
-        <br />ーーーーーーーーーーーーーーーーーーーーーーーーーーー
-        <br />ーーーーーーーーーーーーーーーーーーーーーーーーーーー
-      </p>
-    </div>
+    <mainImage url="/mainImage/mainDamy1.jpg" />
+    <h2>マイファームを探す</h2>
+    <p class="top_text">
+      ーーーーー３〜５行程度の簡単な説明文が入りますーーーー
+      <br />ーーーーーーーーーーーーーーーーーーーーーーーーーーー
+      <br />ーーーーーーーーーーーーーーーーーーーーーーーーーーー
+      <br />ーーーーーーーーーーーーーーーーーーーーーーーーーーー
+      <br />ーーーーーーーーーーーーーーーーーーーーーーーーーーー
+    </p>
 
-    <div class="box">
-      <div v-if="this.products.length" class="myFarms">
-        <nuxt-link
-          v-for="(product, index) in this.products"
-          :to="'/myFarms/myFarm/' + product.node.id"
-          class="myFarm"
-          :key="index"
-        >
-          <div class="farmer_img">
-            <img :src="product.node.images.edges[0].node.originalSrc" />
-          </div>
-          <div class="myFarm_text">
-            <h2>{{ product.node.title }}</h2>
-            <p>{{ product.node.productType }}</p>
-          </div>
-        </nuxt-link>
-      </div>
+    <div v-if="this.products.length" class="myFarms">
+      <nuxt-link
+        v-for="(product, index) in this.products"
+        :to="'/myFarms/myFarm/' + product.node.id"
+        class="myFarm"
+        :key="index"
+      >
+        <div class="farmer_img">
+          <img :src="product.node.images.edges[0].node.originalSrc" />
+        </div>
+        <div class="myFarm_text">
+          <h2>{{ product.node.title }}</h2>
+          <p>{{ product.node.productType }}</p>
+        </div>
+      </nuxt-link>
     </div>
   </main>
 </template>
@@ -60,7 +56,7 @@ export default {
 </script>
 
 <style scoped>
-.page_top > p {
+.top_text {
   margin-bottom: 50px;
 }
 .myFarms {
