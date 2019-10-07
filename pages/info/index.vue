@@ -1,7 +1,7 @@
 <template>
   <main>
     <mainImage url="/mainImage/mainDamy1.jpg" />
-    <h2>お問い合わせ</h2>
+    <h1>お問い合わせ</h1>
     <p class="top_text">
       ご不明な点がございましたら
       <br />お気軽にこちらからお問い合わせ下さい。

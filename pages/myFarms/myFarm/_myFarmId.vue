@@ -7,24 +7,26 @@
         <div class="myFarm_content" v-html="product.descriptionHtml"></div>
       </div>
       <div class="box_right">
-        <div
-          class="aboutFarmer"
-          v-if="$store.state.farmers.farmerByMyfarm.length"
-        >
-          <h3>生産者を知る</h3>
-          <nuxt-link
-            class="farmer"
-            :to="'/farmers/farmer/'+$store.state.farmers.farmerByMyfarm[0].sys.id"
+        <div class="sticky">
+          <div
+            class="aboutFarmer"
+            v-if="$store.state.farmers.farmerByMyfarm.length"
           >
-            <img
-              class="farmer_img"
-              :src="$store.state.farmers.farmerByMyfarm[0].fields.mainImage.fields.file.url"
-              alt
-            />
-            <P>{{$store.state.farmers.farmerByMyfarm[0].fields.farmName}}</P>
-          </nuxt-link>
+            <h3>生産者を知る</h3>
+            <nuxt-link
+              class="farmer"
+              :to="'/farmers/farmer/'+$store.state.farmers.farmerByMyfarm[0].sys.id"
+            >
+              <img
+                class="farmer_img"
+                :src="$store.state.farmers.farmerByMyfarm[0].fields.mainImage.fields.file.url"
+                alt
+              />
+              <P>{{$store.state.farmers.farmerByMyfarm[0].fields.farmName}}</P>
+            </nuxt-link>
+          </div>
+          <basicButton cls="checkout_btn" @emitClick="checkout">種主になる</basicButton>
         </div>
-        <basicButton cls="checkout_btn" @emitClick="checkout">種主になる</basicButton>
       </div>
     </div>
   </main>
@@ -88,6 +90,14 @@ export default {
 }
 .box_right {
   width: 30%;
+}
+.sticky {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .aboutFarmer {
   display: flex;

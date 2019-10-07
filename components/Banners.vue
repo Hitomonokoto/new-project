@@ -1,6 +1,7 @@
 <template>
   <div class="banners">
     <div class="banners_sticky">
+      <linkButton cls="login" linkTo="/login" text="ログイン" />
       <router-link to="/aboutMyFarm">
         <div class="banner">
           <img src="/bannerImage/damy1.jpg" />
@@ -24,7 +25,12 @@
 </template>
 
 <script>
+import linkButton from "~/components/LinkButton";
+
 export default {
+  components: {
+    linkButton
+  },
   data() {
     return {
       linkName: this.text
@@ -39,15 +45,16 @@ export default {
 }
 .banners_sticky {
   position: sticky;
-  top: 0;
+  top: 20px;
 }
 .banner {
   position: relative;
 }
 .banner > img {
   width: 380px;
-  margin-top: 10px;
+  margin-top: 20px;
   box-shadow: 0px 0px 6px 3px #d1d1d1;
+  display: block;
 }
 h3 {
   position: absolute;

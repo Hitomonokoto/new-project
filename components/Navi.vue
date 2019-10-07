@@ -12,9 +12,6 @@
     <nuxt-link to="/farmers">
       <p class="nav_p">生産者紹介</p>
     </nuxt-link>
-    <nuxt-link v-if="!this.$store.state.login.token" to="/login">
-      <p class="nav_p">ログイン</p>
-    </nuxt-link>
     <nuxt-link to="/aboutUs">
       <p class="nav_p">私たちについて</p>
     </nuxt-link>

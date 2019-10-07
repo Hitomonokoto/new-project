@@ -8,21 +8,23 @@
         <div class="content" v-html="this.farmers.farmer.fields.content"></div>
       </div>
       <div class="box_right">
-        <div class="products">
-          <h3>マイファーム</h3>
-          <nuxt-link
-            class="products"
-            :to="'/myFarms/myFarm/'+product.node.id"
-            v-for="(product, index) in products"
-            :key="index"
-          >
-            <img
-              class="product_img"
-              :src="product.node.images.edges[0].node.originalSrc"
-              alt
-            />
-            <p>{{ product.node.title }}</p>
-          </nuxt-link>
+        <div class="sticky">
+          <div class="products">
+            <h3>マイファーム</h3>
+            <nuxt-link
+              class="products"
+              :to="'/myFarms/myFarm/'+product.node.id"
+              v-for="(product, index) in products"
+              :key="index"
+            >
+              <img
+                class="product_img"
+                :src="product.node.images.edges[0].node.originalSrc"
+                alt
+              />
+              <p>{{ product.node.title }}</p>
+            </nuxt-link>
+          </div>
         </div>
       </div>
     </div>
@@ -80,6 +82,14 @@ export default {
 }
 .box_right {
   width: 30%;
+}
+.sticky {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .products {
   display: flex;

@@ -1,5 +1,6 @@
 <template>
   <main>
+    <h1>アカウント情報</h1>
     <div v-if="isData">
       <div>
         <img :src="$store.state.login.user_2.profile_img" alt />

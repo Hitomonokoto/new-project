@@ -59,4 +59,13 @@ export default {
   border-radius: 5px;
   font-size: 12px;
 }
+.login {
+  width: 380px;
+  background-color: rgb(255, 211, 68);
+  box-shadow: 0px 0px 6px 3px #d1d1d1;
+  padding: 20px 0;
+  margin-top: 20px;
+  text-align: center;
+  color: white;
+}
 </style>
