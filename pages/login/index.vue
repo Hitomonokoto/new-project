@@ -5,8 +5,18 @@
         <img src="~/assets/mainlogo1.png" alt />
       </div>
 
-      <input v-model="input.email" type="text" placeholder="メールアドレス" />
-      <input v-model="input.password" type="password" placeholder="パスワード" />
+      <basicInput
+        v-model="input.email"
+        cls="login"
+        type="text"
+        placeholder="メールアドレス"
+      />
+      <basicInput
+        v-model="input.password"
+        cls="login"
+        type="password"
+        placeholder="パスワード"
+      />
       <basicButton class="login_btn" @emitClick="save">ログイン</basicButton>
 
       <linkButton
@@ -32,13 +42,14 @@
 // コンポーネント
 import linkButton from "~/components/LinkButton";
 import basicButton from "~/components/BasicButton";
+import basicInput from "~/components/BasicInput";
 
 // その他
 import customerAccessTokenCreate from "~/apollo/gql/customerAccessTokenCreate";
 import getCustomer from "~/apollo/gql/getCustomer";
 
 export default {
-  components: { linkButton, basicButton },
+  components: { linkButton, basicButton, basicInput },
   data: () => ({
     input: {
       email: null,
@@ -94,15 +105,6 @@ export default {
 .logo > img {
   width: 200px;
 }
-
-input {
-  width: 300px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #efefef;
-  margin: 10px 0;
-}
 .login_btn {
   border-radius: 5px;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
@@ -112,7 +114,6 @@ input {
   padding: 10px 0;
   width: 300px;
 }
-
 .foget_pass {
   width: 90%;
 }
@@ -121,7 +122,6 @@ input {
   padding: 20px 0;
   text-align: center;
 }
-
 .nomenber_form {
   width: 80%;
   box-shadow: 0px 0px 6px 3px #d1d1d1;
@@ -131,7 +131,6 @@ input {
   align-items: center;
   margin-bottom: 200px;
 }
-
 .nomenber_form > p {
   text-align: center;
   color: #707070;

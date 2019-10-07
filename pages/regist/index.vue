@@ -6,8 +6,8 @@
       <dl>
         <dt>ニックネーム</dt>
         <dd>
-          <input
-            class="input_type1"
+          <basicInput
+            cls="regist_type1"
             type="text"
             v-model="nickname"
             placeholder="ニックネーム"
@@ -17,14 +17,14 @@
       <dl>
         <dt>お名前</dt>
         <dd>
-          <input
-            class="input_type1"
+          <basicInput
+            cls="regist_type1"
             type="text"
             v-model="createData.lastName"
             placeholder="姓"
           />
-          <input
-            class="input_type1"
+          <basicInput
+            cls="regist_type1"
             type="text"
             v-model="createData.firstName"
             placeholder="名"
@@ -34,8 +34,8 @@
       <dl>
         <dt>メールアドレス</dt>
         <dd>
-          <input
-            class="input_type2"
+          <basicInput
+            cls="regist_type2"
             type="text"
             v-model="createData.email"
             placeholder="メールアドレス"
@@ -45,14 +45,14 @@
       <dl>
         <dt>パスワード</dt>
         <dd class="dd_password">
-          <input
-            class="input_type2"
+          <basicInput
+            cls="regist_type2"
             type="password"
             v-model="createData.password"
             placeholder="パスワード"
           />
-          <input
-            class="input_type2"
+          <basicInput
+            cls="regist_type2"
             type="password"
             v-model="password_check"
             placeholder="パスワード（確認用）"
@@ -71,6 +71,7 @@
 <script>
 // コンポーネント
 import basicButton from "~/components/BasicButton";
+import basicInput from "~/components/BasicInput";
 import mainImage from "~/components/MainImage";
 
 // その他
@@ -78,7 +79,7 @@ import customerCreate from "~/apollo/gql/customerCreate";
 import db from "~/plugins/firebase";
 
 export default {
-  components: { mainImage, basicButton },
+  components: { mainImage, basicButton, basicInput },
   data: () => ({
     createData: {
       lastName: null,
@@ -135,24 +136,6 @@ export default {
 </script>
 
 <style scoped>
-.input_type1 {
-  border-radius: 5px;
-  width: 200px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  background-color: #efefef;
-  margin-top: 5px;
-  margin-bottom: 20px;
-}
-.input_type2 {
-  border-radius: 5px;
-  width: 405px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  background-color: #efefef;
-  margin-top: 5px;
-  margin-bottom: 20px;
-}
 .dd_password {
   display: flex;
   flex-direction: column;

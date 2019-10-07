@@ -1,10 +1,20 @@
 <template>
   <div>
     <p>お名前</p>
-    <input type="text" v-model="lastName" placeholder="姓" />
-    <input type="text" v-model="firstName" placeholder="名" />
+    <basicInput
+      cls="edit_user_name"
+      type="text"
+      v-model="lastName"
+      placeholder="姓"
+    />
+    <basicInput
+      cls="edit_user_name"
+      type="text"
+      v-model="firstName"
+      placeholder="名"
+    />
     <p>メールアドレス</p>
-    <input type="text" v-model="email" />
+    <basicInput cls="edit_email" type="text" v-model="email" />
     <basicButton @emitClick="back">戻る</basicButton>
     <basicButton @emitClick="customerUpdate">変更する</basicButton>
   </div>
@@ -14,6 +24,7 @@
 // コンポーネント
 import linkButton from "~/components/LinkButton";
 import basicButton from "~/components/BasicButton";
+import basicInput from "~/components/BasicInput";
 
 // その他
 import customerUpdate from "~/apollo/gql/customerUpdate";
@@ -21,7 +32,8 @@ import customerUpdate from "~/apollo/gql/customerUpdate";
 export default {
   components: {
     linkButton,
-    basicButton
+    basicButton,
+    basicInput
   },
   data() {
     return {
@@ -56,12 +68,4 @@ export default {
 </script>
 
 <style scoped>
-input {
-  width: 300px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #efefef;
-  margin: 10px 0;
-}
 </style>

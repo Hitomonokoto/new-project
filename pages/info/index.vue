@@ -10,11 +10,10 @@
       <dl>
         <dt>お名前（ニックネーム可）</dt>
         <dd>
-          <input
-            class="formtype1"
-            id="name"
+          <basicInput
+            cls="info"
             v-model="name"
-            name="name"
+            id="name"
             type="text"
             placeholder="お名前"
           />
@@ -23,10 +22,10 @@
       <dl>
         <dt>メールアドレス</dt>
         <dd>
-          <input
-            class="formtype1"
+          <basicInput
+            cls="info"
             v-model="email"
-            name="email"
+            id="email"
             type="email"
             placeholder="メールアドレス"
           />
@@ -35,11 +34,10 @@
       <dl>
         <dt>タイトル</dt>
         <dd>
-          <input
-            class="formtype1"
-            id="title"
+          <basicInput
+            cls="info"
             v-model="title"
-            name="title"
+            id="title"
             type="text"
             placeholder="タイトル"
           />
@@ -50,9 +48,8 @@
         <dd>
           <textarea
             class="formtype2"
-            id="message"
             v-model="message"
-            name="message"
+            id="message"
             placeholder="お問い合わせ内容"
           ></textarea>
         </dd>
@@ -70,12 +67,14 @@
 import mainImage from "~/components/MainImage";
 import linkButton from "~/components/LinkButton";
 import basicButton from "~/components/BasicButton";
+import basicInput from "~/components/BasicInput";
 
 export default {
   components: {
     mainImage,
     linkButton,
-    basicButton
+    basicButton,
+    basicInput
   },
   data() {
     return {
@@ -155,16 +154,6 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.formtype1 {
-  border-radius: 5px;
-  width: 600px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  background-color: #efefef;
-  margin-top: 5px;
-  margin-bottom: 20px;
 }
 .formtype2 {
   border-radius: 5px;

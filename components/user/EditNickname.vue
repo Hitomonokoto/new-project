@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>新しいニックネームを入力してください。</p>
-    <input type="text" v-model="new_nickname" />
+    <basicInput cls="edit_nickname" type="text" v-model="new_nickname" />
     <basicButton @emitClick="back">戻る</basicButton>
     <basicButton @emitClick="changeNickname">変更する</basicButton>
   </div>
@@ -11,13 +11,15 @@
 // コンポーネント
 import linkButton from "~/components/LinkButton";
 import basicButton from "~/components/BasicButton";
+import basicInput from "~/components/BasicInput";
 
 // その他
 
 export default {
   components: {
     linkButton,
-    basicButton
+    basicButton,
+    basicInput
   },
   data() {
     return {
@@ -41,12 +43,4 @@ export default {
 </script>
 
 <style scoped>
-input {
-  width: 300px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #efefef;
-  margin: 10px 0;
-}
 </style>

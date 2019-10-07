@@ -55,6 +55,7 @@ export default {
         title: this.info.info_data.title,
         message: this.info.info_data.message
       });
+      this.$router.push("/");
     }
   },
   computed: mapState({ info: "info" })
