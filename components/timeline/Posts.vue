@@ -115,13 +115,26 @@ export default {
   filters: {
     timestampToDate(value) {
       const d = new Date(value * 1000);
+      const x = Date.now() - value * 1000;
+      if (x < 60000) {
+        return "数秒前";
+      }
+      if (x < 3600000) {
+        const y = Math.floor(x / 60000);
+        return y + "分前";
+      }
+      if (x < 86400000) {
+        const z = Math.floor(x / 3600000);
+        console.log(z);
+        return z + "時間前";
+      }
+      const month = d.getMonth() + 1;
+      const day = d.getDate();
+      if (x < 31536000000) {
+        return `${month}月${day}日`;
+      }
       const year = d.getFullYear();
-      const month = `0${d.getMonth() + 1}`.slice(-2);
-      const day = `0${d.getDate()}`.slice(-2);
-      const hour = `0${d.getHours()}`.slice(-2);
-      const minute = `0${d.getMinutes()}`.slice(-2);
-      const second = `0${d.getSeconds()}`.slice(-2);
-      return `${year}年${month}月${day}日${hour}時${minute}分`;
+      return `${year}年${month}月${day}日`;
     }
   }
 };
