@@ -50,6 +50,7 @@ export default {
   width: 200px;
   margin-top: 10px;
   margin-bottom: 10px;
+  margin-right: 5px;
 }
 .edit_email {
   width: 405px;

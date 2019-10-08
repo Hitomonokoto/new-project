@@ -68,4 +68,7 @@ export default {
   text-align: center;
   color: white;
 }
+.unsub {
+  margin-bottom: 100px;
+}
 </style>

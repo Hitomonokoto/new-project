@@ -81,4 +81,34 @@ export default {
   background-color: rgb(253, 99, 99);
   margin: 10px 20px;
 }
+.profile_img_edit_btn {
+  padding: 5px 10px;
+  background-color: rgb(99, 209, 253);
+}
+.nickname_edit_btn {
+  display: block;
+  margin-left: auto;
+  margin-right: 0;
+  background-color: rgb(99, 209, 253);
+}
+.nickname_edit_back_btn {
+  margin-right: 5px;
+  background-color: lightgray;
+}
+.nickname_edit_update_btn {
+  background-color: rgb(99, 209, 253);
+}
+.basic_info_edit_btn {
+  display: block;
+  margin-left: auto;
+  margin-right: 0;
+  background-color: rgb(99, 209, 253);
+}
+.basic_info_edit_back_btn {
+  margin-right: 5px;
+  background-color: lightgray;
+}
+.basic_info_edit_update_btn {
+  background-color: rgb(99, 209, 253);
+}
 </style>
