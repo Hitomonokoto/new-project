@@ -111,4 +111,12 @@ export default {
 .basic_info_edit_update_btn {
   background-color: rgb(99, 209, 253);
 }
+.unsubscribe_back_btn {
+  padding: 10px 30px;
+  background-color: lightgray;
+}
+.unsubscribe_btn {
+  padding: 10px 30px;
+  background-color: rgb(253, 99, 99);
+}
 </style>

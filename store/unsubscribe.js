@@ -17,7 +17,7 @@ export const actions = {
     const docRef = await db.collection("unsubscribe").doc();
     const setAda = docRef.set({
       user_id: data.user_id,
-      reason: data.reason
+      message: data.message
     });
   }
 }

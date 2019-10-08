@@ -46,12 +46,12 @@
       <dl>
         <dt>お問い合わせ内容</dt>
         <dd>
-          <textarea
-            class="formtype2"
+          <basicTextarea
             v-model="message"
+            cls="info"
             id="message"
             placeholder="お問い合わせ内容"
-          ></textarea>
+          />
         </dd>
       </dl>
       <p v-if="error" class="error_text">※未入力項目があります。</p>
@@ -68,13 +68,15 @@ import mainImage from "~/components/MainImage";
 import linkButton from "~/components/LinkButton";
 import basicButton from "~/components/BasicButton";
 import basicInput from "~/components/BasicInput";
+import basicTextarea from "~/components/BasicTextarea";
 
 export default {
   components: {
     mainImage,
     linkButton,
     basicButton,
-    basicInput
+    basicInput,
+    basicTextarea
   },
   data() {
     return {
@@ -154,16 +156,6 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-.formtype2 {
-  border-radius: 5px;
-  width: 600px;
-  height: 400px;
-  margin-top: 5px;
-  margin-bottom: 20px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  background-color: #efefef;
 }
 .error {
   background-color: rgb(255, 204, 204);
