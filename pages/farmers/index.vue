@@ -36,8 +36,6 @@
 //コンポーネント
 import mainImage from "~/components/MainImage";
 import myFarm from "~/components/MyFarm";
-import foodIndex from "~/components/FoodIndex";
-import prefectureIndex from "~/components/PrefectureIndex";
 
 //その他
 import { mapState } from "vuex";
@@ -45,9 +43,7 @@ import { mapState } from "vuex";
 export default {
   components: {
     mainImage,
-    myFarm,
-    foodIndex,
-    prefectureIndex
+    myFarm
   },
   async fetch({ store }) {
     await store.dispatch("farmers/getFarmersAction");

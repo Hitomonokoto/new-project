@@ -18,9 +18,6 @@
     <nuxt-link to="/info">
       <p class="nav_p">お問い合わせ</p>
     </nuxt-link>
-    <nuxt-link to="/aboutMyFarm">
-      <p class="nav_p">パートナーになる</p>
-    </nuxt-link>
   </div>
 </template>
 

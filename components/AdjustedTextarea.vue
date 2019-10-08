@@ -5,6 +5,8 @@
     :placeholder="placeholder"
     @input="updateValue"
     style="font-size:16px;"
+    ref="adjust_textarea"
+    @keydown="adjustHeight"
   ></textarea>
 </template>
 
@@ -21,6 +23,15 @@ export default {
   methods: {
     updateValue: function(e) {
       this.$emit("input", e.target.value);
+    },
+    adjustHeight() {
+      const textarea = this.$refs.adjust_textarea;
+      const resetHeight = new Promise(function(resolve) {
+        resolve((textarea.style.height = "auto"));
+      });
+      resetHeight.then(function() {
+        textarea.style.height = textarea.scrollHeight + "px";
+      });
     }
   }
 };
@@ -29,20 +40,12 @@ export default {
 <style scoped>
 .basic {
   border-radius: 5px;
-  padding: 10px;
+  padding: 8px;
   border: 1px solid #ccc;
   background-color: #efefef;
 }
-.info {
-  width: 600px;
-  height: 400px;
-  margin-top: 5px;
-  margin-bottom: 20px;
-}
-.unsubscribe {
-  width: 600px;
-  height: 200px;
-  margin-top: 5px;
-  margin-bottom: 20px;
+.write_comment {
+  width: 70%;
+  margin-left: 10px;
 }
 </style>

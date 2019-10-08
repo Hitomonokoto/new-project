@@ -83,13 +83,13 @@ export default {
 }
 .profile_img_edit_btn {
   padding: 5px 10px;
-  background-color: rgb(99, 209, 253);
+  background-color: lightgray;
 }
 .nickname_edit_btn {
   display: block;
   margin-left: auto;
   margin-right: 0;
-  background-color: rgb(99, 209, 253);
+  background-color: lightgray;
 }
 .nickname_edit_back_btn {
   margin-right: 5px;
@@ -102,7 +102,7 @@ export default {
   display: block;
   margin-left: auto;
   margin-right: 0;
-  background-color: rgb(99, 209, 253);
+  background-color: lightgray;
 }
 .basic_info_edit_back_btn {
   margin-right: 5px;

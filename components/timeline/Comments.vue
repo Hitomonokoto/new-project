@@ -1,22 +1,22 @@
 <template>
   <div v-show="this.comments" class="comments">
     <div v-show="this.login.token" class="send_comment">
-      <div class="commenter_icon">
-        <img src="samplein.jpg" alt />
-      </div>
-      <textarea v-model="new_comment" placeholder="コメントを書く..."></textarea>
+      <userIcon cls="send_comment_icon" url="samplein.jpg" />
+      <adjustedTextarea
+        v-model="new_comment"
+        cls="write_comment"
+        placeholder="コメントを書く..."
+      />
 
-      <div class="send_comment">
+      <div>
         <basicButton cls="send_btn" @emitClick="sendComment">送信</basicButton>
       </div>
     </div>
-    <p v-show="!this.login.token">パートナーになるとコメントをすることが出来ます。</p>
+    <p class="comment_alert" v-show="!this.login.token">パートナーになるとコメントをすることが出来ます。</p>
 
     <div v-for="(comment, index) in comments" :key="index">
       <div class="commenter">
-        <div class="commenter_icon">
-          <img src="samplein.jpg" alt />
-        </div>
+        <userIcon cls="commenter_icon" url="samplein.jpg" />
         <div class="name_time">
           <p class="nickname">{{ comment.name }}</p>
 
@@ -36,11 +36,14 @@
 <script>
 // コンポーネント
 import basicButton from "~/components/BasicButton";
+import adjustedTextarea from "~/components/AdjustedTextarea";
+import userIcon from "~/components/UserIcon";
+
 // その他
 import { mapState } from "vuex";
 
 export default {
-  components: { basicButton },
+  components: { basicButton, adjustedTextarea, userIcon },
   data() {
     return {
       new_comment: null
@@ -75,8 +78,6 @@ export default {
       this.new_comment = "";
     },
     commentDelete(comment) {
-      console.log(this.post_id);
-      console.log(comment);
       this.$store.dispatch("timeline/commentDeleteAction", {
         post_id: this.post_id,
         comment_id: comment.comment_id,
@@ -87,13 +88,26 @@ export default {
   filters: {
     timestampToDate(value) {
       const d = new Date(value * 1000);
+      const x = Date.now() - value * 1000;
+      if (x < 60000) {
+        return "数秒前";
+      }
+      if (x < 3600000) {
+        const y = Math.floor(x / 60000);
+        return y + "分前";
+      }
+      if (x < 86400000) {
+        const z = Math.floor(x / 3600000);
+        console.log(z);
+        return z + "時間前";
+      }
+      const month = d.getMonth() + 1;
+      const day = d.getDate();
+      if (x < 31536000000) {
+        return `${month}月${day}日`;
+      }
       const year = d.getFullYear();
-      const month = `0${d.getMonth() + 1}`.slice(-2);
-      const day = `0${d.getDate()}`.slice(-2);
-      const hour = `0${d.getHours()}`.slice(-2);
-      const minute = `0${d.getMinutes()}`.slice(-2);
-      const second = `0${d.getSeconds()}`.slice(-2);
-      return `${year}年${month}月${day}日${hour}時${minute}分`;
+      return `${year}年${month}月${day}日`;
     }
   },
   computed: mapState({ timeline: "timeline", login: "login" })
@@ -110,19 +124,8 @@ export default {
   width: 100%;
   padding: 10px;
 }
-.send_comment > textarea {
-  border-radius: 5px;
-  padding: 5px 10px;
-  width: 70%;
-  margin-left: 10px;
-  background-color: #efefef;
-}
 .commenter {
   display: flex;
-}
-.commenter_icon > img {
-  width: 50px;
-  border-radius: 50%;
 }
 .comment_list {
   width: 100%;
@@ -135,5 +138,9 @@ export default {
 }
 .comment > p {
   padding: 5px 10px;
+}
+.comment_alert {
+  text-align: center;
+  margin: 20px 0;
 }
 </style>

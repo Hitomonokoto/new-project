@@ -3,9 +3,12 @@
     <div class="top_img"></div>
     <div class="profile_area" v-if="isData">
       <div class="xxx">
-        <div class="profile_img">
-          <div class="profile_img_edge">
-            <img :src="$store.state.login.user_2.profile_img" alt />
+        <div class="user_icon">
+          <div class="icon_edge">
+            <userIcon
+              cls="user_page_icon"
+              :url="$store.state.login.user_2.profile_img"
+            />
           </div>
           <basicButton
             cls="profile_img_edit_btn"
@@ -55,19 +58,25 @@
 
 
 <script>
+// コンポーネント
 import basicButton from "~/components/BasicButton";
 import linkButton from "~/components/LinkButton";
 import profileImgEdit from "~/components/user/ProfileImgEdit";
 import editNickname from "~/components/user/EditNickname";
 import editBasicData from "~/components/user/EditBasicData";
+import userIcon from "~/components/UserIcon";
+
+// その他
 import getCustomer from "~/apollo/gql/getCustomer";
+
 export default {
   components: {
     linkButton,
     basicButton,
     profileImgEdit,
     editNickname,
-    editBasicData
+    editBasicData,
+    userIcon
   },
   data() {
     return {
@@ -84,7 +93,6 @@ export default {
         customerAccessToken: this.$store.state.login.token
       }
     });
-    console.log(data.data.customer);
     this.$store.commit("login/getUser_1", data.data.customer);
     this.user_data = data.data.customer;
   },
@@ -139,21 +147,16 @@ main {
   align-items: flex-end;
   margin-bottom: 100px;
 }
-.profile_img {
+.user_icon {
   margin-right: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.profile_img_edge {
+.icon_edge {
   background-color: white;
   border-radius: 5px;
-}
-.profile_img_edge > img {
-  display: block;
-  border-radius: 5px;
-  margin: 5px;
 }
 .nickname_area {
   width: 100%;

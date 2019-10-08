@@ -5,6 +5,7 @@
     :type="type"
     :placeholder="placeholder"
     @input="updateValue"
+    style="font-size:16px;"
   />
 </template>
 

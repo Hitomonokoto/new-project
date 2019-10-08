@@ -10,48 +10,25 @@
       <dl>
         <dt>お名前（ニックネーム可）</dt>
         <dd>
-          <basicInput
-            cls="info"
-            v-model="name"
-            id="name"
-            type="text"
-            placeholder="お名前"
-          />
+          <basicInput cls="info" v-model="name" id="name" type="text" />
         </dd>
       </dl>
       <dl>
         <dt>メールアドレス</dt>
         <dd>
-          <basicInput
-            cls="info"
-            v-model="email"
-            id="email"
-            type="email"
-            placeholder="メールアドレス"
-          />
+          <basicInput cls="info" v-model="email" id="email" type="email" />
         </dd>
       </dl>
       <dl>
         <dt>タイトル</dt>
         <dd>
-          <basicInput
-            cls="info"
-            v-model="title"
-            id="title"
-            type="text"
-            placeholder="タイトル"
-          />
+          <basicInput cls="info" v-model="title" id="title" type="text" />
         </dd>
       </dl>
       <dl>
         <dt>お問い合わせ内容</dt>
         <dd>
-          <basicTextarea
-            v-model="message"
-            cls="info"
-            id="message"
-            placeholder="お問い合わせ内容"
-          />
+          <basicTextarea v-model="message" cls="info" id="message" />
         </dd>
       </dl>
       <p v-if="error" class="error_text">※未入力項目があります。</p>

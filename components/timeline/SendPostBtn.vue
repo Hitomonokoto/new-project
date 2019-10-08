@@ -1,16 +1,23 @@
 <template>
   <div @click="onClick" class="posts">
     <div class="user">
-      <div class="user_icon">
-        <img src="samplein.jpg" alt />
-      </div>
+      <userIcon
+        cls="senb_post_icon"
+        :url="$store.state.login.user_2.profile_img"
+      />
       <p>投稿する</p>
     </div>
   </div>
 </template>
 
 <script>
+// コンポーネント
+import userIcon from "~/components/UserIcon";
+
 export default {
+  components: {
+    userIcon
+  },
   methods: {
     onClick() {
       this.$emit("emitClick");
@@ -31,12 +38,6 @@ export default {
   align-items: center;
   width: 100%;
   padding: 10px;
-}
-.user_icon > img {
-  display: flex;
-  align-items: center;
-  width: 50px;
-  border-radius: 10%;
 }
 .user > p {
   padding-left: 10px;

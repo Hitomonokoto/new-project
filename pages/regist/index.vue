@@ -1,17 +1,12 @@
 <template>
   <main>
     <mainImage url="/mainImage/mainDamy1.jpg" />
-    <h2>パートナー登録画面</h2>
+    <h1>パートナー登録</h1>
     <div class="regist_form">
       <dl>
         <dt>ニックネーム</dt>
         <dd>
-          <basicInput
-            cls="regist_type1"
-            type="text"
-            v-model="nickname"
-            placeholder="ニックネーム"
-          />
+          <basicInput cls="regist_type1" type="text" v-model="nickname" />
         </dd>
       </dl>
       <dl>
@@ -38,7 +33,6 @@
             cls="regist_type2"
             type="text"
             v-model="createData.email"
-            placeholder="メールアドレス"
           />
         </dd>
       </dl>
@@ -49,7 +43,6 @@
             cls="regist_type2"
             type="password"
             v-model="createData.password"
-            placeholder="パスワード"
           />
           <basicInput
             cls="regist_type2"

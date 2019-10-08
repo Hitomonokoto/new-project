@@ -2,7 +2,7 @@
   <div class="posts">
     <div class="user">
       <div class="user_icon">
-        <img src="samplein.jpg" alt />
+        <userIcon cls="post_icon" url="samplein.jpg" />
       </div>
       <div class="name_time">
         <p class="nickname">{{ post_data.name }}</p>
@@ -56,9 +56,10 @@
 // コンポーネント
 import basicButton from "~/components/BasicButton";
 import comments from "~/components/timeline/Comments";
+import userIcon from "~/components/UserIcon";
 
 export default {
-  components: { basicButton, comments },
+  components: { basicButton, comments, userIcon },
   props: {
     post_data: {
       type: Object
@@ -150,11 +151,6 @@ export default {
   display: flex;
   width: 100%;
   padding: 10px;
-}
-
-.user_icon > img {
-  width: 50px;
-  border-radius: 10%;
 }
 .text {
   width: 100%;

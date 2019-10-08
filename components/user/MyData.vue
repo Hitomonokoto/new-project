@@ -2,7 +2,10 @@
   <div class="myData">
     <div class="myData_sticky">
       <div class="myInfo">
-        <img :src="this.$store.state.login.user_2.profile_img" alt />
+        <userIcon
+          cls="mydata_icon"
+          :url="$store.state.login.user_2.profile_img"
+        />
         <div>
           <p>こんにちは！</p>
           <p>{{ $store.state.login.user_2.nickname }}さん</p>
@@ -20,6 +23,7 @@
 // コンポーネント
 import linkButton from "~/components/LinkButton";
 import basicButton from "~/components/BasicButton";
+import userIcon from "~/components/UserIcon";
 
 // その他
 import { mapState } from "vuex";
@@ -28,7 +32,8 @@ import customerAccessTokenDelete from "~/apollo/gql/customerAccessTokenDelete";
 export default {
   components: {
     linkButton,
-    basicButton
+    basicButton,
+    userIcon
   },
   methods: {
     async logout() {
@@ -62,11 +67,6 @@ export default {
   display: flex;
   align-items: center;
   margin: 5px 0;
-}
-.myInfo > img {
-  width: 80px;
-  border-radius: 5px;
-  margin: 10px;
 }
 .actions {
   display: flex;
