@@ -5,7 +5,7 @@
     :type="type"
     :placeholder="placeholder"
     @input="updateValue"
-    style="font-size:16px;"
+    :style="fontSize"
   />
 </template>
 
@@ -19,6 +19,9 @@ export default {
       type: String
     },
     placeholder: {
+      type: String
+    },
+    fontSize: {
       type: String
     }
   },
@@ -71,5 +74,12 @@ export default {
 .regist_type2 {
   width: 405px;
   margin-bottom: 20px;
+}
+.post_title {
+  margin-bottom: 10px;
+  width: 100%;
+  border: none;
+  border-radius: 0;
+  font-size: 18px;
 }
 </style>

@@ -18,6 +18,9 @@ export default {
 </script>
 
 <style scoped>
+.basic {
+  display: block;
+}
 .mydata_icon {
   width: 80px;
   border-radius: 5px;
@@ -31,6 +34,7 @@ export default {
 .post_icon {
   width: 50px;
   border-radius: 10%;
+  margin-right: 10px;
 }
 .commenter_icon {
   width: 50px;
@@ -51,5 +55,10 @@ export default {
   align-items: center;
   width: 50px;
   border-radius: 10%;
+}
+.post_form_icon {
+  width: 50px;
+  border-radius: 10%;
+  margin-right: 10px;
 }
 </style>

@@ -30,12 +30,12 @@
       <div v-if="login_user_id == comment.user_id" class="comment_i">
         <div class="comment_main_i">
           <div class="comment_text_i">
-            <p class="time_i">{{ comment.created.seconds | timestampToDate }}</p>
             <div class="comment_background_i">
               <p>{{ comment.text }}</p>
             </div>
           </div>
-          <div class="delete_btn">
+          <div class="time_and_delete">
+            <p class="time_i">{{ comment.created.seconds | timestampToDate }}</p>
             <basicButton
               cls="comment_delete_btn"
               @emitClick="commentDelete(comment)"
@@ -196,7 +196,7 @@ export default {
   font-size: 12px;
 }
 .time_i {
-  margin-right: 5px;
+  margin-right: 10px;
   color: rgb(0, 114, 190);
   font-size: 12px;
 }
@@ -204,7 +204,7 @@ export default {
   text-align: center;
   margin: 20px 0;
 }
-.delete_btn {
+.time_and_delete {
   display: flex;
   justify-content: flex-end;
 }

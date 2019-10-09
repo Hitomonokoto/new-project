@@ -13,40 +13,14 @@
       </div>
     </div>
     <div class="post_content">
-      <div class="text">
-        <p>{{ post_data.text }}</p>
-      </div>
+      <p class="post_title">{{ post_data.title }}</p>
       <img class="post_img" :src="this.post_data.fileUrl" />
-      <div class="actions">
-        <div class="like_btn" v-if="!isLike_btn" @click="getLike">
-          <fa class="like_fa" :icon="faHeart" />
-          <span
-            class="like_fa"
-            v-show="post_data.like_count!=0"
-          >{{ post_data.like_count }}</span>
-        </div>
-        <div class="like_btn" v-if="isLike_btn" @click="loseLike">
-          <fa class="get_like_fa" :icon="faHeart" />
-          <span
-            class="get_like_fa"
-            v-show="post_data.like_count!=0"
-          >{{ post_data.like_count }}</span>
-        </div>
-        <div class="comment_btn" v-if="!isComment_btn" @click="getComments">
-          <fa class="comment_fa" :icon="faCommentAlt" />
-          <span
-            class="comment_fa"
-            v-show="post_data.comment_count!=0"
-          >{{ post_data.comment_count }}</span>
-        </div>
-        <div class="comment_btn" v-if="isComment_btn" @click="closeComments">
-          <fa class="comment_fa" :icon="faCommentAlt" />
-          <span
-            class="comment_fa"
-            v-show="post_data.comment_count!=0"
-          >{{ post_data.comment_count }}</span>
-        </div>
-      </div>
+      <p class="post_text">{{ post_data.text }}</p>
+      <postActions
+        :post_data="post_data"
+        @openComments="openComments"
+        @closeComments="closeComments"
+      />
       <comments
         v-if="isComments"
         :comment_count="this.post_data.comment_count"
@@ -63,14 +37,12 @@
 <script>
 // コンポーネント
 import basicButton from "~/components/BasicButton";
+import postActions from "~/components/timeline/PostActions";
 import comments from "~/components/timeline/Comments";
 import userIcon from "~/components/UserIcon";
 
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import { faCommentAlt } from "@fortawesome/free-solid-svg-icons";
-
 export default {
-  components: { basicButton, comments, userIcon },
+  components: { basicButton, postActions, comments, userIcon },
   props: {
     post_data: {
       type: Object
@@ -90,39 +62,17 @@ export default {
     };
   },
   methods: {
-    getLike() {
-      if (!this.$store.state.login.token) {
-        this.$router.push("/login");
-        return;
-      }
-
-      this.isLike_btn = true;
-      this.$store.dispatch("timeline/getLikeAction", {
-        post_data: this.post_data,
-        user_id: this.$store.state.login.user_id
-      });
-    },
-    loseLike() {
-      this.isLike_btn = false;
-      this.$store.dispatch("timeline/loseLikeAction", {
-        post_data: this.post_data,
-        user_id: this.$store.state.login.user_id
-      });
-    },
-    getComments() {
+    openComments() {
       this.isComments = true;
       this.$store.dispatch(
         "timeline/getCommentsAction",
         this.post_data.post_id
       );
-      this.isComment_btn = true;
     },
     closeComments() {
       this.isComments = false;
-      this.isComment_btn = false;
     },
     edit() {
-      console.log("okokok");
       this.$emit("postEdit", this.post_data);
     }
   },
@@ -150,14 +100,6 @@ export default {
       const year = d.getFullYear();
       return `${year}年${month}月${day}日`;
     }
-  },
-  computed: {
-    faHeart() {
-      return faHeart;
-    },
-    faCommentAlt() {
-      return faCommentAlt;
-    }
   }
 };
 </script>
@@ -170,43 +112,27 @@ export default {
 }
 .user {
   display: flex;
+  align-items: center;
   width: 100%;
   padding: 10px;
 }
-.text {
-  width: 100%;
-  padding: 10px;
+.time {
+  color: rgb(0, 114, 190);
+  font-size: 12px;
+}
+.post_title {
+  padding: 0 10px;
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.post_text {
+  padding: 0 10px;
+  margin-bottom: 20px;
 }
 .post_img {
   width: 100%;
-}
-
-.actions {
-  display: flex;
-  width: 100%;
-}
-.actions > div {
-  text-align: center;
-}
-.like_btn {
-  width: 50%;
-  height: 40px;
-  line-height: 40px;
-  border: none;
-}
-.comment_btn {
-  width: 50%;
-  height: 40px;
-  line-height: 40px;
-  border: none;
-}
-.like_fa {
-  color: gray;
-}
-.get_like_fa {
-  color: rgb(255, 45, 56);
-}
-.comment_fa {
-  color: gray;
+  display: block;
+  margin-bottom: 10px;
 }
 </style>

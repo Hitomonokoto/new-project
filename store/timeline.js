@@ -86,6 +86,7 @@ export const actions = {
             user_id: data.user_id,
             name: data.name,
             text: data.text,
+            title: data.title,
             fileName: data.fileName,
             fileUrl: data.fileUrl,
             created: firebase.firestore.Timestamp.fromDate(new Date()),
@@ -196,7 +197,7 @@ export const actions = {
         try {
             // context.dispatch("getPostsAction");
             const comments = [];
-            const commentSnapShots = await db.collection('timeline').doc(payload).collection('comments').orderBy('created', 'desc').get();
+            const commentSnapShots = await db.collection('timeline').doc(payload).collection('comments').orderBy('created', 'asc').get();
             commentSnapShots.forEach(comment => {
                 const comment_data = comment.data();
                 comment_data.comment_id = comment.id;

@@ -1,21 +1,28 @@
 <template>
   <div class="post">
     <div class="user">
-      <img class="user_icon" src="samplein.jpg" alt />
+      <userIcon
+        cls="post_form_icon"
+        :url="$store.state.login.user_2.profile_img"
+      />
       <p class="nickname">{{$store.state.login.user_2.nickname}}</p>
       <div class="edit">
         <basicButton cls="back_btn" @emitClick="back">戻る</basicButton>
       </div>
     </div>
-    <textarea
-      v-model="text"
-      name="text"
-      id
-      cols="30"
-      rows="10"
-      placeholder="入力してください..."
-    ></textarea>
+    <basicInput
+      cls="post_title"
+      v-model="title"
+      type="text"
+      placeholder="タイトルを入力してください..."
+      fontSize="font-size:20px;"
+    />
     <img v-if="this.fileUrl" class="post_img" :src="this.fileUrl" />
+    <adjustedTextarea
+      v-model="text"
+      cls="post_text"
+      placeholder="本文を入力してください..."
+    />
     <input type="file" @change="setFiles($event)" />
     <div class="edit">
       <basicButton cls="send_btn" @emitClick="sendPost">投稿</basicButton>
@@ -27,15 +34,25 @@
 // コンポーネント
 import basicButton from "~/components/BasicButton";
 import linkButton from "~/components/LinkButton";
+import basicInput from "~/components/BasicInput";
+import adjustedTextarea from "~/components/AdjustedTextarea";
+import userIcon from "~/components/UserIcon";
 
 // その他
 import uuid from "uuid";
 
 export default {
-  components: { basicButton, linkButton },
+  components: {
+    basicButton,
+    linkButton,
+    basicInput,
+    adjustedTextarea,
+    userIcon
+  },
   data() {
     return {
-      text: "",
+      title: null,
+      text: null,
       fileName: null,
       fileUrl: null
     };
@@ -72,6 +89,7 @@ export default {
       this.$store.dispatch("timeline/PostAction", {
         user_id: this.$store.state.login.user_2.user_id,
         name: this.$store.state.login.user_2.nickname,
+        title: this.title,
         text: this.text,
         fileName: this.fileName,
         fileUrl: this.fileUrl
@@ -104,12 +122,9 @@ export default {
 .user_icon {
   width: 50px;
   border-radius: 10%;
+  margin-right: 10px;
 }
 textarea {
-  width: 100%;
-  padding: 10px;
-  border: none;
-  background-color: #efefef;
 }
 .post_img {
   width: 100%;

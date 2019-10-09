@@ -39,13 +39,19 @@ export default {
 
 <style scoped>
 .basic {
+}
+.write_comment {
   border-radius: 5px;
   padding: 8px;
   border: 1px solid #ccc;
   background-color: #efefef;
-}
-.write_comment {
   width: 70%;
   margin-left: 10px;
+}
+.post_text {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  /* background-color: #efefef; */
 }
 </style>
