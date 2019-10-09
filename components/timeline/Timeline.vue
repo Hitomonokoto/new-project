@@ -2,7 +2,12 @@
   <div class="timeline">
     <div class="timeline_menu">
       <h2>タイムライン</h2>
-      <sendPostBtn v-if="isPost" @emitClick="post" />
+      <div v-if="this.$store.state.login.user_2">
+        <sendPostBtn
+          v-if="this.$store.state.login.user_2.user_type == 1"
+          @emitClick="post"
+        />
+      </div>
 
       <!-- <div class="timeline_btns">
         <basicButton class="all_posts">タイムライン</basicButton>
@@ -38,16 +43,7 @@ export default {
     sendPostBtn
   },
   data() {
-    return {
-      isPost: false
-    };
-  },
-  created() {
-    if (this.$store.state.login.user_2) {
-      if (this.$store.state.login.user_2.user_type == 1) {
-        this.isPost = true;
-      }
-    }
+    return {};
   },
   methods: {
     post() {

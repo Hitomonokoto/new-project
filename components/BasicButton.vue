@@ -23,8 +23,8 @@ export default {
 .basic {
   border: none;
   border-radius: 5px;
-  padding: 5px 10px;
-  background-color: red;
+  margin-left: auto;
+  margin-right: 0;
 }
 .checkout_btn {
   width: 80%;
@@ -41,9 +41,9 @@ export default {
   padding: 5px 10px;
   background-color: lightgray;
 }
-.delete_btn {
-  padding: 5px 10px;
-  background-color: rgb(253, 99, 99);
+.comment_delete_btn {
+  color: red;
+  padding-right: 5px;
 }
 .update_btn {
   padding: 5px 10px;

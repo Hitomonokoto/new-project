@@ -7,27 +7,42 @@
         cls="write_comment"
         placeholder="コメントを書く..."
       />
-
       <div>
         <basicButton cls="send_btn" @emitClick="sendComment">送信</basicButton>
       </div>
     </div>
     <p class="comment_alert" v-show="!this.login.token">パートナーになるとコメントをすることが出来ます。</p>
 
-    <div v-for="(comment, index) in comments" :key="index">
-      <div class="commenter">
+    <div class="comment_list" v-for="(comment, index) in comments" :key="index">
+      <div v-if="login_user_id != comment.user_id" class="comment">
         <userIcon cls="commenter_icon" url="samplein.jpg" />
-        <div class="name_time">
+        <div class="comment_main">
           <p class="nickname">{{ comment.name }}</p>
-
-          <p class="time">{{ comment.created.seconds | timestampToDate }}</p>
-        </div>
-        <div v-if="login_user_id == comment.user_id" class="commentDelete">
-          <basicButton cls="delete_btn" @emitClick="commentDelete(comment)">削除</basicButton>
+          <div class="comment_text">
+            <div class="comment_background">
+              <p>{{ comment.text }}</p>
+            </div>
+            <p class="time">{{ comment.created.seconds | timestampToDate }}</p>
+          </div>
         </div>
       </div>
-      <div class="comment">
-        <p>{{ comment.text }}</p>
+
+      <div v-if="login_user_id == comment.user_id" class="comment_i">
+        <div class="comment_main_i">
+          <div class="comment_text_i">
+            <p class="time_i">{{ comment.created.seconds | timestampToDate }}</p>
+            <div class="comment_background_i">
+              <p>{{ comment.text }}</p>
+            </div>
+          </div>
+          <div class="delete_btn">
+            <basicButton
+              cls="comment_delete_btn"
+              @emitClick="commentDelete(comment)"
+            >削除</basicButton>
+          </div>
+        </div>
+        <userIcon cls="commenter_icon_i" url="samplein.jpg" />
       </div>
     </div>
   </div>
@@ -123,24 +138,74 @@ export default {
   align-items: center;
   width: 100%;
   padding: 10px;
-}
-.commenter {
-  display: flex;
+  margin-bottom: 20px;
 }
 .comment_list {
-  width: 100%;
-  padding: 10px;
 }
 .comment {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+.comment_i {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.comment_main {
+  margin-left: 10px;
+}
+.comment_text {
+  display: flex;
+  align-items: flex-end;
+}
+.comment_text_i {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.comment_background {
   display: inline-block;
   background-color: #efefef;
   border-radius: 20px;
 }
-.comment > p {
-  padding: 5px 10px;
+.comment_background_i {
+  display: inline-block;
+  background-color: #fae989;
+  border-radius: 20px;
+}
+.comment_background > p {
+  padding: 3px 15px;
+}
+.comment_background_i > p {
+  padding: 3px 15px;
+}
+.nickname {
+  font-weight: bold;
+  font-size: 14px;
+}
+.nickname_i {
+  text-align: right;
+  font-weight: bold;
+  font-size: 14px;
+}
+.time {
+  margin-left: 5px;
+  color: rgb(0, 114, 190);
+  font-size: 12px;
+}
+.time_i {
+  margin-right: 5px;
+  color: rgb(0, 114, 190);
+  font-size: 12px;
 }
 .comment_alert {
   text-align: center;
   margin: 20px 0;
+}
+.delete_btn {
+  display: flex;
+  justify-content: flex-end;
 }
 </style>

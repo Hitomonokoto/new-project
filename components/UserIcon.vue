@@ -35,6 +35,12 @@ export default {
 .commenter_icon {
   width: 50px;
   border-radius: 50%;
+  margin-left: 10px;
+}
+.commenter_icon_i {
+  width: 50px;
+  border-radius: 50%;
+  margin: 0 10px 20px 10px;
 }
 .send_comment_icon {
   width: 50px;

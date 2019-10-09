@@ -92,6 +92,7 @@ export default {
   methods: {
     getLike() {
       if (!this.$store.state.login.token) {
+        this.$router.push("/login");
         return;
       }
 
