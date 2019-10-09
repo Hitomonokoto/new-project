@@ -23,8 +23,6 @@ export default {
 .basic {
   border: none;
   border-radius: 5px;
-  margin-left: auto;
-  margin-right: 0;
 }
 .checkout_btn {
   width: 80%;
