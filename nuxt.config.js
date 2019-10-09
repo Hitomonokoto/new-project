@@ -27,6 +27,7 @@ export default {
     '@nuxtjs/apollo',
     '@nuxtjs/axios',
     '@nuxtjs/dotenv',
+    'nuxt-fontawesome',
   ],
 
   apollo: {
@@ -56,6 +57,10 @@ export default {
     storageBucket: process.env.FB_STORAGE_BUCKET,
     messagingSenderId: process.env.FB_MESSAGING_SENDER_ID,
     appId: process.env.FB_APP_ID
+  },
+
+  fontawesome: {
+    component: 'fa'
   },
 
   build: {

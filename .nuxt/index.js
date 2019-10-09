@@ -12,6 +12,7 @@ import { createStore } from './store.js'
 
 /* Plugins */
 
+import nuxt_plugin_templatesplugin12670bd2_6ce5103f from 'nuxt_plugin_templatesplugin12670bd2_6ce5103f' // Source: ./templates.plugin.12670bd2.js (mode: 'all')
 import nuxt_plugin_axios_752bb35e from 'nuxt_plugin_axios_752bb35e' // Source: ./axios.js (mode: 'all')
 import nuxt_plugin_apollomodule_2c63ddc6 from 'nuxt_plugin_apollomodule_2c63ddc6' // Source: ./apollo-module.js (mode: 'all')
 import nuxt_plugin_firebase_5cf99106 from 'nuxt_plugin_firebase_5cf99106' // Source: ../plugins/firebase (mode: 'all')
@@ -165,6 +166,10 @@ async function createApp(ssrContext) {
   }
 
   // Plugin execution
+
+  if (typeof nuxt_plugin_templatesplugin12670bd2_6ce5103f === 'function') {
+    await nuxt_plugin_templatesplugin12670bd2_6ce5103f(app.context, inject)
+  }
 
   if (typeof nuxt_plugin_axios_752bb35e === 'function') {
     await nuxt_plugin_axios_752bb35e(app.context, inject)

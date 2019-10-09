@@ -11,6 +11,9 @@
     "heroku-postbuild": "npm run build"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.25",
+    "@fortawesome/free-solid-svg-icons": "^5.11.2",
+    "@fortawesome/vue-fontawesome": "^0.1.7",
     "@nuxtjs/apollo": "^4.0.0-rc12",
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/dotenv": "^1.4.0",
@@ -22,6 +25,7 @@
     "graphql": "^14.5.7",
     "graphql-request": "^1.8.2",
     "nuxt": "^2.0.0",
+    "nuxt-fontawesome": "^0.4.0",
     "nuxt-shopify": "^1.4.1",
     "uuid": "^3.3.3"
   },

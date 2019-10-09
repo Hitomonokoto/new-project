@@ -19,22 +19,30 @@
       <img class="post_img" :src="this.post_data.fileUrl" />
       <div class="actions">
         <div class="like_btn" v-if="!isLike_btn" @click="getLike">
-          いいね！
-          <span v-show="post_data.like_count!=0">{{ post_data.like_count }}</span>
+          <fa class="like_fa" :icon="faHeart" />
+          <span
+            class="like_fa"
+            v-show="post_data.like_count!=0"
+          >{{ post_data.like_count }}</span>
         </div>
         <div class="like_btn" v-if="isLike_btn" @click="loseLike">
-          いいね！
-          <span v-show="post_data.like_count!=0">{{ post_data.like_count }}</span>
+          <fa class="get_like_fa" :icon="faHeart" />
+          <span
+            class="get_like_fa"
+            v-show="post_data.like_count!=0"
+          >{{ post_data.like_count }}</span>
         </div>
         <div class="comment_btn" v-if="!isComment_btn" @click="getComments">
-          コメント
+          <fa class="comment_fa" :icon="faCommentAlt" />
           <span
+            class="comment_fa"
             v-show="post_data.comment_count!=0"
           >{{ post_data.comment_count }}</span>
         </div>
         <div class="comment_btn" v-if="isComment_btn" @click="closeComments">
-          コメント
+          <fa class="comment_fa" :icon="faCommentAlt" />
           <span
+            class="comment_fa"
             v-show="post_data.comment_count!=0"
           >{{ post_data.comment_count }}</span>
         </div>
@@ -57,6 +65,9 @@
 import basicButton from "~/components/BasicButton";
 import comments from "~/components/timeline/Comments";
 import userIcon from "~/components/UserIcon";
+
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faCommentAlt } from "@fortawesome/free-solid-svg-icons";
 
 export default {
   components: { basicButton, comments, userIcon },
@@ -83,6 +94,7 @@ export default {
       if (!this.$store.state.login.token) {
         return;
       }
+
       this.isLike_btn = true;
       this.$store.dispatch("timeline/getLikeAction", {
         post_data: this.post_data,
@@ -137,6 +149,14 @@ export default {
       const year = d.getFullYear();
       return `${year}年${month}月${day}日`;
     }
+  },
+  computed: {
+    faHeart() {
+      return faHeart;
+    },
+    faCommentAlt() {
+      return faCommentAlt;
+    }
   }
 };
 </script>
@@ -178,5 +198,14 @@ export default {
   height: 40px;
   line-height: 40px;
   border: none;
+}
+.like_fa {
+  color: gray;
+}
+.get_like_fa {
+  color: rgb(255, 45, 56);
+}
+.comment_fa {
+  color: gray;
 }
 </style>
