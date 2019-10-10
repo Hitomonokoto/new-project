@@ -46,9 +46,16 @@ export default {
 .banners_sticky {
   position: sticky;
   top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .banner {
+  height: 100%;
   position: relative;
+  display: flex;
+  justify-content: center;
 }
 .banner > img {
   width: 380px;

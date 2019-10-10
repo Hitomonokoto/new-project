@@ -1,18 +1,23 @@
 <template>
   <div class="container">
-    <div class="nav">
-      <navi />
+    <div class="pc_navi">
+      <pcNavi />
     </div>
     <nuxt />
   </div>
 </template>
 
 <script>
-import navi from "~/components/Navi";
+import pcNavi from "~/components/navi/PcNavi";
 
 export default {
   components: {
-    navi
+    pcNavi
+  },
+  data() {
+    return {
+      isOpen: false
+    };
   }
 };
 </script>
@@ -25,15 +30,19 @@ export default {
   padding: 0;
   box-sizing: border-box;
   text-decoration: none;
+  list-style: none;
+  font-family: "Hepta Slab", serif;
 }
 .container {
   display: flex;
 }
-.nav {
-  width: 300px;
-  background-color: rgb(246, 255, 220);
+.pc_navi {
+  width: 190px;
+  background-color: #f8f8f8;
 }
-
+/* .tablet_navi {
+  display: none;
+} */
 /* これより下は全ページ共通のCSS */
 
 main {
@@ -71,4 +80,24 @@ h3 {
   padding: 20px 0;
   text-align: center;
 }
+
+@media screen and (max-width: 1100px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+  .pc_navi {
+    width: 100%;
+  }
+}
+
+/* @media screen and (max-width: 600px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+  .pc_navi {
+    display: none;
+  }
+} */
 </style>

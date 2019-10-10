@@ -33,10 +33,6 @@ export default {
 .foget_pass {
   color: #707070;
 }
-.type2 {
-  background-color: green;
-  padding: 5px 20px;
-}
 .about_myfarm {
   color: white;
   background-color: rgb(255, 211, 68);
