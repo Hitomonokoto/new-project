@@ -2,39 +2,53 @@
   <div class="post">
     <div class="user">
       <img class="user_icon" src="samplein.jpg" alt />
-      <p class="nickname">{{post_data.name}}</p>
-      <div class="edit">
-        <basicButton cls="back_btn" @emitClick="back">戻る</basicButton>
+      <div class="name_and_back">
+        <p class="nickname">{{post_data.name}}</p>
+        <div class="actions">
+          <basicButton cls="back_btn" @emitClick="back">戻る</basicButton>
+          <basicButton cls="post_delete_btn" @emitClick="postDalete">削除</basicButton>
+        </div>
       </div>
     </div>
-    <textarea
-      v-model="text"
-      name="text"
-      id
-      cols="30"
-      rows="10"
-      placeholder="入力してください..."
-    ></textarea>
-    <img class="post_img" :src="this.fileUrl" />
-    <basicButton v-show="this.fileUrl" @emitClick="fileDalete">画像削除</basicButton>
-    <input type="file" @change="setFiles($event)" />
-    <div class="edit">
-      <basicButton cls="delete_btn" @emitClick="postDalete">削除</basicButton>
-      <basicButton cls="update_btn" @emitClick="update">更新</basicButton>
+    <basicInput
+      cls="post_title"
+      v-model="title"
+      type="text"
+      placeholder="タイトルを入力してください..."
+      fontSize="font-size:20px;"
+    />
+    <div class="img_area">
+      <img class="post_img" :src="this.fileUrl" />
+      <basicButton
+        v-show="this.fileUrl"
+        cls="post_img_delete_btn"
+        @emitClick="fileDalete"
+      >×</basicButton>
     </div>
+    <adjustedTextarea
+      v-model="text"
+      :text="this.post_data.text"
+      cls="post_text"
+      placeholder="本文を入力してください..."
+    />
+    <input type="file" @change="setFiles($event)" />
+    <basicButton cls="update_btn" @emitClick="update">更新</basicButton>
   </div>
 </template>
 
 <script>
 // コンポーネント
 import basicButton from "~/components/BasicButton";
+import basicInput from "~/components/BasicInput";
+import adjustedTextarea from "~/components/AdjustedTextarea";
 // その他
 import uuid from "uuid";
 
 export default {
-  components: { basicButton },
+  components: { basicButton, basicInput, adjustedTextarea },
   data() {
     return {
+      title: this.post_data.title,
       text: this.post_data.text,
       fileName: this.post_data.fileName,
       fileUrl: this.post_data.fileUrl
@@ -51,10 +65,6 @@ export default {
     },
     fileDalete() {
       this.fileUrl = null;
-      // this.$store.dispatch(
-      //   "timeline/deleteImageAction",
-      //   this.post_data.fileName
-      // );
     },
     postDalete() {
       this.$store.dispatch("timeline/deletePostAction", this.post_data);
@@ -62,23 +72,32 @@ export default {
     },
     setFiles(e) {
       const file = (e.target.files || e.dataTransfer.files)[0];
-      console.log("1->" + file);
       if (file) {
         const fileName = uuid();
-        console.log("2->" + fileName);
-        this.$store
-          .dispatch("timeline/uploadImage", {
-            name: fileName,
-            file: file
-          })
-          .then(url => {
-            this.fileName = fileName;
-            this.fileUrl = url;
-            console.log("3->" + this.fileName);
-            console.log("4->" + this.fileUrl);
-          });
-        console.log("5->" + this.fileName);
-        console.log("6->" + this.fileUrl);
+        if (this.fileName) {
+          console.log("1");
+          this.$store
+            .dispatch("timeline/changeUploadImage", {
+              oldFileName: this.fileName,
+              name: fileName,
+              file: file
+            })
+            .then(url => {
+              this.fileName = fileName;
+              this.fileUrl = url;
+            });
+        } else {
+          console.log("2");
+          this.$store
+            .dispatch("timeline/uploadImage", {
+              name: fileName,
+              file: file
+            })
+            .then(url => {
+              this.fileName = fileName;
+              this.fileUrl = url;
+            });
+        }
       }
     },
     update() {
@@ -87,10 +106,12 @@ export default {
       }
       this.$store.dispatch("timeline/PostEditAction", {
         post_id: this.post_data.post_id,
+        title: this.title,
         text: this.text,
         fileName: this.fileName,
         fileUrl: this.fileUrl
       });
+
       this.$emit("editBack");
     }
   }
@@ -107,8 +128,12 @@ export default {
   align-items: center;
   margin: 10px 0;
 }
+.img_area {
+  position: relative;
+}
 .post_img {
   width: 100%;
+  display: block;
 }
 .user {
   display: flex;
@@ -120,11 +145,11 @@ export default {
 .user_icon {
   width: 50px;
   border-radius: 10%;
+  margin-right: 10px;
 }
-textarea {
+.name_and_back {
   width: 100%;
-  padding: 10px;
-  border: none;
-  background-color: #efefef;
+  display: flex;
+  justify-content: space-between;
 }
 </style>

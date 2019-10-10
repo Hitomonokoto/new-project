@@ -23,6 +23,7 @@ export default {
 .basic {
   border: none;
   border-radius: 5px;
+  background-color: transparent;
 }
 .checkout_btn {
   width: 80%;
@@ -30,6 +31,25 @@ export default {
   margin-top: 20px;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
   background-color: rgb(255, 80, 153);
+}
+.post_edit_btn {
+  padding: 5px 10px;
+  background-color: lightgray;
+}
+.post_delete_btn {
+  padding: 5px 10px;
+  background-color: red;
+  color: white;
+}
+.post_img_delete_btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  font-size: 20px;
 }
 .edit_btn {
   padding: 5px 10px;
@@ -84,29 +104,30 @@ export default {
   background-color: lightgray;
 }
 .nickname_edit_btn {
-  display: block;
-  margin-left: auto;
-  margin-right: 0;
-  background-color: lightgray;
+  color: blue;
 }
 .nickname_edit_back_btn {
+  padding: 5px 10px;
   margin-right: 5px;
   background-color: lightgray;
 }
 .nickname_edit_update_btn {
+  padding: 5px 10px;
   background-color: rgb(99, 209, 253);
 }
 .basic_info_edit_btn {
+  color: blue;
   display: block;
   margin-left: auto;
   margin-right: 0;
-  background-color: lightgray;
 }
 .basic_info_edit_back_btn {
+  padding: 5px 10px;
   margin-right: 5px;
   background-color: lightgray;
 }
 .basic_info_edit_update_btn {
+  padding: 5px 10px;
   background-color: rgb(99, 209, 253);
 }
 .unsubscribe_back_btn {

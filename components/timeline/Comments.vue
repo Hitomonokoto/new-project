@@ -203,6 +203,8 @@ export default {
 .comment_alert {
   text-align: center;
   margin: 20px 0;
+  padding: 10px 0;
+  background-color: rgb(241, 234, 129);
 }
 .time_and_delete {
   display: flex;

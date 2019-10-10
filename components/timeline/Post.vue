@@ -63,23 +63,32 @@ export default {
     },
     setFiles(e) {
       const file = (e.target.files || e.dataTransfer.files)[0];
-      console.log("1->" + file);
       if (file) {
         const fileName = uuid();
-        console.log("2->" + fileName);
-        this.$store
-          .dispatch("timeline/uploadImage", {
-            name: fileName,
-            file: file
-          })
-          .then(url => {
-            this.fileName = fileName;
-            this.fileUrl = url;
-            console.log("3->" + this.fileName);
-            console.log("4->" + this.fileUrl);
-          });
-        console.log("5->" + this.fileName);
-        console.log("6->" + this.fileUrl);
+        if (this.fileName) {
+          console.log("1");
+          this.$store
+            .dispatch("timeline/changeUploadImage", {
+              oldFileName: this.post_data.fileName,
+              name: fileName,
+              file: file
+            })
+            .then(url => {
+              this.fileName = fileName;
+              this.fileUrl = url;
+            });
+        } else {
+          console.log("2");
+          this.$store
+            .dispatch("timeline/uploadImage", {
+              name: fileName,
+              file: file
+            })
+            .then(url => {
+              this.fileName = fileName;
+              this.fileUrl = url;
+            });
+        }
       }
     },
     sendPost() {

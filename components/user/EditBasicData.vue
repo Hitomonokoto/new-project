@@ -2,8 +2,7 @@
   <div class="edit_basic_data_area">
     <div class="edit_area">
       <dl>
-        <dt>お名前</dt>
-
+        <dt>名前</dt>
         <dd>
           <basicInput
             cls="edit_user_name"

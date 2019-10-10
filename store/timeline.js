@@ -79,6 +79,25 @@ export const actions = {
                 })
         })
     },
+    // 画像のアップロードを更新する
+    changeUploadImage: (context, payload) => {
+        const storageRef = firebase.storage().ref(payload.oldFileName);
+        storageRef.delete().then(function () {
+            console.log("画像の削除に成功しました。");
+        }).catch(function (error) {
+            console.log("エラー（画像の削除に失敗しました。）");
+        });
+        return new Promise((resolve, reject) => {
+            const uploadTask = firestorage
+                .ref(payload.name)
+                .put(payload.file)
+                .then(snapshot => {
+                    snapshot.ref.getDownloadURL().then(url => {
+                        resolve(url)
+                    })
+                })
+        })
+    },
     // 投稿する
     PostAction(context, data) {
         const docRef = db.collection("timeline").doc();
@@ -98,15 +117,18 @@ export const actions = {
     // 投稿を編集する
     PostEditAction(context, payload) {
         let fileName = payload.fileName;
-        if (!payload.fileUrl) {
+        if (!payload.fileUrl && payload.fileName) {
             const storageRef = firebase.storage().ref(payload.fileName);
-            storageRef.delete().catch(function (error) {
-                console.log(error);
+            storageRef.delete().then(function () {
+                console.log("画像の削除に成功しました。");
+            }).catch(function (error) {
+                console.log("エラー（画像の削除に失敗しました。）");
             });
             fileName = null;
         }
         const docRef = db.collection("timeline").doc(payload.post_id);
         const setAda = docRef.update({
+            title: payload.title,
             text: payload.text,
             fileName: fileName,
             fileUrl: payload.fileUrl,
@@ -133,9 +155,9 @@ export const actions = {
         if (post_data.fileUrl) {
             const storageRef = firebase.storage().ref(post_data.fileName);
             storageRef.delete().then(function () {
-                console.log("削除成功");
+                console.log("投稿の削除に成功しました。");
             }).catch(function (error) {
-                console.log("削除失敗");
+                console.log("エラー（投稿の削除に失敗しました。）");
             });
         }
         const deletePost = db.collection('timeline').doc(post_data.post_id).delete().then(() => {
@@ -147,9 +169,9 @@ export const actions = {
     deleteImageAction(context, fileName) {
         const storageRef = firebase.storage().ref(post_data.fileName);
         storageRef.delete().then(function () {
-            console.log("削除成功");
+            console.log("画像の削除に成功しました。");
         }).catch(function (error) {
-            console.log("削除失敗");
+            console.log("エラー（画像の削除に失敗しました。）");
         });
         const deletePost = db.collection('timeline').doc(post_data.post_id).delete();
         context.dispatch("getPostsAction");

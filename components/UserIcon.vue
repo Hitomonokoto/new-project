@@ -28,6 +28,7 @@ export default {
 }
 .user_page_icon {
   display: block;
+  width: 150px;
   border-radius: 5px;
   margin: 5px;
 }

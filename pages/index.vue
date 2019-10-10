@@ -18,7 +18,6 @@
         />
       </div>
       <div class="box_right">
-        <myData v-if="$store.state.login.token" @pageInit="pageInit" />
         <banners v-if="!$store.state.login.token" />
       </div>
     </div>
@@ -30,7 +29,6 @@
 // コンポーネント
 import mainImage from "~/components/MainImage";
 import banners from "~/components/Banners";
-import myData from "~/components/user/MyData";
 import myFarm from "~/components/MyFarm";
 import linkButton from "~/components/LinkButton";
 import timeline from "~/components/timeline/Timeline";
@@ -43,7 +41,6 @@ export default {
   components: {
     mainImage,
     banners,
-    myData,
     myFarm,
     linkButton,
     timeline,

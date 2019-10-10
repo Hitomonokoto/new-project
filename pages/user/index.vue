@@ -10,19 +10,19 @@
               :url="$store.state.login.user_2.profile_img"
             />
           </div>
-          <basicButton
-            cls="profile_img_edit_btn"
-            @emitClick="editProfileImg"
-          >プロフィール画像を変更</basicButton>
+          <basicButton cls="profile_img_edit_btn" @emitClick="editProfileImg">変更</basicButton>
         </div>
         <div class="nickname_area" v-if="!isNickname">
-          <p class="nickname_title">ニックネーム</p>
+          <div class="nicknameTitle_and_editBotton">
+            <p class="nickname_title">ニックネーム</p>
+            <basicButton
+              cls="nickname_edit_btn"
+              @emitClick="editNickname"
+            >ニックネームを編集</basicButton>
+          </div>
           <p class="nickname">{{ $store.state.login.user_2.nickname }} さん</p>
-          <basicButton
-            cls="nickname_edit_btn"
-            @emitClick="editNickname"
-          >ニックネームを変更</basicButton>
         </div>
+
         <editNickname v-if="isNickname" @emitClick="back" />
       </div>
       <div class="yyy">
@@ -46,12 +46,14 @@
             <basicButton
               cls="basic_info_edit_btn"
               @emitClick="editBasicData"
-            >基本情報を変更</basicButton>
+            >基本情報を編集</basicButton>
           </div>
         </div>
         <editBasicData v-if="isBasicData" @emitClick="back" />
       </div>
     </div>
+
+    <basicButton cls="acount_btn" @emitClick="logout">ログアウト</basicButton>
     <linkButton cls="unsub" linkTo="/unsub" text="退会する" />
   </main>
 </template>
@@ -68,6 +70,7 @@ import userIcon from "~/components/UserIcon";
 
 // その他
 import getCustomer from "~/apollo/gql/getCustomer";
+import customerAccessTokenDelete from "~/apollo/gql/customerAccessTokenDelete";
 
 export default {
   components: {
@@ -114,6 +117,16 @@ export default {
     back() {
       this.isNickname = false;
       this.isBasicData = false;
+    },
+    logout() {
+      const xxx = this.$apollo.mutate({
+        mutation: customerAccessTokenDelete,
+        variables: {
+          customerAccessToken: this.$store.state.login.token
+        }
+      });
+      this.$store.commit("login/logout");
+      this.$router.push("/");
     }
   },
   watch: {
@@ -138,17 +151,17 @@ main {
 }
 .profile_area {
   position: absolute;
-  top: 350px;
-  width: 70%;
+  top: 450px;
+  width: 80%;
   margin-bottom: 400px;
 }
 .xxx {
   display: flex;
   align-items: flex-end;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 }
 .user_icon {
-  margin-right: 20px;
+  margin-right: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -160,14 +173,20 @@ main {
 }
 .nickname_area {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.nicknameTitle_and_editBotton {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
 }
 .nickname_title {
-  margin-bottom: 10px;
 }
 .nickname {
   margin-bottom: 20px;
   font-weight: bold;
-  font-size: 24px;
+  font-size: 20px;
 }
 .basic_info_title {
   margin-bottom: 20px;
@@ -178,7 +197,7 @@ main {
 }
 dl {
   display: flex;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 dt {
   width: 150px;

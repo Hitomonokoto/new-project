@@ -4,12 +4,16 @@
       <div class="user_icon">
         <userIcon cls="post_icon" url="samplein.jpg" />
       </div>
-      <div class="name_time">
-        <p class="nickname">{{ post_data.name }}</p>
-        <p class="time">{{ post_data.created.seconds | timestampToDate }}</p>
-      </div>
-      <div v-if="this.$store.state.login.user_id == this.user_id">
-        <basicButton cls="edit_btn" @emitClick="edit">編集</basicButton>
+      <div class="name_time_edit">
+        <div class="name_time">
+          <p class="nickname">{{ post_data.name }}</p>
+          <p class="time">{{ post_data.created.seconds | timestampToDate }}</p>
+        </div>
+        <basicButton
+          v-if="this.$store.state.login.user_id == this.user_id"
+          cls="post_edit_btn"
+          @emitClick="edit"
+        >編集</basicButton>
       </div>
     </div>
     <div class="post_content">
@@ -115,6 +119,12 @@ export default {
   align-items: center;
   width: 100%;
   padding: 10px;
+}
+.name_time_edit {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 .time {
   color: rgb(0, 114, 190);

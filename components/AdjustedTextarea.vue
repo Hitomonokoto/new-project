@@ -1,6 +1,7 @@
 <template>
   <textarea
     class="basic"
+    v-model="oldText"
     :class="cls"
     :placeholder="placeholder"
     @input="updateValue"
@@ -18,7 +19,15 @@ export default {
     },
     placeholder: {
       type: String
+    },
+    text: {
+      type: String
     }
+  },
+  data() {
+    return {
+      oldText: this.text
+    };
   },
   methods: {
     updateValue: function(e) {
@@ -52,6 +61,5 @@ export default {
   width: 100%;
   padding: 10px;
   border: none;
-  /* background-color: #efefef; */
 }
 </style>
