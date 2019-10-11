@@ -1,33 +1,25 @@
 <template>
   <main>
     <mainImage :src="imgUrl" alt />
-    <div class="box">
-      <div class="box_left">
-        <h2 class="farmer-title">{{ product.title }}</h2>
-        <div class="myFarm_content" v-html="product.descriptionHtml"></div>
-      </div>
-      <div class="box_right">
-        <div class="sticky">
-          <div
-            class="aboutFarmer"
-            v-if="$store.state.farmers.farmerByMyfarm.length"
-          >
-            <h3>生産者を知る</h3>
-            <nuxt-link
-              class="farmer"
-              :to="'/farmers/farmer/'+$store.state.farmers.farmerByMyfarm[0].sys.id"
-            >
-              <img
-                class="farmer_img"
-                :src="$store.state.farmers.farmerByMyfarm[0].fields.mainImage.fields.file.url"
-                alt
-              />
-              <P>{{$store.state.farmers.farmerByMyfarm[0].fields.farmName}}</P>
-            </nuxt-link>
-          </div>
-          <basicButton cls="checkout_btn" @emitClick="checkout">種主になる</basicButton>
-        </div>
-      </div>
+    <h2 class="farmer-title">{{ product.title }}</h2>
+    <basicButton cls="checkout_btn" @emitClick="checkout">種主になる</basicButton>
+    <div class="myFarm_content" v-html="product.descriptionHtml"></div>
+    <basicButton cls="checkout_btn" @emitClick="checkout">種主になる</basicButton>
+    <div class="aboutFarmer" v-if="$store.state.farmers.farmerByMyfarm.length">
+      <h3>生産者を知る</h3>
+
+      <img
+        class="farmer_img"
+        :src="$store.state.farmers.farmerByMyfarm[0].fields.mainImage.fields.file.url"
+        alt
+      />
+      <P>{{$store.state.farmers.farmerByMyfarm[0].fields.farmName}}</P>
+
+      <linkButton
+        cls="top_myfarm"
+        :linkTo="'/farmers/farmer/'+$store.state.farmers.farmerByMyfarm[0].sys.id"
+        text="この生産者のページに行く"
+      />
     </div>
   </main>
 </template>
@@ -35,6 +27,7 @@
 <script>
 // コンポーネント
 import basicButton from "~/components/BasicButton";
+import linkButton from "~/components/LinkButton";
 import mainImage from "~/components/MainImage";
 
 //その他
@@ -45,7 +38,8 @@ import checkoutCreate from "~/apollo/gql/checkoutCreate";
 export default {
   components: {
     mainImage,
-    basicButton
+    basicButton,
+    linkButton
   },
   data() {
     return {
@@ -85,26 +79,7 @@ export default {
 </script>
 
 <style scoped>
-.box_left {
-  width: 70%;
-}
-.box_right {
-  width: 30%;
-}
-.sticky {
-  position: sticky;
-  top: 0;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 .aboutFarmer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.farmer {
   display: flex;
   flex-direction: column;
   align-items: center;

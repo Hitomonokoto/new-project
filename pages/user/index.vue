@@ -1,6 +1,6 @@
 <template>
   <main>
-    <div class="top_img"></div>
+    <mainImage url="/mainImage/mainDamy1.jpg" />
     <div class="profile_area" v-if="isData">
       <div class="xxx">
         <div class="user_icon">
@@ -61,6 +61,7 @@
 
 <script>
 // コンポーネント
+import mainImage from "~/components/MainImage";
 import basicButton from "~/components/BasicButton";
 import linkButton from "~/components/LinkButton";
 import profileImgEdit from "~/components/user/ProfileImgEdit";
@@ -74,6 +75,7 @@ import customerAccessTokenDelete from "~/apollo/gql/customerAccessTokenDelete";
 
 export default {
   components: {
+    mainImage,
     linkButton,
     basicButton,
     profileImgEdit,
@@ -140,25 +142,16 @@ export default {
 
 
 <style scoped>
-main {
-  position: relative;
-}
-.top_img {
-  background-color: lightgray;
-  width: 100%;
-  height: 500px;
-  margin-bottom: 800px;
-}
 .profile_area {
-  position: absolute;
-  top: 450px;
-  width: 80%;
+  width: 60%;
   margin-bottom: 400px;
 }
 .xxx {
   display: flex;
   align-items: flex-end;
   margin-bottom: 50px;
+  width: 100%;
+  position: relative;
 }
 .user_icon {
   margin-right: 10px;
@@ -170,11 +163,15 @@ main {
 .icon_edge {
   background-color: white;
   border-radius: 5px;
+  position: absolute;
+  top: -50px;
+  left: 0;
 }
 .nickname_area {
   width: 100%;
   display: flex;
   flex-direction: column;
+  margin-left: 120px;
 }
 .nicknameTitle_and_editBotton {
   display: flex;
@@ -207,5 +204,32 @@ dt {
   display: flex;
   justify-content: flex-end;
   align-items: flex-start;
+}
+@media screen and (max-width: 960px) {
+  .profile_area {
+    width: 80%;
+  }
+  .icon_edge {
+    position: absolute;
+    top: -40px;
+    left: 0;
+  }
+  .nickname_area {
+    margin-left: 90px;
+  }
+}
+@media screen and (max-width: 560px) {
+  .profile_area {
+    width: 100%;
+    padding: 0 10px;
+  }
+  .icon_edge {
+    position: absolute;
+    top: -30px;
+    left: 0;
+  }
+  .nickname_area {
+    margin-left: 50px;
+  }
 }
 </style>

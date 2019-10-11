@@ -32,6 +32,18 @@ export default {
   border-radius: 5px;
   margin: 5px;
 }
+@media screen and (max-width: 960px) {
+  .user_page_icon {
+    width: 120px;
+    margin: 4px;
+  }
+}
+@media screen and (max-width: 560px) {
+  .user_page_icon {
+    width: 80px;
+    margin: 3px;
+  }
+}
 .post_icon {
   width: 50px;
   border-radius: 10%;

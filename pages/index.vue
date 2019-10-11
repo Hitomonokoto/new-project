@@ -1,26 +1,18 @@
 <template>
   <main>
     <mainImage url="/mainImage/top-img.jpg" />
-    <div class="box">
-      <div class="box_left">
-        <div v-show="!isPost" class="myfarm_contents">
-          <h2>新着・オススメのマイファーム</h2>
-          <myFarm :myFarms="this.products" />
-          <linkButton cls="top_myfarm" linkTo="/myFarms" text="もっと見る" />
-        </div>
-
-        <timeline v-if="isTimeline" @post="post" @post_edit="post_edit" />
-        <post v-if="isPost" @emitBack="postBack" />
-        <postEdit
-          v-if="isPostEdit"
-          @editBack="editBack"
-          :post_data="this.post_data"
-        />
-      </div>
-      <div class="box_right">
-        <banners v-if="!$store.state.login.token" />
-      </div>
+    <div v-show="!isPost" class="myfarm_contents">
+      <h2>新着・オススメの銘柄</h2>
+      <myFarm :myFarms="this.products" />
+      <linkButton cls="top_myfarm" linkTo="/myFarms" text="もっと見る" />
     </div>
+    <timeline v-if="isTimeline" @post="post" @post_edit="post_edit" />
+    <post v-if="isPost" @emitBack="postBack" />
+    <postEdit
+      v-if="isPostEdit"
+      @editBack="editBack"
+      :post_data="this.post_data"
+    />
   </main>
 </template>
 
@@ -28,7 +20,6 @@
 <script>
 // コンポーネント
 import mainImage from "~/components/MainImage";
-import banners from "~/components/Banners";
 import myFarm from "~/components/MyFarm";
 import linkButton from "~/components/LinkButton";
 import timeline from "~/components/timeline/Timeline";
@@ -40,7 +31,6 @@ import getProducts from "~/apollo/gql/getProducts";
 export default {
   components: {
     mainImage,
-    banners,
     myFarm,
     linkButton,
     timeline,
@@ -98,12 +88,6 @@ export default {
 
 
 <style scoped>
-.box_left {
-  width: 60%;
-}
-.box_right {
-  width: 40%;
-}
 .myfarm_contents {
   display: flex;
   flex-direction: column;

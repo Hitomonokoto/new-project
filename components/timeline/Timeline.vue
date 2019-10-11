@@ -2,17 +2,12 @@
   <div class="timeline">
     <div class="timeline_menu">
       <h2>タイムライン</h2>
-      <div v-if="this.$store.state.login.user_2">
+      <div class="post_btn" v-if="this.$store.state.login.user_2">
         <sendPostBtn
           v-if="this.$store.state.login.user_2.user_type == 1"
           @emitClick="post"
         />
       </div>
-
-      <!-- <div class="timeline_btns">
-        <basicButton class="all_posts">タイムライン</basicButton>
-        <basicButton class="my_posts">マイライン</basicButton>
-      </div>-->
     </div>
     <div class="post" v-for="(post, index) in this.timeline.posts" :key="index">
       <posts
@@ -69,8 +64,6 @@ export default {
 }
 .timeline_menu {
   width: 100%;
-  position: sticky;
-  top: 0;
   background-color: white;
   margin-bottom: 10px;
   display: flex;
@@ -89,14 +82,21 @@ export default {
   text-align: center;
   line-height: 40px;
 }
-.send_post_btn {
+.post_btn {
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
 }
 .post {
-  width: 580px;
-  box-shadow: 0px 0px 6px 3px #d1d1d1;
-  margin-bottom: 20px;
+  width: 500px;
+  box-shadow: 0px 3px 6px -3px #d1d1d1;
+  margin-bottom: 30px;
+}
+@media screen and (max-width: 560px) {
+  .post {
+    width: 100%;
+    box-shadow: 0px 3px 6px -3px #d1d1d1;
+    margin-bottom: 30px;
+  }
 }
 </style>

@@ -28,8 +28,9 @@ export default {
 
 <style scoped>
 .posts {
-  width: 580px;
-  box-shadow: 0px 0px 6px 3px #d1d1d1;
+  width: 500px;
+  background-color: #f8f8f8;
+  box-shadow: 0px 3px 6px -3px #d1d1d1;
   margin-bottom: 20px;
   display: flex;
 }
@@ -41,5 +42,10 @@ export default {
 }
 .user > p {
   padding-left: 10px;
+}
+@media screen and (max-width: 560px) {
+  .posts {
+    width: 100%;
+  }
 }
 </style>

@@ -1,32 +1,25 @@
 <template>
   <main>
     <mainImage :src="this.farmers.farmer.fields.mainImage.fields.file.url" alt />
-    <div class="box">
-      <div class="box_left">
-        <h1 class="farm_name">{{ this.farmers.farmer.fields.farmName }}</h1>
-        <h2 class="farmer_name">{{ this.farmers.farmer.fields.farmerName }}</h2>
-        <div class="content" v-html="this.farmers.farmer.fields.content"></div>
-      </div>
-      <div class="box_right">
-        <div class="sticky">
-          <div class="products">
-            <h3>マイファーム</h3>
-            <nuxt-link
-              class="products"
-              :to="'/myFarms/myFarm/'+product.node.id"
-              v-for="(product, index) in products"
-              :key="index"
-            >
-              <img
-                class="product_img"
-                :src="product.node.images.edges[0].node.originalSrc"
-                alt
-              />
-              <p>{{ product.node.title }}</p>
-            </nuxt-link>
-          </div>
-        </div>
-      </div>
+    <h1 class="farm_name">{{ this.farmers.farmer.fields.farmName }}</h1>
+    <h2 class="farmer_name">{{ this.farmers.farmer.fields.farmerName }}</h2>
+    <div class="content" v-html="this.farmers.farmer.fields.content"></div>
+
+    <div class="products">
+      <h3>マイファーム</h3>
+      <nuxt-link
+        class="products"
+        :to="'/myFarms/myFarm/'+product.node.id"
+        v-for="(product, index) in products"
+        :key="index"
+      >
+        <img
+          class="product_img"
+          :src="product.node.images.edges[0].node.originalSrc"
+          alt
+        />
+        <p>{{ product.node.title }}</p>
+      </nuxt-link>
     </div>
   </main>
 </template>
@@ -73,23 +66,9 @@ export default {
 </script>
 
 <style scoped>
-.box_left {
-  width: 70%;
-}
 .content {
   text-align: center;
   padding: 0 20px;
-}
-.box_right {
-  width: 30%;
-}
-.sticky {
-  position: sticky;
-  top: 0;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 .products {
   display: flex;

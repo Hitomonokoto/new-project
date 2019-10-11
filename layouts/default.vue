@@ -1,23 +1,41 @@
 <template>
   <div class="container">
-    <div class="pc_navi">
+    <div class="pc_navi" id="pc_navi">
       <pcNavi />
     </div>
+    <div class="mobile_navi" id="mobile_navi">
+      <mobileNavi @closeNavi="closeNavi" />
+    </div>
+    <mobileMenuButton v-show="isBtn" @openNavi="openNavi" />
     <nuxt />
   </div>
 </template>
 
 <script>
 import pcNavi from "~/components/navi/PcNavi";
-
+import mobileNavi from "~/components/navi/MobileNavi";
+import mobileMenuButton from "~/components/navi/MobileMenuButton";
+mobileMenuButton;
 export default {
   components: {
-    pcNavi
+    pcNavi,
+    mobileNavi,
+    mobileMenuButton
   },
   data() {
     return {
-      isOpen: false
+      isBtn: true
     };
+  },
+  methods: {
+    openNavi() {
+      this.isBtn = false;
+      document.getElementById("mobile_navi").style.display = "inline";
+    },
+    closeNavi() {
+      this.isBtn = true;
+      document.getElementById("mobile_navi").style.display = "none";
+    }
   }
 };
 </script>
@@ -39,10 +57,29 @@ export default {
 .pc_navi {
   width: 190px;
   background-color: #f8f8f8;
+  display: flex;
+  justify-content: center;
 }
-/* .tablet_navi {
+.mobile_navi {
   display: none;
-} */
+}
+@media screen and (max-width: 960px) {
+  .container {
+    flex-direction: column;
+  }
+  .pc_navi {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 560px) {
+  .container {
+    position: relative;
+  }
+  .pc_navi {
+    display: none;
+  }
+}
+
 /* これより下は全ページ共通のCSS */
 
 main {
@@ -50,23 +87,6 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-.box {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-.box_left {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* width幅は各ページで設定 */
-}
-.box_right {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* width幅は各ページで設定 */
 }
 h1 {
   padding: 20px 0;
@@ -80,24 +100,4 @@ h3 {
   padding: 20px 0;
   text-align: center;
 }
-
-@media screen and (max-width: 1100px) {
-  .container {
-    display: flex;
-    flex-direction: column;
-  }
-  .pc_navi {
-    width: 100%;
-  }
-}
-
-/* @media screen and (max-width: 600px) {
-  .container {
-    display: flex;
-    flex-direction: column;
-  }
-  .pc_navi {
-    display: none;
-  }
-} */
 </style>

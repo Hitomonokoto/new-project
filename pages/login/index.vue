@@ -136,4 +136,14 @@ export default {
   color: #707070;
   padding: 50px 0;
 }
+@media screen and (max-width: 960px) {
+  main {
+    margin-top: 150px;
+  }
+}
+@media screen and (max-width: 560px) {
+  main {
+    margin-top: 0;
+  }
+}
 </style>
