@@ -102,9 +102,6 @@ export default {
     this.user_data = data.data.customer;
   },
   methods: {
-    profileImgEdit() {
-      alert("ok");
-    },
     editProfileImg() {
       alert("プロフィール画像の変更は未実装です");
     },

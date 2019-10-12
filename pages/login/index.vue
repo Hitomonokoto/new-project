@@ -124,7 +124,7 @@ export default {
 }
 .nomenber_form {
   width: 80%;
-  box-shadow: 0px 0px 6px 3px #d1d1d1;
+  box-shadow: 0px 0px 6px #d1d1d1;
   border-radius: 10px;
   display: flex;
   flex-direction: column;

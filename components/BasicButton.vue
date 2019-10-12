@@ -26,8 +26,7 @@ export default {
   background-color: transparent;
 }
 .checkout_btn {
-  width: 80%;
-  padding: 10px 0;
+  padding: 10px 30px;
   margin-top: 20px;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
   background-color: rgb(255, 80, 153);

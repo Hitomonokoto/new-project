@@ -5,21 +5,27 @@
     <h2 class="farmer_name">{{ this.farmers.farmer.fields.farmerName }}</h2>
     <div class="content" v-html="this.farmers.farmer.fields.content"></div>
 
-    <div class="products">
-      <h3>マイファーム</h3>
+    <div
+      class="aboutFarmer"
+      v-if="$store.state.products.productsByfarmer.length"
+    >
+      <h3>生産者を知る</h3>
       <nuxt-link
-        class="products"
-        :to="'/myFarms/myFarm/'+product.node.id"
-        v-for="(product, index) in products"
-        :key="index"
+        class="product"
+        :to="'/products/product/'+$store.state.products.productsByfarmer[0].sys.id"
       >
         <img
           class="product_img"
-          :src="product.node.images.edges[0].node.originalSrc"
+          :src="$store.state.products.productsByfarmer[0].fields.image.fields.file.url"
           alt
         />
-        <p>{{ product.node.title }}</p>
       </nuxt-link>
+      <P>{{$store.state.products.productsByfarmer[0].fields.farmName}}</P>
+      <linkButton
+        cls="top_myfarm"
+        :linkTo="'/products/product/'+$store.state.products.productsByfarmer[0].sys.id"
+        text="この生産者のページに行く"
+      />
     </div>
   </main>
 </template>
@@ -27,16 +33,15 @@
 <script>
 // コンポーネント
 import mainImage from "~/components/MainImage";
-import myFarm from "~/components/MyFarm";
+import linkButton from "~/components/LinkButton";
 
 // その他
 import { mapState } from "vuex";
-import getProducts from "~/apollo/gql/getProducts";
 
 export default {
   components: {
     mainImage,
-    myFarm
+    linkButton
   },
   data() {
     return {
@@ -47,14 +52,10 @@ export default {
     await store.dispatch("farmers/getFarmerAction", params);
   },
   async created() {
-    const data = await this.$apollo.query({
-      query: getProducts
-    });
-    console.log(data.data.products.edges);
-    this.products = data.data.products.edges.filter(d => {
-      return d.node.productType === this.farmers.farmer.fields.farmName;
-    });
-    console.log(this.products);
+    this.$store.dispatch(
+      "products/getProductsByfarmerAction",
+      this.farmers.farmer.fields.farmId
+    );
   },
   computed: mapState({ farmers: "farmers" }),
   head() {
@@ -70,14 +71,25 @@ export default {
   text-align: center;
   padding: 0 20px;
 }
+.aboutFarmer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .products {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 .product_img {
-  width: 80%;
+  display: block;
+  width: 50%;
   border-radius: 5px;
-  box-shadow: 0px 0px 6px 3px #d1d1d1;
+  box-shadow: 0px 0px 6px #d1d1d1;
 }
 </style>

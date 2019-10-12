@@ -1,21 +1,6 @@
 query getProduct($productId: ID!){
     node(id: $productId) {
         ... on Product {
-            title
-            descriptionHtml
-            productType
-            images(first: 1) {
-                edges {
-                    node {
-                        originalSrc
-                    }
-                }
-            }
-            priceRange {
-                maxVariantPrice {
-                    amount
-                }
-            }
             variants(first: 1) {
                 edges {
                     node {

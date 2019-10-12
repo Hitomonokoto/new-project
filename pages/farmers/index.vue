@@ -8,24 +8,22 @@
       <br />価値だけでは表現することの出来ない"モノの価値"。
       <br />そんなこだわりのある創り手を紹介します。
     </p>
-    <div class="box">
-      <div class="farmers">
-        <nuxt-link
-          v-for="(farmer, index) in this.farmers.farmers"
-          :to="'/farmers/farmer/'+farmer.sys.id"
-          class="farmer"
-          :key="index"
-        >
-          <div class="farmer_img">
-            <img :src="farmer.fields.mainImage.fields.file.url" />
-          </div>
+    <div class="farmers">
+      <nuxt-link
+        v-for="(farmer, index) in this.farmers.farmers"
+        :to="'/farmers/farmer/'+farmer.sys.id"
+        class="farmer"
+        :key="index"
+      >
+        <div class="farmer_img">
+          <img :src="farmer.fields.mainImage.fields.file.url" />
+        </div>
 
-          <div class="farmer_text">
-            <h2>{{ farmer.fields.farmName }}</h2>
-            <p>{{ farmer.fields.farmerName }}</p>
-          </div>
-        </nuxt-link>
-      </div>
+        <div class="farmer_text">
+          <h2>{{ farmer.fields.farmName }}</h2>
+          <p>{{ farmer.fields.farmerName }}</p>
+        </div>
+      </nuxt-link>
     </div>
   </main>
 </template>
@@ -74,7 +72,7 @@ export default {
   background-color: white;
   margin-bottom: 20px;
   border-radius: 5px;
-  box-shadow: 0px 0px 6px 3px #d1d1d1;
+  box-shadow: 0px 0px 6px #d1d1d1;
 }
 .farmer_img {
   width: 50%;

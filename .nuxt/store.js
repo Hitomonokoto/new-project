@@ -19,6 +19,7 @@ void (function updateModules() {
   resolveStoreModules(require('../store/farmers.js'), 'farmers.js')
   resolveStoreModules(require('../store/info.js'), 'info.js')
   resolveStoreModules(require('../store/login.js'), 'login.js')
+  resolveStoreModules(require('../store/products.js'), 'products.js')
   resolveStoreModules(require('../store/search.js'), 'search.js')
   resolveStoreModules(require('../store/timeline.js'), 'timeline.js')
   resolveStoreModules(require('../store/unsubscribe.js'), 'unsubscribe.js')
@@ -31,6 +32,7 @@ void (function updateModules() {
       '../store/farmers.js',
       '../store/info.js',
       '../store/login.js',
+      '../store/products.js',
       '../store/search.js',
       '../store/timeline.js',
       '../store/unsubscribe.js',

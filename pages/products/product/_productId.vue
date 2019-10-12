@@ -1,19 +1,26 @@
 <template>
   <main>
-    <mainImage :src="imgUrl" alt />
-    <h2 class="farmer-title">{{ product.title }}</h2>
+    <mainImage :src="this.products.product.fields.image.fields.file.url" />
+    <h2 class="farmer-title">{{ this.products.product.fields.title }}</h2>
     <basicButton cls="checkout_btn" @emitClick="checkout">種主になる</basicButton>
-    <div class="myFarm_content" v-html="product.descriptionHtml"></div>
+    <div
+      class="myFarm_content"
+      v-html="this.products.product.fields.description"
+    ></div>
     <basicButton cls="checkout_btn" @emitClick="checkout">種主になる</basicButton>
     <div class="aboutFarmer" v-if="$store.state.farmers.farmerByMyfarm.length">
       <h3>生産者を知る</h3>
-
-      <img
-        class="farmer_img"
-        :src="$store.state.farmers.farmerByMyfarm[0].fields.mainImage.fields.file.url"
-        alt
-      />
-      <P>{{$store.state.farmers.farmerByMyfarm[0].fields.farmName}}</P>
+      <nuxt-link
+        class="link_area"
+        :to="'/farmers/farmer/'+$store.state.farmers.farmerByMyfarm[0].sys.id"
+      >
+        <img
+          class="farmer_img"
+          :src="$store.state.farmers.farmerByMyfarm[0].fields.mainImage.fields.file.url"
+          alt
+        />
+        <P>{{$store.state.farmers.farmerByMyfarm[0].fields.farmName}}</P>
+      </nuxt-link>
 
       <linkButton
         cls="top_myfarm"
@@ -43,38 +50,38 @@ export default {
   },
   data() {
     return {
-      product: "",
-      imgUrl: null,
-      variant: null
+      product_id: ""
     };
   },
   async created() {
+    this.$store.dispatch(
+      "farmers/getFarmerByMyfarmAction",
+      this.products.product.fields.farmId
+    );
     const data = await this.$apollo.query({
       query: getProduct,
       variables: {
-        productId: this.$route.params.myFarmId
+        productId: this.products.product.fields.productId
       }
     });
-    this.product = data.data.node;
-    this.imgUrl = data.data.node.images.edges[0].node.originalSrc;
-    this.variant = data.data.node.variants.edges[0].node;
-    this.$store.dispatch(
-      "farmers/getFarmerByMyfarmAction",
-      this.product.productType
-    );
+    this.product_id = data.data.node.variants.edges[0].node.id;
+  },
+  async fetch({ params, store }) {
+    await store.dispatch("products/getProductAction", params);
   },
   methods: {
     async checkout() {
       const xxx = await this.$apollo.mutate({
         mutation: checkoutCreate,
         variables: {
-          variantId: this.variant.id
+          variantId: this.product_id
         }
       });
       const webUrl = xxx.data.checkoutCreate.checkout.webUrl;
       window.location.href = webUrl;
     }
-  }
+  },
+  computed: mapState({ products: "products" })
 };
 </script>
 
@@ -84,9 +91,14 @@ export default {
   flex-direction: column;
   align-items: center;
 }
+.link_area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .farmer_img {
-  width: 80%;
+  width: 50%;
   border-radius: 5px;
-  box-shadow: 0px 0px 6px 3px #d1d1d1;
+  box-shadow: 0px 0px 6px #d1d1d1;
 }
 </style>

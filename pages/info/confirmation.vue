@@ -67,7 +67,7 @@ export default {
   margin-bottom: 50px;
 }
 .form_area {
-  box-shadow: 0px 0px 6px 3px #d1d1d1;
+  box-shadow: 0px 0px 6px #d1d1d1;
   border-radius: 10px;
   width: 80%;
   display: flex;

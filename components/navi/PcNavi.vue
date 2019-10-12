@@ -12,7 +12,7 @@
         </nuxt-link>
       </div>
       <div class="nav_single" @click="closeSubMenu">
-        <nuxt-link to="/myFarms">
+        <nuxt-link to="/products">
           <p>体験</p>
         </nuxt-link>
       </div>

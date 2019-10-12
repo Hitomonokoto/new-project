@@ -2,9 +2,10 @@
   <main>
     <mainImage url="/mainImage/top-img.jpg" />
     <div v-show="!isPost" class="myfarm_contents">
-      <h2>新着・オススメの銘柄</h2>
-      <myFarm :myFarms="this.products" />
-      <linkButton cls="top_myfarm" linkTo="/myFarms" text="もっと見る" />
+      <h2>新着・オススメの体験銘柄</h2>
+      <p>創り手の畑を所有し、モノづくりの過程を楽しみながら創り手を応援しましょう！</p>
+      <myFarm :products="this.products.products" />
+      <linkButton cls="top_myfarm" linkTo="/products" text="もっと見る" />
     </div>
     <timeline v-if="isTimeline" @post="post" @post_edit="post_edit" />
     <post v-if="isPost" @emitBack="postBack" />
@@ -17,6 +18,7 @@
 </template>
 
 
+
 <script>
 // コンポーネント
 import mainImage from "~/components/MainImage";
@@ -26,7 +28,8 @@ import timeline from "~/components/timeline/Timeline";
 import post from "~/components/timeline/Post";
 import postEdit from "~/components/timeline/PostEdit";
 
-import getProducts from "~/apollo/gql/getProducts";
+// その他
+import { mapState } from "vuex";
 
 export default {
   components: {
@@ -39,7 +42,6 @@ export default {
   },
   data() {
     return {
-      products: [],
       isLogin: false,
       isTimeline: true,
       isPost: false,
@@ -49,12 +51,7 @@ export default {
   },
   async fetch({ store }) {
     await store.dispatch("timeline/getPostsAction");
-  },
-  async created() {
-    const data = await this.$apollo.query({
-      query: getProducts
-    });
-    this.products = data.data.products.edges;
+    await store.dispatch("products/getProductsAction");
   },
   methods: {
     post() {
@@ -81,7 +78,8 @@ export default {
       this.isPostEdit = false;
       this.post_data = "";
     }
-  }
+  },
+  computed: mapState({ products: "products" })
 };
 </script>
 
@@ -92,5 +90,9 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.myfarm_contents > p {
+  margin-bottom: 20px;
+  padding: 0 10px;
 }
 </style>

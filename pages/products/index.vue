@@ -9,20 +9,27 @@
       <br />ーーーーーーーーーーーーーーーーーーーーーーーーーーー
       <br />ーーーーーーーーーーーーーーーーーーーーーーーーーーー
     </p>
-
-    <div v-if="this.products.length" class="myFarms">
+    <div class="products">
       <nuxt-link
-        v-for="(product, index) in this.products"
-        :to="'/myFarms/myFarm/' + product.node.id"
-        class="myFarm"
+        v-for="(product, index) in this.products.products"
+        :to="'/products/product/'+product.sys.id"
+        class="product"
         :key="index"
       >
-        <div class="farmer_img">
-          <img :src="product.node.images.edges[0].node.originalSrc" />
+        <div class="product_img">
+          <img :src="product.fields.image.fields.file.url" />
         </div>
-        <div class="myFarm_text">
-          <h2>{{ product.node.title }}</h2>
-          <p>{{ product.node.productType }}</p>
+
+        <div class="product_text">
+          <div class="product_info">
+            <p>{{ product.fields.title }}</p>
+            <p>{{ product.fields.farmName }}</p>
+            <p>{{ product.fields.summary }}</p>
+          </div>
+
+          <div class="read_more">
+            <p>詳細ページへ</p>
+          </div>
         </div>
       </nuxt-link>
     </div>
@@ -40,18 +47,13 @@ export default {
   components: {
     mainImage
   },
-  data() {
-    return {
-      products: []
-    };
+  async fetch({ store }) {
+    await store.dispatch("products/getProductsAction");
   },
-  async created() {
-    const data = await this.$apollo.query({
-      query: getProducts
-    });
-    this.products = data.data.products.edges;
+  head: {
+    title: "生産者紹介"
   },
-  computed: mapState({ shopify: "shopify" })
+  computed: mapState({ products: "products" })
 };
 </script>
 
@@ -59,33 +61,49 @@ export default {
 .top_text {
   margin-bottom: 50px;
 }
-.myFarms {
+.products {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.myFarm {
+.product {
   width: 80%;
   display: flex;
-  background-color: white;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   border-radius: 5px;
-  box-shadow: 0px 0px 6px 3px #d1d1d1;
+  box-shadow: 0px 0px 6px #d1d1d1;
 }
-.farmer_img {
+.product_img {
   width: 50%;
 }
-.farmer_img > img {
+.product_img > img {
   width: 100%;
   border-radius: 5px 0 0 5px;
   display: block;
 }
-.myFarm_text {
+.product_text {
   width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.product_info {
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.read_more {
+  width: 100%;
+  height: 50px;
+  background-color: rgb(243, 243, 243);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 0 5px 0;
 }
 </style>
