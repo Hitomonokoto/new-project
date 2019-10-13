@@ -98,7 +98,7 @@ export default {
   background-color: rgb(253, 99, 99);
   margin: 10px 20px;
 }
-.profile_img_edit_btn {
+.user_icon_edit_btn {
   padding: 5px 10px;
   background-color: lightgray;
 }

@@ -7,10 +7,10 @@
           <div class="icon_edge">
             <userIcon
               cls="user_page_icon"
-              :url="$store.state.login.user_2.profile_img"
+              :url="$store.state.login.user_2.user_icon"
             />
           </div>
-          <basicButton cls="profile_img_edit_btn" @emitClick="editProfileImg">変更</basicButton>
+          <basicButton cls="user_icon_edit_btn" @emitClick="editProfileImg">変更</basicButton>
         </div>
         <div class="nickname_area" v-if="!isNickname">
           <div class="nicknameTitle_and_editBotton">

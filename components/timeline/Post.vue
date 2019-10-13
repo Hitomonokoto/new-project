@@ -3,7 +3,7 @@
     <div class="user">
       <userIcon
         cls="post_form_icon"
-        :url="$store.state.login.user_2.profile_img"
+        :url="$store.state.login.user_2.user_icon"
       />
       <p class="nickname">{{$store.state.login.user_2.nickname}}</p>
       <div class="edit">
@@ -97,7 +97,9 @@ export default {
       }
       this.$store.dispatch("timeline/PostAction", {
         user_id: this.$store.state.login.user_2.user_id,
+        business_id: this.$store.state.login.user_2.business_id,
         name: this.$store.state.login.user_2.nickname,
+        user_icon: this.$store.state.login.user_2.user_icon,
         title: this.title,
         text: this.text,
         fileName: this.fileName,

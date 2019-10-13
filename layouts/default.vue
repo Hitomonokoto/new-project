@@ -49,7 +49,7 @@ export default {
   box-sizing: border-box;
   text-decoration: none;
   list-style: none;
-  font-family: "Hepta Slab", serif;
+  /* font-family: "Hepta Slab", serif; */
 }
 .container {
   display: flex;

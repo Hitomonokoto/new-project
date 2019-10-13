@@ -139,26 +139,26 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 90%;
   }
   .product {
     width: 100%;
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
-    border-radius: 0;
+    border-radius: 5px;
   }
   .product_img {
     width: 100%;
   }
   .product_img > img {
-    border-radius: 0;
+    border-radius: 5px 5px 0 0;
   }
   .product_text {
     width: 100%;
   }
   .read_more {
-    border-radius: 0;
+    border-radius: 0 0 5px 5px;
   }
 }
 </style>

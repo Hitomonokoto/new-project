@@ -7,7 +7,12 @@
       <myFarm :products="this.products.products" />
       <linkButton cls="top_myfarm" linkTo="/products" text="もっと見る" />
     </div>
-    <timeline v-if="isTimeline" @post="post" @post_edit="post_edit" />
+    <timeline
+      v-if="isTimeline"
+      :posts="this.$store.state.timeline.posts"
+      @post="post"
+      @post_edit="post_edit"
+    />
     <post v-if="isPost" @emitBack="postBack" />
     <postEdit
       v-if="isPostEdit"
@@ -79,7 +84,7 @@ export default {
       this.post_data = "";
     }
   },
-  computed: mapState({ products: "products" })
+  computed: mapState({ products: "products" }, { timeline: "timeline" })
 };
 </script>
 

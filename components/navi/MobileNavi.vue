@@ -7,27 +7,35 @@
         </nuxt-link>
       </div>
       <div class="list">
-        <div class="nav_single">
+        <div class="nav_single" @click="emitClick">
           <nuxt-link to="/">
             <p>ホーム</p>
           </nuxt-link>
         </div>
-        <div class="nav_single">
+        <div class="nav_single" @click="emitClick">
           <nuxt-link to="/products">
             <p>体験</p>
           </nuxt-link>
         </div>
-        <div class="nav_single">
+        <div class="nav_single" @click="emitClick">
           <nuxt-link to="/farmers">
-            <p>作り手</p>
+            <p>創り手</p>
           </nuxt-link>
         </div>
-        <div class="nav_single" v-if="!$store.state.login.token">
+        <div
+          class="nav_single"
+          v-if="!$store.state.login.token"
+          @click="emitClick"
+        >
           <nuxt-link to="/login">
             <p>ログイン</p>
           </nuxt-link>
         </div>
-        <div class="nav_single" v-if="$store.state.login.token">
+        <div
+          class="nav_single"
+          v-if="$store.state.login.token"
+          @click="emitClick"
+        >
           <nuxt-link to="/user">
             <p>マイページ</p>
           </nuxt-link>

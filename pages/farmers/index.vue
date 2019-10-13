@@ -20,8 +20,13 @@
         </div>
 
         <div class="farmer_text">
-          <h2>{{ farmer.fields.farmName }}</h2>
-          <p>{{ farmer.fields.farmerName }}</p>
+          <div class="farmer_info">
+            <p>{{ farmer.fields.farmName }}</p>
+            <p>{{ farmer.fields.farmerName }}</p>
+          </div>
+          <div class="read_more">
+            <p>詳細ページへ</p>
+          </div>
         </div>
       </nuxt-link>
     </div>
@@ -86,11 +91,24 @@ export default {
   width: 50%;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.farmer_info {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.myFarm_contents {
+.read_more {
+  width: 100%;
+  height: 50px;
+  background-color: rgb(243, 243, 243);
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  border-radius: 0 0 5px 0;
 }
 </style>

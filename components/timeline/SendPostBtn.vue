@@ -3,7 +3,7 @@
     <div class="user">
       <userIcon
         cls="senb_post_icon"
-        :url="$store.state.login.user_2.profile_img"
+        :url="$store.state.login.user_2.user_icon"
       />
       <p>投稿する</p>
     </div>

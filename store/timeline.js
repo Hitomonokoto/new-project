@@ -5,12 +5,16 @@ const db = firebase.firestore();
 const firestorage = firebase.storage();
 
 export const state = () => ({
-    posts: []
+    posts: [],
+    selectPosts: []
 })
 
 export const mutations = {
     getPosts(state, data) {
         state.posts = data;
+    },
+    getSelectPosts(state, data) {
+        state.selectPosts = data;
     },
     getComments(state, data) {
         const x = state.posts.filter(post => {
@@ -70,7 +74,7 @@ export const actions = {
     uploadImage: (context, payload) => {
         return new Promise((resolve, reject) => {
             const uploadTask = firestorage
-                .ref(payload.name)
+                .ref("timeline/" + payload.name)
                 .put(payload.file)
                 .then(snapshot => {
                     snapshot.ref.getDownloadURL().then(url => {
@@ -81,7 +85,7 @@ export const actions = {
     },
     // 画像のアップロードを更新する
     changeUploadImage: (context, payload) => {
-        const storageRef = firebase.storage().ref(payload.oldFileName);
+        const storageRef = firebase.storage().ref("timeline/" + payload.oldFileName);
         storageRef.delete().then(function () {
             console.log("画像の削除に成功しました。");
         }).catch(function (error) {
@@ -103,6 +107,8 @@ export const actions = {
         const docRef = db.collection("timeline").doc();
         const setAda = docRef.set({
             user_id: data.user_id,
+            business_id: data.business_id,
+            user_icon: data.user_icon,
             name: data.name,
             text: data.text,
             title: data.title,
@@ -150,6 +156,27 @@ export const actions = {
             console.log("firestore-postsがエラー！", e);
         }
     },
+    async getSelectPostsAction(context, payload) {
+        try {
+            const posts = [];
+            const postSnapShots = await db.collection('timeline').where('business_id', '==', payload).get();
+            postSnapShots.forEach(post => {
+                const post_data = post.data();
+                post_data.post_id = post.id;
+                posts.push(post_data);
+            });
+            posts.sort(function (a, b) {
+                if (a.created < b.created) {
+                    return 1;
+                } else {
+                    return -1;
+                }
+            })
+            context.commit('getSelectPosts', posts);
+        } catch (e) {
+            console.log("firestore-postsがエラー！", e);
+        }
+    },
     // 投稿を削除する
     deletePostAction(context, post_data) {
         if (post_data.fileUrl) {
@@ -181,6 +208,7 @@ export const actions = {
         const docRef = db.collection("timeline").doc(payload.post_id).collection("comments").doc();
         const setAda = docRef.set({
             user_id: payload.user_id,
+            user_icon: payload.user_icon,
             name: payload.name,
             text: payload.text,
             created: firebase.firestore.Timestamp.fromDate(new Date())

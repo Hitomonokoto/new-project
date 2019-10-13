@@ -9,7 +9,7 @@
     ></div>
     <basicButton cls="checkout_btn" @emitClick="checkout">種主になる</basicButton>
     <div class="aboutFarmer" v-if="$store.state.farmers.farmerByMyfarm.length">
-      <h3>生産者を知る</h3>
+      <h3>創り手について</h3>
       <nuxt-link
         class="link_area"
         :to="'/farmers/farmer/'+$store.state.farmers.farmerByMyfarm[0].sys.id"
@@ -25,7 +25,7 @@
       <linkButton
         cls="top_myfarm"
         :linkTo="'/farmers/farmer/'+$store.state.farmers.farmerByMyfarm[0].sys.id"
-        text="この生産者のページに行く"
+        text="この創り手のページに行く"
       />
     </div>
   </main>

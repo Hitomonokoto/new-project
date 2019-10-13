@@ -35,9 +35,10 @@ export const actions = {
     const docRef = await db.collection("users").doc(payload.user_id);
     const setAda = docRef.set({
       user_id: payload.user_id,
+      user_icon: "/samplein.jpg",
       nickname: payload.nickname,
-      profile_img: "/samplein.jpg",
-      user_type: 0
+      user_type: 0,
+      business_id: null
     });
   },
   // ユーザー情報を取得

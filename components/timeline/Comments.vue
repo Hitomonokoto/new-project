@@ -1,12 +1,18 @@
 <template>
   <div v-show="this.comments" class="comments">
-    <div v-show="this.login.token" class="send_comment">
-      <userIcon cls="send_comment_icon" url="samplein.jpg" />
-      <adjustedTextarea
-        v-model="new_comment"
-        cls="write_comment"
-        placeholder="コメントを書く..."
+    <div v-if="this.login.token" class="send_comment">
+      <userIcon
+        cls="send_comment_icon"
+        :url="$store.state.login.user_2.user_icon"
       />
+      <textarea
+        v-model="new_comment"
+        class="write_comment"
+        placeholder="コメントを書く..."
+        style="font-size:16px;"
+        ref="adjust_textarea"
+        @keydown="adjustHeight"
+      ></textarea>
       <div>
         <basicButton cls="send_btn" @emitClick="sendComment">送信</basicButton>
       </div>
@@ -15,7 +21,7 @@
 
     <div class="comment_list" v-for="(comment, index) in comments" :key="index">
       <div v-if="login_user_id != comment.user_id" class="comment">
-        <userIcon cls="commenter_icon" url="samplein.jpg" />
+        <userIcon cls="commenter_icon" :url="comment.user_icon" />
         <div class="comment_main">
           <p class="nickname">{{ comment.name }}</p>
           <div class="comment_text">
@@ -42,7 +48,7 @@
             >削除</basicButton>
           </div>
         </div>
-        <userIcon cls="commenter_icon_i" url="samplein.jpg" />
+        <userIcon cls="commenter_icon_i" :url="comment.user_icon" />
       </div>
     </div>
   </div>
@@ -85,6 +91,7 @@ export default {
       }
       this.$store.dispatch("timeline/commentAction", {
         user_id: this.$store.state.login.user_2.user_id,
+        user_icon: this.$store.state.login.user_2.user_icon,
         name: this.$store.state.login.user_2.nickname,
         post_id: this.post_id,
         text: this.new_comment,
@@ -97,6 +104,15 @@ export default {
         post_id: this.post_id,
         comment_id: comment.comment_id,
         comment_count: this.comment_count
+      });
+    },
+    adjustHeight() {
+      const textarea = this.$refs.adjust_textarea;
+      const resetHeight = new Promise(function(resolve) {
+        resolve((textarea.style.height = "auto"));
+      });
+      resetHeight.then(function() {
+        textarea.style.height = textarea.scrollHeight + "px";
       });
     }
   },
@@ -209,5 +225,13 @@ export default {
 .time_and_delete {
   display: flex;
   justify-content: flex-end;
+}
+.write_comment {
+  border-radius: 5px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  background-color: #efefef;
+  width: 70%;
+  margin-left: 10px;
 }
 </style>

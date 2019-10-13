@@ -9,7 +9,7 @@
         />
       </div>
     </div>
-    <div class="post" v-for="(post, index) in this.timeline.posts" :key="index">
+    <div class="post" v-for="(post, index) in posts" :key="index">
       <posts
         @postEdit="postEdit"
         :user_id="post.user_id"
@@ -39,6 +39,11 @@ export default {
   },
   data() {
     return {};
+  },
+  props: {
+    posts: {
+      type: Array
+    }
   },
   methods: {
     post() {

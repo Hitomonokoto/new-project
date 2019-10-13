@@ -18,7 +18,7 @@
       </div>
       <div class="nav_single" @click="closeSubMenu">
         <nuxt-link to="/farmers">
-          <p>作り手</p>
+          <p>創り手</p>
         </nuxt-link>
       </div>
       <div

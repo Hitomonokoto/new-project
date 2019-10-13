@@ -3,37 +3,18 @@
     <mainImage :src="this.farmers.farmer.fields.mainImage.fields.file.url" alt />
     <h1 class="farm_name">{{ this.farmers.farmer.fields.farmName }}</h1>
     <h2 class="farmer_name">{{ this.farmers.farmer.fields.farmerName }}</h2>
-    <div class="content" v-html="this.farmers.farmer.fields.content"></div>
-
-    <div
-      class="aboutFarmer"
-      v-if="$store.state.products.productsByfarmer.length"
-    >
-      <h3>生産者を知る</h3>
-      <nuxt-link
-        class="product"
-        :to="'/products/product/'+$store.state.products.productsByfarmer[0].sys.id"
-      >
-        <img
-          class="product_img"
-          :src="$store.state.products.productsByfarmer[0].fields.image.fields.file.url"
-          alt
-        />
-      </nuxt-link>
-      <P>{{$store.state.products.productsByfarmer[0].fields.farmName}}</P>
-      <linkButton
-        cls="top_myfarm"
-        :linkTo="'/products/product/'+$store.state.products.productsByfarmer[0].sys.id"
-        text="この生産者のページに行く"
-      />
-    </div>
+    <story :content="this.farmers.farmer.fields.content" />
+    <products v-if="$store.state.products.productsByfarmer.length" />
+    <timeline :posts="this.$store.state.timeline.selectPosts" />
   </main>
 </template>
 
 <script>
 // コンポーネント
 import mainImage from "~/components/MainImage";
-import linkButton from "~/components/LinkButton";
+import story from "~/components/farmer/Story";
+import products from "~/components/farmer/Products";
+import timeline from "~/components/timeline/Timeline";
 
 // その他
 import { mapState } from "vuex";
@@ -41,7 +22,9 @@ import { mapState } from "vuex";
 export default {
   components: {
     mainImage,
-    linkButton
+    story,
+    products,
+    timeline
   },
   data() {
     return {
@@ -52,8 +35,13 @@ export default {
     await store.dispatch("farmers/getFarmerAction", params);
   },
   async created() {
-    this.$store.dispatch(
+    await this.$store.dispatch(
       "products/getProductsByfarmerAction",
+      this.farmers.farmer.fields.farmId
+    );
+    console.log(this.farmers.farmer.fields.farmId);
+    await this.$store.dispatch(
+      "timeline/getSelectPostsAction",
       this.farmers.farmer.fields.farmId
     );
   },
@@ -67,21 +55,12 @@ export default {
 </script>
 
 <style scoped>
-.content {
-  text-align: center;
-  padding: 0 20px;
-}
 .aboutFarmer {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 .product {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.products {
   display: flex;
   flex-direction: column;
   align-items: center;

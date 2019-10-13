@@ -2,7 +2,7 @@
   <div class="posts">
     <div class="user">
       <div class="user_icon">
-        <userIcon cls="post_icon" url="samplein.jpg" />
+        <userIcon cls="post_icon" :url="post_data.user_icon" />
       </div>
       <div class="name_time_edit">
         <div class="name_time">
