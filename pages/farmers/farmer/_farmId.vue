@@ -1,11 +1,33 @@
 <template>
   <main>
     <mainImage :src="this.farmers.farmer.fields.mainImage.fields.file.url" alt />
-    <h1 class="farm_name">{{ this.farmers.farmer.fields.farmName }}</h1>
-    <h2 class="farmer_name">{{ this.farmers.farmer.fields.farmerName }}</h2>
-    <story :content="this.farmers.farmer.fields.content" />
-    <products v-if="$store.state.products.productsByfarmer.length" />
-    <timeline :posts="this.$store.state.timeline.selectPosts" />
+
+    <div class="index">
+      <div
+        class="index_btn index_story opend"
+        id="index_story"
+        @click="openStory"
+      >ストーリー</div>
+      <div
+        class="index_btn index_timeline"
+        id="index_timeline"
+        @click="openTimeline"
+      >タイムライン</div>
+      <div
+        class="index_btn index_products"
+        id="index_products"
+        @click="openProducts"
+      >応援する</div>
+    </div>
+    <div class="contents_area" v-if="isStory">
+      <story :content="this.farmers.farmer.fields.content" />
+    </div>
+    <div class="contents_area" v-if="isTimeline">
+      <timeline :posts="this.$store.state.timeline.selectPosts" />
+    </div>
+    <div class="contents_area" v-if="isProducts">
+      <products v-if="$store.state.products.productsByfarmer.length" />
+    </div>
   </main>
 </template>
 
@@ -28,7 +50,10 @@ export default {
   },
   data() {
     return {
-      products: []
+      products: [],
+      isStory: true,
+      isTimeline: false,
+      isProducts: false
     };
   },
   async fetch({ params, store }) {
@@ -45,6 +70,32 @@ export default {
       this.farmers.farmer.fields.farmId
     );
   },
+  methods: {
+    openStory() {
+      this.isStory = true;
+      this.isTimeline = false;
+      this.isProducts = false;
+      document.getElementById("index_story").classList.add("opend");
+      document.getElementById("index_timeline").classList.remove("opend");
+      document.getElementById("index_products").classList.remove("opend");
+    },
+    openTimeline() {
+      this.isStory = false;
+      this.isTimeline = true;
+      this.isProducts = false;
+      document.getElementById("index_story").classList.remove("opend");
+      document.getElementById("index_timeline").classList.add("opend");
+      document.getElementById("index_products").classList.remove("opend");
+    },
+    openProducts() {
+      this.isStory = false;
+      this.isTimeline = false;
+      this.isProducts = true;
+      document.getElementById("index_story").classList.remove("opend");
+      document.getElementById("index_timeline").classList.remove("opend");
+      document.getElementById("index_products").classList.add("opend");
+    }
+  },
   computed: mapState({ farmers: "farmers" }),
   head() {
     return {
@@ -55,20 +106,31 @@ export default {
 </script>
 
 <style scoped>
-.aboutFarmer {
+.index {
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  box-shadow: 0px 3px 3px -3px #797979;
+  margin-bottom: 50px;
 }
-.product {
+.index_btn {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  height: 40px;
 }
-.product_img {
-  display: block;
-  width: 50%;
-  border-radius: 5px;
-  box-shadow: 0px 0px 6px #d1d1d1;
+.index_story {
+  width: 34%;
+}
+.index_timeline {
+  width: 33%;
+}
+.index_products {
+  width: 33%;
+}
+.opend {
+  background-color: salmon;
+}
+.contents_area {
+  width: 100%;
 }
 </style>

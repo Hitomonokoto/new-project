@@ -1,7 +1,6 @@
 <template>
   <div class="timeline">
     <div class="timeline_menu">
-      <h2>タイムライン</h2>
       <div class="post_btn" v-if="this.$store.state.login.user_2">
         <sendPostBtn
           v-if="this.$store.state.login.user_2.user_type == 1"

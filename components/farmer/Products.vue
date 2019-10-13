@@ -1,5 +1,5 @@
 <template>
-  <div class="story">
+  <div class="products">
     <h3>種主になって応援する</h3>
     <nuxt-link
       class="product"
@@ -11,7 +11,7 @@
         alt
       />
     </nuxt-link>
-    <P>{{$store.state.products.productsByfarmer[0].fields.farmName}}</P>
+    <P>{{$store.state.products.productsByfarmer[0].fields.title}}</P>
     <linkButton
       cls="top_myfarm"
       :linkTo="'/products/product/'+$store.state.products.productsByfarmer[0].sys.id"
@@ -35,6 +35,11 @@ export default {
 
 
 <style scoped>
+.products {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .product {
   display: flex;
   flex-direction: column;
