@@ -1,12 +1,23 @@
 <template>
   <main>
     <mainImage url="/mainImage/top-img.jpg" />
+    <div>
+      <linkButton
+        v-show="!this.$store.state.login.token"
+        cls="top_myfarm"
+        linkTo="/aboutMyFarm"
+        text="初めての方はこちら"
+      />
+    </div>
+
     <div v-show="!isPost" class="myfarm_contents">
       <h2>新着・オススメの体験銘柄</h2>
       <p>創り手の畑を所有し、モノづくりの過程を楽しみながら創り手を応援しましょう！</p>
       <myFarm :products="this.products.products" />
       <linkButton cls="top_myfarm" linkTo="/products" text="もっと見る" />
     </div>
+    <h2>タイムライン</h2>
+    <p>創り手の畑を所有し、モノづくりの過程を楽しみながら創り手を応援しましょう！</p>
     <timeline
       v-if="isTimeline"
       :posts="this.$store.state.timeline.posts"

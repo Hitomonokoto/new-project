@@ -18,6 +18,7 @@
     </div>
     <div class="post_content">
       <p class="post_title">{{ post_data.title }}</p>
+      <div class="post_type">{{ post_data.type }}</div>
       <img class="post_img" :src="this.post_data.fileUrl" />
       <p class="post_text">{{ post_data.text }}</p>
       <postActions

@@ -10,28 +10,41 @@
       <br />ーーーーーーーーーーーーーーーーーーーーーーーーーーー
     </p>
     <div class="products">
-      <nuxt-link
+      <div
         v-for="(product, index) in this.products.products"
         :to="'/products/product/'+product.sys.id"
         class="product"
         :key="index"
       >
-        <div class="product_img">
+        <nuxt-link
+          :to="'/products/product/'+product.sys.id"
+          class="product_img"
+        >
           <img :src="product.fields.image.fields.file.url" />
-        </div>
+        </nuxt-link>
 
         <div class="product_text">
-          <div class="product_info">
+          <nuxt-link
+            :to="'/products/product/'+product.sys.id"
+            class="product_info"
+          >
             <p>{{ product.fields.title }}</p>
             <p>{{ product.fields.farmName }}</p>
             <p>{{ product.fields.summary }}</p>
-          </div>
-
-          <div class="read_more">
-            <p>詳細ページへ</p>
+          </nuxt-link>
+          <div class="actions">
+            <nuxt-link
+              :to="'/products/product/'+product.sys.id"
+              class="read_more"
+            >
+              <p>詳細ページへ</p>
+            </nuxt-link>
+            <div class="checkout">
+              <p>購入する</p>
+            </div>
           </div>
         </div>
-      </nuxt-link>
+      </div>
     </div>
   </main>
 </template>
@@ -96,14 +109,27 @@ export default {
   justify-content: center;
   align-items: center;
 }
-.read_more {
+.actions {
   width: 100%;
+  display: flex;
+}
+.read_more {
+  width: 70%;
   height: 50px;
   background-color: rgb(243, 243, 243);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-radius: 0 0 5px 0;
+}
+.checkout {
+  width: 30%;
+  height: 50px;
+  background-color: rgb(255, 80, 153);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 0 5px;
 }
 </style>

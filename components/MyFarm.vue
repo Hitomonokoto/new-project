@@ -1,27 +1,43 @@
 <template>
   <div class="products">
-    <nuxt-link
+    <div
       class="product"
       v-for="(product,index) in this.products"
       :to="'/products/product/'+product.sys.id"
       :key="index"
     >
-      <div class="product_img">
-        <img :src="product.fields.image.fields.file.url" />
-      </div>
-
+      <nuxt-link class="link_img" :to="'/products/product/'+product.sys.id">
+        <div class="product_img">
+          <img :src="product.fields.image.fields.file.url" />
+        </div>
+      </nuxt-link>
       <div class="product_text">
         <div class="product_info">
-          <p>{{ product.fields.title }}</p>
-          <p>{{ product.fields.farmName }}</p>
-          <p>{{ product.fields.summary }}</p>
+          <nuxt-link
+            class="link_area"
+            :to="'/products/product/'+product.sys.id"
+          >
+            <p>{{ product.fields.title }}</p>
+            <p>{{ product.fields.farmName }}</p>
+            <p>{{ product.fields.summary }}</p>
+          </nuxt-link>
         </div>
 
-        <div class="read_more">
-          <p>詳細ページへ</p>
+        <div class="actions">
+          <div class="read_more">
+            <nuxt-link
+              class="link_area"
+              :to="'/products/product/'+product.sys.id"
+            >
+              <p>詳細ページへ</p>
+            </nuxt-link>
+          </div>
+          <div class="checkout">
+            <p>購入する</p>
+          </div>
         </div>
       </div>
-    </nuxt-link>
+    </div>
   </div>
 </template>
 
@@ -54,6 +70,12 @@ export default {
   box-shadow: 0px 0px 6px #d1d1d1;
   border-radius: 5px;
 }
+.link_img {
+  width: 100%;
+}
+.link_info {
+  width: 100%;
+}
 .product_img {
   width: 100%;
 }
@@ -74,15 +96,28 @@ export default {
   flex-direction: column;
   align-items: center;
 }
-.read_more {
+.actions {
   width: 100%;
+  display: flex;
+}
+.read_more {
+  width: 70%;
   height: 50px;
   background-color: rgb(243, 243, 243);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-radius: 0 0 5px 5px;
+}
+.checkout {
+  width: 30%;
+  height: 50px;
+  background-color: rgb(255, 80, 153);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 0 5px 0;
 }
 
 @media screen and (max-width: 960px) {
@@ -99,8 +134,15 @@ export default {
     border-radius: 5px;
     box-shadow: 0px 0px 6px #d1d1d1;
   }
-  .product_img {
+  .link_img {
     width: 50%;
+  }
+  .link_info {
+    width: 100%;
+    height: 100%;
+  }
+  .product_img {
+    width: 100%;
   }
   .product_img > img {
     width: 100%;
@@ -121,15 +163,8 @@ export default {
     justify-content: center;
     align-items: center;
   }
-  .read_more {
-    width: 100%;
-    height: 50px;
-    background-color: rgb(243, 243, 243);
+  .actions {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 0 0 5px 0;
   }
 }
 
@@ -147,6 +182,9 @@ export default {
     flex-direction: column;
     margin-bottom: 20px;
     border-radius: 5px;
+  }
+  .link_img {
+    width: 100%;
   }
   .product_img {
     width: 100%;
