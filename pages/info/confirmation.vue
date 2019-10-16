@@ -1,6 +1,5 @@
 <template>
   <main>
-    <mainImage url="/mainImage/mainDamy1.jpg" />
     <h2>確認画面</h2>
     <p class="top_text">お問い合わせ内容に誤りがないかご確認ください。</p>
 
@@ -33,7 +32,6 @@
 
 <script>
 // コンポーネント
-import mainImage from "~/components/MainImage";
 import basicButton from "~/components/BasicButton";
 
 // その他
@@ -41,7 +39,6 @@ import { mapState } from "vuex";
 
 export default {
   components: {
-    mainImage,
     basicButton
   },
   methods: {

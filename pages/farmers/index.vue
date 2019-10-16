@@ -1,6 +1,5 @@
 <template>
   <main>
-    <mainImage url="/mainImage/mainDamy1.jpg" />
     <h2>こだわりの創り手</h2>
     <p class="top_text">
       九州を４週周り、
@@ -37,7 +36,6 @@
 
 <script>
 //コンポーネント
-import mainImage from "~/components/MainImage";
 import myFarm from "~/components/MyFarm";
 
 //その他
@@ -45,7 +43,6 @@ import { mapState } from "vuex";
 
 export default {
   components: {
-    mainImage,
     myFarm
   },
   async fetch({ store }) {

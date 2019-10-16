@@ -11,6 +11,7 @@ const _a8cb6d26 = () => interopDefault(import('../pages/kanri/index.vue' /* webp
 const _7d3a3a47 = () => interopDefault(import('../pages/login/index.vue' /* webpackChunkName: "pages/login/index" */))
 const _7bee14c8 = () => interopDefault(import('../pages/products/index.vue' /* webpackChunkName: "pages/products/index" */))
 const _8f177f24 = () => interopDefault(import('../pages/regist/index.vue' /* webpackChunkName: "pages/regist/index" */))
+const _3419446c = () => interopDefault(import('../pages/test/index.vue' /* webpackChunkName: "pages/test/index" */))
 const _53d2da65 = () => interopDefault(import('../pages/unsub/index.vue' /* webpackChunkName: "pages/unsub/index" */))
 const _3d7b11c3 = () => interopDefault(import('../pages/user/index.vue' /* webpackChunkName: "pages/user/index" */))
 const _7479f051 = () => interopDefault(import('../pages/info/confirmation.vue' /* webpackChunkName: "pages/info/confirmation" */))
@@ -60,6 +61,10 @@ export const routerOptions = {
       path: "/regist",
       component: _8f177f24,
       name: "regist"
+    }, {
+      path: "/test",
+      component: _3419446c,
+      name: "test"
     }, {
       path: "/unsub",
       component: _53d2da65,

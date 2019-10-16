@@ -72,6 +72,7 @@ import userIcon from "~/components/UserIcon";
 // その他
 import getCustomer from "~/apollo/gql/getCustomer";
 import customerAccessTokenDelete from "~/apollo/gql/customerAccessTokenDelete";
+import Cookies from "universal-cookie";
 
 export default {
   components: {
@@ -118,12 +119,15 @@ export default {
       this.isBasicData = false;
     },
     logout() {
+      this.isData = false;
       const xxx = this.$apollo.mutate({
         mutation: customerAccessTokenDelete,
         variables: {
           customerAccessToken: this.$store.state.login.token
         }
       });
+      const cookies = new Cookies();
+      cookies.remove("token");
       this.$store.commit("login/logout");
       this.$router.push("/");
     }

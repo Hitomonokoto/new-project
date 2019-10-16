@@ -46,6 +46,7 @@ import postEdit from "~/components/timeline/PostEdit";
 
 // その他
 import { mapState } from "vuex";
+import Cookies from "universal-cookie";
 
 export default {
   components: {
@@ -62,12 +63,18 @@ export default {
       isTimeline: true,
       isPost: false,
       isPostEdit: false,
-      post_data: ""
+      post_data: "",
+      ttt: null
     };
   },
   async fetch({ store }) {
     await store.dispatch("timeline/getPostsAction");
     await store.dispatch("products/getProductsAction");
+  },
+  async mounted() {
+    // const cookies = new Cookies();
+    // const token = await cookies.get("token");
+    // console.log(token);
   },
   methods: {
     post() {

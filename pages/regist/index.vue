@@ -1,6 +1,5 @@
 <template>
   <main>
-    <mainImage url="/mainImage/mainDamy1.jpg" />
     <h1>パートナー登録</h1>
     <div class="regist_form">
       <dl>
@@ -65,14 +64,12 @@
 // コンポーネント
 import basicButton from "~/components/BasicButton";
 import basicInput from "~/components/BasicInput";
-import mainImage from "~/components/MainImage";
 
 // その他
 import customerCreate from "~/apollo/gql/customerCreate";
-import db from "~/plugins/firebase";
 
 export default {
-  components: { mainImage, basicButton, basicInput },
+  components: { basicButton, basicInput },
   data: () => ({
     createData: {
       lastName: null,

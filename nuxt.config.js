@@ -27,9 +27,8 @@ export default {
     '@nuxtjs/apollo',
     '@nuxtjs/axios',
     '@nuxtjs/dotenv',
-    'nuxt-fontawesome',
+    'nuxt-fontawesome'
   ],
-
   apollo: {
     clientConfigs: {
       default: '~/apollo/client-configs/default.js'
@@ -62,7 +61,9 @@ export default {
   fontawesome: {
     component: 'fa'
   },
-
+  router: {
+    middleware: "login"
+  },
   build: {
     extend(config, ctx) {
     }

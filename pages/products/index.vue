@@ -1,6 +1,5 @@
 <template>
   <main>
-    <mainImage url="/mainImage/mainDamy1.jpg" />
     <h2>マイファームを探す</h2>
     <p class="top_text">
       ーーーーー３〜５行程度の簡単な説明文が入りますーーーー
@@ -50,16 +49,12 @@
 </template>
 
 <script>
-import mainImage from "~/components/MainImage";
-
 // その他
 import { mapState } from "vuex";
 import getProducts from "~/apollo/gql/getProducts";
 
 export default {
-  components: {
-    mainImage
-  },
+  components: {},
   async fetch({ store }) {
     await store.dispatch("products/getProductsAction");
   },

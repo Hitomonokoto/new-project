@@ -7,7 +7,8 @@ export const state = () => ({
   token: null,
   user_1: null,
   user_2: null,
-  user_id: null
+  user_id: null,
+  path: null
 })
 
 export const mutations = {
@@ -26,6 +27,9 @@ export const mutations = {
     state.user_1 = null;
     state.user_2 = null;
     state.user_id = null;
+  },
+  getPath(state, data) {
+    state.path = data;
   }
 }
 

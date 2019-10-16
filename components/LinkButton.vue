@@ -33,13 +33,12 @@ export default {
 .foget_pass {
   color: #707070;
 }
-.about_myfarm {
-  color: white;
-  background-color: rgb(255, 211, 68);
+.regist {
+  color: green;
   padding: 5px 20px;
   margin-bottom: 50px;
   border-radius: 5px;
-  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  border: 2px solid green;
 }
 .partner_btn {
   color: white;
@@ -47,6 +46,7 @@ export default {
   padding: 5px 20px;
   margin-bottom: 50px;
   border-radius: 5px;
+  border: 1px solid green;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
 }
 .acount {

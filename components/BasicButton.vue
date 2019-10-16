@@ -28,8 +28,8 @@ export default {
 .checkout_btn {
   padding: 10px 30px;
   margin-top: 20px;
-  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
-  background-color: rgb(255, 80, 153);
+  color: white;
+  background-color: green;
 }
 .post_edit_btn {
   padding: 5px 10px;
@@ -90,7 +90,8 @@ export default {
 }
 .regist_btn {
   padding: 10px 30px;
-  background-color: rgb(255, 211, 68);
+  color: white;
+  background-color: green;
   margin-bottom: 50px;
 }
 .acount_btn {

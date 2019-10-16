@@ -1,6 +1,5 @@
 <template>
   <main>
-    <mainImage url="/mainImage/mainDamy1.jpg" />
     <h1>お問い合わせ</h1>
     <p class="top_text">
       ご不明な点がございましたら
@@ -41,7 +40,7 @@
 </template>
 
 <script>
-import mainImage from "~/components/MainImage";
+// コンポーネント
 import linkButton from "~/components/LinkButton";
 import basicButton from "~/components/BasicButton";
 import basicInput from "~/components/BasicInput";
@@ -49,7 +48,6 @@ import basicTextarea from "~/components/BasicTextarea";
 
 export default {
   components: {
-    mainImage,
     linkButton,
     basicButton,
     basicInput,

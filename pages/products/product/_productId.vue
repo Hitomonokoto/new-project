@@ -142,7 +142,8 @@ export default {
   width: 33%;
 }
 .opend {
-  background-color: salmon;
+  color: white;
+  background-color: green;
 }
 .contents_area {
   width: 100%;

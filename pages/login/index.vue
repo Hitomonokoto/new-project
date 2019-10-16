@@ -1,40 +1,30 @@
 <template>
   <main>
-    <div class="login_form">
-      <div class="logo">
-        <img src="~/assets/mainlogo1.png" alt />
-      </div>
-
-      <basicInput
-        v-model="input.email"
-        cls="login"
-        type="text"
-        placeholder="メールアドレス"
-      />
-      <basicInput
-        v-model="input.password"
-        cls="login"
-        type="password"
-        placeholder="パスワード"
-      />
-      <basicButton class="login_btn" @emitClick="save">ログイン</basicButton>
-
-      <linkButton
-        cls="foget_pass"
-        linkTo="/login/passWordReset"
-        text="パスワードをお忘れの方はこちら"
-      />
+    <div class="logo">
+      <img src="~/assets/mainlogo1.png" alt />
     </div>
 
-    <div class="nomenber_form">
-      <p>
-        アカウントをお持ちではありませんか？
-        <br />
-        <br />こちらからマイファームのご案内をさせていただきます。
-        <br />ご共感頂き登録していただけると幸いです。
-      </p>
-      <linkButton cls="about_myfarm" linkTo="/aboutMyFarm" text="マイファームについて" />
-    </div>
+    <basicInput
+      v-model="input.email"
+      cls="login"
+      type="text"
+      placeholder="メールアドレス"
+    />
+    <basicInput
+      v-model="input.password"
+      cls="login"
+      type="password"
+      placeholder="パスワード"
+    />
+    <basicButton class="login_btn" @emitClick="save">ログイン</basicButton>
+
+    <linkButton
+      cls="foget_pass"
+      linkTo="/login/passWordReset"
+      text="パスワードをお忘れの方はこちら"
+    />
+
+    <linkButton cls="regist" linkTo="/regist" text="新規登録" />
   </main>
 </template>
 
@@ -47,6 +37,7 @@ import basicInput from "~/components/BasicInput";
 // その他
 import customerAccessTokenCreate from "~/apollo/gql/customerAccessTokenCreate";
 import getCustomer from "~/apollo/gql/getCustomer";
+import Cookies from "universal-cookie";
 
 export default {
   components: { linkButton, basicButton, basicInput },
@@ -72,6 +63,8 @@ export default {
       });
       const token =
         xxx.data.customerAccessTokenCreate.customerAccessToken.accessToken;
+      const cookies = new Cookies();
+      cookies.set("token", token);
       this.$store.commit("login/getToken", token);
       this.getUser(token);
     },
@@ -91,12 +84,8 @@ export default {
 </script>
 
 <style scoped>
-.login_form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 80%;
-  margin-bottom: 100px;
+main {
+  height: 100vh;
 }
 .logo {
   margin-top: 50px;
@@ -108,8 +97,8 @@ export default {
 .login_btn {
   border-radius: 5px;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
-  background-color: #afc0f1;
-  color: #ffffff;
+  background-color: green;
+  color: white;
   margin: 10px 0;
   padding: 10px 0;
   width: 300px;
@@ -122,20 +111,7 @@ export default {
   padding: 20px 0;
   text-align: center;
 }
-.nomenber_form {
-  width: 80%;
-  box-shadow: 0px 0px 6px #d1d1d1;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 200px;
-}
-.nomenber_form > p {
-  text-align: center;
-  color: #707070;
-  padding: 50px 0;
-}
+
 @media screen and (max-width: 960px) {
   main {
     margin-top: 150px;
