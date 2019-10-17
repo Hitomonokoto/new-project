@@ -74,4 +74,9 @@ export default {
   border-radius: 10%;
   margin-right: 10px;
 }
+.post_edit_icon {
+  width: 50px;
+  border-radius: 10%;
+  margin-right: 10px;
+}
 </style>

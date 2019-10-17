@@ -21,14 +21,27 @@ export default {
 </script>
 
 <style scoped>
-.top_myfarm {
+.login {
+  color: white;
+  background-color: green;
+  padding: 5px 20px;
+  border-radius: 5px;
+}
+.beginner {
   color: white;
   background-color: green;
   padding: 5px 20px;
   margin-top: 10px;
   margin-bottom: 30px;
   border-radius: 5px;
-  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+}
+.top_products {
+  color: green;
+  border: 2px solid green;
+  padding: 5px 20px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  border-radius: 5px;
 }
 .foget_pass {
   color: #707070;

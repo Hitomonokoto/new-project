@@ -1,24 +1,27 @@
 <template>
   <div class="container">
-    <div class="pc_navi" id="pc_navi">
+    <div class="pc_navi_area">
       <pcNavi />
     </div>
-    <div class="mobile_navi" id="mobile_navi">
-      <mobileNavi @closeNavi="closeNavi" />
+    <div class="tablet_navi_area">
+      <tabletNavi />
     </div>
-    <mobileMenuButton v-show="isBtn" @openNavi="openNavi" />
+    <div class="mobile_navi_area">
+      <mobileNavi />
+    </div>
     <nuxt />
   </div>
 </template>
 
 <script>
 import pcNavi from "~/components/navi/PcNavi";
+import tabletNavi from "~/components/navi/TabletNavi";
 import mobileNavi from "~/components/navi/MobileNavi";
 import mobileMenuButton from "~/components/navi/MobileMenuButton";
-mobileMenuButton;
 export default {
   components: {
     pcNavi,
+    tabletNavi,
     mobileNavi,
     mobileMenuButton
   },
@@ -49,44 +52,59 @@ export default {
   box-sizing: border-box;
   text-decoration: none;
   list-style: none;
-  /* font-family: "Hepta Slab", serif; */
+  color: black;
 }
 .container {
   display: flex;
+  width: 100%;
 }
-.pc_navi {
-  width: 190px;
-  background-color: #f8f8f8;
-  display: flex;
-  justify-content: center;
+.pc_navi_area {
+  width: 200px;
 }
-.mobile_navi {
+.tablet_navi_area {
+  display: none;
+}
+.mobile_navi_area {
   display: none;
 }
 @media screen and (max-width: 960px) {
   .container {
     flex-direction: column;
   }
-  .pc_navi {
-    width: 100%;
+  .pc_navi_area {
+    display: none;
+  }
+  .tablet_navi_area {
+    display: block;
   }
 }
 @media screen and (max-width: 560px) {
-  .container {
-    position: relative;
-  }
-  .pc_navi {
+  .tablet_navi_area {
     display: none;
+  }
+  .mobile_navi_area {
+    display: block;
   }
 }
 
 /* これより下は全ページ共通のCSS */
 
 main {
-  width: 100%;
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+@media screen and (max-width: 960px) {
+  main {
+    margin-top: 150px;
+  }
+}
+@media screen and (max-width: 560px) {
+  main {
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
 }
 h1 {
   padding: 20px 0;

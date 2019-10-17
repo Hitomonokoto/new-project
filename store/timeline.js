@@ -32,6 +32,23 @@ export const mutations = {
                 return -1;
             }
         })
+        if (state.selectPosts.length) {
+            const x = state.selectPosts.filter(post => {
+                return post.post_id == data.post_id;
+            })
+            const y = state.selectPosts.filter(post => {
+                return post.post_id != data.post_id;
+            })
+            x[0].comments = data.comments;
+            const z = y.concat(x);
+            state.selectPosts = z.sort(function (a, b) {
+                if (a.created.seconds < b.created.seconds) {
+                    return 1;
+                } else {
+                    return -1;
+                }
+            })
+        }
     },
     commentCountAdjust(state, data) {
         const x = state.posts.filter(post => {
@@ -102,23 +119,43 @@ export const actions = {
                 })
         })
     },
-    // 投稿する
-    PostAction(context, data) {
+    // 投稿する（トップページ用）
+    PostAction(context, payload) {
         const docRef = db.collection("timeline").doc();
         const setAda = docRef.set({
-            user_id: data.user_id,
-            business_id: data.business_id,
-            user_icon: data.user_icon,
-            name: data.name,
-            text: data.text,
-            title: data.title,
-            fileName: data.fileName,
-            fileUrl: data.fileUrl,
+            user_id: payload.user_id,
+            business_id: payload.business_id,
+            farmer_id: payload.farmer_id,
+            user_icon: payload.user_icon,
+            name: payload.name,
+            text: payload.text,
+            title: payload.title,
+            fileName: payload.fileName,
+            fileUrl: payload.fileUrl,
             created: firebase.firestore.Timestamp.fromDate(new Date()),
             comment_count: 0,
             like_count: 0
         });
         context.dispatch("getPostsAction");
+    },
+    // 投稿する(個人ページ用)
+    PostSingleAction(context, payload) {
+        const docRef = db.collection("timeline").doc();
+        const setAda = docRef.set({
+            user_id: payload.user_id,
+            business_id: payload.business_id,
+            farmer_id: payload.farmer_id,
+            user_icon: payload.user_icon,
+            name: payload.name,
+            text: payload.text,
+            title: payload.title,
+            fileName: payload.fileName,
+            fileUrl: payload.fileUrl,
+            created: firebase.firestore.Timestamp.fromDate(new Date()),
+            comment_count: 0,
+            like_count: 0
+        });
+        context.dispatch("getSelectPostsAction", payload.business_id);
     },
     // 投稿を編集する
     PostEditAction(context, payload) {
@@ -141,7 +178,7 @@ export const actions = {
         });
         context.dispatch("getPostsAction");
     },
-    // タイムラインを読み込む
+    // タイムラインを読み込む(トップページ用)
     async getPostsAction(context) {
         try {
             const posts = [];
@@ -156,6 +193,7 @@ export const actions = {
             console.log("firestore-postsがエラー！", e);
         }
     },
+    // タイムラインを読み込む(個人ページ用)
     async getSelectPostsAction(context, payload) {
         try {
             const posts = [];
@@ -245,7 +283,7 @@ export const actions = {
     // コメントを読み込む
     async getCommentsAction(context, payload) {
         try {
-            // context.dispatch("getPostsAction");
+
             const comments = [];
             const commentSnapShots = await db.collection('timeline').doc(payload).collection('comments').orderBy('created', 'asc').get();
             commentSnapShots.forEach(comment => {
@@ -254,6 +292,7 @@ export const actions = {
                 comments.push(comment_data);
             });
             context.commit('getComments', { comments: comments, post_id: payload });
+
         } catch (e) {
             console.log("firestore-getCommentsActionがエラー！", e);
         }

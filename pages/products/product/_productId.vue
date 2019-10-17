@@ -1,32 +1,32 @@
 <template>
   <main>
-    <mainImage :src="this.products.product.fields.image.fields.file.url" />
+    <mainImage :src="Products.product.fields.image.fields.file.url" />
 
     <div class="index">
       <div
         class="index_btn index_description opend"
         id="index_description"
         @click="openStory"
-      >商品説明</div>
+      >商品詳細</div>
       <div
         class="index_btn index_timeline"
         id="index_timeline"
         @click="openTimeline"
-      >タイムライン</div>
+      >コミュニティ</div>
       <div
         class="index_btn index_farmer"
         id="index_farmer"
         @click="openProducts"
-      >創り手について</div>
+      >創り手</div>
     </div>
     <basicButton cls="checkout_btn" @emitClick="checkout">種主になる</basicButton>
-    <div class="contents_area" v-if="isStory">
+    <div class="contents_area" v-show="isStory">
       <description />
     </div>
-    <div class="contents_area" v-if="isTimeline">
-      <timeline :posts="this.$store.state.timeline.selectPosts" />
+    <div class="contents_area" v-show="isTimeline">
+      <timeline />
     </div>
-    <div class="contents_area" v-if="isProducts">
+    <div class="contents_area" v-show="isProducts">
       <farmer />
     </div>
   </main>
@@ -37,9 +37,9 @@
 import basicButton from "~/components/BasicButton";
 import linkButton from "~/components/LinkButton";
 import mainImage from "~/components/MainImage";
-import description from "~/components/product/Description";
-import farmer from "~/components/product/Farmer";
-import timeline from "~/components/timeline/Timeline";
+import description from "~/components/farmer&product/Description";
+import farmer from "~/components/farmer&product/Farmer";
+import timeline from "~/components/farmer&product/Timeline";
 
 //その他
 import { mapState } from "vuex";
@@ -66,12 +66,12 @@ export default {
   async created() {
     this.$store.dispatch(
       "farmers/getFarmerByMyfarmAction",
-      this.products.product.fields.farmId
+      this.Products.product.fields.farmId
     );
     const data = await this.$apollo.query({
       query: getProduct,
       variables: {
-        productId: this.products.product.fields.productId
+        productId: this.Products.product.fields.productId
       }
     });
     this.product_id = data.data.node.variants.edges[0].node.id;
@@ -115,7 +115,10 @@ export default {
       document.getElementById("index_farmer").classList.add("opend");
     }
   },
-  computed: mapState({ products: "products" })
+  computed: mapState({
+    Products: state => state.products,
+    Timeline: state => state.timeline
+  })
 };
 </script>
 
@@ -131,6 +134,10 @@ export default {
   justify-content: center;
   align-items: center;
   height: 40px;
+  cursor: pointer;
+}
+.index_btn:hover {
+  background-color: lightgreen;
 }
 .index_description {
   width: 34%;

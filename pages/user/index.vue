@@ -5,10 +5,7 @@
       <div class="xxx">
         <div class="user_icon">
           <div class="icon_edge">
-            <userIcon
-              cls="user_page_icon"
-              :url="$store.state.login.user_2.user_icon"
-            />
+            <userIcon cls="user_page_icon" :url="login.user_2.user_icon" />
           </div>
           <basicButton cls="user_icon_edit_btn" @emitClick="editProfileImg">変更</basicButton>
         </div>
@@ -20,7 +17,7 @@
               @emitClick="editNickname"
             >ニックネームを編集</basicButton>
           </div>
-          <p class="nickname">{{ $store.state.login.user_2.nickname }} さん</p>
+          <p class="nickname">{{ login.user_2.nickname }} さん</p>
         </div>
 
         <editNickname v-if="isNickname" @emitClick="back" />
@@ -70,6 +67,7 @@ import editBasicData from "~/components/user/EditBasicData";
 import userIcon from "~/components/UserIcon";
 
 // その他
+import { mapState } from "vuex";
 import getCustomer from "~/apollo/gql/getCustomer";
 import customerAccessTokenDelete from "~/apollo/gql/customerAccessTokenDelete";
 import Cookies from "universal-cookie";
@@ -96,7 +94,7 @@ export default {
     const data = await this.$apollo.query({
       query: getCustomer,
       variables: {
-        customerAccessToken: this.$store.state.login.token
+        customerAccessToken: this.login.token
       }
     });
     this.$store.commit("login/getUser_1", data.data.customer);
@@ -123,7 +121,7 @@ export default {
       const xxx = this.$apollo.mutate({
         mutation: customerAccessTokenDelete,
         variables: {
-          customerAccessToken: this.$store.state.login.token
+          customerAccessToken: this.login.token
         }
       });
       const cookies = new Cookies();
@@ -132,6 +130,9 @@ export default {
       this.$router.push("/");
     }
   },
+  computed: mapState({
+    login: state => state.login
+  }),
   watch: {
     user_data() {
       this.isData = true;

@@ -1,10 +1,8 @@
 <template>
-  <div v-show="this.comments" class="comments">
+  <!-- <div v-show="this.comments" class="comments"> -->
+  <div class="comments">
     <div v-if="this.login.token" class="send_comment">
-      <userIcon
-        cls="send_comment_icon"
-        :url="$store.state.login.user_2.user_icon"
-      />
+      <userIcon cls="send_comment_icon" :url="login.user_2.user_icon" />
       <textarea
         v-model="new_comment"
         class="write_comment"
@@ -90,9 +88,9 @@ export default {
         return;
       }
       this.$store.dispatch("timeline/commentAction", {
-        user_id: this.$store.state.login.user_2.user_id,
-        user_icon: this.$store.state.login.user_2.user_icon,
-        name: this.$store.state.login.user_2.nickname,
+        user_id: this.login.user_2.user_id,
+        user_icon: this.login.user_2.user_icon,
+        name: this.login.user_2.nickname,
         post_id: this.post_id,
         text: this.new_comment,
         comment_count: this.comment_count
@@ -141,7 +139,9 @@ export default {
       return `${year}年${month}月${day}日`;
     }
   },
-  computed: mapState({ timeline: "timeline", login: "login" })
+  computed: mapState({
+    login: state => state.login
+  })
 };
 </script>
 

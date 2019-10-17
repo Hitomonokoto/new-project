@@ -1,6 +1,6 @@
 <template>
-  <div class="mobile_navi">
-    <div class="top_bar">
+  <div class="tablet_navi">
+    <div class="logo_area">
       <nuxt-link to="/">
         <img class="logo_img" src="~/assets/mainlogo2.png" alt />
       </nuxt-link>
@@ -14,25 +14,24 @@
         </nuxt-link>
       </div>
     </div>
-    <div class="bottom_bar">
-      <div class="navi_area">
-        <nuxt-link class="navi_link" to="/">
-          <div class="navi_single">ホーム</div>
-        </nuxt-link>
 
-        <nuxt-link class="navi_link" to="/products">
-          <div class="navi_single">体験</div>
-        </nuxt-link>
+    <div class="navi_area">
+      <nuxt-link class="navi_link" to="/">
+        <div class="navi_single">ホーム</div>
+      </nuxt-link>
 
-        <nuxt-link class="navi_link" to="/farmers">
-          <div class="navi_single">創り手</div>
-        </nuxt-link>
-        <nuxt-link class="navi_link" to="/farmers">
-          <div class="navi_single">未定</div>
-        </nuxt-link>
+      <nuxt-link class="navi_link" to="/products">
+        <div class="navi_single">体験</div>
+      </nuxt-link>
 
-        <div class="navi_single mypage" @click="mypage">マイページ</div>
-      </div>
+      <nuxt-link class="navi_link" to="/farmers">
+        <div class="navi_single">創り手</div>
+      </nuxt-link>
+      <nuxt-link class="navi_link" to="/farmers">
+        <div class="navi_single">未定</div>
+      </nuxt-link>
+
+      <div class="navi_single mypage" @click="mypage">マイページ</div>
     </div>
   </div>
 </template>
@@ -44,7 +43,6 @@ import userIcon from "~/components/UserIcon";
 
 // その他
 import { mapState } from "vuex";
-
 export default {
   components: {
     linkButton,
@@ -71,24 +69,29 @@ export default {
 </script>
 
 <style scoped>
-.top_bar {
+.tablet_navi {
   position: fixed;
   top: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+}
+.logo_area {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 50px;
-  background-color: white;
-  box-shadow: 0px 0px 3px #797979;
+  height: 100px;
 }
 .logo_img {
-  height: 40px;
+  height: 60px;
   margin-left: 20px;
 }
 .login_area {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   margin-right: 20px;
 }
@@ -97,14 +100,6 @@ export default {
   background-color: green;
   padding: 5px 20px;
   border-radius: 5px;
-}
-
-.bottom_bar {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  display: flex;
-  background-color: white;
 }
 .navi_area {
   width: 100%;

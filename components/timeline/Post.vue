@@ -1,11 +1,8 @@
 <template>
   <div class="post">
     <div class="user">
-      <userIcon
-        cls="post_form_icon"
-        :url="$store.state.login.user_2.user_icon"
-      />
-      <p class="nickname">{{$store.state.login.user_2.nickname}}</p>
+      <userIcon cls="post_form_icon" :url="login.user_2.user_icon" />
+      <p class="nickname">{{login.user_2.nickname}}</p>
       <div class="edit">
         <basicButton cls="back_btn" @emitClick="back">戻る</basicButton>
       </div>
@@ -39,6 +36,7 @@ import adjustedTextarea from "~/components/AdjustedTextarea";
 import userIcon from "~/components/UserIcon";
 
 // その他
+import { mapState } from "vuex";
 import uuid from "uuid";
 
 export default {
@@ -48,6 +46,11 @@ export default {
     basicInput,
     adjustedTextarea,
     userIcon
+  },
+  props: {
+    farmerSelect_id: {
+      type: String
+    }
   },
   data() {
     return {
@@ -66,10 +69,8 @@ export default {
       if (file) {
         const fileName = uuid();
         if (this.fileName) {
-          console.log("1");
           this.$store
             .dispatch("timeline/changeUploadImage", {
-              oldFileName: this.post_data.fileName,
               name: fileName,
               file: file
             })
@@ -78,7 +79,6 @@ export default {
               this.fileUrl = url;
             });
         } else {
-          console.log("2");
           this.$store
             .dispatch("timeline/uploadImage", {
               name: fileName,
@@ -92,22 +92,25 @@ export default {
       }
     },
     sendPost() {
-      if (this.text == "" && !this.fileName) {
+      if (!this.title && !this.text && !this.fileName) {
         return;
       }
-      this.$store.dispatch("timeline/PostAction", {
-        user_id: this.$store.state.login.user_2.user_id,
-        business_id: this.$store.state.login.user_2.business_id,
-        name: this.$store.state.login.user_2.nickname,
-        user_icon: this.$store.state.login.user_2.user_icon,
+      this.$emit("emitSendPost", {
+        user_id: this.login.user_2.user_id,
+        business_id: this.login.user_2.business_id,
+        farmer_id: this.login.user_2.farmer_id,
+        name: this.login.user_2.nickname,
+        user_icon: this.login.user_2.user_icon,
         title: this.title,
         text: this.text,
         fileName: this.fileName,
         fileUrl: this.fileUrl
       });
-      this.$emit("emitBack");
     }
-  }
+  },
+  computed: mapState({
+    login: state => state.login
+  })
 };
 </script>
 
@@ -134,8 +137,6 @@ export default {
   width: 50px;
   border-radius: 10%;
   margin-right: 10px;
-}
-textarea {
 }
 .post_img {
   width: 100%;

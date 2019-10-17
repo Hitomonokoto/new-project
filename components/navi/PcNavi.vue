@@ -1,171 +1,109 @@
 <template>
-  <div class="nav_sticky">
-    <div class="nav_logo_area">
+  <div class="pc_navi">
+    <div class="logo_area">
       <nuxt-link to="/">
-        <img class="nav_logo_img" src="~/assets/mainlogo2.png" alt />
+        <img class="logo_img" src="~/assets/mainlogo2.png" alt />
       </nuxt-link>
     </div>
-    <div class="nav_list">
-      <div class="nav_single" @click="closeSubMenu">
-        <nuxt-link to="/">
-          <p>ホーム</p>
-        </nuxt-link>
-      </div>
-      <div class="nav_single" @click="closeSubMenu">
-        <nuxt-link to="/products">
-          <p>体験</p>
-        </nuxt-link>
-      </div>
-      <div class="nav_single" @click="closeSubMenu">
-        <nuxt-link to="/farmers">
-          <p>創り手</p>
-        </nuxt-link>
-      </div>
-      <div
-        class="nav_single"
-        v-if="!$store.state.login.token"
-        @click="closeSubMenu"
-      >
-        <nuxt-link to="/login">
-          <p>ログイン</p>
-        </nuxt-link>
-      </div>
-      <div
-        class="nav_single"
-        v-if="$store.state.login.token"
-        @click="closeSubMenu"
-      >
-        <nuxt-link to="/user">
-          <p>マイページ</p>
-        </nuxt-link>
-      </div>
-      <div class="nav_single" @click="toggleSubMenu">
-        <p>その他</p>
-      </div>
+
+    <div class="navi_area">
+      <nuxt-link class="navi_link" to="/">
+        <div class="navi_single">ホーム</div>
+      </nuxt-link>
+      <nuxt-link class="navi_link" to="/products">
+        <div class="navi_single">体験</div>
+      </nuxt-link>
+      <nuxt-link class="navi_link" to="/farmers">
+        <div class="navi_single">創り手</div>
+      </nuxt-link>
+      <div class="navi_single" @click="mypage">マイページ</div>
     </div>
-    <div class="sub_menu" v-show="isSubMenu">
-      <div class="sub_single" @click="closeSubMenu">
-        <nuxt-link to="/aboutMyFarm">
-          <p>マイファームとは</p>
-        </nuxt-link>
-      </div>
-      <div class="sub_single" @click="closeSubMenu">
-        <nuxt-link to="/aboutUs">
-          <p>私たちについて</p>
-        </nuxt-link>
-      </div>
-      <div class="sub_single" @click="closeSubMenu">
-        <nuxt-link to="/info">
-          <p>コンタクト</p>
-        </nuxt-link>
-      </div>
+
+    <div class="login_area" v-if="!login.token">
+      <nuxt-link to="/login">
+        <div class="login">ログイン</div>
+      </nuxt-link>
+      <nuxt-link to="/regist">
+        <div class="regist">新規登録</div>
+      </nuxt-link>
     </div>
   </div>
 </template>
 
 <script>
+// その他
+import { mapState } from "vuex";
+
 export default {
+  components: {},
   data() {
-    return {
-      isSubMenu: false
-    };
+    return {};
   },
   methods: {
-    toggleSubMenu() {
-      if (this.isSubMenu) {
-        this.isSubMenu = false;
+    mypage() {
+      if (this.login.token) {
+        this.$router.push("/user");
       } else {
-        this.isSubMenu = true;
+        this.$router.push("/login");
       }
-    },
-    closeSubMenu() {
-      this.isSubMenu = false;
     }
-  }
+  },
+  computed: mapState({
+    products: state => state.products,
+    login: state => state.login,
+    timeline: state => state.timeline
+  })
 };
 </script>
 
 <style scoped>
-.nav_sticky {
+.pc_navi {
   position: fixed;
   top: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 200px;
+  height: 100vh;
+  box-shadow: 0px 0px 3px #797979;
 }
-
-.nav_logo_img {
+.logo_img {
   height: 80px;
   display: block;
   margin: 30px 0 60px 0;
 }
-.nav_list {
+.navi_area {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  height: 50vh;
 }
-p {
-  color: black;
-  margin-bottom: 40px;
+.navi_link {
+  width: 100%;
 }
-.nav_single {
+.navi_single {
   cursor: pointer;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-.sub_menu {
+.navi_single:hover {
+  background-color: green;
+  color: white;
+}
+.login_area {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-@media screen and (max-width: 960px) {
-  .nav_sticky {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #f8f8f8;
-  }
-  .nav_list {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    box-shadow: 0px 0px 3px #797979;
-  }
-  .nav_logo_area {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100px;
-  }
-  .nav_logo_img {
-    height: 60px;
-    margin: 20px 0;
-  }
-  .nav_single {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 20%;
-    height: 50px;
-    cursor: pointer;
-  }
-
-  .sub_menu {
-    width: 100%;
-    height: 40px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-  }
-  .sub_single {
-    width: 30%;
-  }
-  p {
-    color: black;
-    margin: 0px;
-    text-align: center;
-  }
+.login {
+  color: white;
+  background-color: green;
+  padding: 5px 20px;
+  border-radius: 5px;
 }
 </style>

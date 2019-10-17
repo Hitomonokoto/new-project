@@ -42,6 +42,10 @@
 import mainImage from "~/components/MainImage";
 import basicButton from "~/components/BasicButton";
 import basicTextarea from "~/components/BasicTextarea";
+
+// その他
+import { mapState } from "vuex";
+
 export default {
   components: { mainImage, basicButton, basicTextarea },
   data() {
@@ -55,12 +59,15 @@ export default {
     },
     unsub() {
       const data = {
-        user_id: this.$store.state.login.user_1.id,
+        user_id: this.login.user_1.id,
         message: this.message
       };
       this.$store.dispatch("unsubscribe/unsubscribeAction", data);
     }
-  }
+  },
+  computed: mapState({
+    login: state => state.login
+  })
 };
 </script>
 <style scoped>

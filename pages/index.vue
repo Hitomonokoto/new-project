@@ -3,28 +3,30 @@
     <mainImage url="/mainImage/top-img.jpg" />
     <div>
       <linkButton
-        v-show="!this.$store.state.login.token"
-        cls="top_myfarm"
+        v-show="!login.token"
+        cls="beginner"
         linkTo="/aboutMyFarm"
         text="初めての方はこちら"
       />
     </div>
-
     <div v-show="!isPost" class="myfarm_contents">
       <h2>新着・オススメの体験銘柄</h2>
       <p>創り手の畑を所有し、モノづくりの過程を楽しみながら創り手を応援しましょう！</p>
       <myFarm :products="this.products.products" />
-      <linkButton cls="top_myfarm" linkTo="/products" text="もっと見る" />
+      <linkButton cls="top_products" linkTo="/products" text="もっと見る" />
     </div>
-    <h2>タイムライン</h2>
-    <p>創り手の畑を所有し、モノづくりの過程を楽しみながら創り手を応援しましょう！</p>
+    <h2>コミュニティ</h2>
+    <p>創り手と繋がりましょう。</p>
+    <div class="post_btn" v-if="isPost_btn && login.user_2">
+      <sendPostBtn v-if="login.user_2.user_type == 1" @emitClick="post" />
+    </div>
     <timeline
       v-if="isTimeline"
-      :posts="this.$store.state.timeline.posts"
+      :posts="timeline.posts"
       @post="post"
       @post_edit="post_edit"
     />
-    <post v-if="isPost" @emitBack="postBack" />
+    <post v-if="isPost" @emitBack="postBack" @emitSendPost="sendPost" />
     <postEdit
       v-if="isPostEdit"
       @editBack="editBack"
@@ -43,10 +45,10 @@ import linkButton from "~/components/LinkButton";
 import timeline from "~/components/timeline/Timeline";
 import post from "~/components/timeline/Post";
 import postEdit from "~/components/timeline/PostEdit";
+import sendPostBtn from "~/components/timeline/SendPostBtn";
 
 // その他
 import { mapState } from "vuex";
-import Cookies from "universal-cookie";
 
 export default {
   components: {
@@ -55,13 +57,15 @@ export default {
     linkButton,
     timeline,
     post,
-    postEdit
+    postEdit,
+    sendPostBtn
   },
   data() {
     return {
       isLogin: false,
       isTimeline: true,
       isPost: false,
+      isPost_btn: true,
       isPostEdit: false,
       post_data: "",
       ttt: null
@@ -71,38 +75,46 @@ export default {
     await store.dispatch("timeline/getPostsAction");
     await store.dispatch("products/getProductsAction");
   },
-  async mounted() {
-    // const cookies = new Cookies();
-    // const token = await cookies.get("token");
-    // console.log(token);
-  },
   methods: {
     post() {
       this.isTimeline = false;
       this.isPost = true;
+      this.isPost_btn = false;
     },
     postBack() {
       this.isPost = false;
       this.isTimeline = true;
+      this.isPost_btn = true;
     },
     editBack() {
       this.isTimeline = true;
       this.isPostEdit = false;
+      this.isPost_btn = true;
     },
     post_edit(post_data) {
       this.post_data = post_data;
       this.isPostEdit = true;
       this.isTimeline = false;
+      this.isPost_btn = false;
     },
     pageInit() {
       this.isLogin = false;
       this.isTimeline = true;
       this.isPost = false;
       this.isPostEdit = false;
+      this.isPost_btn = true;
       this.post_data = "";
+    },
+    sendPost(payload) {
+      this.$store.dispatch("timeline/PostAction", payload);
+      this.postBack();
     }
   },
-  computed: mapState({ products: "products" }, { timeline: "timeline" })
+  computed: mapState({
+    products: state => state.products,
+    login: state => state.login,
+    timeline: state => state.timeline
+  })
 };
 </script>
 

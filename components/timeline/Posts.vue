@@ -1,16 +1,19 @@
 <template>
   <div class="posts">
     <div class="user">
-      <div class="user_icon">
+      <nuxt-link :to="'/farmers/farmer/'+post_data.farmer_id" class="user_icon">
         <userIcon cls="post_icon" :url="post_data.user_icon" />
-      </div>
+      </nuxt-link>
       <div class="name_time_edit">
         <div class="name_time">
-          <p class="nickname">{{ post_data.name }}</p>
+          <nuxt-link
+            :to="'/farmers/farmer/'+post_data.farmer_id"
+            class="nickname"
+          >{{ post_data.name }}</nuxt-link>
           <p class="time">{{ post_data.created.seconds | timestampToDate }}</p>
         </div>
         <basicButton
-          v-if="this.$store.state.login.user_id == this.user_id"
+          v-if="this.login.user_id == this.user_id"
           cls="post_edit_btn"
           @emitClick="edit"
         >編集</basicButton>
@@ -31,7 +34,7 @@
         :comment_count="this.post_data.comment_count"
         :post_id="this.post_data.post_id"
         :comments="this.comments"
-        :login_user_id="this.$store.state.login.user_id"
+        :login_user_id="this.login.user_id"
       />
     </div>
   </div>
@@ -45,6 +48,9 @@ import basicButton from "~/components/BasicButton";
 import postActions from "~/components/timeline/PostActions";
 import comments from "~/components/timeline/Comments";
 import userIcon from "~/components/UserIcon";
+
+// その他
+import { mapState } from "vuex";
 
 export default {
   components: { basicButton, postActions, comments, userIcon },
@@ -69,6 +75,8 @@ export default {
   methods: {
     openComments() {
       this.isComments = true;
+      console.log("dsjvnbksdvbasdkvgbsjkghvbsz,djkfghz,sdhjfbjhdzsbgzd");
+      console.log(this.post_data.post_id);
       this.$store.dispatch(
         "timeline/getCommentsAction",
         this.post_data.post_id
@@ -105,7 +113,10 @@ export default {
       const year = d.getFullYear();
       return `${year}年${month}月${day}日`;
     }
-  }
+  },
+  computed: mapState({
+    login: state => state.login
+  })
 };
 </script>
 

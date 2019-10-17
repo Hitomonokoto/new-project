@@ -1,7 +1,7 @@
 <template>
   <div class="post">
     <div class="user">
-      <img class="user_icon" src="samplein.jpg" alt />
+      <userIcon cls="post_edit_icon" :url="login.user_2.user_icon" />
       <div class="name_and_back">
         <p class="nickname">{{post_data.name}}</p>
         <div class="actions">
@@ -41,11 +41,14 @@
 import basicButton from "~/components/BasicButton";
 import basicInput from "~/components/BasicInput";
 import adjustedTextarea from "~/components/AdjustedTextarea";
+import userIcon from "~/components/UserIcon";
+
 // その他
+import { mapState } from "vuex";
 import uuid from "uuid";
 
 export default {
-  components: { basicButton, basicInput, adjustedTextarea },
+  components: { basicButton, basicInput, adjustedTextarea, userIcon },
   data() {
     return {
       title: this.post_data.title,
@@ -114,7 +117,10 @@ export default {
 
       this.$emit("editBack");
     }
-  }
+  },
+  computed: mapState({
+    login: state => state.login
+  })
 };
 </script>
 

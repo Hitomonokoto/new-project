@@ -42,6 +42,7 @@ import basicButton from "~/components/BasicButton";
 import basicInput from "~/components/BasicInput";
 
 // その他
+import { mapState } from "vuex";
 import customerUpdate from "~/apollo/gql/customerUpdate";
 
 export default {
@@ -51,10 +52,10 @@ export default {
   },
   data() {
     return {
-      lastName: this.$store.state.login.user_1.lastName,
-      firstName: this.$store.state.login.user_1.firstName,
-      email: this.$store.state.login.user_1.email,
-      user_id: this.$store.state.login.user_2.user_id
+      lastName: this.login.user_1.lastName,
+      firstName: this.login.user_1.firstName,
+      email: this.login.user_1.email,
+      user_id: this.login.user_2.user_id
     };
   },
   methods: {
@@ -62,7 +63,7 @@ export default {
       const yyy = await this.$apollo.mutate({
         mutation: customerUpdate,
         variables: {
-          customerAccessToken: this.$store.state.login.token,
+          customerAccessToken: this.login.token,
           customer: {
             lastName: this.lastName,
             firstName: this.firstName,
@@ -77,7 +78,10 @@ export default {
     back() {
       this.$emit("emitClick");
     }
-  }
+  },
+  computed: mapState({
+    login: state => state.login
+  })
 };
 </script>
 

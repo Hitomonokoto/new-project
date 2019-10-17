@@ -46,6 +46,9 @@ import basicButton from "~/components/BasicButton";
 import basicInput from "~/components/BasicInput";
 import basicTextarea from "~/components/BasicTextarea";
 
+// その他
+import { mapState } from "vuex";
+
 export default {
   components: {
     linkButton,
@@ -63,14 +66,14 @@ export default {
     };
   },
   created() {
-    if (this.$store.state.info.info_data) {
-      this.name = this.$store.state.info.info_data.name;
-      this.email = this.$store.state.info.info_data.email;
-      this.title = this.$store.state.info.info_data.title;
-      this.message = this.$store.state.info.info_data.message;
-    } else if (this.$store.state.login.token) {
-      this.name = this.$store.state.login.user_2.nickname;
-      this.email = this.$store.state.login.user_1.email;
+    if (this.info.info_data) {
+      this.name = this.info.info_data.name;
+      this.email = this.info.info_data.email;
+      this.title = this.info.info_data.title;
+      this.message = this.info.info_data.message;
+    } else if (this.login.token) {
+      this.name = this.login.user_2.nickname;
+      this.email = this.login.user_1.email;
     }
   },
   methods: {
@@ -104,6 +107,10 @@ export default {
       }
     }
   },
+  computed: mapState({
+    login: state => state.login,
+    info: state => state.info
+  }),
   watch: {
     name() {
       document.getElementById("name").classList.remove("error");

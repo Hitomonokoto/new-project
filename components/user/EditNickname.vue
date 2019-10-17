@@ -22,6 +22,7 @@ import basicButton from "~/components/BasicButton";
 import basicInput from "~/components/BasicInput";
 
 // その他
+import { mapState } from "vuex";
 
 export default {
   components: {
@@ -32,7 +33,7 @@ export default {
   data() {
     return {
       new_nickname: null,
-      user_id: this.$store.state.login.user_2.user_id
+      user_id: this.login.user_2.user_id
     };
   },
   methods: {
@@ -49,7 +50,10 @@ export default {
     back() {
       this.$emit("emitClick");
     }
-  }
+  },
+  computed: mapState({
+    login: state => state.login
+  })
 };
 </script>
 

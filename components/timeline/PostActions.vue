@@ -34,6 +34,8 @@
 
 
 <script>
+// その他
+import { mapState } from "vuex";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faCommentAlt } from "@fortawesome/free-solid-svg-icons";
 
@@ -51,7 +53,7 @@ export default {
   },
   methods: {
     getLike() {
-      if (!this.$store.state.login.token) {
+      if (!this.login.token) {
         this.$router.push("/login");
         return;
       }
@@ -59,14 +61,14 @@ export default {
       this.isLike_btn = true;
       this.$store.dispatch("timeline/getLikeAction", {
         post_data: this.post_data,
-        user_id: this.$store.state.login.user_id
+        user_id: this.login.user_id
       });
     },
     loseLike() {
       this.isLike_btn = false;
       this.$store.dispatch("timeline/loseLikeAction", {
         post_data: this.post_data,
-        user_id: this.$store.state.login.user_id
+        user_id: this.login.user_id
       });
     },
     openComment() {
@@ -79,6 +81,9 @@ export default {
     }
   },
   computed: {
+    ...mapState({
+      login: state => state.login
+    }),
     faHeart() {
       return faHeart;
     },
@@ -104,12 +109,14 @@ export default {
   height: 40px;
   line-height: 40px;
   border: none;
+  cursor: pointer;
 }
 .comment_btn {
   width: 50%;
   height: 40px;
   line-height: 40px;
   border: none;
+  cursor: pointer;
 }
 .like_fa {
   color: gray;

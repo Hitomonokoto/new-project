@@ -1,6 +1,6 @@
 <template>
   <main>
-    <mainImage :src="this.farmers.farmer.fields.mainImage.fields.file.url" alt />
+    <mainImage :src="Farmers.farmer.fields.mainImage.fields.file.url" alt />
 
     <div class="index">
       <div
@@ -12,21 +12,21 @@
         class="index_btn index_timeline"
         id="index_timeline"
         @click="openTimeline"
-      >タイムライン</div>
+      >コミュニティ</div>
       <div
         class="index_btn index_products"
         id="index_products"
         @click="openProducts"
-      >応援する</div>
+      >応援</div>
     </div>
-    <div class="contents_area" v-if="isStory">
-      <story :content="this.farmers.farmer.fields.content" />
+    <div class="contents_area" v-show="isStory">
+      <story :content="Farmers.farmer.fields.content" />
     </div>
-    <div class="contents_area" v-if="isTimeline">
-      <timeline :posts="this.$store.state.timeline.selectPosts" />
+    <div class="contents_area" v-show="isTimeline">
+      <timeline />
     </div>
-    <div class="contents_area" v-if="isProducts">
-      <products v-if="$store.state.products.productsByfarmer.length" />
+    <div class="contents_area" v-show="isProducts">
+      <products v-if="Products.productsByfarmer.length" />
     </div>
   </main>
 </template>
@@ -34,9 +34,9 @@
 <script>
 // コンポーネント
 import mainImage from "~/components/MainImage";
-import story from "~/components/farmer/Story";
-import products from "~/components/farmer/Products";
-import timeline from "~/components/timeline/Timeline";
+import story from "~/components/farmer&product/Story";
+import products from "~/components/farmer&product/Products";
+import timeline from "~/components/farmer&product/Timeline";
 
 // その他
 import { mapState } from "vuex";
@@ -62,12 +62,12 @@ export default {
   async created() {
     await this.$store.dispatch(
       "products/getProductsByfarmerAction",
-      this.farmers.farmer.fields.farmId
+      this.Farmers.farmer.fields.farmId
     );
-    console.log(this.farmers.farmer.fields.farmId);
+    console.log(this.Farmers.farmer.fields.farmId);
     await this.$store.dispatch(
       "timeline/getSelectPostsAction",
-      this.farmers.farmer.fields.farmId
+      this.Farmers.farmer.fields.farmId
     );
   },
   methods: {
@@ -96,10 +96,13 @@ export default {
       document.getElementById("index_products").classList.add("opend");
     }
   },
-  computed: mapState({ farmers: "farmers" }),
+  computed: mapState({
+    Farmers: state => state.farmers,
+    Products: state => state.products
+  }),
   head() {
     return {
-      title: this.farmers.farmer.fields.title
+      title: this.Farmers.farmer.fields.title
     };
   }
 };
@@ -117,6 +120,10 @@ export default {
   justify-content: center;
   align-items: center;
   height: 40px;
+  cursor: pointer;
+}
+.index_btn:hover {
+  background-color: lightgreen;
 }
 .index_story {
   width: 34%;
@@ -129,6 +136,7 @@ export default {
 }
 .opend {
   background-color: green;
+  color: white;
 }
 .contents_area {
   width: 100%;

@@ -1,13 +1,5 @@
 <template>
   <div class="timeline">
-    <div class="timeline_menu">
-      <div class="post_btn" v-if="this.$store.state.login.user_2">
-        <sendPostBtn
-          v-if="this.$store.state.login.user_2.user_type == 1"
-          @emitClick="post"
-        />
-      </div>
-    </div>
     <div class="post" v-for="(post, index) in posts" :key="index">
       <posts
         @postEdit="postEdit"
@@ -25,7 +17,6 @@
 // コンポーネント
 import posts from "~/components/timeline/Posts";
 import basicButton from "~/components/BasicButton";
-import sendPostBtn from "~/components/timeline/SendPostBtn";
 
 // その他
 import { mapState } from "vuex";
@@ -33,8 +24,7 @@ import { mapState } from "vuex";
 export default {
   components: {
     posts,
-    basicButton,
-    sendPostBtn
+    basicButton
   },
   data() {
     return {};

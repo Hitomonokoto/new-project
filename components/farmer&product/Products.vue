@@ -3,18 +3,18 @@
     <h3>種主になって応援する</h3>
     <nuxt-link
       class="product"
-      :to="'/products/product/'+$store.state.products.productsByfarmer[0].sys.id"
+      :to="'/products/product/'+products.productsByfarmer[0].sys.id"
     >
       <img
         class="product_img"
-        :src="$store.state.products.productsByfarmer[0].fields.image.fields.file.url"
+        :src="products.productsByfarmer[0].fields.image.fields.file.url"
         alt
       />
     </nuxt-link>
-    <P>{{$store.state.products.productsByfarmer[0].fields.title}}</P>
+    <P>{{products.productsByfarmer[0].fields.title}}</P>
     <linkButton
       cls="top_myfarm"
-      :linkTo="'/products/product/'+$store.state.products.productsByfarmer[0].sys.id"
+      :linkTo="'/products/product/'+products.productsByfarmer[0].sys.id"
       text="詳細ページへ"
     />
   </div>
@@ -25,10 +25,17 @@
 <script>
 // コンポーネント
 import linkButton from "~/components/LinkButton";
+
+// その他
+import { mapState } from "vuex";
+
 export default {
   components: {
     linkButton
-  }
+  },
+  computed: mapState({
+    products: state => state.products
+  })
 };
 </script>
 
