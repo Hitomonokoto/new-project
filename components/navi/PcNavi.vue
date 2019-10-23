@@ -8,15 +8,28 @@
 
     <div class="navi_area">
       <nuxt-link class="navi_link" to="/">
-        <div class="navi_single">ホーム</div>
+        <div class="navi_single">
+          <img class="navi_icon" src="~/assets/naviIcon/home.png" alt />HOME
+        </div>
       </nuxt-link>
       <nuxt-link class="navi_link" to="/products">
-        <div class="navi_single">ギフト</div>
+        <div class="navi_single">
+          <img class="navi_icon" src="~/assets/naviIcon/gift.png" alt />GIFT
+        </div>
       </nuxt-link>
       <nuxt-link class="navi_link" to="/farmers">
-        <div class="navi_single">創り手</div>
+        <div class="navi_single">
+          <img class="navi_icon" src="~/assets/naviIcon/farmer.png" alt />FARMER
+        </div>
       </nuxt-link>
-      <div class="navi_single" @click="mypage">マイページ</div>
+      <nuxt-link class="navi_link" to="/farmers">
+        <div class="navi_single">
+          <img class="navi_icon" src="~/assets/naviIcon/Q&A.png" alt />Q&A
+        </div>
+      </nuxt-link>
+      <div class="navi_single" @click="mypage">
+        <img class="navi_icon" src="~/assets/naviIcon/mypage.png" alt />MYPAGE
+      </div>
     </div>
 
     <div class="login_area" v-if="!login.token">
@@ -87,8 +100,7 @@ export default {
   width: 100%;
   height: 50px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 .navi_single:hover {
@@ -105,5 +117,10 @@ export default {
   background-color: green;
   padding: 5px 20px;
   border-radius: 5px;
+}
+.navi_icon {
+  width: 24px;
+  margin-left: 50px;
+  margin-right: 10px;
 }
 </style>

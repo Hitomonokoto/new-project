@@ -17,26 +17,26 @@
     <div class="bottom_bar">
       <div class="navi_area">
         <nuxt-link class="navi_link" to="/">
-          <img src="~/assets/naviIcon/home.png" alt />
-          <div class="navi_single">ホーム</div>
+          <img src="~/assets/mobileNaviIcon/home.png" alt />
+          <div class="navi_single">HOME</div>
         </nuxt-link>
 
         <nuxt-link class="navi_link" to="/products">
-          <img src="~/assets/naviIcon/gift.png" alt />
-          <div class="navi_single">ギフト</div>
+          <img src="~/assets/mobileNaviIcon/gift.png" alt />
+          <div class="navi_single">GIFT</div>
         </nuxt-link>
 
         <nuxt-link class="navi_link" to="/farmers">
-          <img src="~/assets/naviIcon/farmer.png" alt />
-          <div class="navi_single">創り手</div>
+          <img src="~/assets/mobileNaviIcon/farmer.png" alt />
+          <div class="navi_single">FARMER</div>
         </nuxt-link>
         <nuxt-link class="navi_link" to="/farmers">
-          <img src="~/assets/naviIcon/Q&A.png" alt />
+          <img src="~/assets/mobileNaviIcon/Q&A.png" alt />
           <div class="navi_single">Q&A</div>
         </nuxt-link>
         <div class="mypage_link">
-          <img src="~/assets/naviIcon/mypage.png" alt />
-          <div class="navi_single mypage" @click="mypage">マイページ</div>
+          <img src="~/assets/mobileNaviIcon/mypage.png" alt />
+          <div class="navi_single mypage" @click="mypage">MYPAGE</div>
         </div>
       </div>
     </div>

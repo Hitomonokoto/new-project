@@ -17,21 +17,21 @@
 
     <div class="navi_area">
       <nuxt-link class="navi_link" to="/">
-        <div class="navi_single">ホーム</div>
+        <div class="navi_single">HOME</div>
       </nuxt-link>
 
       <nuxt-link class="navi_link" to="/products">
-        <div class="navi_single">ギフト</div>
+        <div class="navi_single">GIFT</div>
       </nuxt-link>
 
       <nuxt-link class="navi_link" to="/farmers">
-        <div class="navi_single">創り手</div>
+        <div class="navi_single">FARMER</div>
       </nuxt-link>
       <nuxt-link class="navi_link" to="/farmers">
-        <div class="navi_single">未定</div>
+        <div class="navi_single">Q&A</div>
       </nuxt-link>
 
-      <div class="navi_single mypage" @click="mypage">マイページ</div>
+      <div class="navi_single mypage" @click="mypage">MYPAGE</div>
     </div>
   </div>
 </template>

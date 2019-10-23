@@ -21,7 +21,15 @@ export default {
 
 <style scoped>
 img {
-  width: 100%;
+  width: 80%;
   display: block;
+  margin: 30px 0;
+}
+@media screen and (max-width: 960px) {
+  img {
+    width: 100%;
+    display: block;
+    margin: 0;
+  }
 }
 </style>
