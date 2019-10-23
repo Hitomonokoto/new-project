@@ -1,6 +1,6 @@
 <template>
   <main>
-    <mainImage url="/mainImage/mainDamy1.jpg" />
+    <mainImage :url="image_path" />
     <div class="profile_area" v-if="isData">
       <div class="xxx">
         <div class="user_icon">
@@ -85,12 +85,16 @@ export default {
   data() {
     return {
       user_data: {},
+      image_path: null,
       isData: false,
       isNickname: false,
       isBasicData: false
     };
   },
   async created() {
+    const r = Math.floor(Math.random() * 5) + 1;
+    this.image_path = `/mypageImage/${r}.jpg`;
+    console.log(this.image_path);
     const data = await this.$apollo.query({
       query: getCustomer,
       variables: {
