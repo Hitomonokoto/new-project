@@ -3,22 +3,22 @@ import Router from 'vue-router'
 import { interopDefault } from './utils'
 import scrollBehavior from './router.scrollBehavior.js'
 
-const _41f7e30d = () => interopDefault(import('../pages/aboutMyFarm/index.vue' /* webpackChunkName: "pages/aboutMyFarm/index" */))
-const _70ef1aae = () => interopDefault(import('../pages/aboutUs/index.vue' /* webpackChunkName: "pages/aboutUs/index" */))
-const _5d5e36ce = () => interopDefault(import('../pages/farmers/index.vue' /* webpackChunkName: "pages/farmers/index" */))
-const _478a0ae6 = () => interopDefault(import('../pages/info/index.vue' /* webpackChunkName: "pages/info/index" */))
-const _a8cb6d26 = () => interopDefault(import('../pages/kanri/index.vue' /* webpackChunkName: "pages/kanri/index" */))
-const _7d3a3a47 = () => interopDefault(import('../pages/login/index.vue' /* webpackChunkName: "pages/login/index" */))
-const _7bee14c8 = () => interopDefault(import('../pages/products/index.vue' /* webpackChunkName: "pages/products/index" */))
-const _8f177f24 = () => interopDefault(import('../pages/regist/index.vue' /* webpackChunkName: "pages/regist/index" */))
-const _3419446c = () => interopDefault(import('../pages/test/index.vue' /* webpackChunkName: "pages/test/index" */))
-const _53d2da65 = () => interopDefault(import('../pages/unsub/index.vue' /* webpackChunkName: "pages/unsub/index" */))
-const _3d7b11c3 = () => interopDefault(import('../pages/user/index.vue' /* webpackChunkName: "pages/user/index" */))
-const _7479f051 = () => interopDefault(import('../pages/info/confirmation.vue' /* webpackChunkName: "pages/info/confirmation" */))
-const _894c626e = () => interopDefault(import('../pages/login/passWordReset.vue' /* webpackChunkName: "pages/login/passWordReset" */))
-const _0c6377a2 = () => interopDefault(import('../pages/farmers/farmer/_businessId.vue' /* webpackChunkName: "pages/farmers/farmer/_businessId" */))
-const _b0ad459e = () => interopDefault(import('../pages/products/product/_productId.vue' /* webpackChunkName: "pages/products/product/_productId" */))
-const _3c0d98a6 = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
+const _5cae825e = () => interopDefault(import('../pages/aboutMyFarm/index.vue' /* webpackChunkName: "pages/aboutMyFarm/index" */))
+const _1e653b0c = () => interopDefault(import('../pages/aboutUs/index.vue' /* webpackChunkName: "pages/aboutUs/index" */))
+const _f2b9b2c2 = () => interopDefault(import('../pages/farmers/index.vue' /* webpackChunkName: "pages/farmers/index" */))
+const _60ea94b5 = () => interopDefault(import('../pages/info/index.vue' /* webpackChunkName: "pages/info/index" */))
+const _836a0d04 = () => interopDefault(import('../pages/kanri/index.vue' /* webpackChunkName: "pages/kanri/index" */))
+const _e02a2b50 = () => interopDefault(import('../pages/login/index.vue' /* webpackChunkName: "pages/login/index" */))
+const _7d3c002a = () => interopDefault(import('../pages/products/index.vue' /* webpackChunkName: "pages/products/index" */))
+const _084cdb06 = () => interopDefault(import('../pages/regist/index.vue' /* webpackChunkName: "pages/regist/index" */))
+const _015830ce = () => interopDefault(import('../pages/test/index.vue' /* webpackChunkName: "pages/test/index" */))
+const _66838a76 = () => interopDefault(import('../pages/unsub/index.vue' /* webpackChunkName: "pages/unsub/index" */))
+const _56db9b92 = () => interopDefault(import('../pages/user/index.vue' /* webpackChunkName: "pages/user/index" */))
+const _e19ee0bc = () => interopDefault(import('../pages/info/confirmation.vue' /* webpackChunkName: "pages/info/confirmation" */))
+const _02e5ddda = () => interopDefault(import('../pages/login/passWordReset.vue' /* webpackChunkName: "pages/login/passWordReset" */))
+const _f226f91e = () => interopDefault(import('../pages/farmers/farmer/_businessId.vue' /* webpackChunkName: "pages/farmers/farmer/_businessId" */))
+const _7e41cb42 = () => interopDefault(import('../pages/products/product/_productId.vue' /* webpackChunkName: "pages/products/product/_productId" */))
+const _9aa0f704 = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
 
 Vue.use(Router)
 
@@ -31,67 +31,67 @@ export const routerOptions = {
 
   routes: [{
       path: "/aboutMyFarm",
-      component: _41f7e30d,
+      component: _5cae825e,
       name: "aboutMyFarm"
     }, {
       path: "/aboutUs",
-      component: _70ef1aae,
+      component: _1e653b0c,
       name: "aboutUs"
     }, {
       path: "/farmers",
-      component: _5d5e36ce,
+      component: _f2b9b2c2,
       name: "farmers"
     }, {
       path: "/info",
-      component: _478a0ae6,
+      component: _60ea94b5,
       name: "info"
     }, {
       path: "/kanri",
-      component: _a8cb6d26,
+      component: _836a0d04,
       name: "kanri"
     }, {
       path: "/login",
-      component: _7d3a3a47,
+      component: _e02a2b50,
       name: "login"
     }, {
       path: "/products",
-      component: _7bee14c8,
+      component: _7d3c002a,
       name: "products"
     }, {
       path: "/regist",
-      component: _8f177f24,
+      component: _084cdb06,
       name: "regist"
     }, {
       path: "/test",
-      component: _3419446c,
+      component: _015830ce,
       name: "test"
     }, {
       path: "/unsub",
-      component: _53d2da65,
+      component: _66838a76,
       name: "unsub"
     }, {
       path: "/user",
-      component: _3d7b11c3,
+      component: _56db9b92,
       name: "user"
     }, {
       path: "/info/confirmation",
-      component: _7479f051,
+      component: _e19ee0bc,
       name: "info-confirmation"
     }, {
       path: "/login/passWordReset",
-      component: _894c626e,
+      component: _02e5ddda,
       name: "login-passWordReset"
     }, {
       path: "/farmers/farmer/:businessId?",
-      component: _0c6377a2,
+      component: _f226f91e,
       name: "farmers-farmer-businessId"
     }, {
       path: "/products/product/:productId?",
-      component: _b0ad459e,
+      component: _7e41cb42,
       name: "products-product-productId"
     }, {
       path: "/",
-      component: _3c0d98a6,
+      component: _9aa0f704,
       name: "index"
     }],
 

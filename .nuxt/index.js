@@ -12,9 +12,9 @@ import { createStore } from './store.js'
 
 /* Plugins */
 
-import nuxt_plugin_templatesplugin12670bd2_6ce5103f from 'nuxt_plugin_templatesplugin12670bd2_6ce5103f' // Source: ./templates.plugin.12670bd2.js (mode: 'all')
-import nuxt_plugin_axios_752bb35e from 'nuxt_plugin_axios_752bb35e' // Source: ./axios.js (mode: 'all')
-import nuxt_plugin_apollomodule_2c63ddc6 from 'nuxt_plugin_apollomodule_2c63ddc6' // Source: ./apollo-module.js (mode: 'all')
+import nuxt_plugin_templatesplugin11ab37e3_6df55c3d from 'nuxt_plugin_templatesplugin11ab37e3_6df55c3d' // Source: ./templates.plugin.11ab37e3.js (mode: 'all')
+import nuxt_plugin_axios_25a41140 from 'nuxt_plugin_axios_25a41140' // Source: ./axios.js (mode: 'all')
+import nuxt_plugin_apollomodule_2d33632c from 'nuxt_plugin_apollomodule_2d33632c' // Source: ./apollo-module.js (mode: 'all')
 import nuxt_plugin_firebase_5cf99106 from 'nuxt_plugin_firebase_5cf99106' // Source: ../plugins/firebase (mode: 'all')
 import nuxt_plugin_contentful_cbbecb4c from 'nuxt_plugin_contentful_cbbecb4c' // Source: ../plugins/contentful (mode: 'all')
 
@@ -167,16 +167,16 @@ async function createApp(ssrContext) {
 
   // Plugin execution
 
-  if (typeof nuxt_plugin_templatesplugin12670bd2_6ce5103f === 'function') {
-    await nuxt_plugin_templatesplugin12670bd2_6ce5103f(app.context, inject)
+  if (typeof nuxt_plugin_templatesplugin11ab37e3_6df55c3d === 'function') {
+    await nuxt_plugin_templatesplugin11ab37e3_6df55c3d(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_axios_752bb35e === 'function') {
-    await nuxt_plugin_axios_752bb35e(app.context, inject)
+  if (typeof nuxt_plugin_axios_25a41140 === 'function') {
+    await nuxt_plugin_axios_25a41140(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_apollomodule_2c63ddc6 === 'function') {
-    await nuxt_plugin_apollomodule_2c63ddc6(app.context, inject)
+  if (typeof nuxt_plugin_apollomodule_2d33632c === 'function') {
+    await nuxt_plugin_apollomodule_2d33632c(app.context, inject)
   }
 
   if (typeof nuxt_plugin_firebase_5cf99106 === 'function') {
