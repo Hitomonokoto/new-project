@@ -6,6 +6,7 @@
         :user_id="post.user_id"
         :post_data="post"
         :comments="post.comments"
+        :timeline_type="timeline_type"
       />
     </div>
   </div>
@@ -32,6 +33,9 @@ export default {
   props: {
     posts: {
       type: Array
+    },
+    timeline_type: {
+      type: String
     }
   },
   methods: {
@@ -41,6 +45,12 @@ export default {
     postEdit(post_data) {
       console.log(post_data);
       this.$emit("post_edit", post_data);
+    },
+    sendComment(payload) {
+      this.$emit("sendComment", payload);
+    },
+    commentDelete(payload) {
+      this.$emit("commentDelete", payload);
     }
   },
   computed: mapState({ timeline: "timeline" })

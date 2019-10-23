@@ -62,13 +62,12 @@ export default {
   async created() {
     await this.$store.dispatch(
       "products/getProductsByfarmerAction",
-      this.Farmers.farmer.fields.farmId
+      this.Farmers.farmer.fields.businessId
     );
-    console.log(this.Farmers.farmer.fields.farmId);
-    await this.$store.dispatch(
-      "timeline/getSelectPostsAction",
-      this.Farmers.farmer.fields.farmId
-    );
+    await this.$store.dispatch("timeline/getPostsAction", {
+      business_id: this.Farmers.farmer.fields.businessId,
+      timeline_type: "single"
+    });
   },
   methods: {
     openStory() {

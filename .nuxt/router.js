@@ -16,7 +16,7 @@ const _53d2da65 = () => interopDefault(import('../pages/unsub/index.vue' /* webp
 const _3d7b11c3 = () => interopDefault(import('../pages/user/index.vue' /* webpackChunkName: "pages/user/index" */))
 const _7479f051 = () => interopDefault(import('../pages/info/confirmation.vue' /* webpackChunkName: "pages/info/confirmation" */))
 const _894c626e = () => interopDefault(import('../pages/login/passWordReset.vue' /* webpackChunkName: "pages/login/passWordReset" */))
-const _9c1e01d0 = () => interopDefault(import('../pages/farmers/farmer/_farmId.vue' /* webpackChunkName: "pages/farmers/farmer/_farmId" */))
+const _0c6377a2 = () => interopDefault(import('../pages/farmers/farmer/_businessId.vue' /* webpackChunkName: "pages/farmers/farmer/_businessId" */))
 const _b0ad459e = () => interopDefault(import('../pages/products/product/_productId.vue' /* webpackChunkName: "pages/products/product/_productId" */))
 const _3c0d98a6 = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
 
@@ -82,9 +82,9 @@ export const routerOptions = {
       component: _894c626e,
       name: "login-passWordReset"
     }, {
-      path: "/farmers/farmer/:farmId?",
-      component: _9c1e01d0,
-      name: "farmers-farmer-farmId"
+      path: "/farmers/farmer/:businessId?",
+      component: _0c6377a2,
+      name: "farmers-farmer-businessId"
     }, {
       path: "/products/product/:productId?",
       component: _b0ad459e,

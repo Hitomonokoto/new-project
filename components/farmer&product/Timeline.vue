@@ -1,23 +1,27 @@
 <template>
   <div class="timeline">
     <div class="post_btn" v-if="isPost_btn && login.user_2">
-      <sendPostBtn
-        v-if="login.user_2.farmer_id == farmers.farmer.sys.id"
-        @emitClick="post"
-      />
+      <div v-if="farmers.farmer">
+        <sendPostBtn
+          v-if="login.user_2.farmer_id == farmers.farmer.sys.id"
+          @emitClick="post"
+        />
+      </div>
     </div>
 
     <timeline
       v-if="isTimeline"
       @post="post"
       @post_edit="post_edit"
-      :posts="timeline.selectPosts"
+      :posts="timeline.PostsSingle"
+      timeline_type="single"
     />
-    <post v-if="isPost" @emitBack="postBack" @emitSendPost="sendPost" />
+    <post v-if="isPost" @emitBack="postBack" timeline_type="single" />
     <postEdit
       v-if="isPostEdit"
       @editBack="editBack"
       :post_data="this.post_data"
+      timeline_type="single"
     />
   </div>
 </template>
@@ -67,10 +71,6 @@ export default {
       this.isPostEdit = true;
       this.isTimeline = false;
       this.isPost_btn = false;
-    },
-    sendPost(payload) {
-      this.$store.dispatch("timeline/PostSingleAction", payload);
-      this.postBack();
     }
   },
   computed: mapState({

@@ -23,14 +23,16 @@
     <timeline
       v-if="isTimeline"
       :posts="timeline.posts"
+      timeline_type="all"
       @post="post"
       @post_edit="post_edit"
     />
-    <post v-if="isPost" @emitBack="postBack" @emitSendPost="sendPost" />
+    <post v-if="isPost" @emitBack="postBack" timeline_type="all" />
     <postEdit
       v-if="isPostEdit"
       @editBack="editBack"
       :post_data="this.post_data"
+      timeline_type="all"
     />
   </main>
 </template>
@@ -72,8 +74,16 @@ export default {
     };
   },
   async fetch({ store }) {
-    await store.dispatch("timeline/getPostsAction");
+    await store.dispatch("timeline/getPostsAction", { timeline_type: "all" });
     await store.dispatch("products/getProductsAction");
+  },
+  created() {
+    if (this.login.token) {
+      this.$store.dispatch(
+        "timeline/getLikesAction",
+        this.login.user_2.user_id
+      );
+    }
   },
   methods: {
     post() {
@@ -104,10 +114,6 @@ export default {
       this.isPostEdit = false;
       this.isPost_btn = true;
       this.post_data = "";
-    },
-    sendPost(payload) {
-      this.$store.dispatch("timeline/PostAction", payload);
-      this.postBack();
     }
   },
   computed: mapState({

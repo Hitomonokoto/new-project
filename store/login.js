@@ -47,9 +47,7 @@ export const actions = {
   },
   // ユーザー情報を取得
   async getUserAction_2(context, payload) {
-    // const user = await db.collection('users').where("user_id", "==", payload).get();
     const user = await db.collection('users').doc(payload).get();
-    // context.commit('getUser_2', user.docs[0].payload());
     console.log(user.data())
     context.commit('getUser_2', user.data());
   },

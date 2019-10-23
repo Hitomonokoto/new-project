@@ -2,19 +2,17 @@ import client from "~/plugins/contentful";
 
 export const state = () => ({
     farmers: [],
-    farmerByMyfarm: [],
-    farmer: []
+    farmer: null
 })
 
 export const mutations = {
     getFarmers(state, data) {
         state.farmers = data
     },
-    getFarmerByMyfarm(state, data) {
-        state.farmerByMyfarm = data
-    },
     getFarmer(state, data) {
         state.farmer = data
+        console.log("plplplplplplplplplpl")
+        console.log(data)
     }
 }
 
@@ -29,20 +27,21 @@ export const actions = {
     },
     // マイファーム詳細ページでの生産者を取得
     async getFarmerByMyfarmAction(context, data) {
-        console.log("ここまできてる？")
         const entries = await client.getEntries({
             content_type: "farmer",
             order: '-sys.createdAt'
         });
         const serchItems = entries.items;
         const serchData = serchItems.filter(d => {
-            return d.fields.farmId === data
+            return d.fields.businessId === data
         })
-        context.commit('getFarmerByMyfarm', serchData);
+        console.log("okokokokokoko")
+        console.log(serchData[0])
+        context.commit('getFarmer', serchData[0]);
     },
     // ひとりの生産者を取得
     async getFarmerAction(context, params) {
-        const entry = await client.getEntry(params.farmId);
+        const entry = await client.getEntry(params.businessId);
         context.commit('getFarmer', entry);
 
     }

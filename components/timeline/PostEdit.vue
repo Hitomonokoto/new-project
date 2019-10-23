@@ -5,8 +5,8 @@
       <div class="name_and_back">
         <p class="nickname">{{post_data.name}}</p>
         <div class="actions">
-          <basicButton cls="back_btn" @emitClick="back">戻る</basicButton>
-          <basicButton cls="post_delete_btn" @emitClick="postDalete">削除</basicButton>
+          <basicButton cls="back_btn" @emitClick="emitBack">戻る</basicButton>
+          <basicButton cls="post_delete_btn" @emitClick="deletePost">削除</basicButton>
         </div>
       </div>
     </div>
@@ -32,7 +32,7 @@
       placeholder="本文を入力してください..."
     />
     <input type="file" @change="setFiles($event)" />
-    <basicButton cls="update_btn" @emitClick="update">更新</basicButton>
+    <basicButton cls="update_btn" @emitClick="updatePost">更新</basicButton>
   </div>
 </template>
 
@@ -60,25 +60,30 @@ export default {
   props: {
     post_data: {
       type: Object
+    },
+    timeline_type: {
+      type: String
     }
   },
   methods: {
-    back() {
+    emitBack() {
       this.$emit("editBack");
     },
     fileDalete() {
       this.fileUrl = null;
     },
-    postDalete() {
-      this.$store.dispatch("timeline/deletePostAction", this.post_data);
-      this.$emit("editBack");
+    deletePost() {
+      this.$store.dispatch("timeline/deletePostAction", {
+        post_data: this.post_data,
+        timeline_type: this.timeline_type
+      });
+      this.emitBack();
     },
     setFiles(e) {
       const file = (e.target.files || e.dataTransfer.files)[0];
       if (file) {
         const fileName = uuid();
         if (this.fileName) {
-          console.log("1");
           this.$store
             .dispatch("timeline/changeUploadImage", {
               oldFileName: this.fileName,
@@ -90,7 +95,6 @@ export default {
               this.fileUrl = url;
             });
         } else {
-          console.log("2");
           this.$store
             .dispatch("timeline/uploadImage", {
               name: fileName,
@@ -103,19 +107,20 @@ export default {
         }
       }
     },
-    update() {
+    updatePost() {
       if (this.text == "" && !this.fileName) {
         return;
       }
       this.$store.dispatch("timeline/PostEditAction", {
         post_id: this.post_data.post_id,
+        business_id: this.post_data.business_id,
         title: this.title,
         text: this.text,
         fileName: this.fileName,
-        fileUrl: this.fileUrl
+        fileUrl: this.fileUrl,
+        timeline_type: this.timeline_type
       });
-
-      this.$emit("editBack");
+      this.emitBack();
     }
   },
   computed: mapState({

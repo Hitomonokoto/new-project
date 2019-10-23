@@ -35,7 +35,7 @@ export const actions = {
         });
         const serchItems = entries.items;
         const serchData = serchItems.filter(d => {
-            return d.fields.farmId === data
+            return d.fields.businessId === data
         })
         context.commit('getProductsByfarmer', serchData);
     },

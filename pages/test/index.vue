@@ -24,7 +24,6 @@ export default {
       }
     });
     this.$store.commit("login/getUser_1", user.data.customer);
-    console.log("11111111");
     this.$store.dispatch("login/getUserAction_2", user.data.customer.id);
     this.$router.push("/");
   },

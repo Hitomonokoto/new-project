@@ -22,10 +22,6 @@ export default {
       comment: null
     };
   },
-  props: {
-    comment_count: {
-      type: Number
-    },
     post_id: {
       type: String
     },
@@ -45,8 +41,7 @@ export default {
         user_id: this.login.user_2.user_id,
         name: this.login.user_2.nickname,
         post_id: this.post_id,
-        text: this.comment,
-        comment_count: this.comment_count
+        text: this.comment
       });
       this.comment = "";
     }

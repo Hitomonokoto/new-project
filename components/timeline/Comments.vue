@@ -1,5 +1,4 @@
 <template>
-  <!-- <div v-show="this.comments" class="comments"> -->
   <div class="comments">
     <div v-if="this.login.token" class="send_comment">
       <userIcon cls="send_comment_icon" :url="login.user_2.user_icon" />
@@ -69,16 +68,19 @@ export default {
     };
   },
   props: {
-    comment_count: {
-      type: Number
-    },
     post_id: {
       type: String
+    },
+    business_id: {
+      type: Number
     },
     comments: {
       type: Array
     },
     login_user_id: {
+      type: String
+    },
+    timeline_type: {
       type: String
     }
   },
@@ -89,19 +91,21 @@ export default {
       }
       this.$store.dispatch("timeline/commentAction", {
         user_id: this.login.user_2.user_id,
+        business_id: this.business_id,
         user_icon: this.login.user_2.user_icon,
         name: this.login.user_2.nickname,
         post_id: this.post_id,
         text: this.new_comment,
-        comment_count: this.comment_count
+        timeline_type: this.timeline_type
       });
       this.new_comment = "";
     },
     commentDelete(comment) {
       this.$store.dispatch("timeline/commentDeleteAction", {
         post_id: this.post_id,
+        business_id: this.business_id,
         comment_id: comment.comment_id,
-        comment_count: this.comment_count
+        timeline_type: this.timeline_type
       });
     },
     adjustHeight() {
@@ -155,8 +159,6 @@ export default {
   width: 100%;
   padding: 10px;
   margin-bottom: 20px;
-}
-.comment_list {
 }
 .comment {
   display: flex;

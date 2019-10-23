@@ -48,7 +48,7 @@ export default {
     userIcon
   },
   props: {
-    farmerSelect_id: {
+    timeline_type: {
       type: String
     }
   },
@@ -64,30 +64,24 @@ export default {
     back() {
       this.$emit("emitBack");
     },
-    setFiles(e) {
+    async setFiles(e) {
       const file = (e.target.files || e.dataTransfer.files)[0];
       if (file) {
         const fileName = uuid();
         if (this.fileName) {
-          this.$store
-            .dispatch("timeline/changeUploadImage", {
-              name: fileName,
-              file: file
-            })
-            .then(url => {
-              this.fileName = fileName;
-              this.fileUrl = url;
-            });
+          const url = await this.$store.dispatch("timeline/changeUploadImage", {
+            name: fileName,
+            file: file
+          });
+          this.fileName = fileName;
+          this.fileUrl = url;
         } else {
-          this.$store
-            .dispatch("timeline/uploadImage", {
-              name: fileName,
-              file: file
-            })
-            .then(url => {
-              this.fileName = fileName;
-              this.fileUrl = url;
-            });
+          const url = await this.$store.dispatch("timeline/uploadImage", {
+            name: fileName,
+            file: file
+          });
+          this.fileName = fileName;
+          this.fileUrl = url;
         }
       }
     },
@@ -95,7 +89,7 @@ export default {
       if (!this.title && !this.text && !this.fileName) {
         return;
       }
-      this.$emit("emitSendPost", {
+      this.$store.dispatch("timeline/PostAction", {
         user_id: this.login.user_2.user_id,
         business_id: this.login.user_2.business_id,
         farmer_id: this.login.user_2.farmer_id,
@@ -104,8 +98,10 @@ export default {
         title: this.title,
         text: this.text,
         fileName: this.fileName,
-        fileUrl: this.fileUrl
+        fileUrl: this.fileUrl,
+        timeline_type: this.timeline_type
       });
+      this.$emit("emitBack");
     }
   },
   computed: mapState({

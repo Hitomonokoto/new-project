@@ -25,16 +25,18 @@
       <img class="post_img" :src="this.post_data.fileUrl" />
       <p class="post_text">{{ post_data.text }}</p>
       <postActions
-        :post_data="post_data"
         @openComments="openComments"
         @closeComments="closeComments"
+        :post_data="post_data"
+        :timeline_type="timeline_type"
       />
       <comments
         v-if="isComments"
-        :comment_count="this.post_data.comment_count"
         :post_id="this.post_data.post_id"
+        :business_id="this.post_data.business_id"
         :comments="this.comments"
         :login_user_id="this.login.user_id"
+        :timeline_type="timeline_type"
       />
     </div>
   </div>
@@ -63,6 +65,9 @@ export default {
     },
     user_id: {
       type: String
+    },
+    timeline_type: {
+      type: String
     }
   },
   data() {
@@ -75,8 +80,6 @@ export default {
   methods: {
     openComments() {
       this.isComments = true;
-      console.log("dsjvnbksdvbasdkvgbsjkghvbsz,djkfghz,sdhjfbjhdzsbgzd");
-      console.log(this.post_data.post_id);
       this.$store.dispatch(
         "timeline/getCommentsAction",
         this.post_data.post_id
@@ -102,7 +105,6 @@ export default {
       }
       if (x < 86400000) {
         const z = Math.floor(x / 3600000);
-        console.log(z);
         return z + "時間前";
       }
       const month = d.getMonth() + 1;

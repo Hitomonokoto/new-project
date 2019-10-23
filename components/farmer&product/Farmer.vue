@@ -1,21 +1,18 @@
 <template>
-  <div class="aboutFarmer" v-if="farmers.farmerByMyfarm.length">
+  <div class="aboutFarmer" v-if="farmers.farmer">
     <h3>創り手について</h3>
-    <nuxt-link
-      class="link_area"
-      :to="'/farmers/farmer/'+farmers.farmerByMyfarm[0].sys.id"
-    >
+    <nuxt-link class="link_area" :to="'/farmers/farmer/'+farmers.farmer.sys.id">
       <img
         class="farmer_img"
-        :src="farmers.farmerByMyfarm[0].fields.mainImage.fields.file.url"
+        :src="farmers.farmer.fields.mainImage.fields.file.url"
         alt
       />
-      <P>{{farmers.farmerByMyfarm[0].fields.farmName}}</P>
+      <P>{{farmers.farmer.fields.farmName}}</P>
     </nuxt-link>
 
     <linkButton
       cls="top_myfarm"
-      :linkTo="'/farmers/farmer/'+farmers.farmerByMyfarm[0].sys.id"
+      :linkTo="'/farmers/farmer/'+farmers.farmer.sys.id"
       text="この創り手のページに行く"
     />
   </div>

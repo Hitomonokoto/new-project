@@ -1,32 +1,26 @@
 <template>
   <div class="actions">
-    <div class="like_btn" v-if="!isLike_btn" @click="getLike">
+    <div class="like_btn" @click="getLike">
       <fa class="like_fa" :icon="faHeart" />
       <span
         class="like_fa"
         v-show="post_data.like_count!=0"
-      >{{ post_data.like_count }}</span>
+      >{{ post_data.like_count }}</span>いいね！
     </div>
-    <div class="like_btn" v-if="isLike_btn" @click="loseLike">
-      <fa class="get_like_fa" :icon="faHeart" />
-      <span
-        class="get_like_fa"
-        v-show="post_data.like_count!=0"
-      >{{ post_data.like_count }}</span>
-    </div>
+
     <div class="comment_btn" v-if="!isComment_btn" @click="openComment">
       <fa class="comment_fa" :icon="faCommentAlt" />
       <span
         class="comment_fa"
         v-show="post_data.comment_count!=0"
-      >{{ post_data.comment_count }}</span>
+      >{{ post_data.comment_count }}</span>コメント
     </div>
     <div class="comment_btn" v-if="isComment_btn" @click="closeComments">
       <fa class="comment_fa" :icon="faCommentAlt" />
       <span
         class="comment_fa"
         v-show="post_data.comment_count!=0"
-      >{{ post_data.comment_count }}</span>
+      >{{ post_data.comment_count }}</span>コメント
     </div>
   </div>
 </template>
@@ -43,33 +37,39 @@ export default {
   props: {
     post_data: {
       type: Object
+    },
+    timeline_type: {
+      type: String
     }
   },
   data() {
     return {
-      isComment_btn: false,
-      isLike_btn: false
+      isComment_btn: false
     };
   },
   methods: {
     getLike() {
-      if (!this.login.token) {
+      if (!this.Login.token) {
         this.$router.push("/login");
         return;
       }
-
-      this.isLike_btn = true;
-      this.$store.dispatch("timeline/getLikeAction", {
-        post_data: this.post_data,
-        user_id: this.login.user_id
-      });
-    },
-    loseLike() {
-      this.isLike_btn = false;
-      this.$store.dispatch("timeline/loseLikeAction", {
-        post_data: this.post_data,
-        user_id: this.login.user_id
-      });
+      if (this.Timeline.likes.indexOf(this.post_data.post_id) >= 0) {
+        this.$store.dispatch("timeline/loseLikeAction", {
+          post_data: this.post_data,
+          user_id: this.Login.user_id,
+          business_id: this.post_data.business_id,
+          timeline_type: this.timeline_type
+        });
+        console.log("11111");
+      } else {
+        this.$store.dispatch("timeline/getLikeAction", {
+          post_data: this.post_data,
+          user_id: this.Login.user_id,
+          business_id: this.post_data.business_id,
+          timeline_type: this.timeline_type
+        });
+        console.log("22222");
+      }
     },
     openComment() {
       this.isComment_btn = true;
@@ -82,7 +82,8 @@ export default {
   },
   computed: {
     ...mapState({
-      login: state => state.login
+      Login: state => state.login,
+      Timeline: state => state.timeline
     }),
     faHeart() {
       return faHeart;

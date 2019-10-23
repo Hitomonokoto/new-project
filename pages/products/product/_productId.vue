@@ -16,7 +16,7 @@
       <div
         class="index_btn index_farmer"
         id="index_farmer"
-        @click="openProducts"
+        @click="openFarmer"
       >創り手</div>
     </div>
     <basicButton cls="checkout_btn" @emitClick="checkout">種主になる</basicButton>
@@ -26,7 +26,7 @@
     <div class="contents_area" v-show="isTimeline">
       <timeline />
     </div>
-    <div class="contents_area" v-show="isProducts">
+    <div class="contents_area" v-show="isFarmer">
       <farmer />
     </div>
   </main>
@@ -60,13 +60,21 @@ export default {
       product_id: "",
       isStory: true,
       isTimeline: false,
-      isProducts: false
+      isFarmer: false
     };
   },
+  async fetch({ params, store }) {
+    await store.dispatch("products/getProductAction", params);
+  },
   async created() {
+    this.$store.dispatch("timeline/getPostsAction", {
+      business_id: this.Products.product.fields.businessId,
+      timeline_type: "single"
+    });
+
     this.$store.dispatch(
       "farmers/getFarmerByMyfarmAction",
-      this.Products.product.fields.farmId
+      this.Products.product.fields.businessId
     );
     const data = await this.$apollo.query({
       query: getProduct,
@@ -75,9 +83,6 @@ export default {
       }
     });
     this.product_id = data.data.node.variants.edges[0].node.id;
-  },
-  async fetch({ params, store }) {
-    await store.dispatch("products/getProductAction", params);
   },
   methods: {
     async checkout() {
@@ -93,7 +98,7 @@ export default {
     openStory() {
       this.isStory = true;
       this.isTimeline = false;
-      this.isProducts = false;
+      this.isFarmer = false;
       document.getElementById("index_description").classList.add("opend");
       document.getElementById("index_timeline").classList.remove("opend");
       document.getElementById("index_farmer").classList.remove("opend");
@@ -101,15 +106,15 @@ export default {
     openTimeline() {
       this.isStory = false;
       this.isTimeline = true;
-      this.isProducts = false;
+      this.isFarmer = false;
       document.getElementById("index_description").classList.remove("opend");
       document.getElementById("index_timeline").classList.add("opend");
       document.getElementById("index_farmer").classList.remove("opend");
     },
-    openProducts() {
+    openFarmer() {
       this.isStory = false;
       this.isTimeline = false;
-      this.isProducts = true;
+      this.isFarmer = true;
       document.getElementById("index_description").classList.remove("opend");
       document.getElementById("index_timeline").classList.remove("opend");
       document.getElementById("index_farmer").classList.add("opend");
