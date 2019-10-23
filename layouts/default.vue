@@ -52,7 +52,6 @@ export default {
   box-sizing: border-box;
   text-decoration: none;
   list-style: none;
-  color: black;
 }
 .container {
   display: flex;

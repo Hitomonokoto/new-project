@@ -17,21 +17,27 @@
     <div class="bottom_bar">
       <div class="navi_area">
         <nuxt-link class="navi_link" to="/">
+          <img src="~/assets/naviIcon/home.png" alt />
           <div class="navi_single">ホーム</div>
         </nuxt-link>
 
         <nuxt-link class="navi_link" to="/products">
-          <div class="navi_single">体験</div>
+          <img src="~/assets/naviIcon/gift.png" alt />
+          <div class="navi_single">ギフト</div>
         </nuxt-link>
 
         <nuxt-link class="navi_link" to="/farmers">
+          <img src="~/assets/naviIcon/farmer.png" alt />
           <div class="navi_single">創り手</div>
         </nuxt-link>
         <nuxt-link class="navi_link" to="/farmers">
-          <div class="navi_single">未定</div>
+          <img src="~/assets/naviIcon/Q&A.png" alt />
+          <div class="navi_single">Q&A</div>
         </nuxt-link>
-
-        <div class="navi_single mypage" @click="mypage">マイページ</div>
+        <div class="mypage_link">
+          <img src="~/assets/naviIcon/mypage.png" alt />
+          <div class="navi_single mypage" @click="mypage">マイページ</div>
+        </div>
       </div>
     </div>
   </div>
@@ -104,7 +110,7 @@ export default {
   bottom: 0;
   width: 100%;
   display: flex;
-  background-color: white;
+  background-color: green;
 }
 .navi_area {
   width: 100%;
@@ -115,20 +121,28 @@ export default {
 }
 .navi_link {
   width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 5px 0;
 }
 .navi_single {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 50px;
   cursor: pointer;
+  color: white;
 }
 .navi_single:hover {
   background-color: green;
   color: white;
 }
-.mypage {
+.mypage_link {
   width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 5px 0;
 }
 </style>

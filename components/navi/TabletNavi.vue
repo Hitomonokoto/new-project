@@ -21,7 +21,7 @@
       </nuxt-link>
 
       <nuxt-link class="navi_link" to="/products">
-        <div class="navi_single">体験</div>
+        <div class="navi_single">ギフト</div>
       </nuxt-link>
 
       <nuxt-link class="navi_link" to="/farmers">
