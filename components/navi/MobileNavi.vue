@@ -80,6 +80,7 @@ export default {
 .top_bar {
   position: fixed;
   top: 0;
+  z-index: 10;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -108,6 +109,7 @@ export default {
 .bottom_bar {
   position: fixed;
   bottom: 0;
+  z-index: 10;
   width: 100%;
   display: flex;
   background-color: green;

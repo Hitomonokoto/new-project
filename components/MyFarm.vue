@@ -6,37 +6,35 @@
       :to="'/products/product/'+product.sys.id"
       :key="index"
     >
-      <nuxt-link class="link_img" :to="'/products/product/'+product.sys.id">
-        <div class="product_img">
-          <img :src="product.fields.image.fields.file.url" />
-        </div>
-      </nuxt-link>
-      <div class="product_text">
-        <div class="product_info">
-          <nuxt-link
-            class="link_area"
-            :to="'/products/product/'+product.sys.id"
-          >
-            <p>{{ product.fields.title }}</p>
-            <p>{{ product.fields.farmName }}</p>
-            <p>{{ product.fields.summary }}</p>
-          </nuxt-link>
+      <nuxt-link :to="'/products/product/'+product.sys.id">
+        <div class="title_area">
+          <div class="info">
+            <nuxt-link :to="'/farmers/farmer/'+product.fields.farmId">
+              <img
+                class="farm_icon"
+                :src="product.fields.farmIcon.fields.file.url"
+              />
+            </nuxt-link>
+            <div class="name_area">
+              <nuxt-link :to="'/farmers/farmer/'+product.fields.farmId">
+                <p class="farm_name">{{product.fields.farmName}}</p>
+              </nuxt-link>
+              <p class="product_name">{{product.fields.title}}</p>
+            </div>
+          </div>
         </div>
 
-        <div class="actions">
-          <div class="read_more">
-            <nuxt-link
-              class="link_area"
-              :to="'/products/product/'+product.sys.id"
-            >
-              <p>詳細ページへ</p>
-            </nuxt-link>
-          </div>
+        <div class="product_img">
+          <img :src="product.fields.image.fields.file.url" />
           <div class="checkout">
-            <p>購入する</p>
+            <img src="~/assets/gift.svg" />
           </div>
         </div>
-      </div>
+
+        <div class="product_page">
+          <p>詳細ページへ</p>
+        </div>
+      </nuxt-link>
     </div>
   </div>
 </template>
@@ -44,6 +42,10 @@
 
 
 <script>
+import firebase from "~/plugins/firebase";
+require("firebase/firestore");
+const db = firebase.firestore();
+
 export default {
   props: {
     products: {
@@ -56,6 +58,9 @@ export default {
 
 
 <style scoped>
+p {
+  color: black;
+}
 .products {
   display: flex;
   justify-content: center;
@@ -70,56 +75,57 @@ export default {
   box-shadow: 0px 0px 6px #d1d1d1;
   border-radius: 5px;
 }
-.link_img {
-  width: 100%;
+.info {
+  display: flex;
+  align-items: center;
 }
-.link_info {
-  width: 100%;
+.farm_name {
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+.product_name {
+  font-weight: bold;
 }
 .product_img {
   width: 100%;
+  position: relative;
 }
 .product_img > img {
   width: 100%;
-  border-radius: 5px 5px 0 0;
   display: block;
 }
-.product_text {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.product_info {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.actions {
-  width: 100%;
-  display: flex;
-}
-.read_more {
-  width: 70%;
-  height: 50px;
-  background-color: rgb(243, 243, 243);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
 .checkout {
-  width: 30%;
+  width: 50px;
   height: 50px;
-  background-color: rgb(255, 80, 153);
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  background-color: white;
+  box-shadow: 0px 0px 6px gray;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.checkout > img {
+  height: 30px;
+}
+.product_page {
+  width: 100%;
+  height: 30px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-radius: 0 0 5px 0;
+  border-radius: 0 0 5px 5px;
+  background-color: lightgray;
 }
-
+.farm_icon {
+  display: block;
+  width: 50px;
+  border-radius: 5px;
+  margin: 5px;
+}
 @media screen and (max-width: 960px) {
   .products {
     width: 100%;
@@ -128,75 +134,21 @@ export default {
     align-items: center;
   }
   .product {
-    width: 80%;
+    width: 60%;
     flex-direction: row;
     margin-bottom: 30px;
     border-radius: 5px;
     box-shadow: 0px 0px 6px #d1d1d1;
   }
-  .link_img {
-    width: 50%;
-  }
-  .link_info {
-    width: 100%;
-    height: 100%;
-  }
-  .product_img {
-    width: 100%;
-  }
-  .product_img > img {
-    width: 100%;
-    border-radius: 5px 0 0 5px;
-    display: block;
-  }
-  .product_text {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .product_info {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  .actions {
-    display: flex;
-  }
 }
 
 @media screen and (max-width: 560px) {
-  .products {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 90%;
-  }
   .product {
-    width: 100%;
+    width: 90%;
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
     border-radius: 5px;
-  }
-  .link_img {
-    width: 100%;
-  }
-  .product_img {
-    width: 100%;
-  }
-  .product_img > img {
-    border-radius: 5px 5px 0 0;
-  }
-  .product_text {
-    width: 100%;
-  }
-  .read_more {
-    border-radius: 0 0 5px 5px;
   }
 }
 </style>

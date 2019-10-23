@@ -10,13 +10,15 @@
       />
     </div>
     <div v-show="!isPost" class="myfarm_contents">
-      <h2>新着・オススメの体験銘柄</h2>
-      <p>創り手の畑を所有し、モノづくりの過程を楽しみながら創り手を応援しましょう！</p>
+      <h2>Gift</h2>
+      <img class="gift_icon" src="~/assets/gift.svg" alt />
+      <p>豊さを味わう</p>
       <myFarm :products="this.products.products" />
       <linkButton cls="top_products" linkTo="/products" text="もっと見る" />
     </div>
-    <h2>コミュニティ</h2>
-    <p>創り手と繋がりましょう。</p>
+    <h2>Diary</h2>
+    <img class="heart_icon" src="~/assets/heart.svg" alt />
+    <p>日々を楽しむ</p>
     <div class="post_btn" v-if="isPost_btn && login.user_2">
       <sendPostBtn v-if="login.user_2.user_type == 1" @emitClick="post" />
     </div>
@@ -135,5 +137,11 @@ export default {
 .myfarm_contents > p {
   margin-bottom: 20px;
   padding: 0 10px;
+}
+.gift_icon {
+  width: 100px;
+}
+.heart_icon {
+  width: 100px;
 }
 </style>
