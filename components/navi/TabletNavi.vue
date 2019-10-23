@@ -10,28 +10,41 @@
           <div class="login">ログイン</div>
         </nuxt-link>
         <nuxt-link to="/regist">
-          <div class="regist">新規登録</div>
+          <div class="regist">
+            <img class="regist_icon" src="~/assets/naviIcon/beginner.png" alt />
+            <p>新規登録</p>
+          </div>
         </nuxt-link>
       </div>
     </div>
 
     <div class="navi_area">
       <nuxt-link class="navi_link" to="/">
-        <div class="navi_single">HOME</div>
+        <div class="navi_single">
+          <p class="navi_name">HOME</p>
+        </div>
       </nuxt-link>
 
       <nuxt-link class="navi_link" to="/products">
-        <div class="navi_single">GIFT</div>
+        <div class="navi_single">
+          <p class="navi_name">GIFT</p>
+        </div>
       </nuxt-link>
 
       <nuxt-link class="navi_link" to="/farmers">
-        <div class="navi_single">FARMER</div>
+        <div class="navi_single">
+          <p class="navi_name">FARMER</p>
+        </div>
       </nuxt-link>
       <nuxt-link class="navi_link" to="/farmers">
-        <div class="navi_single">Q&A</div>
+        <div class="navi_single">
+          <p class="navi_name">Q&A</p>
+        </div>
       </nuxt-link>
 
-      <div class="navi_single mypage" @click="mypage">MYPAGE</div>
+      <div class="navi_single mypage" @click="mypage">
+        <p class="navi_name">MYPAGE</p>
+      </div>
     </div>
   </div>
 </template>
@@ -69,6 +82,9 @@ export default {
 </script>
 
 <style scoped>
+p {
+  color: black;
+}
 .tablet_navi {
   position: fixed;
   top: 0;
@@ -99,8 +115,9 @@ export default {
 .login {
   color: white;
   background-color: green;
-  padding: 5px 20px;
+  padding: 5px 50px;
   border-radius: 5px;
+  margin-bottom: 5px;
 }
 .navi_area {
   width: 100%;
@@ -122,9 +139,19 @@ export default {
 }
 .navi_single:hover {
   background-color: green;
+}
+.navi_single:hover .navi_name {
   color: white;
 }
 .mypage {
   width: 20%;
+}
+.regist {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.regist_icon {
+  width: 24px;
 }
 </style>
