@@ -37,7 +37,7 @@ export const actions = {
   // 新規ユーザー登録
   async createUserAction(context, payload) {
     const docRef = await db.collection("users").doc(payload.user_id);
-    const setAda = docRef.set({
+    docRef.set({
       user_id: payload.user_id,
       user_icon: "/samplein.jpg",
       nickname: payload.nickname,
@@ -54,7 +54,7 @@ export const actions = {
   // ニックネームを変更
   async changeNicknameAction(context, payload) {
     const docRef = await db.collection("users").doc(payload.user_id);
-    const setAda = docRef.update({
+    docRef.update({
       nickname: payload.new_nickname
     });
     context.dispatch("getUserAction_2", payload.user_id)
@@ -69,14 +69,6 @@ export const actions = {
         customer: payload.data
       }
     });
-    console.log(yyy);
-
-
-
-
-
-
-
     context.dispatch("getUserAction_2", payload.user_id)
   }
 }

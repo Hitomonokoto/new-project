@@ -8,15 +8,33 @@
 
     <div class="navi_area">
       <nuxt-link class="navi_link" to="/">
-        <div class="navi_single">ホーム</div>
+        <div class="navi_single">
+          <img class="navi_icon" src="~/assets/naviIcon/home.png" alt />
+          <p class="navi_name">HOME</p>
+        </div>
       </nuxt-link>
       <nuxt-link class="navi_link" to="/products">
-        <div class="navi_single">体験</div>
+        <div class="navi_single">
+          <img class="navi_icon" src="~/assets/naviIcon/gift.png" alt />
+          <p class="navi_name">GIFT</p>
+        </div>
       </nuxt-link>
       <nuxt-link class="navi_link" to="/farmers">
-        <div class="navi_single">創り手</div>
+        <div class="navi_single">
+          <img class="navi_icon" src="~/assets/naviIcon/farmer.png" alt />
+          <p class="navi_name">FARMER</p>
+        </div>
       </nuxt-link>
-      <div class="navi_single" @click="mypage">マイページ</div>
+      <nuxt-link class="navi_link" to="/farmers">
+        <div class="navi_single">
+          <img class="navi_icon" src="~/assets/naviIcon/Q&A.png" alt />
+          <p class="navi_name">Q&A</p>
+        </div>
+      </nuxt-link>
+      <div class="navi_single" @click="mypage">
+        <img class="navi_icon" src="~/assets/naviIcon/mypage.png" alt />
+        <p class="navi_name">MYPAGE</p>
+      </div>
     </div>
 
     <div class="login_area" v-if="!login.token">
@@ -24,7 +42,10 @@
         <div class="login">ログイン</div>
       </nuxt-link>
       <nuxt-link to="/regist">
-        <div class="regist">新規登録</div>
+        <div class="regist">
+          <img class="regist_icon" src="~/assets/naviIcon/beginner.png" alt />
+          <p>新規登録</p>
+        </div>
       </nuxt-link>
     </div>
   </div>
@@ -57,6 +78,9 @@ export default {
 </script>
 
 <style scoped>
+p {
+  color: black;
+}
 .pc_navi {
   position: fixed;
   top: 0;
@@ -87,12 +111,13 @@ export default {
   width: 100%;
   height: 50px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 .navi_single:hover {
   background-color: green;
+}
+.navi_single:hover .navi_name {
   color: white;
 }
 .login_area {
@@ -103,7 +128,21 @@ export default {
 .login {
   color: white;
   background-color: green;
-  padding: 5px 20px;
+  padding: 5px 50px;
   border-radius: 5px;
+  margin-bottom: 5px;
+}
+.navi_icon {
+  width: 24px;
+  margin-left: 50px;
+  margin-right: 10px;
+}
+.regist {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.regist_icon {
+  width: 24px;
 }
 </style>

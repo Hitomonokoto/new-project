@@ -22,7 +22,9 @@
     <div class="post_content">
       <p class="post_title">{{ post_data.title }}</p>
       <div class="post_type">{{ post_data.type }}</div>
-      <img class="post_img" :src="this.post_data.fileUrl" />
+      <div class="post_img">
+        <img :src="this.post_data.fileUrl" />
+      </div>
       <p class="post_text">{{ post_data.text }}</p>
       <postActions
         @openComments="openComments"
@@ -156,7 +158,11 @@ export default {
 }
 .post_img {
   width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.post_img > img {
+  width: 100%;
   display: block;
-  margin-bottom: 10px;
 }
 </style>

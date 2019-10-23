@@ -17,21 +17,27 @@
     <div class="bottom_bar">
       <div class="navi_area">
         <nuxt-link class="navi_link" to="/">
-          <div class="navi_single">ホーム</div>
+          <img src="~/assets/mobileNaviIcon/home.png" alt />
+          <div class="navi_single">HOME</div>
         </nuxt-link>
 
         <nuxt-link class="navi_link" to="/products">
-          <div class="navi_single">体験</div>
+          <img src="~/assets/mobileNaviIcon/gift.png" alt />
+          <div class="navi_single">GIFT</div>
         </nuxt-link>
 
         <nuxt-link class="navi_link" to="/farmers">
-          <div class="navi_single">創り手</div>
+          <img src="~/assets/mobileNaviIcon/farmer.png" alt />
+          <div class="navi_single">FARMER</div>
         </nuxt-link>
         <nuxt-link class="navi_link" to="/farmers">
-          <div class="navi_single">未定</div>
+          <img src="~/assets/mobileNaviIcon/Q&A.png" alt />
+          <div class="navi_single">Q&A</div>
         </nuxt-link>
-
-        <div class="navi_single mypage" @click="mypage">マイページ</div>
+        <div class="mypage_link">
+          <img src="~/assets/mobileNaviIcon/mypage.png" alt />
+          <div class="navi_single mypage" @click="mypage">MYPAGE</div>
+        </div>
       </div>
     </div>
   </div>
@@ -74,6 +80,7 @@ export default {
 .top_bar {
   position: fixed;
   top: 0;
+  z-index: 10;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -102,9 +109,10 @@ export default {
 .bottom_bar {
   position: fixed;
   bottom: 0;
+  z-index: 10;
   width: 100%;
   display: flex;
-  background-color: white;
+  background-color: green;
 }
 .navi_area {
   width: 100%;
@@ -115,20 +123,28 @@ export default {
 }
 .navi_link {
   width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 5px 0;
 }
 .navi_single {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 50px;
   cursor: pointer;
+  color: white;
 }
 .navi_single:hover {
   background-color: green;
   color: white;
 }
-.mypage {
+.mypage_link {
   width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 5px 0;
 }
 </style>
