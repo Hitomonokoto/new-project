@@ -2,12 +2,7 @@
   <main>
     <mainImage url="/mainImage/top-img.jpg" />
     <div>
-      <linkButton
-        v-show="!login.token"
-        cls="beginner"
-        linkTo="/aboutMyFarm"
-        text="初めての方はこちら"
-      />
+      <linkButton v-show="!login.token" cls="beginner" linkTo="/aboutMyFarm" text="初めての方はこちら" />
     </div>
     <div v-show="!isPost" class="myfarm_contents">
       <h2>Gift</h2>
@@ -42,6 +37,7 @@
 
 
 <script>
+//test
 // コンポーネント
 import mainImage from "~/components/MainImage";
 import myFarm from "~/components/MyFarm";
