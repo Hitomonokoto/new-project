@@ -128,6 +128,10 @@ export default {
   align-items: center;
   margin: 5px 0;
 }
+.navi_link > img {
+  height: 24px;
+  margin-bottom: 5px;
+}
 .navi_single {
   display: flex;
   justify-content: center;
@@ -146,5 +150,9 @@ export default {
   flex-direction: column;
   align-items: center;
   margin: 5px 0;
+}
+.mypage_link > img {
+  height: 24px;
+  margin-bottom: 5px;
 }
 </style>

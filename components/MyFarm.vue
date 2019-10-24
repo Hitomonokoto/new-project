@@ -112,7 +112,7 @@ p {
 }
 .product_page {
   width: 100%;
-  height: 30px;
+  height: 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -37,6 +37,7 @@ import mainImage from "~/components/MainImage";
 import story from "~/components/farmer&product/Story";
 import products from "~/components/farmer&product/Products";
 import timeline from "~/components/farmer&product/Timeline";
+import basicButton from "~/components/BasicButton";
 
 // その他
 import { mapState } from "vuex";
@@ -46,7 +47,8 @@ export default {
     mainImage,
     story,
     products,
-    timeline
+    timeline,
+    basicButton
   },
   data() {
     return {
