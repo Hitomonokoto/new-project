@@ -24,6 +24,7 @@ export default {
   border: none;
   border-radius: 5px;
   background-color: transparent;
+  cursor: pointer;
 }
 .checkout_btn {
   padding: 10px 30px;
@@ -138,7 +139,6 @@ export default {
   padding: 10px 30px;
   background-color: rgb(253, 99, 99);
 }
-
 .qAndAlink {
   background-color: #efefef;
 
@@ -160,6 +160,18 @@ export default {
   .qAndAlink {
     width: 100%;
     margin-bottom: 30px;
+.follow_btn {
+  position: absolute;
+  top: -80px;
+  right: 20px;
+  background-color: rgb(253, 99, 99);
+  padding: 10px 30px;
+}
+@media screen and (max-width: 960px) {
+  .follow_btn {
+    position: absolute;
+    top: -50px;
+    right: 20px;
   }
 }
 </style>
