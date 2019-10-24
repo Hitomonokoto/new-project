@@ -36,7 +36,7 @@
           <p class="navi_name">FARMER</p>
         </div>
       </nuxt-link>
-      <nuxt-link class="navi_link" to="/farmers">
+      <nuxt-link class="navi_link" to="/Q&A">
         <div class="navi_single">
           <p class="navi_name">Q&A</p>
         </div>

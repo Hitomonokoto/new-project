@@ -25,7 +25,7 @@
           <p class="navi_name">FARMER</p>
         </div>
       </nuxt-link>
-      <nuxt-link class="navi_link" to="/farmers">
+      <nuxt-link class="navi_link" to="/Q&A">
         <div class="navi_single">
           <img class="navi_icon" src="~/assets/naviIcon/Q&A.png" alt />
           <p class="navi_name">Q&A</p>
