@@ -30,7 +30,7 @@
           <img src="~/assets/mobileNaviIcon/farmer.png" alt />
           <div class="navi_single">FARMER</div>
         </nuxt-link>
-        <nuxt-link class="navi_link" to="/farmers">
+        <nuxt-link class="navi_link" to="/Q&A">
           <img src="~/assets/mobileNaviIcon/Q&A.png" alt />
           <div class="navi_single">Q&A</div>
         </nuxt-link>
