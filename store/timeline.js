@@ -93,17 +93,6 @@ export const actions = {
                 })
         })
     },
-    // いいね！しているユーザーを取得
-    getLikedUsers: (context, payload) => {
-        return new Promise((resolve) => {
-            db.collection('timeline').doc(payload).collection("likes").get();
-            // db.collection('timeline').doc(payload).collection("likes").get().then(docref => {
-            //     docref.data().then(data => {
-            //         resolve(data)
-            //     })
-            // })
-        })
-    },
     // 画像を削除する
     deleteImageAction(context, fileName) {
         firestorage.ref(post_data.fileName).delete();

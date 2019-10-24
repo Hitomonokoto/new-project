@@ -5,7 +5,7 @@
       <div class="xxx">
         <div class="user_icon">
           <div class="icon_edge">
-            <userIcon cls="user_page_icon" :url="login.user_2.user_icon" />
+            <userIcon cls="user_page_icon" :url="Login.user_2.user_icon" />
           </div>
           <basicButton cls="user_icon_edit_btn" @emitClick="editProfileImg">変更</basicButton>
         </div>
@@ -17,7 +17,7 @@
               @emitClick="editNickname"
             >ニックネームを編集</basicButton>
           </div>
-          <p class="nickname">{{ login.user_2.nickname }} さん</p>
+          <p class="nickname">{{ Login.user_2.nickname }} さん</p>
         </div>
 
         <editNickname v-if="isNickname" @emitClick="back" />
@@ -49,7 +49,7 @@
         <editBasicData v-if="isBasicData" @emitClick="back" />
       </div>
     </div>
-
+    {{ Farmers.follower }}
     <basicButton cls="acount_btn" @emitClick="logout">ログアウト</basicButton>
     <linkButton cls="unsub" linkTo="/unsub" text="退会する" />
   </main>
@@ -94,15 +94,18 @@ export default {
   async created() {
     const r = Math.floor(Math.random() * 5) + 1;
     this.image_path = `/mypageImage/${r}.jpg`;
-    console.log(this.image_path);
     const data = await this.$apollo.query({
       query: getCustomer,
       variables: {
-        customerAccessToken: this.login.token
+        customerAccessToken: this.Login.token
       }
     });
     this.$store.commit("login/getUser_1", data.data.customer);
     this.user_data = data.data.customer;
+    this.$store.dispatch(
+      "farmers/getFollowerAction",
+      this.Login.user_2.user_id
+    );
   },
   methods: {
     editProfileImg() {
@@ -125,7 +128,7 @@ export default {
       const xxx = this.$apollo.mutate({
         mutation: customerAccessTokenDelete,
         variables: {
-          customerAccessToken: this.login.token
+          customerAccessToken: this.Login.token
         }
       });
       const cookies = new Cookies();
@@ -135,7 +138,8 @@ export default {
     }
   },
   computed: mapState({
-    login: state => state.login
+    Login: state => state.login,
+    Farmers: state => state.farmers
   }),
   watch: {
     user_data() {
