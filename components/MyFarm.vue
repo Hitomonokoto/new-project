@@ -6,31 +6,31 @@
       :to="'/products/product/'+product.sys.id"
       :key="index"
     >
-      <nuxt-link :to="'/products/product/'+product.sys.id">
-        <div class="title_area">
-          <div class="info">
+      <div class="title_area">
+        <div class="info">
+          <nuxt-link :to="'/farmers/farmer/'+product.fields.farmId">
+            <img
+              class="farm_icon"
+              :src="product.fields.farmIcon.fields.file.url"
+            />
+          </nuxt-link>
+          <div class="name_area">
             <nuxt-link :to="'/farmers/farmer/'+product.fields.farmId">
-              <img
-                class="farm_icon"
-                :src="product.fields.farmIcon.fields.file.url"
-              />
+              <p class="farm_name">{{product.fields.farmName}}</p>
             </nuxt-link>
-            <div class="name_area">
-              <nuxt-link :to="'/farmers/farmer/'+product.fields.farmId">
-                <p class="farm_name">{{product.fields.farmName}}</p>
-              </nuxt-link>
+            <nuxt-link :to="'/products/product/'+product.sys.id">
               <p class="product_name">{{product.fields.title}}</p>
-            </div>
+            </nuxt-link>
           </div>
         </div>
-
+      </div>
+      <nuxt-link :to="'/products/product/'+product.sys.id">
         <div class="product_img">
           <img :src="product.fields.image.fields.file.url" />
           <div class="checkout">
             <img src="~/assets/gift.svg" />
           </div>
         </div>
-
         <div class="product_page">
           <p>詳細ページへ</p>
         </div>
