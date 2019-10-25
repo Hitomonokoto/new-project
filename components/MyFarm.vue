@@ -11,7 +11,7 @@
           <nuxt-link :to="'/farmers/farmer/'+product.fields.farmId">
             <img
               class="farm_icon"
-              :src="product.fields.farmIcon.fields.file.url"
+              :src="product.fields.farmerIcon.fields.file.url"
             />
           </nuxt-link>
           <div class="name_area">
@@ -19,14 +19,14 @@
               <p class="farm_name">{{product.fields.farmName}}</p>
             </nuxt-link>
             <nuxt-link :to="'/products/product/'+product.sys.id">
-              <p class="product_name">{{product.fields.title}}</p>
+              <p class="product_name">{{product.fields.productName}}</p>
             </nuxt-link>
           </div>
         </div>
       </div>
       <nuxt-link :to="'/products/product/'+product.sys.id">
         <div class="product_img">
-          <img :src="product.fields.image.fields.file.url" />
+          <img :src="product.fields.mainImage.fields.file.url" />
           <div class="checkout">
             <img src="~/assets/gift.svg" />
           </div>

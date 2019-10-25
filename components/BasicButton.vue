@@ -156,16 +156,18 @@ export default {
   background-color: red;
 }
 
-@media screen and (max-width: 960px) {
-  .qAndAlink {
-    width: 100%;
-    margin-bottom: 30px;
 .follow_btn {
   position: absolute;
   top: -80px;
   right: 20px;
   background-color: rgb(253, 99, 99);
   padding: 10px 30px;
+}
+@media screen and (max-width: 960px) {
+  .qAndAlink {
+    width: 100%;
+    margin-bottom: 30px;
+  }
 }
 @media screen and (max-width: 960px) {
   .follow_btn {

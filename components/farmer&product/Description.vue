@@ -1,6 +1,6 @@
 <template>
   <div class="description">
-    <h2 class="farmer-title">{{ this.products.product.fields.title }}</h2>
+    <h2 class="farmer-title">{{ this.products.product.fields.productName }}</h2>
     <div
       class="myFarm_content"
       v-html="this.products.product.fields.description"
