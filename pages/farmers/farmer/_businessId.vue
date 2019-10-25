@@ -1,6 +1,5 @@
 <template>
   <main>
-    {{Farmers.follower}}
     <mainImage :src="Farmers.farmer.fields.mainImage.fields.file.url" alt />
     <div class="top_area">
       <basicButton v-if="!isFollow" cls="follow_btn" @emitClick="follow">フォローする</basicButton>
@@ -11,17 +10,17 @@
         class="index_btn index_story opend"
         id="index_story"
         @click="openStory"
-      >ストーリー</div>
+      >Story</div>
       <div
         class="index_btn index_timeline"
         id="index_timeline"
         @click="openTimeline"
-      >コミュニティ</div>
+      >Diary</div>
       <div
         class="index_btn index_products"
         id="index_products"
         @click="openProducts"
-      >応援</div>
+      >Gift</div>
     </div>
     <div class="contents_area" v-show="isStory">
       <story :content="Farmers.farmer.fields.story" />

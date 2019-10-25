@@ -7,21 +7,18 @@
           <div class="icon_edge">
             <userIcon cls="user_page_icon" :url="Login.user_2.user_icon" />
           </div>
-          <basicButton cls="user_icon_edit_btn" @emitClick="editProfileImg">変更</basicButton>
         </div>
-        <div class="nickname_area" v-if="!isNickname">
-          <div class="nicknameTitle_and_editBotton">
-            <p class="nickname_title">ニックネーム</p>
-            <basicButton
-              cls="nickname_edit_btn"
-              @emitClick="editNickname"
-            >ニックネームを編集</basicButton>
-          </div>
-          <p class="nickname">{{ Login.user_2.nickname }} さん</p>
-        </div>
-
-        <editNickname v-if="isNickname" @emitClick="back" />
       </div>
+      <div class="nickname_area" v-if="!isNickname">
+        <div class="nicknameTitle_and_editBotton">
+          <p class="nickname_title">ニックネーム</p>
+          <basicButton cls="nickname_edit_btn" @emitClick="editNickname">アカウント管理</basicButton>
+        </div>
+        <p class="nickname">{{ Login.user_2.nickname }} さん</p>
+      </div>
+
+      <editNickname v-if="isNickname" @emitClick="back" />
+
       <!-- <div class="yyy">
         <p class="basic_info_title">基本情報</p>
         <div class="basic_info_area" v-if="!isBasicData">
@@ -170,13 +167,12 @@ export default {
 
 <style scoped>
 .profile_area {
-  width: 60%;
-  margin-bottom: 400px;
+  width: 80%;
 }
 .xxx {
   display: flex;
   align-items: flex-end;
-  margin-bottom: 50px;
+  /* margin-bottom: 50px; */
   width: 100%;
   position: relative;
 }
@@ -191,24 +187,24 @@ export default {
   background-color: white;
   border-radius: 5px;
   position: absolute;
-  top: -50px;
-  left: 0;
+  top: -90px;
+  left: 20px;
 }
 .nickname_area {
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin-left: 120px;
 }
 .nicknameTitle_and_editBotton {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
+  margin-left: 180px;
 }
 .nickname {
-  margin-bottom: 20px;
   font-weight: bold;
-  font-size: 20px;
+  margin-left: 180px;
+  margin-bottom: 20px;
 }
 .basic_info_title {
   margin-bottom: 20px;
@@ -232,31 +228,34 @@ dt {
 }
 @media screen and (max-width: 960px) {
   .profile_area {
-    width: 80%;
+    width: 100%;
   }
   .icon_edge {
     position: absolute;
-    top: -40px;
-    left: 0;
+    top: -60px;
+    left: 20px;
   }
-  .nickname_area {
-    margin-left: 90px;
+  .nicknameTitle_and_editBotton {
+    margin-left: 150px;
+    margin-right: 20px;
+  }
+  .nickname {
+    margin-left: 150px;
   }
 }
 @media screen and (max-width: 560px) {
-  .profile_area {
-    width: 100%;
-    padding: 0 10px;
-  }
   .icon_edge {
     position: absolute;
     top: -30px;
-    left: 0;
   }
-  .nickname_area {
-    margin-left: 50px;
+  .nicknameTitle_and_editBotton {
+    margin-left: 110px;
+  }
+  .nickname {
+    margin-left: 110px;
   }
 }
+
 .follower_area {
   width: 100%;
   display: flex;
@@ -277,5 +276,38 @@ dt {
 }
 .follow_img {
   width: 100%;
+  border-radius: 5px;
+  box-shadow: 0px 0px 6px #d1d1d1;
+}
+@media screen and (max-width: 960px) {
+  .follower {
+    width: 29.3%;
+    margin: 2%;
+  }
+}
+@media screen and (max-width: 560px) {
+  .follower_area {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .follower_list {
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .follower {
+    width: 21%;
+    margin: 2%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .follow_img {
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 0px 0px 6px #d1d1d1;
+  }
 }
 </style>
