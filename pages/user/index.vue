@@ -281,7 +281,7 @@ dt {
 }
 @media screen and (max-width: 960px) {
   .follower {
-    width: 29%;
+    width: 29.3%;
     margin: 2%;
   }
 }

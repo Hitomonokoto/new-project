@@ -135,13 +135,11 @@ p {
   }
   .product {
     width: 60%;
-    flex-direction: row;
     margin-bottom: 30px;
     border-radius: 5px;
     box-shadow: 0px 0px 6px #d1d1d1;
   }
 }
-
 @media screen and (max-width: 560px) {
   .product {
     width: 90%;

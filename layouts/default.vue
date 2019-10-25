@@ -53,6 +53,9 @@ export default {
   text-decoration: none;
   list-style: none;
 }
+p {
+  color: black;
+}
 .container {
   display: flex;
   width: 100%;

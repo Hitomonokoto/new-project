@@ -1,34 +1,15 @@
 <template>
   <main>
     <mainImage :src="Products.product.fields.mainImage.fields.file.url" />
+    <div class="checkout_area">
+      <div class="checkout" @click="checkout">
+        <img src="~/assets/gift.svg" />
+      </div>
+      <!-- <basicButton cls="checkout_btn" @emitClick="checkout">種主になる</basicButton> -->
+    </div>
 
-    <div class="index">
-      <div
-        class="index_btn index_description opend"
-        id="index_description"
-        @click="openStory"
-      >商品詳細</div>
-      <div
-        class="index_btn index_timeline"
-        id="index_timeline"
-        @click="openTimeline"
-      >コミュニティ</div>
-      <div
-        class="index_btn index_farmer"
-        id="index_farmer"
-        @click="openFarmer"
-      >創り手</div>
-    </div>
-    <basicButton cls="checkout_btn" @emitClick="checkout">種主になる</basicButton>
-    <div class="contents_area" v-show="isStory">
-      <description />
-    </div>
-    <div class="contents_area" v-show="isTimeline">
-      <timeline />
-    </div>
-    <div class="contents_area" v-show="isFarmer">
-      <farmer />
-    </div>
+    <description />
+    <farmer />
   </main>
 </template>
 
@@ -39,7 +20,6 @@ import linkButton from "~/components/LinkButton";
 import mainImage from "~/components/MainImage";
 import description from "~/components/farmer&product/Description";
 import farmer from "~/components/farmer&product/Farmer";
-import timeline from "~/components/farmer&product/Timeline";
 
 //その他
 import { mapState } from "vuex";
@@ -52,26 +32,17 @@ export default {
     basicButton,
     linkButton,
     description,
-    farmer,
-    timeline
+    farmer
   },
   data() {
     return {
-      product_id: "",
-      isStory: true,
-      isTimeline: false,
-      isFarmer: false
+      product_id: ""
     };
   },
   async fetch({ params, store }) {
     await store.dispatch("products/getProductAction", params);
   },
   async created() {
-    this.$store.dispatch("timeline/getPostsAction", {
-      business_id: this.Products.product.fields.businessId,
-      timeline_type: "single"
-    });
-
     this.$store.dispatch(
       "farmers/getFarmerByMyfarmAction",
       this.Products.product.fields.businessId
@@ -94,70 +65,35 @@ export default {
       });
       const webUrl = xxx.data.checkoutCreate.checkout.webUrl;
       window.location.href = webUrl;
-    },
-    openStory() {
-      this.isStory = true;
-      this.isTimeline = false;
-      this.isFarmer = false;
-      document.getElementById("index_description").classList.add("opend");
-      document.getElementById("index_timeline").classList.remove("opend");
-      document.getElementById("index_farmer").classList.remove("opend");
-    },
-    openTimeline() {
-      this.isStory = false;
-      this.isTimeline = true;
-      this.isFarmer = false;
-      document.getElementById("index_description").classList.remove("opend");
-      document.getElementById("index_timeline").classList.add("opend");
-      document.getElementById("index_farmer").classList.remove("opend");
-    },
-    openFarmer() {
-      this.isStory = false;
-      this.isTimeline = false;
-      this.isFarmer = true;
-      document.getElementById("index_description").classList.remove("opend");
-      document.getElementById("index_timeline").classList.remove("opend");
-      document.getElementById("index_farmer").classList.add("opend");
     }
   },
   computed: mapState({
-    Products: state => state.products,
-    Timeline: state => state.timeline
+    Products: state => state.products
   })
 };
 </script>
 
 <style scoped>
-.index {
-  width: 100%;
-  display: flex;
-  box-shadow: 0px 3px 3px -3px #797979;
-  margin-bottom: 50px;
+.checkout_area {
+  width: 80%;
+  position: relative;
 }
-.index_btn {
+.checkout {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  top: -120px;
+  right: 10px;
+  background-color: white;
+  box-shadow: 0px 0px 6px gray;
+  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 40px;
   cursor: pointer;
 }
-.index_btn:hover {
-  background-color: lightgreen;
-}
-.index_description {
-  width: 34%;
-}
-.index_timeline {
-  width: 33%;
-}
-.index_farmer {
-  width: 33%;
-}
-.opend {
-  color: white;
-  background-color: green;
-}
-.contents_area {
-  width: 100%;
+
+.checkout > img {
+  height: 60px;
 }
 </style>

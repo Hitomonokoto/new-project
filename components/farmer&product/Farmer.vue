@@ -4,17 +4,15 @@
     <nuxt-link class="link_area" :to="'/farmers/farmer/'+farmers.farmer.sys.id">
       <img
         class="farmer_img"
-        :src="farmers.farmer.fields.mainImage.fields.file.url"
+        :src="farmers.farmer.fields.farmerIcon.fields.file.url"
         alt
       />
       <P>{{farmers.farmer.fields.farmName}}</P>
+      <P>{{farmers.farmer.fields.summary}}</P>
+      <div>
+        <P>もっと知る</P>
+      </div>
     </nuxt-link>
-
-    <linkButton
-      cls="top_myfarm"
-      :linkTo="'/farmers/farmer/'+farmers.farmer.sys.id"
-      text="この創り手のページに行く"
-    />
   </div>
 </template>
 
