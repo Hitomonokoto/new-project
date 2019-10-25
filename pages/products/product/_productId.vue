@@ -1,6 +1,6 @@
 <template>
   <main>
-    <mainImage :src="Products.product.fields.image.fields.file.url" />
+    <mainImage :src="Products.product.fields.mainImage.fields.file.url" />
 
     <div class="index">
       <div

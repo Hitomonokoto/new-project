@@ -22,7 +22,7 @@
 
         <editNickname v-if="isNickname" @emitClick="back" />
       </div>
-      <div class="yyy">
+      <!-- <div class="yyy">
         <p class="basic_info_title">基本情報</p>
         <div class="basic_info_area" v-if="!isBasicData">
           <div>
@@ -47,9 +47,26 @@
           </div>
         </div>
         <editBasicData v-if="isBasicData" @emitClick="back" />
+      </div>-->
+    </div>
+    <div class="follower_area">
+      <h2>フォローしている創り手</h2>
+      <div class="follower_list">
+        <nuxt-link
+          v-for="(follower, index) in Farmers.followerData"
+          :to="'/farmers/farmer/'+follower.sys.id"
+          class="follower"
+          :key="index"
+        >
+          <img
+            class="follow_img"
+            :src="follower.fields.farmerIcon.fields.file.url"
+          />
+          <p class="follow_name">{{ follower.fields.farmName }}</p>
+        </nuxt-link>
       </div>
     </div>
-    {{ Farmers.follower }}
+
     <basicButton cls="acount_btn" @emitClick="logout">ログアウト</basicButton>
     <linkButton cls="unsub" linkTo="/unsub" text="退会する" />
   </main>
@@ -188,8 +205,6 @@ export default {
   justify-content: space-between;
   margin-bottom: 10px;
 }
-.nickname_title {
-}
 .nickname {
   margin-bottom: 20px;
   font-weight: bold;
@@ -241,5 +256,26 @@ dt {
   .nickname_area {
     margin-left: 50px;
   }
+}
+.follower_area {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.follower_list {
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.follower {
+  width: 21%;
+  margin: 2%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.follow_img {
+  width: 100%;
 }
 </style>

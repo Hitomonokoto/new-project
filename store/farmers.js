@@ -6,7 +6,8 @@ const db = firebase.firestore();
 export const state = () => ({
     farmers: [],
     farmer: null,
-    follower: []
+    follower: [],
+    followerData: []
 })
 
 export const mutations = {
@@ -18,7 +19,10 @@ export const mutations = {
     },
     getFollower(state, data) {
         state.follower = data
-    }
+    },
+    getFollowerData(state, data) {
+        state.followerData = data
+    },
 }
 
 export const actions = {
@@ -73,17 +77,18 @@ export const actions = {
     // フォローしている生産者のデータをを取得
     async getFollowerDataAction(context, payload) {
         let data = [];
-        payload.forEach(farmer_id => {
-            client.getEntry(farmer_id).then(entry => {
-                data.push(entry);
-                console.log(data);
-            })
+        const entries = await client.getEntries({
+            content_type: "farmer",
+            order: '-sys.createdAt'
         });
-        setTimeout('console.log(data);', 5000);
+        payload.forEach(farmer_id => {
 
-
-
-        // context.commit('getFollowerData', data);
+            const follorData = entries.items.filter(entry => {
+                return entry.sys.id === farmer_id
+            })
+            data.push(follorData[0]);
+        });
+        context.commit('getFollowerData', data);
     }
 }
 

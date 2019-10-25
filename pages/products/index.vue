@@ -19,7 +19,7 @@
           :to="'/products/product/'+product.sys.id"
           class="product_img"
         >
-          <img :src="product.fields.image.fields.file.url" />
+          <img :src="product.fields.mainImage.fields.file.url" />
         </nuxt-link>
 
         <div class="product_text">
@@ -27,7 +27,7 @@
             :to="'/products/product/'+product.sys.id"
             class="product_info"
           >
-            <p>{{ product.fields.title }}</p>
+            <p>{{ product.fields.productName }}</p>
             <p>{{ product.fields.farmName }}</p>
             <p>{{ product.fields.summary }}</p>
           </nuxt-link>

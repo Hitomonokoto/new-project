@@ -24,7 +24,7 @@
       >応援</div>
     </div>
     <div class="contents_area" v-show="isStory">
-      <story :content="Farmers.farmer.fields.content" />
+      <story :content="Farmers.farmer.fields.story" />
     </div>
     <div class="contents_area" v-show="isTimeline">
       <timeline />
@@ -136,7 +136,7 @@ export default {
   }),
   head() {
     return {
-      title: this.Farmers.farmer.fields.title
+      title: this.Farmers.farmer.fields.productName
     };
   }
 };
