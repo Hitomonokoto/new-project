@@ -6,31 +6,31 @@
       :to="'/products/product/'+product.sys.id"
       :key="index"
     >
-      <nuxt-link :to="'/products/product/'+product.sys.id">
-        <div class="title_area">
-          <div class="info">
+      <div class="title_area">
+        <div class="info">
+          <nuxt-link :to="'/farmers/farmer/'+product.fields.farmId">
+            <img
+              class="farm_icon"
+              :src="product.fields.farmerIcon.fields.file.url"
+            />
+          </nuxt-link>
+          <div class="name_area">
             <nuxt-link :to="'/farmers/farmer/'+product.fields.farmId">
-              <img
-                class="farm_icon"
-                :src="product.fields.farmIcon.fields.file.url"
-              />
+              <p class="farm_name">{{product.fields.farmName}}</p>
             </nuxt-link>
-            <div class="name_area">
-              <nuxt-link :to="'/farmers/farmer/'+product.fields.farmId">
-                <p class="farm_name">{{product.fields.farmName}}</p>
-              </nuxt-link>
-              <p class="product_name">{{product.fields.title}}</p>
-            </div>
+            <nuxt-link :to="'/products/product/'+product.sys.id">
+              <p class="product_name">{{product.fields.productName}}</p>
+            </nuxt-link>
           </div>
         </div>
-
+      </div>
+      <nuxt-link :to="'/products/product/'+product.sys.id">
         <div class="product_img">
-          <img :src="product.fields.image.fields.file.url" />
+          <img :src="product.fields.mainImage.fields.file.url" />
           <div class="checkout">
             <img src="~/assets/gift.svg" />
           </div>
         </div>
-
         <div class="product_page">
           <p>詳細ページへ</p>
         </div>
@@ -112,7 +112,7 @@ p {
 }
 .product_page {
   width: 100%;
-  height: 30px;
+  height: 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -135,13 +135,11 @@ p {
   }
   .product {
     width: 60%;
-    flex-direction: row;
     margin-bottom: 30px;
     border-radius: 5px;
     box-shadow: 0px 0px 6px #d1d1d1;
   }
 }
-
 @media screen and (max-width: 560px) {
   .product {
     width: 90%;

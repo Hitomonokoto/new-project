@@ -24,6 +24,7 @@ export default {
   border: none;
   border-radius: 5px;
   background-color: transparent;
+  cursor: pointer;
 }
 .checkout_btn {
   padding: 10px 30px;
@@ -137,5 +138,42 @@ export default {
 .unsubscribe_btn {
   padding: 10px 30px;
   background-color: rgb(253, 99, 99);
+}
+.qAndAlink {
+  background-color: #efefef;
+
+  font-size: 15px;
+  color: #000000;
+  cursor: pointer;
+  width: 30%;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.qAndAlink:active {
+  background-color: red;
+}
+
+.follow_btn {
+  position: absolute;
+  top: -80px;
+  right: 20px;
+  background-color: rgb(253, 99, 99);
+  padding: 10px 30px;
+}
+@media screen and (max-width: 960px) {
+  .qAndAlink {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+}
+@media screen and (max-width: 960px) {
+  .follow_btn {
+    position: absolute;
+    top: -50px;
+    right: 20px;
+  }
 }
 </style>

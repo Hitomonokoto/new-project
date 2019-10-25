@@ -1,26 +1,29 @@
 <template>
   <main>
     <mainImage :src="Farmers.farmer.fields.mainImage.fields.file.url" alt />
-
+    <div class="top_area">
+      <basicButton v-if="!isFollow" cls="follow_btn" @emitClick="follow">フォローする</basicButton>
+      <basicButton v-if="isFollow" cls="follow_btn" @emitClick="follow">フォロー中</basicButton>
+    </div>
     <div class="index">
       <div
         class="index_btn index_story opend"
         id="index_story"
         @click="openStory"
-      >ストーリー</div>
+      >Story</div>
       <div
         class="index_btn index_timeline"
         id="index_timeline"
         @click="openTimeline"
-      >コミュニティ</div>
+      >Diary</div>
       <div
         class="index_btn index_products"
         id="index_products"
         @click="openProducts"
-      >応援</div>
+      >Gift</div>
     </div>
     <div class="contents_area" v-show="isStory">
-      <story :content="Farmers.farmer.fields.content" />
+      <story :content="Farmers.farmer.fields.story" />
     </div>
     <div class="contents_area" v-show="isTimeline">
       <timeline />
@@ -37,6 +40,7 @@ import mainImage from "~/components/MainImage";
 import story from "~/components/farmer&product/Story";
 import products from "~/components/farmer&product/Products";
 import timeline from "~/components/farmer&product/Timeline";
+import basicButton from "~/components/BasicButton";
 
 // その他
 import { mapState } from "vuex";
@@ -46,30 +50,59 @@ export default {
     mainImage,
     story,
     products,
-    timeline
+    timeline,
+    basicButton
   },
   data() {
     return {
       products: [],
       isStory: true,
       isTimeline: false,
-      isProducts: false
+      isProducts: false,
+      isFollow: false
     };
   },
   async fetch({ params, store }) {
     await store.dispatch("farmers/getFarmerAction", params);
   },
   async created() {
-    await this.$store.dispatch(
+    this.$store.dispatch(
       "products/getProductsByfarmerAction",
       this.Farmers.farmer.fields.businessId
     );
-    await this.$store.dispatch("timeline/getPostsAction", {
+    this.$store.dispatch("timeline/getPostsAction", {
       business_id: this.Farmers.farmer.fields.businessId,
       timeline_type: "single"
     });
+    if (this.Login.token) {
+      await this.$store.dispatch(
+        "farmers/getFollowerAction",
+        this.Login.user_2.user_id
+      );
+      if (this.Farmers.follower.indexOf(this.Farmers.farmer.sys.id) >= 0) {
+        this.isFollow = true;
+      }
+    }
   },
   methods: {
+    follow() {
+      if (!this.Login.token) {
+        return;
+      }
+      if (this.Farmers.follower.indexOf(this.Farmers.farmer.sys.id) >= 0) {
+        this.$store.dispatch("farmers/quitFollowAction", {
+          farmer_id: this.Farmers.farmer.sys.id,
+          user_id: this.Login.user_2.user_id
+        });
+        this.isFollow = false;
+      } else {
+        this.$store.dispatch("farmers/followAction", {
+          farmer_id: this.Farmers.farmer.sys.id,
+          user_id: this.Login.user_2.user_id
+        });
+        this.isFollow = true;
+      }
+    },
     openStory() {
       this.isStory = true;
       this.isTimeline = false;
@@ -97,17 +130,27 @@ export default {
   },
   computed: mapState({
     Farmers: state => state.farmers,
-    Products: state => state.products
+    Products: state => state.products,
+    Login: state => state.login
   }),
   head() {
     return {
-      title: this.Farmers.farmer.fields.title
+      title: this.Farmers.farmer.fields.productName
     };
   }
 };
 </script>
 
 <style scoped>
+.top_area {
+  width: 80%;
+  position: relative;
+}
+@media screen and (max-width: 960px) {
+  .top_area {
+    width: 100%;
+  }
+}
 .index {
   width: 100%;
   display: flex;

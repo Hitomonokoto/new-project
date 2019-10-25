@@ -7,11 +7,11 @@
     >
       <img
         class="product_img"
-        :src="products.productsByfarmer[0].fields.image.fields.file.url"
+        :src="products.productsByfarmer[0].fields.mainImage.fields.file.url"
         alt
       />
     </nuxt-link>
-    <P>{{products.productsByfarmer[0].fields.title}}</P>
+    <P>{{products.productsByfarmer[0].fields.productName}}</P>
     <linkButton
       cls="top_myfarm"
       :linkTo="'/products/product/'+products.productsByfarmer[0].sys.id"

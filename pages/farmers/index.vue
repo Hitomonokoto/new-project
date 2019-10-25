@@ -1,6 +1,8 @@
 <template>
   <main>
-    <h2>こだわりの創り手</h2>
+    <h2>Farmer</h2>
+    <img class="gift_icon" src="~/assets/gift.svg" alt />
+    <p>豊さを味わう</p>
     <p class="top_text">
       九州を４週周り、
       <br />350人以上の作り手に出会いました。
@@ -14,18 +16,11 @@
         class="farmer"
         :key="index"
       >
-        <div class="farmer_img">
-          <img :src="farmer.fields.mainImage.fields.file.url" />
-        </div>
+        <img class="farmer_img" :src="farmer.fields.farmerIcon.fields.file.url" />
 
-        <div class="farmer_text">
-          <div class="farmer_info">
-            <p>{{ farmer.fields.farmName }}</p>
-            <p>{{ farmer.fields.farmerName }}</p>
-          </div>
-          <div class="read_more">
-            <p>詳細ページへ</p>
-          </div>
+        <div class="farmer_info">
+          <p>{{ farmer.fields.farmName }}</p>
+          <p>{{ farmer.fields.farmerName }}</p>
         </div>
       </nuxt-link>
     </div>
@@ -58,6 +53,9 @@ export default {
 
 
 <style scoped>
+.gift_icon {
+  width: 100px;
+}
 .top_text {
   padding: 20px 0 40px 0;
   text-align: center;
@@ -65,47 +63,51 @@ export default {
 .farmers {
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
+}
+.farmer {
+  width: 21%;
+  margin: 2%;
+  display: flex;
   flex-direction: column;
   align-items: center;
 }
-.farmer {
-  width: 80%;
-  display: flex;
-  background-color: white;
-  margin-bottom: 20px;
+.farmer_img {
+  width: 100%;
   border-radius: 5px;
   box-shadow: 0px 0px 6px #d1d1d1;
 }
-.farmer_img {
-  width: 50%;
-}
-.farmer_img > img {
-  width: 100%;
-  border-radius: 5px 0 0 5px;
-  display: block;
-}
-.farmer_text {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-}
 .farmer_info {
-  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 }
-.read_more {
-  width: 100%;
-  height: 50px;
-  background-color: rgb(243, 243, 243);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-radius: 0 0 5px 0;
+@media screen and (max-width: 960px) {
+  .farmer {
+    width: 29.3%;
+    margin: 2%;
+  }
+}
+@media screen and (max-width: 560px) {
+  .farmers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .farmer {
+    width: 90%;
+    margin: 0 0 20px 0;
+    display: flex;
+    flex-direction: row;
+  }
+  .farmer_img {
+    width: 40%;
+  }
+  .farmer_info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 20px;
+  }
 }
 </style>

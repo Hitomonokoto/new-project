@@ -30,7 +30,7 @@
           <img src="~/assets/mobileNaviIcon/farmer.png" alt />
           <div class="navi_single">FARMER</div>
         </nuxt-link>
-        <nuxt-link class="navi_link" to="/farmers">
+        <nuxt-link class="navi_link" to="/Q&A">
           <img src="~/assets/mobileNaviIcon/Q&A.png" alt />
           <div class="navi_single">Q&A</div>
         </nuxt-link>
@@ -128,6 +128,10 @@ export default {
   align-items: center;
   margin: 5px 0;
 }
+.navi_link > img {
+  height: 24px;
+  margin-bottom: 5px;
+}
 .navi_single {
   display: flex;
   justify-content: center;
@@ -146,5 +150,9 @@ export default {
   flex-direction: column;
   align-items: center;
   margin: 5px 0;
+}
+.mypage_link > img {
+  height: 24px;
+  margin-bottom: 5px;
 }
 </style>
