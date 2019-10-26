@@ -1,27 +1,33 @@
 <template>
   <div class="actions">
-    <div class="like_btn" @click="getLike">
-      <fa class="like_fa" :icon="faHeart" />
-      <span
-        class="like_fa"
-        v-show="post_data.like_count!=0"
-      >{{ post_data.like_count }}</span>いいね！
+    <div class="btn_area">
+      <div
+        class="btn"
+        v-if="Timeline.likes.indexOf(post_data.post_id) == -1 "
+        :disabled="processing"
+        @click="getLike"
+      >
+        <fa class="like_icon" :icon="faHeart" />
+        <p class="like_text">いいね！({{ post_data.like_count }})</p>
+      </div>
+      <div
+        class="btn"
+        v-if="Timeline.likes.indexOf(post_data.post_id) >= 0"
+        :disabled="!processing"
+        @click="loseLike"
+      >
+        <fa class="liked_icon" :icon="faHeart" />
+        <p class="liked_text">いいね！({{ post_data.like_count }})</p>
+      </div>
+      <div class="btn" @click="toggleComments">
+        <fa class="comment_icon" :icon="faCommentAlt" />
+        <p class="comment_text">コメント({{ post_data.comment_count }})</p>
+      </div>
     </div>
-
-    <div class="comment_btn" v-if="!isComment_btn" @click="openComment">
-      <fa class="comment_fa" :icon="faCommentAlt" />
-      <span
-        class="comment_fa"
-        v-show="post_data.comment_count!=0"
-      >{{ post_data.comment_count }}</span>コメント
-    </div>
-    <div class="comment_btn" v-if="isComment_btn" @click="closeComments">
-      <fa class="comment_fa" :icon="faCommentAlt" />
-      <span
-        class="comment_fa"
-        v-show="post_data.comment_count!=0"
-      >{{ post_data.comment_count }}</span>コメント
-    </div>
+    <p class="alert" v-if="isAlert">
+      いいね!やコメントするには
+      <span class="alert_login" @click="alert">ログイン</span>が必要です。
+    </p>
   </div>
 </template>
 
@@ -44,40 +50,56 @@ export default {
   },
   data() {
     return {
-      isComment_btn: false
+      isComment_btn: false,
+      isAlert: false,
+      processing: false
     };
   },
   methods: {
     getLike() {
+      if (this.processing) return;
+      this.processing = true;
+      console.log(this.processing);
       if (!this.Login.token) {
-        this.$router.push("/login");
+        this.isAlert = true;
         return;
       }
-      if (this.Timeline.likes.indexOf(this.post_data.post_id) >= 0) {
-        this.$store.dispatch("timeline/loseLikeAction", {
-          post_data: this.post_data,
-          user_id: this.Login.user_id,
-          business_id: this.post_data.business_id,
-          timeline_type: this.timeline_type
-        });
-        console.log("11111");
+      console.log("getLikeAction");
+      this.$store.dispatch("timeline/getLikeAction", {
+        post_data: this.post_data,
+        user_id: this.Login.user_id,
+        business_id: this.post_data.business_id,
+        timeline_type: this.timeline_type
+      });
+    },
+    loseLike() {
+      if (!this.processing) return;
+      this.processing = false;
+      if (!this.Login.token) {
+        this.isAlert = true;
+        return;
+      }
+      this.$store.dispatch("timeline/loseLikeAction", {
+        post_data: this.post_data,
+        user_id: this.Login.user_id,
+        business_id: this.post_data.business_id,
+        timeline_type: this.timeline_type
+      });
+    },
+    toggleComments() {
+      if (!this.Login.token) {
+        this.isAlert = true;
+      }
+      if (this.isComment_btn == false) {
+        this.isComment_btn = true;
+        this.$emit("openComments");
       } else {
-        this.$store.dispatch("timeline/getLikeAction", {
-          post_data: this.post_data,
-          user_id: this.Login.user_id,
-          business_id: this.post_data.business_id,
-          timeline_type: this.timeline_type
-        });
-        console.log("22222");
+        this.isComment_btn = false;
+        this.$emit("closeComments");
       }
     },
-    openComment() {
-      this.isComment_btn = true;
-      this.$emit("openComments");
-    },
-    closeComments() {
-      this.isComment_btn = false;
-      this.$emit("closeComments");
+    alert() {
+      this.$router.push("/login");
     }
   },
   computed: {
@@ -99,33 +121,53 @@ export default {
 
 <style scoped>
 .actions {
-  display: flex;
   width: 100%;
+  display: flex;
+  flex-direction: column;
 }
-.actions > div {
+.btn_area {
+  width: 100%;
+  display: flex;
+}
+.btn {
+  width: 50%;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+}
+
+.like_icon {
+  color: gray;
+}
+.liked_icon {
+  color: #f4b3ca;
+}
+.like_text {
+  color: gray;
+}
+.liked_text {
+  font-weight: bold;
+  color: #f4b3ca;
+}
+.comment_text {
+  color: gray;
+}
+.comment_icon {
+  color: gray;
+}
+.conut_area {
+  width: 100%;
+  display: flex;
+}
+.alert {
   text-align: center;
+  margin: 20px 0;
 }
-.like_btn {
-  width: 50%;
-  height: 40px;
-  line-height: 40px;
-  border: none;
+.alert_login {
+  color: #b5c97c;
   cursor: pointer;
-}
-.comment_btn {
-  width: 50%;
-  height: 40px;
-  line-height: 40px;
-  border: none;
-  cursor: pointer;
-}
-.like_fa {
-  color: gray;
-}
-.get_like_fa {
-  color: rgb(255, 45, 56);
-}
-.comment_fa {
-  color: gray;
 }
 </style>

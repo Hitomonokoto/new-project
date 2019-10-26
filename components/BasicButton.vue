@@ -24,7 +24,6 @@ export default {
   color: white;
   background-color: #b5c97c;
   border-radius: 5px;
-  /* background-color: transparent; */
   cursor: pointer;
 }
 .login_btn {
@@ -47,9 +46,10 @@ export default {
   background-color: lightgray;
 }
 .post_delete_btn {
-  padding: 5px 10px;
-  background-color: red;
-  color: white;
+  background-color: transparent;
+  color: red;
+  border: none;
+  margin: 10px;
 }
 .post_img_delete_btn {
   position: absolute;
@@ -70,7 +70,9 @@ export default {
   background-color: lightgray;
 }
 .comment_delete_btn {
+  background-color: transparent;
   color: red;
+  border: none;
   padding-right: 5px;
 }
 .update_btn {

@@ -49,6 +49,14 @@ export default {
   padding: 5px 20px;
   margin-bottom: 10px;
 }
+.insert_img {
+  background-color: transparent;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.insert_img > p {
+  color: gray;
+}
 .regist {
   background-color: transparent;
   border: 2px solid #f4b3ca;

@@ -6,7 +6,7 @@
         <p class="nickname">{{post_data.name}}</p>
         <div class="actions">
           <basicButton cls="back_btn" @emitClick="emitBack">戻る</basicButton>
-          <basicButton cls="post_delete_btn" @emitClick="deletePost">削除</basicButton>
+          <basicButton cls="update_btn" @emitClick="updatePost">更新する</basicButton>
         </div>
       </div>
     </div>
@@ -31,8 +31,18 @@
       cls="post_text"
       placeholder="本文を入力してください..."
     />
-    <input type="file" @change="setFiles($event)" />
-    <basicButton cls="update_btn" @emitClick="updatePost">更新</basicButton>
+    <label for="picture">
+      <iconAndTextButton cls="insert_img" text="画像を挿入する" icon="picture" />
+      <input
+        class="picture"
+        id="picture"
+        type="file"
+        @change="setFiles($event)"
+      />
+    </label>
+    <div class="delete_area">
+      <basicButton cls="post_delete_btn" @emitClick="deletePost">投稿を削除する</basicButton>
+    </div>
   </div>
 </template>
 
@@ -42,13 +52,20 @@ import basicButton from "~/components/BasicButton";
 import basicInput from "~/components/BasicInput";
 import adjustedTextarea from "~/components/AdjustedTextarea";
 import userIcon from "~/components/UserIcon";
+import iconAndTextButton from "~/components/IconAndTextButton";
 
 // その他
 import { mapState } from "vuex";
 import uuid from "uuid";
 
 export default {
-  components: { basicButton, basicInput, adjustedTextarea, userIcon },
+  components: {
+    basicButton,
+    basicInput,
+    adjustedTextarea,
+    userIcon,
+    iconAndTextButton
+  },
   data() {
     return {
       title: this.post_data.title,
@@ -131,7 +148,7 @@ export default {
 
 <style scoped>
 .post {
-  width: 580px;
+  width: 500px;
   box-shadow: 0px 0px 6px #d1d1d1;
   margin-bottom: 20px;
   display: flex;
@@ -162,5 +179,18 @@ export default {
   width: 100%;
   display: flex;
   justify-content: space-between;
+}
+.picture {
+  display: none;
+}
+.delete_area {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+@media screen and (max-width: 560px) {
+  .post {
+    width: 100%;
+  }
 }
 </style>

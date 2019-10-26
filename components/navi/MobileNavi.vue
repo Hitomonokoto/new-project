@@ -30,13 +30,9 @@
         <nuxt-link class="navi_link" to="/Q&A">
           <naviSingle icon_b="question_b" icon_w="question_w" text="Q&A" />
         </nuxt-link>
-        <div class="navi_link">
+        <div class="navi_link" @click="mypage">
           <naviSingle icon_b="mypage_b" icon_w="mypage_w" text="MYPAGE" />
         </div>
-        <!-- <div class="mypage_link">
-          <img src="~/assets/naviIcon/mypage_b.svg" alt />
-          <div class="navi_single mypage" @click="mypage">MYPAGE</div>
-        </div>-->
       </div>
     </div>
   </div>

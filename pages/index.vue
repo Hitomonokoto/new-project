@@ -11,7 +11,7 @@
         />
       </nuxt-link>
     </div>
-    <div v-show="!isPost" class="myfarm_area">
+    <div v-show="isGift" class="myfarm_area">
       <h2 class="home_title">Gift</h2>
       <p class="home_sub_title">豊さを味わう</p>
       <myFarm :products="this.products.products" />
@@ -78,6 +78,7 @@ export default {
       isLogin: false,
       isTimeline: true,
       isPost: false,
+      isGift: true,
       isPostEdit: false,
       post_data: "",
       ttt: null
@@ -97,24 +98,29 @@ export default {
   },
   methods: {
     post() {
+      this.isGift = false;
       this.isTimeline = false;
       this.isPost = true;
     },
     postBack() {
       this.isPost = false;
+      this.isGift = true;
       this.isTimeline = true;
     },
     editBack() {
+      this.isGift = true;
       this.isTimeline = true;
       this.isPostEdit = false;
     },
     post_edit(post_data) {
       this.post_data = post_data;
       this.isPostEdit = true;
+      this.isGift = false;
       this.isTimeline = false;
     },
     pageInit() {
       this.isLogin = false;
+      this.isGift = true;
       this.isTimeline = true;
       this.isPost = false;
       this.isPostEdit = false;
@@ -139,6 +145,7 @@ export default {
   margin-bottom: 100px;
 }
 .timeline_area {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;

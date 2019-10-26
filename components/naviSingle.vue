@@ -71,7 +71,7 @@ export default {
     flex-direction: column;
     align-items: center;
   }
-  .icon_b {
+  .icon {
     margin: 5px 0;
     width: 20px;
   }
