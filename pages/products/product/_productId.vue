@@ -1,22 +1,27 @@
 <template>
   <main>
     <mainImage :src="Products.product.fields.mainImage.fields.file.url" />
-    <div class="checkout_area">
-      <div class="checkout" @click="checkout">
+    <div class="top_checkout_area">
+      <div class="checkout_icon" @click="checkout">
         <img src="~/assets/gift.svg" />
       </div>
-      <!-- <basicButton cls="checkout_btn" @emitClick="checkout">種主になる</basicButton> -->
     </div>
-
     <description />
     <farmer />
+
+    <div class="bottom_checkout_area">
+      <p>Gift</p>
+      <p>豊さを味わう</p>
+      <p>12,000円/年</p>
+    </div>
+
+    <basicButton cls="checkout_btn" @emitClick="checkout">種主になる</basicButton>
   </main>
 </template>
 
 <script>
 // コンポーネント
 import basicButton from "~/components/BasicButton";
-import linkButton from "~/components/LinkButton";
 import mainImage from "~/components/MainImage";
 import description from "~/components/farmer&product/Description";
 import farmer from "~/components/farmer&product/Farmer";
@@ -30,7 +35,6 @@ export default {
   components: {
     mainImage,
     basicButton,
-    linkButton,
     description,
     farmer
   },
@@ -74,11 +78,11 @@ export default {
 </script>
 
 <style scoped>
-.checkout_area {
+.top_checkout_area {
   width: 80%;
   position: relative;
 }
-.checkout {
+.checkout_icon {
   width: 80px;
   height: 80px;
   position: absolute;
@@ -93,7 +97,16 @@ export default {
   cursor: pointer;
 }
 
-.checkout > img {
+.checkout_icon > img {
   height: 60px;
+}
+
+.bottom_checkout_area {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: 0px 0px 6px #d1d1d1;
 }
 </style>

@@ -164,9 +164,7 @@ export default {
   height: 40px;
   cursor: pointer;
 }
-.index_btn:hover {
-  background-color: lightgreen;
-}
+
 .index_story {
   width: 34%;
 }
@@ -177,7 +175,7 @@ export default {
   width: 33%;
 }
 .opend {
-  background-color: green;
+  background-color: #b5c97c;
   color: white;
 }
 .contents_area {

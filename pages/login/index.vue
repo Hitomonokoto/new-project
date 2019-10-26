@@ -19,12 +19,12 @@
     <basicButton class="login_btn" @emitClick="save">ログイン</basicButton>
 
     <linkButton
-      cls="foget_pass"
+      cls="foget_pass_btn"
       linkTo="/login/passWordReset"
       text="パスワードをお忘れの方はこちら"
     />
 
-    <linkButton cls="regist" linkTo="/regist" text="新規登録" />
+    <linkButton cls="regist_btn" linkTo="/regist" text="新規登録" />
   </main>
 </template>
 
@@ -94,15 +94,7 @@ main {
 .logo > img {
   width: 200px;
 }
-.login_btn {
-  border-radius: 5px;
-  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
-  background-color: green;
-  color: white;
-  margin: 10px 0;
-  padding: 10px 0;
-  width: 300px;
-}
+
 .foget_pass {
   width: 90%;
 }

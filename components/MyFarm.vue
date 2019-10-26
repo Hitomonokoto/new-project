@@ -64,7 +64,7 @@ p {
 .products {
   display: flex;
   justify-content: center;
-  width: 100%;
+  width: 80%;
   margin-bottom: 20px;
 }
 .product {
@@ -84,6 +84,7 @@ p {
   margin-bottom: 5px;
 }
 .product_name {
+  font-size: 14px;
   font-weight: bold;
 }
 .product_img {
@@ -100,7 +101,7 @@ p {
   position: absolute;
   bottom: 5px;
   right: 5px;
-  background-color: white;
+  background-color: #f4b3ca;
   box-shadow: 0px 0px 6px gray;
   border-radius: 50%;
   display: flex;
@@ -118,7 +119,7 @@ p {
   justify-content: center;
   align-items: center;
   border-radius: 0 0 5px 5px;
-  background-color: lightgray;
+  background-color: #b5c97c;
 }
 .farm_icon {
   display: block;

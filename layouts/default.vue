@@ -17,13 +17,11 @@
 import pcNavi from "~/components/navi/PcNavi";
 import tabletNavi from "~/components/navi/TabletNavi";
 import mobileNavi from "~/components/navi/MobileNavi";
-import mobileMenuButton from "~/components/navi/MobileMenuButton";
 export default {
   components: {
     pcNavi,
     tabletNavi,
-    mobileNavi,
-    mobileMenuButton
+    mobileNavi
   },
   data() {
     return {

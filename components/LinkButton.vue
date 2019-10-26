@@ -21,49 +21,51 @@ export default {
 </script>
 
 <style scoped>
-.login {
+.basic {
   color: white;
-  background-color: green;
+  background-color: #b5c97c;
+  cursor: pointer;
+  display: inline;
+}
+.login {
   padding: 5px 20px;
   border-radius: 5px;
 }
-.beginner {
-  color: white;
-  background-color: green;
-  padding: 5px 20px;
-  margin-top: 10px;
-  margin-bottom: 30px;
+.beginner_btn {
+  padding: 10px 20px;
   border-radius: 5px;
+  margin-left: 2%;
+  background-color: #f4b3ca;
+  font-size: 14px;
 }
 .top_products {
-  color: green;
-  border: 2px solid green;
+  color: #b5c97c;
+  border: 2px solid #b5c97c;
   padding: 5px 20px;
   margin-top: 10px;
   margin-bottom: 30px;
   border-radius: 5px;
 }
-.foget_pass {
+.foget_pass_btn {
   color: #707070;
+  background-color: transparent;
+  margin-bottom: 50px;
 }
-.regist {
-  color: green;
+.regist_btn {
+  color: #b5c97c;
+  background-color: transparent;
   padding: 5px 20px;
   margin-bottom: 50px;
   border-radius: 5px;
-  border: 2px solid green;
+  border: 2px solid #b5c97c;
 }
 .partner_btn {
-  color: white;
-  background-color: rgb(255, 211, 68);
   padding: 5px 20px;
   margin-bottom: 50px;
   border-radius: 5px;
-  border: 1px solid green;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
 }
 .acount {
-  background-color: rgb(148, 247, 247);
   padding: 5px 20px;
   border-radius: 5px;
   font-size: 12px;
