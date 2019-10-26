@@ -14,19 +14,16 @@
         <basicButton cls="send_btn" @emitClick="sendComment">送信</basicButton>
       </div>
     </div>
-    <p class="comment_alert" v-show="!this.login.token">パートナーになるとコメントをすることが出来ます。</p>
 
     <div class="comment_list" v-for="(comment, index) in comments" :key="index">
       <div v-if="login_user_id != comment.user_id" class="comment">
         <userIcon cls="commenter_icon" :url="comment.user_icon" />
         <div class="comment_main">
           <p class="nickname">{{ comment.name }}</p>
-          <div class="comment_text">
-            <div class="comment_background">
-              <p>{{ comment.text }}</p>
-            </div>
-            <p class="time">{{ comment.created.seconds | timestampToDate }}</p>
+          <div class="comment_background">
+            <p>{{ comment.text }}</p>
           </div>
+          <p class="time">{{ comment.created.seconds | timestampToDate }}</p>
         </div>
       </div>
 
@@ -116,6 +113,9 @@ export default {
       resetHeight.then(function() {
         textarea.style.height = textarea.scrollHeight + "px";
       });
+    },
+    alert() {
+      this.$router.push("/login");
     }
   },
   filters: {
@@ -174,10 +174,6 @@ export default {
 .comment_main {
   margin-left: 10px;
 }
-.comment_text {
-  display: flex;
-  align-items: flex-end;
-}
 .comment_text_i {
   display: flex;
   justify-content: flex-end;
@@ -190,7 +186,7 @@ export default {
 }
 .comment_background_i {
   display: inline-block;
-  background-color: #fae989;
+  background-color: #b5c97c;
   border-radius: 20px;
 }
 .comment_background > p {
@@ -210,19 +206,13 @@ export default {
 }
 .time {
   margin-left: 5px;
-  color: rgb(0, 114, 190);
+  color: #b5c97c;
   font-size: 12px;
 }
 .time_i {
   margin-right: 10px;
-  color: rgb(0, 114, 190);
+  color: #b5c97c;
   font-size: 12px;
-}
-.comment_alert {
-  text-align: center;
-  margin: 20px 0;
-  padding: 10px 0;
-  background-color: rgb(241, 234, 129);
 }
 .time_and_delete {
   display: flex;

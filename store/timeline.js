@@ -223,9 +223,8 @@ export const actions = {
             post_id: payload.post_data.post_id
         });
         const likes = await db.collection("users").doc(payload.user_id).collection("likes").get();
-        const like_count = await likes.size;
         await db.collection("timeline").doc(payload.post_data.post_id).update({
-            like_count: like_count
+            like_count: firebase.firestore.FieldValue.increment(1)
         });
         context.dispatch("getPostsAction", { business_id: payload.business_id, timeline_type: payload.timeline_type });
         context.dispatch("getLikesAction", payload.user_id);
@@ -234,9 +233,8 @@ export const actions = {
     async loseLikeAction(context, payload) {
         await db.collection("users").doc(payload.user_id).collection("likes").doc(payload.post_data.post_id).delete();
         const likes = await db.collection("users").doc(payload.user_id).collection("likes").get();
-        const like_count = await likes.size;
         await db.collection("timeline").doc(payload.post_data.post_id).update({
-            like_count: like_count
+            like_count: firebase.firestore.FieldValue.increment(-1)
         });
         context.dispatch("getPostsAction", { business_id: payload.business_id, timeline_type: payload.timeline_type });
         context.dispatch("getLikesAction", payload.user_id);

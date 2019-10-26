@@ -1,9 +1,8 @@
 <template>
   <main>
-    <h2>Farmer</h2>
-    <img class="gift_icon" src="~/assets/gift.svg" alt />
-    <p>豊さを味わう</p>
-    <p class="top_text">
+    <h1 class="page_title">Farmer</h1>
+    <p class="sub_title">豊さを繋ぐひと</p>
+    <p class="description">
       九州を４週周り、
       <br />350人以上の作り手に出会いました。
       <br />価値だけでは表現することの出来ない"モノの価値"。
@@ -53,13 +52,6 @@ export default {
 
 
 <style scoped>
-.gift_icon {
-  width: 100px;
-}
-.top_text {
-  padding: 20px 0 40px 0;
-  text-align: center;
-}
 .farmers {
   width: 100%;
   display: flex;

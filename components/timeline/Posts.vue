@@ -6,10 +6,9 @@
       </nuxt-link>
       <div class="name_time_edit">
         <div class="name_time">
-          <nuxt-link
-            :to="'/farmers/farmer/'+post_data.farmer_id"
-            class="nickname"
-          >{{ post_data.name }}</nuxt-link>
+          <nuxt-link :to="'/farmers/farmer/'+post_data.farmer_id">
+            <p class="nickname">{{ post_data.name }}</p>
+          </nuxt-link>
           <p class="time">{{ post_data.created.seconds | timestampToDate }}</p>
         </div>
         <basicButton
@@ -21,7 +20,6 @@
     </div>
     <div class="post_content">
       <p class="post_title">{{ post_data.title }}</p>
-      <div class="post_type">{{ post_data.type }}</div>
       <div class="post_img">
         <img :src="this.post_data.fileUrl" />
       </div>
@@ -143,7 +141,7 @@ export default {
   align-items: flex-start;
 }
 .time {
-  color: rgb(0, 114, 190);
+  color: #b5c97c;
   font-size: 12px;
 }
 .post_title {

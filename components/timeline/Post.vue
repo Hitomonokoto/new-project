@@ -1,10 +1,13 @@
 <template>
   <div class="post">
-    <div class="user">
-      <userIcon cls="post_form_icon" :url="login.user_2.user_icon" />
-      <p class="nickname">{{login.user_2.nickname}}</p>
-      <div class="edit">
+    <div class="post_header">
+      <div class="user">
+        <userIcon cls="post_form_icon" :url="login.user_2.user_icon" />
+        <p class="nickname">{{login.user_2.nickname}}</p>
+      </div>
+      <div class="actions">
         <basicButton cls="back_btn" @emitClick="back">戻る</basicButton>
+        <basicButton cls="send_btn" @emitClick="sendPost">投稿する</basicButton>
       </div>
     </div>
     <basicInput
@@ -20,10 +23,15 @@
       cls="post_text"
       placeholder="本文を入力してください..."
     />
-    <input type="file" @change="setFiles($event)" />
-    <div class="edit">
-      <basicButton cls="send_btn" @emitClick="sendPost">投稿</basicButton>
-    </div>
+    <label for="picture">
+      <iconAndTextButton cls="insert_img" text="画像を挿入する" icon="picture" />
+      <input
+        class="picture"
+        id="picture"
+        type="file"
+        @change="setFiles($event)"
+      />
+    </label>
   </div>
 </template>
 
@@ -34,6 +42,7 @@ import linkButton from "~/components/LinkButton";
 import basicInput from "~/components/BasicInput";
 import adjustedTextarea from "~/components/AdjustedTextarea";
 import userIcon from "~/components/UserIcon";
+import iconAndTextButton from "~/components/IconAndTextButton";
 
 // その他
 import { mapState } from "vuex";
@@ -45,7 +54,8 @@ export default {
     linkButton,
     basicInput,
     adjustedTextarea,
-    userIcon
+    userIcon,
+    iconAndTextButton
   },
   props: {
     timeline_type: {
@@ -112,8 +122,7 @@ export default {
 
 <style scoped>
 .post {
-  border-radius: 5px;
-  width: 580px;
+  width: 500px;
   box-shadow: 0px 0px 6px #d1d1d1;
   margin-bottom: 20px;
   display: flex;
@@ -122,11 +131,16 @@ export default {
   margin: 10px 0;
 }
 
-.user {
+.post_header {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
   padding: 10px;
+}
+.user {
+  display: flex;
+  align-items: center;
 }
 
 .user_icon {
@@ -136,5 +150,13 @@ export default {
 }
 .post_img {
   width: 100%;
+}
+.picture {
+  display: none;
+}
+@media screen and (max-width: 560px) {
+  .post {
+    width: 100%;
+  }
 }
 </style>

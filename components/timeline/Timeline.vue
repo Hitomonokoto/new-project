@@ -1,6 +1,6 @@
 <template>
   <div class="timeline">
-    <div class="post" v-for="(post, index) in posts" :key="index">
+    <div class="post_area" v-for="(post, index) in posts" :key="index">
       <posts
         @postEdit="postEdit"
         :user_id="post.user_id"
@@ -91,16 +91,14 @@ export default {
   display: flex;
   justify-content: center;
 }
-.post {
+.post_area {
   width: 500px;
   box-shadow: 0px 0px 6px #d1d1d1;
   margin-bottom: 30px;
 }
 @media screen and (max-width: 560px) {
-  .post {
+  .post_area {
     width: 100%;
-    box-shadow: 0px 0px 6px #d1d1d1;
-    margin-bottom: 30px;
   }
 }
 </style>

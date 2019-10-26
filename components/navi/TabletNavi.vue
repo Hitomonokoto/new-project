@@ -7,43 +7,32 @@
 
       <div class="login_area" v-if="!login.token">
         <nuxt-link to="/login">
-          <div class="login">ログイン</div>
+          <iconAndTextButton cls="login" text="ログイン" icon="login_w" />
         </nuxt-link>
         <nuxt-link to="/regist">
-          <div class="regist">
-            <img class="regist_icon" src="~/assets/naviIcon/beginner.png" alt />
-            <p>新規登録</p>
-          </div>
+          <iconAndTextButton cls="regist" text="新規登録" icon="beginner_p" />
         </nuxt-link>
       </div>
     </div>
 
     <div class="navi_area">
       <nuxt-link class="navi_link" to="/">
-        <div class="navi_single">
-          <p class="navi_name">HOME</p>
-        </div>
+        <naviSingle icon_b="home_b" icon_w="home_w" text="HOME" />
       </nuxt-link>
 
       <nuxt-link class="navi_link" to="/products">
-        <div class="navi_single">
-          <p class="navi_name">GIFT</p>
-        </div>
+        <naviSingle icon_b="gift_b" icon_w="gift_w" text="GIFT" />
       </nuxt-link>
 
       <nuxt-link class="navi_link" to="/farmers">
-        <div class="navi_single">
-          <p class="navi_name">FARMER</p>
-        </div>
+        <naviSingle icon_b="farmer_b" icon_w="farmer_w" text="FARMER" />
       </nuxt-link>
       <nuxt-link class="navi_link" to="/Q&A">
-        <div class="navi_single">
-          <p class="navi_name">Q&A</p>
-        </div>
+        <naviSingle icon_b="question_b" icon_w="question_w" text="Q&A" />
       </nuxt-link>
 
-      <div class="navi_single mypage" @click="mypage">
-        <p class="navi_name">MYPAGE</p>
+      <div class="navi_link">
+        <naviSingle icon_b="mypage_b" icon_w="mypage_w" text="MYPAGE" />
       </div>
     </div>
   </div>
@@ -51,14 +40,16 @@
 
 <script>
 // コンポーネント
-import linkButton from "~/components/LinkButton";
+import iconAndTextButton from "~/components/IconAndTextButton";
+import naviSingle from "~/components/naviSingle";
 import userIcon from "~/components/UserIcon";
 
 // その他
 import { mapState } from "vuex";
 export default {
   components: {
-    linkButton,
+    iconAndTextButton,
+    naviSingle,
     userIcon
   },
   data() {
@@ -112,13 +103,7 @@ p {
   align-items: center;
   margin-right: 20px;
 }
-.login {
-  color: white;
-  background-color: green;
-  padding: 5px 50px;
-  border-radius: 5px;
-  margin-bottom: 5px;
-}
+
 .navi_area {
   width: 100%;
   display: flex;
@@ -128,30 +113,5 @@ p {
 }
 .navi_link {
   width: 20%;
-}
-.navi_single {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 50px;
-  cursor: pointer;
-}
-.navi_single:hover {
-  background-color: green;
-}
-.navi_single:hover .navi_name {
-  color: white;
-}
-.mypage {
-  width: 20%;
-}
-.regist {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.regist_icon {
-  width: 24px;
 }
 </style>
