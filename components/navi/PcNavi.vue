@@ -8,55 +8,43 @@
 
     <div class="navi_area">
       <nuxt-link class="navi_link" to="/">
-        <div class="navi_single">
-          <img class="navi_icon" src="~/assets/naviIcon/home.png" alt />
-          <p class="navi_name">HOME</p>
-        </div>
+        <naviSingle icon_b="home_b" icon_w="home_w" text="HOME" />
       </nuxt-link>
       <nuxt-link class="navi_link" to="/products">
-        <div class="navi_single">
-          <img class="navi_icon" src="~/assets/naviIcon/gift.png" alt />
-          <p class="navi_name">GIFT</p>
-        </div>
+        <naviSingle icon_b="gift_b" icon_w="gift_w" text="GIFT" />
       </nuxt-link>
       <nuxt-link class="navi_link" to="/farmers">
-        <div class="navi_single">
-          <img class="navi_icon" src="~/assets/naviIcon/farmer.png" alt />
-          <p class="navi_name">FARMER</p>
-        </div>
+        <naviSingle icon_b="farmer_b" icon_w="farmer_w" text="FARMER" />
       </nuxt-link>
       <nuxt-link class="navi_link" to="/Q&A">
-        <div class="navi_single">
-          <img class="navi_icon" src="~/assets/naviIcon/Q&A.png" alt />
-          <p class="navi_name">Q&A</p>
-        </div>
+        <naviSingle icon_b="question_b" icon_w="question_w" text="Q&A" />
       </nuxt-link>
-      <div class="navi_single" @click="mypage">
-        <img class="navi_icon" src="~/assets/naviIcon/mypage.png" alt />
-        <p class="navi_name">MYPAGE</p>
+      <div class="navi_link" @click="mypage">
+        <naviSingle icon_b="mypage_b" icon_w="mypage_w" text="MYPAGE" />
       </div>
     </div>
 
     <div class="login_area" v-if="!login.token">
       <nuxt-link to="/login">
-        <div class="login">ログイン</div>
+        <iconAndTextButton cls="login" text="ログイン" icon="login_w" />
       </nuxt-link>
       <nuxt-link to="/regist">
-        <div class="regist">
-          <img class="regist_icon" src="~/assets/naviIcon/beginner.png" alt />
-          <p>新規登録</p>
-        </div>
+        <iconAndTextButton cls="regist" text="新規登録" icon="beginner_p" />
       </nuxt-link>
     </div>
   </div>
 </template>
 
 <script>
+// コンポーネント
+import iconAndTextButton from "~/components/IconAndTextButton";
+import naviSingle from "~/components/naviSingle";
+
 // その他
 import { mapState } from "vuex";
 
 export default {
-  components: {},
+  components: { iconAndTextButton, naviSingle },
   data() {
     return {};
   },
@@ -78,9 +66,6 @@ export default {
 </script>
 
 <style scoped>
-p {
-  color: black;
-}
 .pc_navi {
   position: fixed;
   top: 0;
@@ -106,43 +91,9 @@ p {
 .navi_link {
   width: 100%;
 }
-.navi_single {
-  cursor: pointer;
-  width: 100%;
-  height: 50px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-.navi_single:hover {
-  background-color: green;
-}
-.navi_single:hover .navi_name {
-  color: white;
-}
 .login_area {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-.login {
-  color: white;
-  background-color: green;
-  padding: 5px 50px;
-  border-radius: 5px;
-  margin-bottom: 5px;
-}
-.navi_icon {
-  width: 24px;
-  margin-left: 50px;
-  margin-right: 10px;
-}
-.regist {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.regist_icon {
-  width: 24px;
 }
 </style>

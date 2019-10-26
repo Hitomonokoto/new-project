@@ -32,6 +32,7 @@ img {
     display: block;
     margin: 0;
     box-shadow: none;
+    margin-bottom: 30px;
   }
 }
 </style>

@@ -1,9 +1,8 @@
 <template>
   <main>
-    <h2>Gift</h2>
-    <img class="gift_icon" src="~/assets/gift.svg" alt />
-    <p>豊さを味わう</p>
-    <p class="top_text">
+    <h1 class="page_title">Gift</h1>
+    <p class="sub_title">豊さを味わう</p>
+    <p class="description">
       ーーーーー３〜５行程度の簡単な説明文が入りますーーーー
       <br />ーーーーーーーーーーーーーーーーーーーーーーーーーーー
       <br />ーーーーーーーーーーーーーーーーーーーーーーーーーーー
@@ -69,12 +68,6 @@ export default {
 </script>
 
 <style scoped>
-.gift_icon {
-  width: 100px;
-}
-.top_text {
-  margin-bottom: 50px;
-}
 .products {
   display: flex;
   flex-wrap: wrap;

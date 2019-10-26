@@ -21,25 +21,35 @@ export default {
 
 <style scoped>
 .basic {
-  border: none;
+  color: white;
+  background-color: #b5c97c;
   border-radius: 5px;
-  background-color: transparent;
   cursor: pointer;
+}
+.login_btn {
+  border-radius: 5px;
+  margin: 10px 0;
+  padding: 10px 0;
+  width: 300px;
 }
 .checkout_btn {
   padding: 10px 30px;
   margin-top: 20px;
-  color: white;
-  background-color: green;
+}
+.post_btn {
+  padding: 5px 20px;
+  margin-bottom: 20px;
+  font-size: 14px;
 }
 .post_edit_btn {
   padding: 5px 10px;
   background-color: lightgray;
 }
 .post_delete_btn {
-  padding: 5px 10px;
-  background-color: red;
-  color: white;
+  background-color: transparent;
+  color: red;
+  border: none;
+  margin: 10px;
 }
 .post_img_delete_btn {
   position: absolute;
@@ -60,20 +70,19 @@ export default {
   background-color: lightgray;
 }
 .comment_delete_btn {
+  background-color: transparent;
   color: red;
+  border: none;
   padding-right: 5px;
 }
 .update_btn {
   padding: 5px 10px;
-  background-color: rgb(99, 209, 253);
 }
 .send_btn {
   padding: 5px 10px;
-  background-color: rgb(99, 209, 253);
 }
 .info_check_btn {
   padding: 10px 30px;
-  background-color: rgb(99, 209, 253);
   margin-bottom: 50px;
 }
 .info_back_btn {
@@ -87,25 +96,18 @@ export default {
 }
 .info_send_btn {
   padding: 10px 30px;
-  background-color: rgb(99, 209, 253);
 }
 .regist_btn {
   padding: 10px 30px;
-  color: white;
-  background-color: green;
   margin-bottom: 50px;
 }
 .acount_btn {
   padding: 5px 10px;
-  background-color: rgb(253, 99, 99);
   margin: 10px 20px;
 }
 .user_icon_edit_btn {
   padding: 5px 10px;
   background-color: lightgray;
-}
-.nickname_edit_btn {
-  color: blue;
 }
 .nickname_edit_back_btn {
   padding: 5px 10px;
@@ -114,7 +116,6 @@ export default {
 }
 .nickname_edit_update_btn {
   padding: 5px 10px;
-  background-color: rgb(99, 209, 253);
 }
 .basic_info_edit_btn {
   color: blue;
@@ -129,7 +130,6 @@ export default {
 }
 .basic_info_edit_update_btn {
   padding: 5px 10px;
-  background-color: rgb(99, 209, 253);
 }
 .unsubscribe_back_btn {
   padding: 10px 30px;

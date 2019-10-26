@@ -7,12 +7,14 @@
         :src="farmers.farmer.fields.farmerIcon.fields.file.url"
         alt
       />
-      <P>{{farmers.farmer.fields.farmName}}</P>
-      <P>{{farmers.farmer.fields.summary}}</P>
-      <div>
-        <P>もっと知る</P>
-      </div>
     </nuxt-link>
+    <P>{{farmers.farmer.fields.farmName}}</P>
+    <P>{{farmers.farmer.fields.summary}}</P>
+    <linkButton
+      cls="partner_btn"
+      linkTo="'/farmers/farmer/'+farmers.farmer.sys.id"
+      text="もっと見る"
+    />
   </div>
 </template>
 
@@ -42,14 +44,13 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 20px;
 }
 .link_area {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 30%;
 }
 .farmer_img {
-  width: 50%;
+  width: 100%;
   border-radius: 5px;
   box-shadow: 0px 0px 6px #d1d1d1;
 }

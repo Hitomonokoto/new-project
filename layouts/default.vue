@@ -17,13 +17,11 @@
 import pcNavi from "~/components/navi/PcNavi";
 import tabletNavi from "~/components/navi/TabletNavi";
 import mobileNavi from "~/components/navi/MobileNavi";
-import mobileMenuButton from "~/components/navi/MobileMenuButton";
 export default {
   components: {
     pcNavi,
     tabletNavi,
-    mobileNavi,
-    mobileMenuButton
+    mobileNavi
   },
   data() {
     return {
@@ -108,16 +106,24 @@ main {
     margin-bottom: 50px;
   }
 }
-h1 {
-  padding: 20px 0;
+h1 h2 h3 {
   text-align: center;
 }
-h2 {
-  padding: 20px 0;
+.page_title {
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+.sub_title {
+  margin-bottom: 50px;
+}
+.description {
+  margin-bottom: 50px;
   text-align: center;
 }
-h3 {
-  padding: 20px 0;
-  text-align: center;
+.home_title {
+  margin-bottom: 20px;
+}
+.home_sub_title {
+  margin-bottom: 50px;
 }
 </style>
