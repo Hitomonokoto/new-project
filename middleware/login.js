@@ -5,16 +5,14 @@ export default async ({ req, store, route, redirect }) => {
 
 
     const cookies = req ? new Cookies(req.headers.cookie) : new Cookies();
-    const token = cookies.get("token");
-    console.log(token);
-    console.log(route.path);
+    const token = await cookies.get("token");
     if (token && !store.state.login.token) {
-        console.log("tokenみっけ！");
+        console.log("cookieにtokenはありますがstoreにはありません。");
         store.commit('login/getToken', token);
-        store.commit('login/getPath', route.path);
         return redirect("/test");
+
     } else {
-        console.log("tokenないよ！");
+        cookies.set("lastPath", route.path);
     }
 
 
