@@ -10,6 +10,7 @@
 // その他
 import { mapState } from "vuex";
 import getCustomer from "~/apollo/gql/getCustomer";
+import Cookies from "universal-cookie";
 
 export default {
   components: {},
@@ -23,9 +24,22 @@ export default {
         customerAccessToken: this.login.token
       }
     });
-    this.$store.commit("login/getUser_1", user.data.customer);
-    this.$store.dispatch("login/getUserAction_2", user.data.customer.id);
-    this.$router.push("/");
+    const cookies = new Cookies();
+    const lastPath = await cookies.get("lastPath");
+    console.log(lastPath);
+    if (user.data.customer) {
+      this.$store.commit("login/getUser_1", user.data.customer);
+      await this.$store.dispatch(
+        "login/getUserAction_2",
+        user.data.customer.id
+      );
+      this.$router.push(lastPath);
+    } else {
+      const cookies = new Cookies();
+      cookies.remove("token");
+      this.$store.commit("login/logout");
+      this.$router.push("/");
+    }
   },
   computed: mapState({
     login: state => state.login
