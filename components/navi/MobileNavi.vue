@@ -94,12 +94,12 @@ export default {
 }
 .logo_img {
   height: 40px;
-  margin-left: 20px;
+  margin-left: 5px;
 }
 .login_area {
   display: flex;
   align-items: center;
-  margin-right: 20px;
+  margin-right: 5px;
 }
 .bottom_bar {
   position: fixed;

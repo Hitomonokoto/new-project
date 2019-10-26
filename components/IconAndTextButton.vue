@@ -41,6 +41,8 @@ export default {
 .top_beginner_btn {
   padding: 10px;
   background-color: #f4b3ca;
+  margin-top: 30px;
+  margin-bottom: 100px;
 }
 .login {
   background-color: #b5c97c;
@@ -51,9 +53,30 @@ export default {
   background-color: transparent;
   border: 2px solid #f4b3ca;
   padding: 3px 18px;
-  margin-bottom: 10px;
 }
 .regist > p {
   color: #f4b3ca;
+}
+@media screen and (max-width: 560px) {
+  .login {
+    padding: 5px 10px;
+    margin-bottom: 0;
+    margin-right: 5px;
+  }
+  .regist {
+    padding: 3px 8px;
+  }
+  .login > p {
+    font-size: 12px;
+  }
+  .regist > p {
+    font-size: 12px;
+  }
+  .login > img {
+    display: none;
+  }
+  .regist > img {
+    display: none;
+  }
 }
 </style>

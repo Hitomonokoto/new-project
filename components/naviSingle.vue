@@ -26,6 +26,9 @@ export default {
 </script>
 
 <style scoped>
+.text {
+  color: #303030;
+}
 .navi_single {
   cursor: pointer;
   width: 100%;

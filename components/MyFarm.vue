@@ -58,13 +58,10 @@ export default {
 
 
 <style scoped>
-p {
-  color: black;
-}
 .products {
   display: flex;
   justify-content: center;
-  width: 80%;
+  width: 100%;
   margin-bottom: 20px;
 }
 .product {

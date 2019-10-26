@@ -2,10 +2,11 @@
   <div class="timeline">
     <div class="post_btn" v-if="isPost_btn && login.user_2">
       <div v-if="farmers.farmer">
-        <sendPostBtn
+        <basicButton
+          cls="post_btn"
           v-if="login.user_2.farmer_id == farmers.farmer.sys.id"
           @emitClick="post"
-        />
+        >Diaryを書く</basicButton>
       </div>
     </div>
 
@@ -31,15 +32,15 @@
 <script>
 // コンポーネント
 import timeline from "~/components/timeline/Timeline";
+import basicButton from "~/components/BasicButton";
 import post from "~/components/timeline/Post";
 import postEdit from "~/components/timeline/PostEdit";
-import sendPostBtn from "~/components/timeline/SendPostBtn";
 
 // その他
 import { mapState } from "vuex";
 
 export default {
-  components: { timeline, post, postEdit, sendPostBtn },
+  components: { timeline, post, postEdit, basicButton },
   data() {
     return {
       isPost_btn: true,

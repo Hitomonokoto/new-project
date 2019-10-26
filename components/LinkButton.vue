@@ -24,26 +24,18 @@ export default {
 .basic {
   color: white;
   background-color: #b5c97c;
+  font-size: 14px;
   cursor: pointer;
-  display: inline;
 }
 .login {
   padding: 5px 20px;
   border-radius: 5px;
 }
-.beginner_btn {
-  padding: 10px 20px;
-  border-radius: 5px;
-  margin-left: 2%;
-  background-color: #f4b3ca;
-  font-size: 14px;
-}
 .top_products {
   color: #b5c97c;
+  background-color: transparent;
   border: 2px solid #b5c97c;
   padding: 5px 20px;
-  margin-top: 10px;
-  margin-bottom: 30px;
   border-radius: 5px;
 }
 .foget_pass_btn {
@@ -52,12 +44,12 @@ export default {
   margin-bottom: 50px;
 }
 .regist_btn {
-  color: #b5c97c;
+  color: #f4b3ca;
   background-color: transparent;
   padding: 5px 20px;
   margin-bottom: 50px;
   border-radius: 5px;
-  border: 2px solid #b5c97c;
+  border: 2px solid #f4b3ca;
 }
 .partner_btn {
   padding: 5px 20px;

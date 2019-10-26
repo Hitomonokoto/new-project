@@ -36,7 +36,11 @@ export default {
 .checkout_btn {
   padding: 10px 30px;
   margin-top: 20px;
-  color: white;
+}
+.post_btn {
+  padding: 5px 20px;
+  margin-bottom: 20px;
+  font-size: 14px;
 }
 .post_edit_btn {
   padding: 5px 10px;
