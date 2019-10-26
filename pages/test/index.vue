@@ -33,7 +33,11 @@ export default {
         "login/getUserAction_2",
         user.data.customer.id
       );
-      this.$router.push(lastPath);
+      if (lastPath) {
+        this.$router.push(lastPath);
+      } else {
+        this.$router.push("/");
+      }
     } else {
       const cookies = new Cookies();
       cookies.remove("token");
