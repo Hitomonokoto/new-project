@@ -133,4 +133,9 @@ export default {
   color: red;
   margin-bottom: 20px;
 }
+@media screen and (max-width: 560px) {
+  .regist_form {
+    width: 90%;
+  }
+}
 </style>

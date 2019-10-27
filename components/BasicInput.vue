@@ -66,6 +66,7 @@ export default {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
 .regist_type1 {
   width: 200px;
   margin-top: 5px;
@@ -81,5 +82,16 @@ export default {
   border: none;
   border-radius: 0;
   font-size: 18px;
+}
+
+@media screen and (max-width: 960px) {
+}
+@media screen and (max-width: 560px) {
+  .regist_type1 {
+    width: 49%;
+  }
+  .regist_type2 {
+    width: 100%;
+  }
 }
 </style>
