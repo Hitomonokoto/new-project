@@ -32,7 +32,7 @@ img {
     display: block;
     margin: 0;
     box-shadow: none;
-    margin-bottom: 20px;
+    margin-bottom: 0;
   }
 }
 </style>

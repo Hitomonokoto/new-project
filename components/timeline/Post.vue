@@ -18,11 +18,15 @@
       fontSize="font-size:20px;"
     />
     <img v-if="this.fileUrl" class="post_img" :src="this.fileUrl" />
-    <adjustedTextarea
+    <textarea
       v-model="text"
-      cls="post_text"
+      class="post_text"
       placeholder="本文を入力してください..."
-    />
+      @input="updateValue"
+      style="font-size:16px;"
+      ref="adjust_textarea"
+      @keydown="adjustHeight"
+    ></textarea>
     <label for="picture">
       <iconAndTextButton cls="insert_img" text="画像を挿入する" icon="picture" />
       <input
@@ -39,7 +43,6 @@
 // コンポーネント
 import linkButton from "~/components/LinkButton";
 import basicInput from "~/components/BasicInput";
-import adjustedTextarea from "~/components/AdjustedTextarea";
 import userIcon from "~/components/UserIcon";
 
 // その他
@@ -50,7 +53,6 @@ export default {
   components: {
     linkButton,
     basicInput,
-    adjustedTextarea,
     userIcon
   },
   props: {
@@ -95,6 +97,16 @@ export default {
       if (!this.title && !this.text && !this.fileName) {
         return;
       }
+
+      let text_html;
+      text_html = this.text;
+      //一応タグを使えないように置き換える
+      text_html = text_html.split("<").join("&lt;");
+      text_html = text_html.split(">").join("&gt;");
+      //改行を改行タグに置き換える
+      text_html = text_html.split("\n").join("<br>");
+      console.log(text_html);
+
       this.$store.dispatch("timeline/PostAction", {
         user_id: this.login.user_2.user_id,
         business_id: this.login.user_2.business_id,
@@ -102,12 +114,23 @@ export default {
         name: this.login.user_2.nickname,
         user_icon: this.login.user_2.user_icon,
         title: this.title,
-        text: this.text,
+        text: text_html,
         fileName: this.fileName,
-        fileUrl: this.fileUrl,
-        timeline_type: this.timeline_type
+        fileUrl: this.fileUrl
       });
       this.$emit("emitBack");
+    },
+    updateValue: function(e) {
+      this.$emit("input", e.target.value);
+    },
+    adjustHeight() {
+      const textarea = this.$refs.adjust_textarea;
+      const resetHeight = new Promise(function(resolve) {
+        resolve((textarea.style.height = "auto"));
+      });
+      resetHeight.then(function() {
+        textarea.style.height = textarea.scrollHeight + "px";
+      });
     }
   },
   computed: mapState({
@@ -138,7 +161,11 @@ export default {
   display: flex;
   align-items: center;
 }
-
+.post_text {
+  width: 100%;
+  padding: 10px;
+  border: none;
+}
 .user_icon {
   width: 50px;
   border-radius: 10%;
