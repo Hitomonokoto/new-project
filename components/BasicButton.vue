@@ -29,8 +29,7 @@ export default {
 }
 .login_btn {
   margin: 10px 0;
-  width: 300px;
-  height: 35px;
+  padding: 10px 130px;
 }
 .checkout_btn {
   padding: 5px 20px;
