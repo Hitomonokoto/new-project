@@ -28,10 +28,9 @@ export default {
   cursor: pointer;
 }
 .login_btn {
-  border-radius: 5px;
   margin: 10px 0;
-  padding: 10px 0;
   width: 300px;
+  height: 35px;
 }
 .checkout_btn {
   padding: 5px 20px;
