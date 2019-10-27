@@ -48,11 +48,9 @@
 
 <script>
 // コンポーネント
-import basicButton from "~/components/BasicButton";
 import basicInput from "~/components/BasicInput";
 import adjustedTextarea from "~/components/AdjustedTextarea";
 import userIcon from "~/components/UserIcon";
-import iconAndTextButton from "~/components/IconAndTextButton";
 
 // その他
 import { mapState } from "vuex";
@@ -60,11 +58,9 @@ import uuid from "uuid";
 
 export default {
   components: {
-    basicButton,
     basicInput,
     adjustedTextarea,
-    userIcon,
-    iconAndTextButton
+    userIcon
   },
   data() {
     return {

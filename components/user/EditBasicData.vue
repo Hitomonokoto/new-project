@@ -38,7 +38,6 @@
 
 <script>
 // コンポーネント
-import basicButton from "~/components/BasicButton";
 import basicInput from "~/components/BasicInput";
 
 // その他
@@ -47,7 +46,6 @@ import customerUpdate from "~/apollo/gql/customerUpdate";
 
 export default {
   components: {
-    basicButton,
     basicInput
   },
   data() {

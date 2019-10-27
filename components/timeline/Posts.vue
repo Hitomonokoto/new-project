@@ -46,7 +46,6 @@
 
 <script>
 // コンポーネント
-import basicButton from "~/components/BasicButton";
 import postActions from "~/components/timeline/PostActions";
 import comments from "~/components/timeline/Comments";
 import userIcon from "~/components/UserIcon";
@@ -55,7 +54,7 @@ import userIcon from "~/components/UserIcon";
 import { mapState } from "vuex";
 
 export default {
-  components: { basicButton, postActions, comments, userIcon },
+  components: { postActions, comments, userIcon },
   props: {
     post_data: {
       type: Object

@@ -19,6 +19,7 @@ export default {
   ],
 
   plugins: [
+    '~/plugins/components',
     '~/plugins/firebase',
     '~/plugins/contentful'
   ],

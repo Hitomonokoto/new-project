@@ -106,9 +106,6 @@ main {
     margin-bottom: 50px;
   }
 }
-h1 h2 h3 {
-  text-align: center;
-}
 .page_title {
   margin-top: 50px;
   margin-bottom: 20px;
@@ -125,5 +122,11 @@ h1 h2 h3 {
 }
 .home_sub_title {
   margin-bottom: 50px;
+}
+.follower_title {
+  margin-bottom: 20px;
+}
+.product_name {
+  margin-bottom: 20px;
 }
 </style>

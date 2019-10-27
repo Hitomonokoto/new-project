@@ -31,16 +31,11 @@
 </template>
 
 <script>
-// コンポーネント
-import basicButton from "~/components/BasicButton";
-
 // その他
 import { mapState } from "vuex";
 
 export default {
-  components: {
-    basicButton
-  },
+  components: {},
   methods: {
     editForm() {
       this.$router.push("/info");

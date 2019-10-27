@@ -17,15 +17,13 @@
 <script>
 // コンポーネント
 import posts from "~/components/timeline/Posts";
-import basicButton from "~/components/BasicButton";
 
 // その他
 import { mapState } from "vuex";
 
 export default {
   components: {
-    posts,
-    basicButton
+    posts
   },
   data() {
     return {};
