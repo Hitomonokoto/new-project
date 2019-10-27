@@ -25,28 +25,27 @@ export default {
           customerAccessToken: this.login.token
         }
       });
-    } catch {
-      const cookies = new Cookies();
-      cookies.remove("token");
-      this.$store.commit("login/logout");
-      this.$router.push("/");
-    }
 
-    const cookies = new Cookies();
-    const lastPath = await cookies.get("lastPath");
-    if (user.data.customer) {
-      this.$store.commit("login/getUser_1", user.data.customer);
-      await this.$store.dispatch(
-        "login/getUserAction_2",
-        user.data.customer.id
-      );
-      if (lastPath) {
-        this.$router.push(lastPath);
+      const cookies = new Cookies();
+      const lastPath = await cookies.get("lastPath");
+      console.log(user);
+      if (user.data.customer) {
+        this.$store.commit("login/getUser_1", user.data.customer);
+        await this.$store.dispatch(
+          "login/getUserAction_2",
+          user.data.customer.id
+        );
+        if (lastPath && lastPath != "/test") {
+          this.$router.push(lastPath);
+        } else {
+          this.$router.push("/");
+        }
       } else {
+        cookies.remove("token");
+        this.$store.commit("login/logout");
         this.$router.push("/");
       }
-    } else {
-      const cookies = new Cookies();
+    } catch {
       cookies.remove("token");
       this.$store.commit("login/logout");
       this.$router.push("/");
