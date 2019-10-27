@@ -53,7 +53,7 @@ export default {
 
 <style scoped>
 .farmers {
-  width: 100%;
+  width: 95%;
   display: flex;
   flex-wrap: wrap;
 }
@@ -85,6 +85,7 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
   }
   .farmer {
     width: 90%;

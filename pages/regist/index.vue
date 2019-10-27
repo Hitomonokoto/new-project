@@ -1,6 +1,6 @@
 <template>
   <main>
-    <h1>パートナー登録</h1>
+    <h1 class="page_title">パートナー登録</h1>
     <div class="regist_form">
       <dl>
         <dt>ニックネーム</dt>
