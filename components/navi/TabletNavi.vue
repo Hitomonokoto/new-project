@@ -31,7 +31,7 @@
         <naviSingle icon_b="question_b" icon_w="question_w" text="Q&A" />
       </nuxt-link>
 
-      <div class="navi_link">
+      <div class="navi_link" @click="mypage">
         <naviSingle icon_b="mypage_b" icon_w="mypage_w" text="MYPAGE" />
       </div>
     </div>
@@ -40,7 +40,6 @@
 
 <script>
 // コンポーネント
-import iconAndTextButton from "~/components/IconAndTextButton";
 import naviSingle from "~/components/naviSingle";
 import userIcon from "~/components/UserIcon";
 
@@ -48,7 +47,6 @@ import userIcon from "~/components/UserIcon";
 import { mapState } from "vuex";
 export default {
   components: {
-    iconAndTextButton,
     naviSingle,
     userIcon
   },

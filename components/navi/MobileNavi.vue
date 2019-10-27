@@ -40,7 +40,6 @@
 
 <script>
 // コンポーネント
-import iconAndTextButton from "~/components/IconAndTextButton";
 import naviSingle from "~/components/naviSingle";
 import linkButton from "~/components/LinkButton";
 import userIcon from "~/components/UserIcon";
@@ -50,7 +49,6 @@ import { mapState } from "vuex";
 
 export default {
   components: {
-    iconAndTextButton,
     naviSingle,
     linkButton,
     userIcon

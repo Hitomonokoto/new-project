@@ -23,6 +23,7 @@ export default {
 .basic {
   color: white;
   background-color: #b5c97c;
+  border: none;
   border-radius: 5px;
   cursor: pointer;
 }
@@ -33,8 +34,9 @@ export default {
   width: 300px;
 }
 .checkout_btn {
-  padding: 10px 30px;
-  margin-top: 20px;
+  padding: 5px 20px;
+  margin-bottom: 20px;
+  background-color: #f4b3ca;
 }
 .post_btn {
   padding: 5px 20px;
@@ -104,6 +106,7 @@ export default {
 .logout_btn {
   padding: 5px 10px;
   margin: 10px 20px;
+  background-color: lightgray;
 }
 .user_icon_edit_btn {
   padding: 5px 10px;

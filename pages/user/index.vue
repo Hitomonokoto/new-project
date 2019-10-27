@@ -53,7 +53,7 @@
       </div>-->
     </div>
     <div class="follower_area">
-      <h2>フォローしている創り手</h2>
+      <h2 class="follower_title">フォローしている創り手</h2>
       <div class="follower_list">
         <nuxt-link
           v-for="(follower, index) in Farmers.followerData"
@@ -68,10 +68,17 @@
           <p class="follow_name">{{ follower.fields.farmName }}</p>
         </nuxt-link>
       </div>
+      <div class="no_follower" v-if="!Farmers.followerData.length">
+        <p class="no_follower_text">
+          フォローしている創り手がいません。
+          <br />お気に入りの創り手をフォローして繋がりましょう。
+        </p>
+        <linkButton cls="farmer_search" linkTo="/farmers" text="創り手を探す" />
+      </div>
     </div>
 
     <basicButton cls="logout_btn" @emitClick="logout">ログアウト</basicButton>
-    <linkButton cls="unsub" linkTo="/unsub" text="退会する" />
+    <!-- <linkButton cls="unsub" linkTo="/unsub" text="退会する" /> -->
   </main>
 </template>
 
@@ -79,13 +86,11 @@
 <script>
 // コンポーネント
 import mainImage from "~/components/MainImage";
-import basicButton from "~/components/BasicButton";
 import linkButton from "~/components/LinkButton";
 import profileImgEdit from "~/components/user/ProfileImgEdit";
 import editNickname from "~/components/user/EditNickname";
 import editBasicData from "~/components/user/EditBasicData";
 import userIcon from "~/components/UserIcon";
-import iconAndTextButton from "~/components/IconAndTextButton";
 
 // その他
 import { mapState } from "vuex";
@@ -97,12 +102,10 @@ export default {
   components: {
     mainImage,
     linkButton,
-    basicButton,
     profileImgEdit,
     editNickname,
     editBasicData,
-    userIcon,
-    iconAndTextButton
+    userIcon
   },
   data() {
     return {
@@ -177,6 +180,7 @@ export default {
 .profile_area {
   width: 80%;
   display: flex;
+  margin-bottom: 100px;
 }
 .xxx {
   display: flex;
@@ -260,6 +264,7 @@ dt {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 100px;
 }
 .follower_list {
   width: 80%;
@@ -277,6 +282,16 @@ dt {
   width: 100%;
   border-radius: 5px;
   box-shadow: 0px 0px 6px #d1d1d1;
+}
+.no_follower {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.no_follower_text {
+  text-align: center;
+  font-size: 14px;
+  margin-bottom: 30px;
 }
 @media screen and (max-width: 960px) {
   .follower_list {

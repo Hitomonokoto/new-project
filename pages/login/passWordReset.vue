@@ -6,14 +6,11 @@
 </template>
 
 <script>
-// コンポーネント
-import basicButton from "~/components/BasicButton";
-
 // その他
 import customerRecover from "~/apollo/gql/customerRecover";
 
 export default {
-  components: { basicButton },
+  components: {},
   data: () => ({
     email: ""
   }),

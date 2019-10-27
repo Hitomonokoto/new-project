@@ -10,18 +10,17 @@
 </template>
 
 <script>
-// コンポーネント
-import basicButton from "~/components/BasicButton";
 // その他
 import { mapState } from "vuex";
 
 export default {
-  components: { basicButton },
+  components: {},
   data() {
     return {
       comment: null
     };
   },
+  props: {
     post_id: {
       type: String
     },

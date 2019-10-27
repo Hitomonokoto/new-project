@@ -18,7 +18,6 @@
 <script>
 // コンポーネント
 import linkButton from "~/components/LinkButton";
-import basicButton from "~/components/BasicButton";
 import basicInput from "~/components/BasicInput";
 
 // その他
@@ -27,7 +26,6 @@ import { mapState } from "vuex";
 export default {
   components: {
     linkButton,
-    basicButton,
     basicInput
   },
   data() {

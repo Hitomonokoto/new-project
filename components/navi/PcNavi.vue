@@ -37,14 +37,13 @@
 
 <script>
 // コンポーネント
-import iconAndTextButton from "~/components/IconAndTextButton";
 import naviSingle from "~/components/naviSingle";
 
 // その他
 import { mapState } from "vuex";
 
 export default {
-  components: { iconAndTextButton, naviSingle },
+  components: { naviSingle },
   data() {
     return {};
   },

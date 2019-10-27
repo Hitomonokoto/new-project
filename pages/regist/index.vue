@@ -62,14 +62,13 @@
 
 <script>
 // コンポーネント
-import basicButton from "~/components/BasicButton";
 import basicInput from "~/components/BasicInput";
 
 // その他
 import customerCreate from "~/apollo/gql/customerCreate";
 
 export default {
-  components: { basicButton, basicInput },
+  components: { basicInput },
   data: () => ({
     createData: {
       lastName: null,
