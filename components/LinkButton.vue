@@ -42,7 +42,6 @@ export default {
   color: #f4b3ca;
   background-color: transparent;
   padding: 5px 20px;
-  margin-bottom: 50px;
   border: 2px solid #f4b3ca;
 }
 .partner_btn {
