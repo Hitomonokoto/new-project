@@ -18,11 +18,12 @@
     />
     <basicButton class="login_btn" @emitClick="save">ログイン</basicButton>
 
-    <linkButton
+    <!-- <linkButton
       cls="foget_pass_btn"
       linkTo="/login/passWordReset"
       text="パスワードをお忘れの方はこちら"
-    />
+    />-->
+    <span class="foget_pass_btn" @click="passWordReset">パスワードをお忘れの方はこちら</span>
 
     <linkButton cls="regist_btn" linkTo="/regist" text="新規登録" />
   </main>
@@ -77,6 +78,9 @@ export default {
       this.$store.commit("login/getUser_1", user.data.customer);
       this.$store.dispatch("login/getUserAction_2", user.data.customer.id);
       this.$router.push("/");
+    },
+    passWordReset() {
+      this.$router.push("/login/passWordReset");
     }
   }
 };
@@ -101,6 +105,11 @@ main {
   color: #707070;
   padding: 20px 0;
   text-align: center;
+}
+.foget_pass_btn {
+  color: #707070;
+  margin-bottom: 50px;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 960px) {

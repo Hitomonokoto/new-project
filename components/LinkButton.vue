@@ -37,11 +37,7 @@ export default {
   border: 2px solid #b5c97c;
   padding: 5px 20px;
 }
-.foget_pass_btn {
-  color: #707070;
-  background-color: transparent;
-  margin-bottom: 50px;
-}
+
 .regist_btn {
   color: #f4b3ca;
   background-color: transparent;
