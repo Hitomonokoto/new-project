@@ -9,7 +9,6 @@
       />
     </nuxt-link>
     <P class="farmer_name">{{farmers.farmer.fields.farmName}}</P>
-    <!-- <P class="summary">{{farmers.farmer.fields.summary}}</P> -->
     <div class="summary" v-html="farmers.farmer.fields.summary"></div>
     <linkButton
       cls="partner_btn"

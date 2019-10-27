@@ -14,7 +14,7 @@
     <div v-show="isGift" class="myfarm_area">
       <h2 class="home_title">Gift</h2>
       <p class="home_sub_title">豊さを味わう</p>
-      <myFarm :products="this.products.products" />
+      <myFarm :products="products.pickupProducts" />
       <linkButton cls="top_products" linkTo="/products" text="もっと見る" />
     </div>
     <div class="timeline_area" v-if="isTimeline">
@@ -82,7 +82,7 @@ export default {
   },
   async fetch({ store }) {
     await store.dispatch("timeline/getPostsAction", { timeline_type: "all" });
-    await store.dispatch("products/getProductsAction");
+    await store.dispatch("products/getPickupProductsAction");
   },
   created() {
     if (this.login.token) {

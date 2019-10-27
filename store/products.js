@@ -3,7 +3,8 @@ import client from "~/plugins/contentful";
 export const state = () => ({
     products: [],
     productsByfarmer: [],
-    product: []
+    product: [],
+    pickupProducts: []
 })
 
 export const mutations = {
@@ -15,6 +16,9 @@ export const mutations = {
     },
     getProduct(state, data) {
         state.product = data
+    },
+    getPickupProducts(state, data) {
+        state.pickupProducts = data
     }
 }
 
@@ -26,6 +30,17 @@ export const actions = {
             order: '-sys.createdAt'
         });
         context.commit('getProducts', entries.items);
+    },
+    // ホーム画面のピックアップギフトを取得
+    async getPickupProductsAction(context) {
+        const entries = await client.getEntries({
+            content_type: "product",
+            order: '-sys.createdAt'
+        });
+        const pickup_entries = entries.items.filter(entry => {
+            return entry.fields.pickupFlug;
+        })
+        context.commit('getPickupProducts', pickup_entries);
     },
     // マイファーム詳細ページでの生産者を取得
     async getProductsByfarmerAction(context, data) {

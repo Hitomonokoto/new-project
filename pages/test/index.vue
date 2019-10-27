@@ -18,6 +18,7 @@ export default {
     return {};
   },
   async created() {
+    const cookies = new Cookies();
     try {
       const user = await this.$apollo.query({
         query: getCustomer,
@@ -26,7 +27,6 @@ export default {
         }
       });
 
-      const cookies = new Cookies();
       const lastPath = await cookies.get("lastPath");
       console.log(user);
       if (user.data.customer) {

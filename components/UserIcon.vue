@@ -28,7 +28,7 @@ export default {
 }
 .user_page_icon {
   display: block;
-  width: 150px;
+  width: 120px;
   border-radius: 5px;
   margin: 5px;
 }
@@ -40,7 +40,7 @@ export default {
 }
 @media screen and (max-width: 560px) {
   .user_page_icon {
-    width: 80px;
+    width: 60px;
     margin: 3px;
   }
 }
