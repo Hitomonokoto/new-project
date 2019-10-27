@@ -49,8 +49,6 @@ export default {
 </script>
 
 <style scoped>
-.basic {
-}
 .write_comment {
   border-radius: 5px;
   padding: 8px;

@@ -32,6 +32,7 @@ export default {
 }
 .icon {
   width: 20px;
+  height: 20px;
   margin-right: 5px;
 }
 .text {
@@ -83,6 +84,7 @@ export default {
 }
 .checkout_btn > img {
   width: 24px;
+  height: 24px;
   margin: 0;
 }
 .checkout_btn > p {
@@ -106,6 +108,7 @@ export default {
 }
 .product_page_checkout_btn > img {
   width: 36px;
+  height: 36px;
   margin: 0;
 }
 .product_page_checkout_btn > p {
@@ -154,6 +157,7 @@ export default {
   }
   .product_page_checkout_btn > img {
     width: 30px;
+    height: 30px;
     margin: 0;
   }
   .product_page_checkout_btn > p {

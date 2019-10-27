@@ -1,16 +1,16 @@
 <template>
   <main>
-    <h1>パートナー登録</h1>
+    <h1 class="page_title">ファミリー登録</h1>
     <div class="regist_form">
       <dl>
         <dt>ニックネーム</dt>
         <dd>
-          <basicInput cls="regist_type1" type="text" v-model="nickname" />
+          <basicInput cls="regist_type2" type="text" v-model="nickname" />
         </dd>
       </dl>
       <dl>
         <dt>お名前</dt>
-        <dd>
+        <dd class="name_area">
           <basicInput
             cls="regist_type1"
             type="text"
@@ -125,6 +125,10 @@ export default {
 </script>
 
 <style scoped>
+.name_area {
+  display: flex;
+  justify-content: space-between;
+}
 .dd_password {
   display: flex;
   flex-direction: column;
@@ -132,5 +136,10 @@ export default {
 .error_text {
   color: red;
   margin-bottom: 20px;
+}
+@media screen and (max-width: 560px) {
+  .regist_form {
+    width: 90%;
+  }
 }
 </style>

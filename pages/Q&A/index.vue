@@ -77,6 +77,11 @@ export default {
       this.$router.push("");
       this.$router.push("/info");
     }
+  },
+  head() {
+    return {
+      title: "Q&A | ショクタメ"
+    };
   }
 };
 </script>

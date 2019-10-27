@@ -23,7 +23,7 @@
       <div class="post_img">
         <img :src="this.post_data.fileUrl" />
       </div>
-      <p class="post_text">{{ post_data.text }}</p>
+      <div class="post_text" v-html="post_data.text"></div>
       <postActions
         @openComments="openComments"
         @closeComments="closeComments"

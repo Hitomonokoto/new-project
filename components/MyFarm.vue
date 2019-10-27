@@ -6,35 +6,39 @@
       :to="'/products/product/'+product.sys.id"
       :key="index"
     >
-      <div class="title_area">
-        <div class="info">
-          <nuxt-link :to="'/farmers/farmer/'+product.fields.farmId">
-            <img
-              class="farm_icon"
-              :src="product.fields.farmerIcon.fields.file.url"
-            />
-          </nuxt-link>
-
-          <div class="name_area">
+      <div>
+        <div class="title_area">
+          <div class="info">
             <nuxt-link :to="'/farmers/farmer/'+product.fields.farmId">
-              <p class="farm_name">{{product.fields.farmName}}</p>
+              <img
+                class="farm_icon"
+                :src="product.fields.farmerIcon.fields.file.url"
+              />
             </nuxt-link>
-            <nuxt-link :to="'/products/product/'+product.sys.id">
-              <p class="product_name">{{product.fields.productName}}</p>
-            </nuxt-link>
+
+            <div class="name_area">
+              <nuxt-link :to="'/farmers/farmer/'+product.fields.farmId">
+                <p class="farm_name">{{product.fields.farmName}}</p>
+              </nuxt-link>
+              <nuxt-link :to="'/products/product/'+product.sys.id">
+                <p class="product_name">{{product.fields.productName}}</p>
+              </nuxt-link>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="product_img">
-        <img :src="product.fields.mainImage.fields.file.url" />
-        <iconAndTextButton cls="checkout_btn" text="購入する" icon="gift_w" />
-      </div>
-      <nuxt-link :to="'/products/product/'+product.sys.id">
-        <div class="product_page">
-          <p class="product_page_text">詳細ページへ</p>
+        <div class="product_img">
+          <img :src="product.fields.mainImage.fields.file.url" />
+          <span @click="checkout(product.fields.productId)">
+            <iconAndTextButton cls="checkout_btn" text="購入する" icon="gift_w" />
+          </span>
         </div>
-      </nuxt-link>
+        <nuxt-link :to="'/products/product/'+product.sys.id">
+          <div class="product_page">
+            <p class="product_page_text">詳細ページへ</p>
+          </div>
+        </nuxt-link>
+      </div>
     </div>
   </div>
 </template>
@@ -46,10 +50,32 @@ import firebase from "~/plugins/firebase";
 require("firebase/firestore");
 const db = firebase.firestore();
 
+import getProduct from "~/apollo/gql/getProduct";
+import checkoutCreate from "~/apollo/gql/checkoutCreate";
+
 export default {
   props: {
     products: {
       type: Array
+    }
+  },
+  methods: {
+    async checkout(productId) {
+      const data = await this.$apollo.query({
+        query: getProduct,
+        variables: {
+          productId: productId
+        }
+      });
+      const variant_id = data.data.node.variants.edges[0].node.id;
+      const xxx = await this.$apollo.mutate({
+        mutation: checkoutCreate,
+        variables: {
+          variantId: variant_id
+        }
+      });
+      const webUrl = xxx.data.checkoutCreate.checkout.webUrl;
+      window.location.href = webUrl;
     }
   }
 };

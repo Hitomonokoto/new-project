@@ -75,7 +75,12 @@ export default {
   },
   computed: mapState({
     Products: state => state.products
-  })
+  }),
+  head() {
+    return {
+      title: this.Products.product.fields.productName + " | ショクタメ"
+    };
+  }
 };
 </script>
 

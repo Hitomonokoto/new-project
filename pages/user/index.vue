@@ -170,6 +170,11 @@ export default {
     user_data() {
       this.isData = true;
     }
+  },
+  head() {
+    return {
+      title: "マイページ | ショクタメ"
+    };
   }
 };
 </script>
@@ -180,11 +185,11 @@ export default {
 .profile_area {
   width: 80%;
   display: flex;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 }
 .xxx {
   display: flex;
-  width: 180px;
+  width: 150px;
 }
 .user_icon {
   margin-right: 10px;
@@ -198,7 +203,7 @@ export default {
   background-color: white;
   border-radius: 5px;
   position: absolute;
-  top: -120px;
+  top: -90px;
   left: 20px;
 }
 .mypage_header {
@@ -246,16 +251,19 @@ dt {
   }
   .icon_edge {
     position: absolute;
-    top: -90px;
+    top: -80px;
+  }
+  .mypage_header {
+    margin-top: 10px;
   }
 }
 @media screen and (max-width: 560px) {
   .xxx {
-    width: 110px;
+    width: 90px;
   }
   .icon_edge {
     position: absolute;
-    top: -50px;
+    top: -20px;
   }
 }
 

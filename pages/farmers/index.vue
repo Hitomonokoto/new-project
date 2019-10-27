@@ -45,7 +45,12 @@ export default {
   head: {
     title: "生産者紹介"
   },
-  computed: mapState({ farmers: "farmers" })
+  computed: mapState({ farmers: "farmers" }),
+  head() {
+    return {
+      title: "創り手一覧 | ショクタメ"
+    };
+  }
 };
 </script>
 
@@ -53,7 +58,7 @@ export default {
 
 <style scoped>
 .farmers {
-  width: 100%;
+  width: 95%;
   display: flex;
   flex-wrap: wrap;
 }
@@ -85,6 +90,7 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
   }
   .farmer {
     width: 90%;

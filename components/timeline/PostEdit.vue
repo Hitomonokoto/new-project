@@ -25,12 +25,23 @@
         @emitClick="fileDalete"
       >×</basicButton>
     </div>
-    <adjustedTextarea
+    <!-- <adjustedTextarea
       v-model="text"
       :text="this.post_data.text"
       cls="post_text"
       placeholder="本文を入力してください..."
-    />
+    />-->
+
+    <textarea
+      v-model="text"
+      class="post_text"
+      placeholder="本文を入力してください..."
+      @input="updateValue"
+      style="font-size:16px;"
+      ref="adjust_textarea"
+      @keydown="adjustHeight"
+    ></textarea>
+
     <label for="picture">
       <iconAndTextButton cls="insert_img" text="画像を挿入する" icon="picture" />
       <input
@@ -65,7 +76,7 @@ export default {
   data() {
     return {
       title: this.post_data.title,
-      text: this.post_data.text,
+      text: this.post_data.text.split("<br>").join("\n"),
       fileName: this.post_data.fileName,
       fileUrl: this.post_data.fileUrl
     };
@@ -124,16 +135,36 @@ export default {
       if (this.text == "" && !this.fileName) {
         return;
       }
+      let text_html;
+      text_html = this.text;
+      //一応タグを使えないように置き換える
+      text_html = text_html.split("<").join("&lt;");
+      text_html = text_html.split(">").join("&gt;");
+      //改行を改行タグに置き換える
+      text_html = text_html.split("\n").join("<br>");
+
       this.$store.dispatch("timeline/PostEditAction", {
         post_id: this.post_data.post_id,
         business_id: this.post_data.business_id,
         title: this.title,
-        text: this.text,
+        text: text_html,
         fileName: this.fileName,
         fileUrl: this.fileUrl,
         timeline_type: this.timeline_type
       });
       this.emitBack();
+    },
+    updateValue: function(e) {
+      this.$emit("input", e.target.value);
+    },
+    adjustHeight() {
+      const textarea = this.$refs.adjust_textarea;
+      const resetHeight = new Promise(function(resolve) {
+        resolve((textarea.style.height = "auto"));
+      });
+      resetHeight.then(function() {
+        textarea.style.height = textarea.scrollHeight + "px";
+      });
     }
   },
   computed: mapState({
@@ -158,6 +189,11 @@ export default {
 .post_img {
   width: 100%;
   display: block;
+}
+.post_text {
+  width: 100%;
+  padding: 10px;
+  border: none;
 }
 .user {
   display: flex;
