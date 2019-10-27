@@ -163,7 +163,7 @@ export default {
   position: absolute;
   top: -80px;
   right: 20px;
-  background-color: rgb(253, 99, 99);
+  background-color: #f4b3ca;
   padding: 10px 30px;
 }
 .acount_btn {
@@ -177,12 +177,18 @@ export default {
     width: 100%;
     margin-bottom: 30px;
   }
-}
-@media screen and (max-width: 960px) {
   .follow_btn {
     position: absolute;
-    top: -50px;
+    top: -70px;
     right: 20px;
+  }
+}
+@media screen and (max-width: 560px) {
+  .follow_btn {
+    padding: 10px 10px;
+    position: absolute;
+    top: -65px;
+    right: 10px;
   }
 }
 </style>

@@ -14,6 +14,7 @@
               :src="product.fields.farmerIcon.fields.file.url"
             />
           </nuxt-link>
+
           <div class="name_area">
             <nuxt-link :to="'/farmers/farmer/'+product.fields.farmId">
               <p class="farm_name">{{product.fields.farmName}}</p>
@@ -35,7 +36,6 @@
         </div>
       </nuxt-link>
     </div>
-    <!-- <basicButton @emitClick="update">更新</basicButton> -->
   </div>
 </template>
 

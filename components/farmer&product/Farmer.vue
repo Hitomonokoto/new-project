@@ -12,7 +12,7 @@
     <P class="summary">{{farmers.farmer.fields.summary}}</P>
     <linkButton
       cls="partner_btn"
-      linkTo="'/farmers/farmer/'+farmers.farmer.sys.id"
+      :linkTo="'/farmers/farmer/'+farmers.farmer.sys.id"
       text="もっと知る"
     />
   </div>
