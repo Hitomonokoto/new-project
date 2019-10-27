@@ -51,10 +51,8 @@
 //test
 // コンポーネント
 import mainImage from "~/components/MainImage";
-import iconAndTextButton from "~/components/IconAndTextButton";
 import myFarm from "~/components/MyFarm";
 import linkButton from "~/components/LinkButton";
-import basicButton from "~/components/BasicButton";
 import timeline from "~/components/timeline/Timeline";
 import post from "~/components/timeline/Post";
 import postEdit from "~/components/timeline/PostEdit";
@@ -65,10 +63,8 @@ import { mapState } from "vuex";
 export default {
   components: {
     mainImage,
-    iconAndTextButton,
     myFarm,
     linkButton,
-    basicButton,
     timeline,
     post,
     postEdit

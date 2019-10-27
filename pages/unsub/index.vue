@@ -40,14 +40,13 @@
 <script>
 // コンポーネント
 import mainImage from "~/components/MainImage";
-import basicButton from "~/components/BasicButton";
 import basicTextarea from "~/components/BasicTextarea";
 
 // その他
 import { mapState } from "vuex";
 
 export default {
-  components: { mainImage, basicButton, basicTextarea },
+  components: { mainImage, basicTextarea },
   data() {
     return {
       message: ""

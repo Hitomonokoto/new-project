@@ -31,7 +31,6 @@
 <script>
 // コンポーネント
 import linkButton from "~/components/LinkButton";
-import basicButton from "~/components/BasicButton";
 import basicInput from "~/components/BasicInput";
 
 // その他
@@ -40,7 +39,7 @@ import getCustomer from "~/apollo/gql/getCustomer";
 import Cookies from "universal-cookie";
 
 export default {
-  components: { linkButton, basicButton, basicInput },
+  components: { linkButton, basicInput },
   data: () => ({
     input: {
       email: null,

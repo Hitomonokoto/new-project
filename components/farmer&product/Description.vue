@@ -1,10 +1,7 @@
 <template>
   <div class="description">
-    <h2 class="farmer-title">{{ this.products.product.fields.productName }}</h2>
-    <div
-      class="myFarm_content"
-      v-html="this.products.product.fields.description"
-    ></div>
+    <h2 class="product_name">{{ products.product.fields.productName }}</h2>
+    <div class="myFarm_content" v-html="products.product.fields.description"></div>
   </div>
 </template>
 
@@ -26,20 +23,10 @@ export default {
 
 
 <style scoped>
-.products {
+.description {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-.product {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.product_img {
-  display: block;
-  width: 50%;
-  border-radius: 5px;
-  box-shadow: 0px 0px 6px #d1d1d1;
+  margin-bottom: 100px;
 }
 </style>

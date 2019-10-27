@@ -50,7 +50,6 @@
 
 <script>
 // コンポーネント
-import basicButton from "~/components/BasicButton";
 import adjustedTextarea from "~/components/AdjustedTextarea";
 import userIcon from "~/components/UserIcon";
 
@@ -58,7 +57,7 @@ import userIcon from "~/components/UserIcon";
 import { mapState } from "vuex";
 
 export default {
-  components: { basicButton, adjustedTextarea, userIcon },
+  components: { adjustedTextarea, userIcon },
   data() {
     return {
       new_comment: null

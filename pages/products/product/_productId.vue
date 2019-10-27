@@ -2,26 +2,29 @@
   <main>
     <mainImage :src="Products.product.fields.mainImage.fields.file.url" />
     <div class="top_checkout_area">
-      <div class="checkout_icon" @click="checkout">
-        <img src="~/assets/gift.svg" />
-      </div>
+      <span @click="checkout">
+        <iconAndTextButton
+          cls="product_page_checkout_btn"
+          text="購入する"
+          icon="gift_w"
+        />
+      </span>
     </div>
     <description />
     <farmer />
-
     <div class="bottom_checkout_area">
-      <p>Gift</p>
-      <p>豊さを味わう</p>
-      <p>12,000円/年</p>
+      <h3 class="checkout_title">Gift</h3>
+      <p class="checkout_sub_title">豊さを味わう</p>
+      <p class="checkout_product_name">{{ Products.product.fields.productName }}</p>
+      <p class="checkout_price">12,000円/年</p>
+      <basicButton cls="checkout_btn" @emitClick="checkout">購入する</basicButton>
     </div>
-
-    <basicButton cls="checkout_btn" @emitClick="checkout">種主になる</basicButton>
+    <iconAndTextButton cls="about_gift_btn" text="ギフトとは" icon="gift_pink" />
   </main>
 </template>
 
 <script>
 // コンポーネント
-import basicButton from "~/components/BasicButton";
 import mainImage from "~/components/MainImage";
 import description from "~/components/farmer&product/Description";
 import farmer from "~/components/farmer&product/Farmer";
@@ -34,7 +37,6 @@ import checkoutCreate from "~/apollo/gql/checkoutCreate";
 export default {
   components: {
     mainImage,
-    basicButton,
     description,
     farmer
   },
@@ -82,24 +84,6 @@ export default {
   width: 80%;
   position: relative;
 }
-.checkout_icon {
-  width: 80px;
-  height: 80px;
-  position: absolute;
-  top: -120px;
-  right: 10px;
-  background-color: white;
-  box-shadow: 0px 0px 6px gray;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-}
-
-.checkout_icon > img {
-  height: 60px;
-}
 
 .bottom_checkout_area {
   width: 50%;
@@ -108,5 +92,29 @@ export default {
   align-items: center;
   border-radius: 5px;
   box-shadow: 0px 0px 6px #d1d1d1;
+  margin-bottom: 50px;
+}
+.checkout_title {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.checkout_sub_title {
+  margin-bottom: 30px;
+}
+.checkout_product_name {
+  margin-bottom: 5px;
+}
+.checkout_price {
+  margin-bottom: 20px;
+}
+@media screen and (max-width: 960px) {
+  .top_checkout_area {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 560px) {
+  .bottom_checkout_area {
+    width: 90%;
+  }
 }
 </style>

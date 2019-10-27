@@ -9,12 +9,18 @@
           </div>
         </div>
       </div>
-      <div class="nickname_area" v-if="!isNickname">
-        <div class="nicknameTitle_and_editBotton">
-          <p class="nickname_title">ニックネーム</p>
-          <basicButton cls="nickname_edit_btn" @emitClick="editNickname">アカウント管理</basicButton>
-        </div>
+      <div class="mypage_header" v-if="!isNickname">
         <p class="nickname">{{ Login.user_2.nickname }} さん</p>
+        <div class="mail_and_menu">
+          <span class="mail_area">
+            <iconAndTextButton cls="mail" :text="null" icon="mail_gry" />
+          </span>
+          <span class="menu_area">
+            <iconAndTextButton cls="menu" :text="null" icon="menu_gry" />
+          </span>
+
+          <!-- <basicButton cls="acount_btn" @emitClick="editNickname">アカウント管理</basicButton> -->
+        </div>
       </div>
 
       <editNickname v-if="isNickname" @emitClick="back" />
@@ -47,7 +53,7 @@
       </div>-->
     </div>
     <div class="follower_area">
-      <h2>フォローしている創り手</h2>
+      <h2 class="follower_title">フォローしている創り手</h2>
       <div class="follower_list">
         <nuxt-link
           v-for="(follower, index) in Farmers.followerData"
@@ -62,10 +68,17 @@
           <p class="follow_name">{{ follower.fields.farmName }}</p>
         </nuxt-link>
       </div>
+      <div class="no_follower" v-if="!Farmers.followerData.length">
+        <p class="no_follower_text">
+          フォローしている創り手がいません。
+          <br />お気に入りの創り手をフォローして繋がりましょう。
+        </p>
+        <linkButton cls="farmer_search" linkTo="/farmers" text="創り手を探す" />
+      </div>
     </div>
 
-    <basicButton cls="acount_btn" @emitClick="logout">ログアウト</basicButton>
-    <linkButton cls="unsub" linkTo="/unsub" text="退会する" />
+    <basicButton cls="logout_btn" @emitClick="logout">ログアウト</basicButton>
+    <!-- <linkButton cls="unsub" linkTo="/unsub" text="退会する" /> -->
   </main>
 </template>
 
@@ -73,7 +86,6 @@
 <script>
 // コンポーネント
 import mainImage from "~/components/MainImage";
-import basicButton from "~/components/BasicButton";
 import linkButton from "~/components/LinkButton";
 import profileImgEdit from "~/components/user/ProfileImgEdit";
 import editNickname from "~/components/user/EditNickname";
@@ -90,7 +102,6 @@ export default {
   components: {
     mainImage,
     linkButton,
-    basicButton,
     profileImgEdit,
     editNickname,
     editBasicData,
@@ -168,13 +179,12 @@ export default {
 <style scoped>
 .profile_area {
   width: 80%;
+  display: flex;
+  margin-bottom: 100px;
 }
 .xxx {
   display: flex;
-  align-items: flex-end;
-  /* margin-bottom: 50px; */
-  width: 100%;
-  position: relative;
+  width: 180px;
 }
 .user_icon {
   margin-right: 10px;
@@ -182,28 +192,29 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 .icon_edge {
   background-color: white;
   border-radius: 5px;
   position: absolute;
-  top: -90px;
+  top: -120px;
   left: 20px;
 }
-.nickname_area {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-.nicknameTitle_and_editBotton {
+.mypage_header {
+  flex: 1;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 10px;
-  margin-left: 180px;
+}
+.mail_and_menu {
+  display: flex;
+  margin-right: 20px;
+}
+.mail_area {
+  margin-right: 10px;
 }
 .nickname {
   font-weight: bold;
-  margin-left: 180px;
   margin-bottom: 20px;
 }
 .basic_info_title {
@@ -230,29 +241,21 @@ dt {
   .profile_area {
     width: 100%;
   }
+  .xxx {
+    width: 150px;
+  }
   .icon_edge {
     position: absolute;
-    top: -60px;
-    left: 20px;
-  }
-  .nicknameTitle_and_editBotton {
-    margin-left: 150px;
-    margin-right: 20px;
-  }
-  .nickname {
-    margin-left: 150px;
+    top: -90px;
   }
 }
 @media screen and (max-width: 560px) {
+  .xxx {
+    width: 110px;
+  }
   .icon_edge {
     position: absolute;
-    top: -30px;
-  }
-  .nicknameTitle_and_editBotton {
-    margin-left: 110px;
-  }
-  .nickname {
-    margin-left: 110px;
+    top: -50px;
   }
 }
 
@@ -261,6 +264,7 @@ dt {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 100px;
 }
 .follower_list {
   width: 80%;
@@ -279,7 +283,20 @@ dt {
   border-radius: 5px;
   box-shadow: 0px 0px 6px #d1d1d1;
 }
+.no_follower {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.no_follower_text {
+  text-align: center;
+  font-size: 14px;
+  margin-bottom: 30px;
+}
 @media screen and (max-width: 960px) {
+  .follower_list {
+    width: 95%;
+  }
   .follower {
     width: 29.3%;
     margin: 2%;
@@ -287,18 +304,10 @@ dt {
 }
 @media screen and (max-width: 560px) {
   .follower_area {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .follower_list {
-    width: 80%;
-    display: flex;
-    flex-wrap: wrap;
+    width: 95%;
   }
   .follower {
-    width: 21%;
+    width: 46%;
     margin: 2%;
     display: flex;
     flex-direction: column;

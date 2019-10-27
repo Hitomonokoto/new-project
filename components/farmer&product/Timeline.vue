@@ -32,7 +32,6 @@
 <script>
 // コンポーネント
 import timeline from "~/components/timeline/Timeline";
-import basicButton from "~/components/BasicButton";
 import post from "~/components/timeline/Post";
 import postEdit from "~/components/timeline/PostEdit";
 
@@ -40,7 +39,7 @@ import postEdit from "~/components/timeline/PostEdit";
 import { mapState } from "vuex";
 
 export default {
-  components: { timeline, post, postEdit, basicButton },
+  components: { timeline, post, postEdit },
   data() {
     return {
       isPost_btn: true,

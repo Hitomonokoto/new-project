@@ -24,18 +24,18 @@
           </div>
         </div>
       </div>
+
+      <div class="product_img">
+        <img :src="product.fields.mainImage.fields.file.url" />
+        <iconAndTextButton cls="checkout_btn" text="購入する" icon="gift_w" />
+      </div>
       <nuxt-link :to="'/products/product/'+product.sys.id">
-        <div class="product_img">
-          <img :src="product.fields.mainImage.fields.file.url" />
-          <div class="checkout">
-            <img src="~/assets/gift.svg" />
-          </div>
-        </div>
         <div class="product_page">
-          <p>詳細ページへ</p>
+          <p class="product_page_text">詳細ページへ</p>
         </div>
       </nuxt-link>
     </div>
+    <!-- <basicButton @emitClick="update">更新</basicButton> -->
   </div>
 </template>
 
@@ -92,22 +92,6 @@ export default {
   width: 100%;
   display: block;
 }
-.checkout {
-  width: 50px;
-  height: 50px;
-  position: absolute;
-  bottom: 5px;
-  right: 5px;
-  background-color: #f4b3ca;
-  box-shadow: 0px 0px 6px gray;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.checkout > img {
-  height: 30px;
-}
 .product_page {
   width: 100%;
   height: 50px;
@@ -116,7 +100,16 @@ export default {
   justify-content: center;
   align-items: center;
   border-radius: 0 0 5px 5px;
+  background-color: rgb(235, 235, 235);
+}
+.product_page:hover {
   background-color: #b5c97c;
+}
+.product_page_text {
+  color: rgb(100, 100, 100);
+}
+.product_page:hover .product_page_text {
+  color: white;
 }
 .farm_icon {
   display: block;
