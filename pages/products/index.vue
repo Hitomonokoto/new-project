@@ -38,7 +38,9 @@
 
         <div class="product_img">
           <img :src="product.fields.mainImage.fields.file.url" />
-          <iconAndTextButton cls="checkout_btn" text="購入する" icon="gift_w" />
+          <span @click="checkout(product.fields.productId)">
+            <iconAndTextButton cls="checkout_btn" text="購入する" icon="gift_w" />
+          </span>
         </div>
         <nuxt-link :to="'/products/product/'+product.sys.id">
           <div class="product_page">
@@ -55,15 +57,42 @@
 import { mapState } from "vuex";
 import getProducts from "~/apollo/gql/getProducts";
 
+import getProduct from "~/apollo/gql/getProduct";
+import checkoutCreate from "~/apollo/gql/checkoutCreate";
+
 export default {
   components: {},
   async fetch({ store }) {
     await store.dispatch("products/getProductsAction");
   },
+  methods: {
+    async checkout(productId) {
+      const data = await this.$apollo.query({
+        query: getProduct,
+        variables: {
+          productId: productId
+        }
+      });
+      const variant_id = data.data.node.variants.edges[0].node.id;
+      const xxx = await this.$apollo.mutate({
+        mutation: checkoutCreate,
+        variables: {
+          variantId: variant_id
+        }
+      });
+      const webUrl = xxx.data.checkoutCreate.checkout.webUrl;
+      window.location.href = webUrl;
+    }
+  },
   head: {
     title: "生産者紹介"
   },
-  computed: mapState({ products: "products" })
+  computed: mapState({ products: "products" }),
+  head() {
+    return {
+      title: "ギフト一覧 | ショクタメ"
+    };
+  }
 };
 </script>
 

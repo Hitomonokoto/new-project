@@ -122,6 +122,11 @@ export default {
     message() {
       document.getElementById("message").classList.remove("error");
     }
+  },
+  head() {
+    return {
+      title: "お問い合わせ | ショクタメ"
+    };
   }
 };
 </script>

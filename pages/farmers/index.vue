@@ -45,7 +45,12 @@ export default {
   head: {
     title: "生産者紹介"
   },
-  computed: mapState({ farmers: "farmers" })
+  computed: mapState({ farmers: "farmers" }),
+  head() {
+    return {
+      title: "創り手一覧 | ショクタメ"
+    };
+  }
 };
 </script>
 

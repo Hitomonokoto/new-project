@@ -133,7 +133,7 @@ export default {
   }),
   head() {
     return {
-      title: this.Farmers.farmer.fields.productName
+      title: this.Farmers.farmer.fields.farmName + " | ショクタメ"
     };
   }
 };
