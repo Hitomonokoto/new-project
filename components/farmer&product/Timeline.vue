@@ -1,5 +1,7 @@
 <template>
   <div class="timeline">
+    <h2 class="home_title">Diary</h2>
+    <p class="home_sub_title">日々を楽しむ</p>
     <div class="post_btn" v-if="isPost_btn && login.user_2">
       <div v-if="farmers.farmer">
         <basicButton

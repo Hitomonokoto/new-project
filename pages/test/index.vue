@@ -18,15 +18,22 @@ export default {
     return {};
   },
   async created() {
-    const user = await this.$apollo.query({
-      query: getCustomer,
-      variables: {
-        customerAccessToken: this.login.token
-      }
-    });
+    try {
+      const user = await this.$apollo.query({
+        query: getCustomer,
+        variables: {
+          customerAccessToken: this.login.token
+        }
+      });
+    } catch {
+      const cookies = new Cookies();
+      cookies.remove("token");
+      this.$store.commit("login/logout");
+      this.$router.push("/");
+    }
+
     const cookies = new Cookies();
     const lastPath = await cookies.get("lastPath");
-    console.log(lastPath);
     if (user.data.customer) {
       this.$store.commit("login/getUser_1", user.data.customer);
       await this.$store.dispatch(

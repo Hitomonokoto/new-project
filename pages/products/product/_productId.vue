@@ -84,7 +84,6 @@ export default {
   width: 80%;
   position: relative;
 }
-
 .bottom_checkout_area {
   width: 50%;
   display: flex;

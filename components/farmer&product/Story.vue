@@ -1,7 +1,7 @@
 <template>
   <div class="story">
-    <h1 class="farm_name">{{ this.farmers.farmer.fields.farmName }}</h1>
-    <h2 class="farmer_name">{{ this.farmers.farmer.fields.farmerName }}</h2>
+    <h2 class="farm_name">{{ this.farmers.farmer.fields.farmName }}</h2>
+    <h3 class="farmer_name">{{ this.farmers.farmer.fields.farmerName }}</h3>
     <div class="content" v-html="content"></div>
   </div>
 </template>
@@ -26,6 +26,17 @@ export default {
 
 
 <style scoped>
+.story {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.farm_name {
+  margin-bottom: 20px;
+}
+.farmer_name {
+  margin-bottom: 50px;
+}
 .content {
   text-align: center;
   padding: 0 20px;

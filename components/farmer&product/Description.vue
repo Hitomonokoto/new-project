@@ -23,6 +23,9 @@ export default {
 
 
 <style scoped>
+.product_name {
+  margin-bottom: 20px;
+}
 .description {
   display: flex;
   flex-direction: column;
