@@ -82,6 +82,11 @@ export default {
     passWordReset() {
       this.$router.push("/login/passWordReset");
     }
+  },
+  head() {
+    return {
+      title: "ログイン | ショクタメ"
+    };
   }
 };
 </script>

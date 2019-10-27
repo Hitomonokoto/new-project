@@ -170,6 +170,11 @@ export default {
     user_data() {
       this.isData = true;
     }
+  },
+  head() {
+    return {
+      title: "マイページ | ショクタメ"
+    };
   }
 };
 </script>

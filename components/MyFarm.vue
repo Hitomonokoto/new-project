@@ -29,7 +29,9 @@
 
         <div class="product_img">
           <img :src="product.fields.mainImage.fields.file.url" />
-          <iconAndTextButton cls="checkout_btn" text="購入する" icon="gift_w" />
+          <span @click="checkout(product.fields.productId)">
+            <iconAndTextButton cls="checkout_btn" text="購入する" icon="gift_w" />
+          </span>
         </div>
         <nuxt-link :to="'/products/product/'+product.sys.id">
           <div class="product_page">
@@ -48,10 +50,32 @@ import firebase from "~/plugins/firebase";
 require("firebase/firestore");
 const db = firebase.firestore();
 
+import getProduct from "~/apollo/gql/getProduct";
+import checkoutCreate from "~/apollo/gql/checkoutCreate";
+
 export default {
   props: {
     products: {
       type: Array
+    }
+  },
+  methods: {
+    async checkout(productId) {
+      const data = await this.$apollo.query({
+        query: getProduct,
+        variables: {
+          productId: productId
+        }
+      });
+      const variant_id = data.data.node.variants.edges[0].node.id;
+      const xxx = await this.$apollo.mutate({
+        mutation: checkoutCreate,
+        variables: {
+          variantId: variant_id
+        }
+      });
+      const webUrl = xxx.data.checkoutCreate.checkout.webUrl;
+      window.location.href = webUrl;
     }
   }
 };

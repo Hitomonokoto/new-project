@@ -127,7 +127,12 @@ export default {
     products: state => state.products,
     login: state => state.login,
     timeline: state => state.timeline
-  })
+  }),
+  head() {
+    return {
+      title: "ショクタメ"
+    };
+  }
 };
 </script>
 

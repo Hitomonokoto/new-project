@@ -50,7 +50,12 @@ export default {
       this.$router.push("/");
     }
   },
-  computed: mapState({ info: "info" })
+  computed: mapState({ info: "info" }),
+  head() {
+    return {
+      title: "ログイン | ショクタメ"
+    };
+  }
 };
 </script>
 
