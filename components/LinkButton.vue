@@ -27,7 +27,6 @@ export default {
   font-size: 14px;
   border-radius: 5px;
   cursor: pointer;
-  display: inline;
 }
 .login {
   padding: 5px 20px;
@@ -64,5 +63,9 @@ export default {
 }
 .farmer_search {
   padding: 5px 20px;
+}
+.product_btn {
+  padding: 5px 20px;
+  margin-bottom: 50px;
 }
 </style>

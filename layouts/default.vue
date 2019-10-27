@@ -126,7 +126,4 @@ main {
 .follower_title {
   margin-bottom: 20px;
 }
-.product_name {
-  margin-bottom: 20px;
-}
 </style>
