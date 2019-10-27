@@ -71,7 +71,7 @@ export default {
 .products {
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
+  width: 95%;
 }
 .product {
   width: 29.3%;
@@ -124,5 +124,20 @@ export default {
   width: 50px;
   border-radius: 5px;
   margin: 5px;
+}
+@media screen and (max-width: 960px) {
+  .product {
+    width: 46%;
+    margin: 2%;
+  }
+}
+@media screen and (max-width: 560px) {
+  .products {
+    width: 100%;
+  }
+  .product {
+    width: 90%;
+    margin: 5%;
+  }
 }
 </style>
