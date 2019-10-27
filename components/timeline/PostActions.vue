@@ -4,7 +4,6 @@
       <div
         class="btn"
         v-if="Timeline.likes.indexOf(post_data.post_id) == -1 "
-        :disabled="processing"
         @click="getLike"
       >
         <fa class="like_icon" :icon="faHeart" />
@@ -13,7 +12,6 @@
       <div
         class="btn"
         v-if="Timeline.likes.indexOf(post_data.post_id) >= 0"
-        :disabled="!processing"
         @click="loseLike"
       >
         <fa class="liked_icon" :icon="faHeart" />
@@ -51,15 +49,11 @@ export default {
   data() {
     return {
       isComment_btn: false,
-      isAlert: false,
-      processing: false
+      isAlert: false
     };
   },
   methods: {
     getLike() {
-      if (this.processing) return;
-      this.processing = true;
-      console.log(this.processing);
       if (!this.Login.token) {
         this.isAlert = true;
         return;
@@ -73,8 +67,6 @@ export default {
       });
     },
     loseLike() {
-      if (!this.processing) return;
-      this.processing = false;
       if (!this.Login.token) {
         this.isAlert = true;
         return;
