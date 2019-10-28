@@ -83,7 +83,7 @@ export default {
   align-items: center;
   width: 100%;
   height: 50px;
-  background-color: white;
+  background-color: rgb(255, 255, 250);
   box-shadow: 0px 0px 3px #797979;
 }
 .logo_img {

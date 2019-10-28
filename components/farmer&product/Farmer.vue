@@ -53,7 +53,12 @@ export default {
   margin-bottom: 20px;
 }
 .summary {
+  width: 60%;
+  /* text-align: center; */
   margin-bottom: 20px;
+  border-radius: 5px;
+  /* box-shadow: 0px 0px 6px #d1d1d1;
+  padding: 10px; */
 }
 .link_area {
   width: 30%;
@@ -64,10 +69,19 @@ export default {
   box-shadow: 0px 0px 6px #d1d1d1;
 }
 @media screen and (max-width: 960px) {
+  .summary {
+    /* text-align: center; */
+    margin-bottom: 20px;
+  }
 }
 @media screen and (max-width: 560px) {
   .link_area {
     width: 50%;
+  }
+  .summary {
+    width: 95%;
+    /* text-align: center; */
+    margin-bottom: 20px;
   }
 }
 </style>

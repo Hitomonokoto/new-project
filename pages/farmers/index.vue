@@ -20,8 +20,8 @@
         <img class="farmer_img" :src="farmer.fields.farmerIcon.fields.file.url" />
 
         <div class="farmer_info">
-          <p>{{ farmer.fields.farmName }}</p>
-          <p>{{ farmer.fields.farmerName }}</p>
+          <p class="farm_name">{{ farmer.fields.farmName }}</p>
+          <p class="farmer_name">{{ farmer.fields.farmerName }}</p>
         </div>
       </nuxt-link>
     </div>
@@ -80,6 +80,12 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.farm_name {
+  font-weight: bold;
+}
+.farmer_name {
+  font-size: 14px;
 }
 @media screen and (max-width: 960px) {
   .farmer {

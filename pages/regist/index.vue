@@ -1,6 +1,7 @@
 <template>
   <main>
     <h1 class="page_title">ファミリー登録</h1>
+    <iconAndTextButton cls="about_gift_btn" text="ファミリーとは" icon="gift_pink" />
     <div class="regist_form">
       <dl>
         <dt>ニックネーム</dt>
@@ -125,6 +126,9 @@ export default {
 </script>
 
 <style scoped>
+.page_title {
+  margin-bottom: 60px;
+}
 .name_area {
   display: flex;
   justify-content: space-between;
