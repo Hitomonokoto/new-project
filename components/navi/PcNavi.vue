@@ -74,6 +74,7 @@ export default {
   width: 200px;
   height: 100vh;
   box-shadow: 0px 0px 3px #797979;
+  background-color: white;
 }
 .logo_img {
   height: 80px;

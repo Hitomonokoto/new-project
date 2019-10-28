@@ -144,6 +144,11 @@ export default {
   width: 80%;
   position: relative;
 }
+.contents_area {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 @media screen and (max-width: 960px) {
   .top_area {
     width: 100%;

@@ -3,7 +3,6 @@
     <div class="post_header">
       <div class="user">
         <userIcon cls="post_form_icon" :url="login.user_2.user_icon" />
-        <p class="nickname">{{login.user_2.nickname}}</p>
       </div>
       <div class="actions">
         <basicButton cls="back_btn" @emitClick="back">戻る</basicButton>
@@ -63,7 +62,7 @@ export default {
   data() {
     return {
       title: null,
-      text: null,
+      text: "",
       fileName: null,
       fileUrl: null
     };
@@ -95,17 +94,17 @@ export default {
     },
     sendPost() {
       if (!this.title && !this.text && !this.fileName) {
+        alert("投稿内容がありません");
         return;
       }
-
-      let text_html;
-      text_html = this.text;
+      // if (this.text) {
       //一応タグを使えないように置き換える
-      text_html = text_html.split("<").join("&lt;");
-      text_html = text_html.split(">").join("&gt;");
+      this.text = this.text.split("<").join("&lt;");
+      this.text = this.text.split(">").join("&gt;");
       //改行を改行タグに置き換える
-      text_html = text_html.split("\n").join("<br>");
-      console.log(text_html);
+      this.text = this.text.split("\n").join("<br>");
+      console.log(this.text);
+      // }
 
       this.$store.dispatch("timeline/PostAction", {
         user_id: this.login.user_2.user_id,
@@ -114,7 +113,8 @@ export default {
         name: this.login.user_2.nickname,
         user_icon: this.login.user_2.user_icon,
         title: this.title,
-        text: text_html,
+        // text: text_html,
+        text: this.text,
         fileName: this.fileName,
         fileUrl: this.fileUrl
       });
