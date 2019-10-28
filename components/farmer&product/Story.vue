@@ -30,6 +30,8 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 100px;
+  width: 80%;
 }
 .farm_name {
   margin-bottom: 20px;
@@ -38,7 +40,21 @@ export default {
   margin-bottom: 50px;
 }
 .content {
-  text-align: center;
-  padding: 0 20px;
+  /* text-align: center; */
+  width: 80%;
+}
+@media screen and (max-width: 960px) {
+  .content {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 560px) {
+  .story {
+    width: 100%;
+  }
+  .content {
+    width: 100%;
+    padding: 0 20px;
+  }
 }
 </style>
