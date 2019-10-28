@@ -100,6 +100,7 @@ export default {
 .regist_btn {
   padding: 10px 30px;
   margin-bottom: 50px;
+  background-color: #f4b3ca;
 }
 .logout_btn {
   padding: 5px 10px;

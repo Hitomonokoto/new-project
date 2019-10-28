@@ -57,7 +57,7 @@ p {
 .container {
   display: flex;
   width: 100%;
-  background-color: rgb(255, 252, 241);
+  background-color: rgb(255, 255, 250);
 }
 .pc_navi_area {
   width: 200px;

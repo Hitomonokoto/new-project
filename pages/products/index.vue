@@ -12,6 +12,8 @@
       <br />
       <br />各セット12,000円の1年契約となります。
     </p>
+
+    <iconAndTextButton cls="about_gift_btn" text="ギフトとは" icon="gift_pink" />
     <div class="products">
       <div
         class="product"
@@ -123,6 +125,7 @@ export default {
 }
 .product_name {
   font-weight: bold;
+  font-size: 14px;
 }
 .product_img {
   width: 100%;
