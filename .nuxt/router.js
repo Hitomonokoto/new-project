@@ -13,7 +13,7 @@ const _7bee14c8 = () => interopDefault(import('../pages/products/index.vue' /* w
 const _22999cca = () => interopDefault(import('../pages/Q&A/index.vue' /* webpackChunkName: "pages/Q&A/index" */))
 const _8f177f24 = () => interopDefault(import('../pages/regist/index.vue' /* webpackChunkName: "pages/regist/index" */))
 const _3419446c = () => interopDefault(import('../pages/test/index.vue' /* webpackChunkName: "pages/test/index" */))
-const _53d2da65 = () => interopDefault(import('../pages/unsub/index.vue' /* webpackChunkName: "pages/unsub/index" */))
+const _ea087522 = () => interopDefault(import('../pages/unsubscribe/index.vue' /* webpackChunkName: "pages/unsubscribe/index" */))
 const _3d7b11c3 = () => interopDefault(import('../pages/user/index.vue' /* webpackChunkName: "pages/user/index" */))
 const _7479f051 = () => interopDefault(import('../pages/info/confirmation.vue' /* webpackChunkName: "pages/info/confirmation" */))
 const _894c626e = () => interopDefault(import('../pages/login/passWordReset.vue' /* webpackChunkName: "pages/login/passWordReset" */))
@@ -76,9 +76,9 @@ export const routerOptions = {
       component: _3419446c,
       name: "test"
     }, {
-      path: "/unsub",
-      component: _53d2da65,
-      name: "unsub"
+      path: "/unsubscribe",
+      component: _ea087522,
+      name: "unsubscribe"
     }, {
       path: "/user",
       component: _3d7b11c3,

@@ -3,10 +3,12 @@
     <h1 class="page_title">Farmer</h1>
     <p class="sub_title">豊さを繋ぐひと</p>
     <p class="description">
-      九州を４週周り、
-      <br />350人以上の作り手に出会いました。
+      九州を5週周り、
+      <br />500人以上の生産者に出会いました。
+      <br />
       <br />価値だけでは表現することの出来ない"モノの価値"。
-      <br />そんなこだわりのある創り手を紹介します。
+      <br />
+      <br />夢を描く素敵な方々を紹介致します。
     </p>
     <div class="farmers">
       <nuxt-link

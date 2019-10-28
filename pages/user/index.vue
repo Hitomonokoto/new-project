@@ -9,76 +9,25 @@
           </div>
         </div>
       </div>
-      <div class="mypage_header" v-if="!isNickname">
+      <div class="mypage_header">
         <p class="nickname">{{ Login.user_2.nickname }} さん</p>
         <div class="mail_and_menu">
           <span class="mail_area">
             <iconAndTextButton cls="mail" :text="null" icon="mail_gry" />
           </span>
-          <span class="menu_area">
+          <span class="menu_area" @click="menu">
             <iconAndTextButton cls="menu" :text="null" icon="menu_gry" />
           </span>
-
-          <!-- <basicButton cls="acount_btn" @emitClick="editNickname">アカウント管理</basicButton> -->
         </div>
-      </div>
-
-      <editNickname v-if="isNickname" @emitClick="back" />
-
-      <!-- <div class="yyy">
-        <p class="basic_info_title">基本情報</p>
-        <div class="basic_info_area" v-if="!isBasicData">
-          <div>
-            <dl>
-              <dt>名前</dt>
-              <dd>
-                <p>{{ user_data.lastName }} {{ user_data.firstName }}</p>
-              </dd>
-            </dl>
-            <dl>
-              <dt>メールアドレス</dt>
-              <dd>
-                <p>{{ user_data.email }}</p>
-              </dd>
-            </dl>
-          </div>
-          <div class="action">
-            <basicButton
-              cls="basic_info_edit_btn"
-              @emitClick="editBasicData"
-            >基本情報を編集</basicButton>
-          </div>
-        </div>
-        <editBasicData v-if="isBasicData" @emitClick="back" />
-      </div>-->
-    </div>
-    <div class="follower_area">
-      <h2 class="follower_title">フォローしている創り手</h2>
-      <div class="follower_list">
-        <nuxt-link
-          v-for="(follower, index) in Farmers.followerData"
-          :to="'/farmers/farmer/'+follower.sys.id"
-          class="follower"
-          :key="index"
-        >
-          <img
-            class="follow_img"
-            :src="follower.fields.farmerIcon.fields.file.url"
-          />
-          <p class="follow_name">{{ follower.fields.farmName }}</p>
-        </nuxt-link>
-      </div>
-      <div class="no_follower" v-if="!Farmers.followerData.length">
-        <p class="no_follower_text">
-          フォローしている創り手がいません。
-          <br />お気に入りの創り手をフォローして繋がりましょう。
-        </p>
-        <linkButton cls="farmer_search" linkTo="/farmers" text="創り手を探す" />
       </div>
     </div>
 
+    <div class="mypage_menu_area">
+      <mypageMenu v-if="isMenu" @emitEditProfile="editProfile" />
+    </div>
+    <profileData v-if="isProfileData" :user_data="user_data" />
+    <follower v-if="isFollower" />
     <basicButton cls="logout_btn" @emitClick="logout">ログアウト</basicButton>
-    <!-- <linkButton cls="unsub" linkTo="/unsub" text="退会する" /> -->
   </main>
 </template>
 
@@ -87,9 +36,9 @@
 // コンポーネント
 import mainImage from "~/components/MainImage";
 import linkButton from "~/components/LinkButton";
-import profileImgEdit from "~/components/user/ProfileImgEdit";
-import editNickname from "~/components/user/EditNickname";
-import editBasicData from "~/components/user/EditBasicData";
+import mypageMenu from "~/components/user/MypageMenu";
+import follower from "~/components/user/Follower";
+import profileData from "~/components/user/ProfileData";
 import userIcon from "~/components/UserIcon";
 
 // その他
@@ -102,18 +51,19 @@ export default {
   components: {
     mainImage,
     linkButton,
-    profileImgEdit,
-    editNickname,
-    editBasicData,
+    mypageMenu,
+    follower,
+    profileData,
     userIcon
   },
   data() {
     return {
       user_data: {},
       image_path: null,
+      isProfileData: false,
+      isFollower: true,
       isData: false,
-      isNickname: false,
-      isBasicData: false
+      isMenu: false
     };
   },
   async created() {
@@ -133,20 +83,14 @@ export default {
     );
   },
   methods: {
-    editProfileImg() {
-      alert("プロフィール画像の変更は未実装です");
-    },
-    editNickname() {
-      this.isNickname = true;
-      this.isBasicData = false;
-    },
-    editBasicData() {
-      this.isBasicData = true;
-      this.isNickname = false;
+    editProfile() {
+      this.isProfileData = true;
+      this.isFollower = false;
+      this.isMenu = false;
     },
     back() {
-      this.isNickname = false;
-      this.isBasicData = false;
+      // this.isNickname = false;
+      // this.isBasicData = false;
     },
     logout() {
       this.isData = false;
@@ -160,6 +104,13 @@ export default {
       cookies.remove("token");
       this.$store.commit("login/logout");
       this.$router.push("/");
+    },
+    menu() {
+      if (!this.isMenu) {
+        this.isMenu = true;
+      } else {
+        this.isMenu = false;
+      }
     }
   },
   computed: mapState({
@@ -222,25 +173,10 @@ export default {
   font-weight: bold;
   margin-bottom: 20px;
 }
-.basic_info_title {
-  margin-bottom: 20px;
-  font-size: 20px;
-}
-.basic_info_area {
-  display: flex;
-}
-dl {
-  display: flex;
-  margin-bottom: 10px;
-}
-dt {
-  width: 150px;
-}
-.action {
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-start;
+
+.mypage_menu_area {
+  width: 80%;
+  position: relative;
 }
 @media screen and (max-width: 960px) {
   .profile_area {
@@ -264,67 +200,6 @@ dt {
   .icon_edge {
     position: absolute;
     top: -20px;
-  }
-}
-
-.follower_area {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 100px;
-}
-.follower_list {
-  width: 80%;
-  display: flex;
-  flex-wrap: wrap;
-}
-.follower {
-  width: 21%;
-  margin: 2%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.follow_img {
-  width: 100%;
-  border-radius: 5px;
-  box-shadow: 0px 0px 6px #d1d1d1;
-}
-.no_follower {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.no_follower_text {
-  text-align: center;
-  font-size: 14px;
-  margin-bottom: 30px;
-}
-@media screen and (max-width: 960px) {
-  .follower_list {
-    width: 95%;
-  }
-  .follower {
-    width: 29.3%;
-    margin: 2%;
-  }
-}
-@media screen and (max-width: 560px) {
-  .follower_area {
-    width: 95%;
-  }
-  .follower {
-    width: 46%;
-    margin: 2%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .follow_img {
-    width: 100%;
-    border-radius: 5px;
-    box-shadow: 0px 0px 6px #d1d1d1;
   }
 }
 </style>

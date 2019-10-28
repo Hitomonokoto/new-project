@@ -3,7 +3,6 @@
     <div class="post_header">
       <div class="user">
         <userIcon cls="post_form_icon" :url="login.user_2.user_icon" />
-        <p class="nickname">{{login.user_2.nickname}}</p>
       </div>
       <div class="actions">
         <basicButton cls="back_btn" @emitClick="back">戻る</basicButton>

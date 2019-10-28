@@ -118,11 +118,9 @@ export default {
 .nickname_edit_update_btn {
   padding: 5px 10px;
 }
-.basic_info_edit_btn {
-  color: blue;
-  display: block;
-  margin-left: auto;
-  margin-right: 0;
+.account_edit_btn {
+  background-color: transparent;
+  color: gray;
 }
 .basic_info_edit_back_btn {
   padding: 5px 10px;
