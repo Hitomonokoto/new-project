@@ -138,7 +138,7 @@ export async function setContext(app, context) {
       payload: context.payload,
       error: context.error,
       base: '/',
-      env: {"CTF_SPACE_ID":"r1vsvbpt0byq","CTF_ACCESS_TOKEN":"d0U1cBBXLtaoYsFDZWxCNxyU4YWQy-mVff4sCr2nrlQ","STORE_FRONT_ACCESS_TOKEN":"751a6be76c4928a1c85fa50c90593a1d","apiKey":"AIzaSyC99LzSsPtSWLOydNq6zZJI6jL8ptKRvZs","authDomain":"hitomonokoto-10509.firebaseapp.com","databaseURL":"https://hitomonokoto-10509.firebaseio.com","projectId":"hitomonokoto-10509","storageBucket":"hitomonokoto-10509.appspot.com","messagingSenderId":"44273291748","appId":"1:44273291748:web:17fb01f34027ff012137f1"}
+      env: {"CTF_SPACE_ID":"r1vsvbpt0byq","CTF_ACCESS_TOKEN":"d0U1cBBXLtaoYsFDZWxCNxyU4YWQy-mVff4sCr2nrlQ","STORE_FRONT_ACCESS_TOKEN":"751a6be76c4928a1c85fa50c90593a1d","apiKey":"AIzaSyC99LzSsPtSWLOydNq6zZJI6jL8ptKRvZs","authDomain":"hitomonokoto-10509.firebaseapp.com","databaseURL":"https:/hitomonokoto-10509.firebaseio.com","projectId":"hitomonokoto-10509","storageBucket":"hitomonokoto-10509.appspot.com","messagingSenderId":"44273291748","appId":"1:44273291748:web:17fb01f34027ff012137f1"}
     }
     // Only set once
     if (context.req) {

@@ -43,11 +43,13 @@
 
       <basicButton class="qAndAlink" @emitClick="jumpToEtc">その他</basicButton>
     </div>
+    <scrollBotton />
   </div>
 </template>
 
 <script>
 import basicButton from "~/components/BasicButton.vue";
+
 export default {
   components: {
     basicButton

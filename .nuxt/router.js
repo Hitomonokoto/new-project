@@ -3,28 +3,28 @@ import Router from 'vue-router'
 import { interopDefault } from './utils'
 import scrollBehavior from './router.scrollBehavior.js'
 
-const _41f7e30d = () => interopDefault(import('../pages/aboutMyFarm/index.vue' /* webpackChunkName: "pages/aboutMyFarm/index" */))
-const _70ef1aae = () => interopDefault(import('../pages/aboutUs/index.vue' /* webpackChunkName: "pages/aboutUs/index" */))
-const _5d5e36ce = () => interopDefault(import('../pages/farmers/index.vue' /* webpackChunkName: "pages/farmers/index" */))
-const _478a0ae6 = () => interopDefault(import('../pages/info/index.vue' /* webpackChunkName: "pages/info/index" */))
-const _a8cb6d26 = () => interopDefault(import('../pages/kanri/index.vue' /* webpackChunkName: "pages/kanri/index" */))
-const _7d3a3a47 = () => interopDefault(import('../pages/login/index.vue' /* webpackChunkName: "pages/login/index" */))
-const _7bee14c8 = () => interopDefault(import('../pages/products/index.vue' /* webpackChunkName: "pages/products/index" */))
-const _22999cca = () => interopDefault(import('../pages/Q&A/index.vue' /* webpackChunkName: "pages/Q&A/index" */))
-const _8f177f24 = () => interopDefault(import('../pages/regist/index.vue' /* webpackChunkName: "pages/regist/index" */))
-const _3419446c = () => interopDefault(import('../pages/test/index.vue' /* webpackChunkName: "pages/test/index" */))
-const _ea087522 = () => interopDefault(import('../pages/unsubscribe/index.vue' /* webpackChunkName: "pages/unsubscribe/index" */))
-const _3d7b11c3 = () => interopDefault(import('../pages/user/index.vue' /* webpackChunkName: "pages/user/index" */))
-const _7479f051 = () => interopDefault(import('../pages/info/confirmation.vue' /* webpackChunkName: "pages/info/confirmation" */))
-const _894c626e = () => interopDefault(import('../pages/login/passWordReset.vue' /* webpackChunkName: "pages/login/passWordReset" */))
-const _024e562a = () => interopDefault(import('../pages/Q&A/aboutCompany/index.vue' /* webpackChunkName: "pages/Q&A/aboutCompany/index" */))
-const _2fe9351e = () => interopDefault(import('../pages/Q&A/aboutDiary/index.vue' /* webpackChunkName: "pages/Q&A/aboutDiary/index" */))
-const _66fbed8c = () => interopDefault(import('../pages/Q&A/aboutFamily/index.vue' /* webpackChunkName: "pages/Q&A/aboutFamily/index" */))
-const _925268d0 = () => interopDefault(import('../pages/Q&A/aboutGift/index.vue' /* webpackChunkName: "pages/Q&A/aboutGift/index" */))
-const _c59a5be2 = () => interopDefault(import('../pages/Q&A/etc/index.vue' /* webpackChunkName: "pages/Q&A/etc/index" */))
-const _0c6377a2 = () => interopDefault(import('../pages/farmers/farmer/_businessId.vue' /* webpackChunkName: "pages/farmers/farmer/_businessId" */))
-const _b0ad459e = () => interopDefault(import('../pages/products/product/_productId.vue' /* webpackChunkName: "pages/products/product/_productId" */))
-const _3c0d98a6 = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
+const _d5a1f4ea = () => interopDefault(import('../pages/aboutMyFarm/index.vue' /* webpackChunkName: "pages/aboutMyFarm/index" */))
+const _40408427 = () => interopDefault(import('../pages/aboutUs/index.vue' /* webpackChunkName: "pages/aboutUs/index" */))
+const _53d36f68 = () => interopDefault(import('../pages/farmers/index.vue' /* webpackChunkName: "pages/farmers/index" */))
+const _42dccbb0 = () => interopDefault(import('../pages/info/index.vue' /* webpackChunkName: "pages/info/index" */))
+const _14f6bb2a = () => interopDefault(import('../pages/kanri/index.vue' /* webpackChunkName: "pages/kanri/index" */))
+const _71b6d976 = () => interopDefault(import('../pages/login/index.vue' /* webpackChunkName: "pages/login/index" */))
+const _605313de = () => interopDefault(import('../pages/products/index.vue' /* webpackChunkName: "pages/products/index" */))
+const _66bbc570 = () => interopDefault(import('../pages/Q&A/index.vue' /* webpackChunkName: "pages/Q&A/index" */))
+const _a855f1a0 = () => interopDefault(import('../pages/regist/index.vue' /* webpackChunkName: "pages/regist/index" */))
+const _7cfaed0c = () => interopDefault(import('../pages/test/index.vue' /* webpackChunkName: "pages/test/index" */))
+const _439a3026 = () => interopDefault(import('../pages/unsubscribe/index.vue' /* webpackChunkName: "pages/unsubscribe/index" */))
+const _56fabdf6 = () => interopDefault(import('../pages/user/index.vue' /* webpackChunkName: "pages/user/index" */))
+const _709dda62 = () => interopDefault(import('../pages/info/confirmation.vue' /* webpackChunkName: "pages/info/confirmation" */))
+const _1d5249c7 = () => interopDefault(import('../pages/login/passWordReset.vue' /* webpackChunkName: "pages/login/passWordReset" */))
+const _1c6cdda6 = () => interopDefault(import('../pages/Q&A/aboutCompany/index.vue' /* webpackChunkName: "pages/Q&A/aboutCompany/index" */))
+const _75bb6b9a = () => interopDefault(import('../pages/Q&A/aboutDiary/index.vue' /* webpackChunkName: "pages/Q&A/aboutDiary/index" */))
+const _2cc1a10a = () => interopDefault(import('../pages/Q&A/aboutFamily/index.vue' /* webpackChunkName: "pages/Q&A/aboutFamily/index" */))
+const _18cf4696 = () => interopDefault(import('../pages/Q&A/aboutGift/index.vue' /* webpackChunkName: "pages/Q&A/aboutGift/index" */))
+const _15eae38d = () => interopDefault(import('../pages/Q&A/etc/index.vue' /* webpackChunkName: "pages/Q&A/etc/index" */))
+const _643842e4 = () => interopDefault(import('../pages/farmers/farmer/_businessId.vue' /* webpackChunkName: "pages/farmers/farmer/_businessId" */))
+const _4a6dfa2f = () => interopDefault(import('../pages/products/product/_productId.vue' /* webpackChunkName: "pages/products/product/_productId" */))
+const _1ce1a32b = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
 
 Vue.use(Router)
 
@@ -37,91 +37,91 @@ export const routerOptions = {
 
   routes: [{
       path: "/aboutMyFarm",
-      component: _41f7e30d,
+      component: _d5a1f4ea,
       name: "aboutMyFarm"
     }, {
       path: "/aboutUs",
-      component: _70ef1aae,
+      component: _40408427,
       name: "aboutUs"
     }, {
       path: "/farmers",
-      component: _5d5e36ce,
+      component: _53d36f68,
       name: "farmers"
     }, {
       path: "/info",
-      component: _478a0ae6,
+      component: _42dccbb0,
       name: "info"
     }, {
       path: "/kanri",
-      component: _a8cb6d26,
+      component: _14f6bb2a,
       name: "kanri"
     }, {
       path: "/login",
-      component: _7d3a3a47,
+      component: _71b6d976,
       name: "login"
     }, {
       path: "/products",
-      component: _7bee14c8,
+      component: _605313de,
       name: "products"
     }, {
       path: "/Q&A",
-      component: _22999cca,
+      component: _66bbc570,
       name: "Q&A"
     }, {
       path: "/regist",
-      component: _8f177f24,
+      component: _a855f1a0,
       name: "regist"
     }, {
       path: "/test",
-      component: _3419446c,
+      component: _7cfaed0c,
       name: "test"
     }, {
       path: "/unsubscribe",
-      component: _ea087522,
+      component: _439a3026,
       name: "unsubscribe"
     }, {
       path: "/user",
-      component: _3d7b11c3,
+      component: _56fabdf6,
       name: "user"
     }, {
       path: "/info/confirmation",
-      component: _7479f051,
+      component: _709dda62,
       name: "info-confirmation"
     }, {
       path: "/login/passWordReset",
-      component: _894c626e,
+      component: _1d5249c7,
       name: "login-passWordReset"
     }, {
       path: "/Q&A/aboutCompany",
-      component: _024e562a,
+      component: _1c6cdda6,
       name: "Q&A-aboutCompany"
     }, {
       path: "/Q&A/aboutDiary",
-      component: _2fe9351e,
+      component: _75bb6b9a,
       name: "Q&A-aboutDiary"
     }, {
       path: "/Q&A/aboutFamily",
-      component: _66fbed8c,
+      component: _2cc1a10a,
       name: "Q&A-aboutFamily"
     }, {
       path: "/Q&A/aboutGift",
-      component: _925268d0,
+      component: _18cf4696,
       name: "Q&A-aboutGift"
     }, {
       path: "/Q&A/etc",
-      component: _c59a5be2,
+      component: _15eae38d,
       name: "Q&A-etc"
     }, {
       path: "/farmers/farmer/:businessId?",
-      component: _0c6377a2,
+      component: _643842e4,
       name: "farmers-farmer-businessId"
     }, {
       path: "/products/product/:productId?",
-      component: _b0ad459e,
+      component: _4a6dfa2f,
       name: "products-product-productId"
     }, {
       path: "/",
-      component: _3c0d98a6,
+      component: _1ce1a32b,
       name: "index"
     }],
 
