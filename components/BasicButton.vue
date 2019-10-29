@@ -29,7 +29,8 @@ export default {
 }
 .login_btn {
   margin: 10px 0;
-  padding: 10px 130px;
+  width: 300px;
+  padding: 10px 0px;
 }
 .checkout_btn {
   padding: 5px 20px;
@@ -161,6 +162,13 @@ export default {
   top: -80px;
   right: 20px;
   background-color: #f4b3ca;
+  padding: 10px 30px;
+}
+.followed_btn {
+  position: absolute;
+  top: -80px;
+  right: 20px;
+  background-color: #f88ab0;
   padding: 10px 30px;
 }
 .acount_btn {
