@@ -21,7 +21,8 @@ export default {
   plugins: [
     '~/plugins/components',
     '~/plugins/firebase',
-    '~/plugins/contentful'
+    '~/plugins/contentful',
+    '~/plugins/scrollTop'
   ],
 
   modules: [
