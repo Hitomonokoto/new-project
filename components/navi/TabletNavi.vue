@@ -82,7 +82,7 @@ p {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: white;
+  background-color: rgb(255, 255, 250);
 }
 .logo_area {
   display: flex;

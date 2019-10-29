@@ -42,8 +42,7 @@ export default {
 .top_beginner_btn {
   padding: 10px;
   background-color: #f4b3ca;
-  margin-top: 30px;
-  margin-bottom: 100px;
+  margin-bottom: 80px;
 }
 .login {
   background-color: #b5c97c;

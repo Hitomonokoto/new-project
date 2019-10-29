@@ -12,7 +12,7 @@
           <p class="time">{{ post_data.created.seconds | timestampToDate }}</p>
         </div>
         <basicButton
-          v-if="this.login.user_id == this.user_id"
+          v-if="this.login.user_id == user_id"
           cls="post_edit_btn"
           @emitClick="edit"
         >編集</basicButton>
@@ -21,7 +21,7 @@
     <div class="post_content">
       <p class="post_title">{{ post_data.title }}</p>
       <div class="post_img">
-        <img :src="this.post_data.fileUrl" />
+        <img :src="post_data.fileUrl" />
       </div>
       <div class="post_text" v-html="post_data.text"></div>
       <postActions
@@ -32,10 +32,10 @@
       />
       <comments
         v-if="isComments"
-        :post_id="this.post_data.post_id"
-        :business_id="this.post_data.business_id"
-        :comments="this.comments"
-        :login_user_id="this.login.user_id"
+        :post_id="post_data.post_id"
+        :business_id="post_data.business_id"
+        :comments="comments"
+        :login_user_id="login.user_id"
         :timeline_type="timeline_type"
       />
     </div>
@@ -155,11 +155,9 @@ export default {
 }
 .post_img {
   width: 100%;
-  display: flex;
-  justify-content: center;
 }
 .post_img > img {
-  width: 100%;
+  max-width: 100%;
   height: auto;
   display: block;
 }

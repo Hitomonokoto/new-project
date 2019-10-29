@@ -1,7 +1,7 @@
 <template>
   <main>
     <div class="logo">
-      <img src="~/assets/mainlogo1.png" alt />
+      <img src="~/assets/mainlogo2.png" alt />
     </div>
 
     <basicInput
@@ -18,11 +18,6 @@
     />
     <basicButton class="login_btn" @emitClick="save">ログイン</basicButton>
 
-    <!-- <linkButton
-      cls="foget_pass_btn"
-      linkTo="/login/passWordReset"
-      text="パスワードをお忘れの方はこちら"
-    />-->
     <span class="foget_pass_btn" @click="passWordReset">パスワードをお忘れの方はこちら</span>
 
     <linkButton cls="regist_btn" linkTo="/regist" text="新規登録" />
@@ -100,7 +95,7 @@ main {
   margin-bottom: 100px;
 }
 .logo > img {
-  width: 200px;
+  width: 150px;
 }
 
 .foget_pass {
@@ -124,7 +119,7 @@ main {
 }
 @media screen and (max-width: 560px) {
   main {
-    margin-top: 0;
+    margin-top: 50px;
   }
 }
 </style>

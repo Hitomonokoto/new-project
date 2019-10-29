@@ -1,17 +1,20 @@
 <template>
   <div class="aboutFarmer" v-if="farmers.farmer">
     <h3 class="farmer_title">創り手について</h3>
-    <nuxt-link class="link_area" :to="'/farmers/farmer/'+farmers.farmer.sys.id">
-      <img
-        class="farmer_img"
-        :src="farmers.farmer.fields.farmerIcon.fields.file.url"
-        alt
-      />
-    </nuxt-link>
-    <P class="farmer_name">{{farmers.farmer.fields.farmName}}</P>
-    <div class="summary" v-html="farmers.farmer.fields.summary"></div>
+    <div class="content">
+      <div class="farmer_img">
+        <img :src="farmers.farmer.fields.farmerIcon.fields.file.url" alt />
+      </div>
+      <div class="text_area">
+        <P
+          class="farmer_name"
+        >{{farmers.farmer.fields.farmName}} / {{farmers.farmer.fields.farmerName}}</P>
+        <div class="summary" v-html="farmers.farmer.fields.summary"></div>
+      </div>
+    </div>
+
     <linkButton
-      cls="partner_btn"
+      cls="readmore_btn"
       :linkTo="'/farmers/farmer/'+farmers.farmer.sys.id"
       text="もっと知る"
     />
@@ -44,30 +47,49 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
+}
+.content {
+  width: 80%;
+  display: flex;
+  border-radius: 5px;
+  box-shadow: 0px 0px 6px #d1d1d1;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+.text_area {
+  width: 80%;
+  padding-left: 20px;
 }
 .farmer_title {
   margin-bottom: 20px;
 }
 .farmer_name {
   margin-bottom: 20px;
+  font-weight: bold;
 }
 .summary {
-  margin-bottom: 20px;
+  width: 100%;
 }
 .link_area {
-  width: 30%;
+  width: 20%;
 }
 .farmer_img {
+  width: 20%;
+}
+.farmer_img > img {
   width: 100%;
   border-radius: 5px;
-  box-shadow: 0px 0px 6px #d1d1d1;
 }
 @media screen and (max-width: 960px) {
 }
 @media screen and (max-width: 560px) {
-  .link_area {
-    width: 50%;
+  .content {
+    width: 95%;
+    padding: 10px;
+  }
+  .text_area {
+    padding-left: 10px;
   }
 }
 </style>

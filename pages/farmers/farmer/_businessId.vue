@@ -1,6 +1,10 @@
 <template>
   <main>
-    <mainImage :src="Farmers.farmer.fields.mainImage.fields.file.url" alt />
+    <mainImage
+      cls="basic"
+      :src="Farmers.farmer.fields.mainImage.fields.file.url"
+      alt
+    />
     <div class="top_area">
       <basicButton v-if="!isFollow" cls="follow_btn" @emitClick="follow">フォローする</basicButton>
       <basicButton v-if="isFollow" cls="follow_btn" @emitClick="follow">フォロー中</basicButton>

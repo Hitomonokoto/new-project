@@ -1,6 +1,6 @@
 <template>
   <main>
-    <mainImage url="/mainImage/top-img.jpg" />
+    <mainImage cls="top_img" url="/mainImage/top-img.jpg" />
     <div class="beginner_area">
       <nuxt-link to="/aboutMyFarm">
         <iconAndTextButton
@@ -13,13 +13,22 @@
     </div>
     <div v-show="isGift" class="myfarm_area">
       <h2 class="home_title">Gift</h2>
-      <p class="home_sub_title">豊さを味わう</p>
+      <div class="line_area">
+        <hr class="line" />
+        <p class="home_sub_title">豊さを味わう</p>
+        <hr class="line" />
+      </div>
       <myFarm :products="products.pickupProducts" />
       <linkButton cls="top_products" linkTo="/products" text="もっと見る" />
     </div>
     <div class="timeline_area" v-if="isTimeline">
       <h2 class="home_title">Diary</h2>
-      <p class="home_sub_title">日々を楽しむ</p>
+      <div class="line_area">
+        <hr class="line" />
+        <p class="home_sub_title">日々を楽しむ</p>
+        <hr class="line" />
+      </div>
+
       <div class="post_btn" v-if="login.user_2">
         <basicButton
           cls="post_btn"
@@ -151,5 +160,15 @@ export default {
   flex-direction: column;
   align-items: center;
   margin-bottom: 100px;
+}
+.line_area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.line {
+  width: 50px;
+  margin: 0 10px;
 }
 </style>

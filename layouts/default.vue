@@ -57,7 +57,7 @@ p {
 .container {
   display: flex;
   width: 100%;
-  background-color: rgb(255, 252, 241);
+  background-color: rgb(255, 255, 250);
 }
 .pc_navi_area {
   width: 200px;
@@ -111,18 +111,12 @@ main {
   margin-top: 50px;
   margin-bottom: 20px;
 }
-.sub_title {
-  margin-bottom: 50px;
-}
 .description {
   margin-bottom: 50px;
   text-align: center;
 }
 .home_title {
-  margin-bottom: 20px;
-}
-.home_sub_title {
-  margin-bottom: 50px;
+  margin-bottom: 10px;
 }
 .follower_title {
   margin-bottom: 20px;
