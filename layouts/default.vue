@@ -111,18 +111,12 @@ main {
   margin-top: 50px;
   margin-bottom: 20px;
 }
-.sub_title {
-  margin-bottom: 50px;
-}
 .description {
   margin-bottom: 50px;
   text-align: center;
 }
 .home_title {
-  margin-bottom: 20px;
-}
-.home_sub_title {
-  margin-bottom: 50px;
+  margin-bottom: 10px;
 }
 .follower_title {
   margin-bottom: 20px;

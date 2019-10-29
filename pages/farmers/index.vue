@@ -1,7 +1,11 @@
 <template>
   <main>
     <h1 class="page_title">Farmer</h1>
-    <p class="sub_title">豊さを繋ぐひと</p>
+    <div class="line_area">
+      <hr class="line" />
+      <p class="sub_title">豊さを繋ぐひと</p>
+      <hr class="line" />
+    </div>
     <p class="description">
       九州を5週周り、
       <br />500人以上の生産者に出会いました。
@@ -18,7 +22,6 @@
         :key="index"
       >
         <img class="farmer_img" :src="farmer.fields.farmerIcon.fields.file.url" />
-
         <div class="farmer_info">
           <p class="farm_name">{{ farmer.fields.farmName }}</p>
           <p class="farmer_name">{{ farmer.fields.farmerName }}</p>
@@ -59,6 +62,16 @@ export default {
 
 
 <style scoped>
+.line_area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+}
+.line {
+  width: 50px;
+  margin: 0 10px;
+}
 .farmers {
   width: 95%;
   display: flex;

@@ -1,6 +1,9 @@
 <template>
   <main>
-    <mainImage :src="Products.product.fields.mainImage.fields.file.url" />
+    <mainImage
+      cls="basic"
+      :src="Products.product.fields.mainImage.fields.file.url"
+    />
     <div class="top_checkout_area">
       <span @click="checkout">
         <iconAndTextButton
@@ -14,7 +17,11 @@
     <farmer />
     <div class="bottom_checkout_area">
       <h3 class="checkout_title">Gift</h3>
-      <p class="checkout_sub_title">豊さを味わう</p>
+      <div class="line_area">
+        <hr class="line" />
+        <p class="home_sub_title">豊さを味わう</p>
+        <hr class="line" />
+      </div>
       <p class="checkout_product_name">{{ Products.product.fields.productName }}</p>
       <p class="checkout_price">12,000円/年</p>
       <basicButton cls="checkout_btn" @emitClick="checkout">購入する</basicButton>
@@ -90,7 +97,7 @@ export default {
   position: relative;
 }
 .bottom_checkout_area {
-  width: 50%;
+  width: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -98,12 +105,20 @@ export default {
   box-shadow: 0px 0px 6px #d1d1d1;
   margin-bottom: 50px;
 }
+
+.line_area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.line {
+  width: 50px;
+  margin: 0 10px;
+}
 .checkout_title {
   margin-top: 20px;
   margin-bottom: 10px;
-}
-.checkout_sub_title {
-  margin-bottom: 30px;
 }
 .checkout_product_name {
   margin-bottom: 5px;
@@ -118,7 +133,7 @@ export default {
 }
 @media screen and (max-width: 560px) {
   .bottom_checkout_area {
-    width: 90%;
+    width: 95%;
   }
 }
 </style>

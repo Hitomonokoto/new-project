@@ -1,11 +1,14 @@
 <template>
   <main>
     <h1 class="page_title">Gift</h1>
-    <p class="sub_title">豊さを味わう</p>
+    <div class="line_area">
+      <hr class="line" />
+      <p class="sub_title">豊さを味わう</p>
+      <hr class="line" />
+    </div>
     <p class="description">
       カラダが喜び、心が笑う贈り物。
       <br />
-      <br />“買い支える”ではなく
       <br />“価値観を共有する”詰め合わせを提案致します。
       <br />
       <br />お気に入りの生産者と一緒に夢を描きませんか？
@@ -102,6 +105,16 @@ export default {
 </script>
 
 <style scoped>
+.line_area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+}
+.line {
+  width: 50px;
+  margin: 0 10px;
+}
 .products {
   display: flex;
   flex-wrap: wrap;

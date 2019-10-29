@@ -1,6 +1,6 @@
 <template>
   <main>
-    <mainImage url="/mainImage/top-img.jpg" />
+    <mainImage cls="basic" url="/mainImage/top-img.jpg" />
     <h1>退会</h1>
     <p class="top_text">
       本サービスをご利用頂き、誠にありがとうございました。

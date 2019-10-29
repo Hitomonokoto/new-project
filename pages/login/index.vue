@@ -95,7 +95,7 @@ main {
   margin-bottom: 100px;
 }
 .logo > img {
-  width: 200px;
+  width: 150px;
 }
 
 .foget_pass {
@@ -119,7 +119,7 @@ main {
 }
 @media screen and (max-width: 560px) {
   main {
-    margin-top: 0;
+    margin-top: 50px;
   }
 }
 </style>

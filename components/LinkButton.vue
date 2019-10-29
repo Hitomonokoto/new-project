@@ -44,6 +44,10 @@ export default {
   padding: 5px 20px;
   border: 2px solid #f4b3ca;
 }
+.readmore_btn {
+  padding: 5px 20px;
+  margin-bottom: 50px;
+}
 .partner_btn {
   padding: 5px 20px;
   margin-bottom: 50px;
