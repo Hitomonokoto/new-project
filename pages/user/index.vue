@@ -1,6 +1,6 @@
 <template>
   <main>
-    <mainImage cls="img" :url="image_path" />
+    <mainImage cls="basic" :url="image_path" />
     <div class="profile_area" v-if="isData">
       <div class="xxx">
         <div class="user_icon">
@@ -151,7 +151,7 @@ export default {
   position: relative;
 }
 .icon_edge {
-  background-color: white;
+  background-color: rgb(255, 255, 250);
   border-radius: 5px;
   position: absolute;
   top: -90px;

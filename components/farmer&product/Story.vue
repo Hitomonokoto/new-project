@@ -1,5 +1,11 @@
 <template>
   <div class="story">
+    <h2 class="home_title">Story</h2>
+    <div class="line_area">
+      <hr class="line" />
+      <p class="home_sub_title">想いを共有する</p>
+      <hr class="line" />
+    </div>
     <h2 class="farm_name">{{ this.farmers.farmer.fields.farmName }}</h2>
     <h3 class="farmer_name">{{ this.farmers.farmer.fields.farmerName }}</h3>
     <div class="content" v-html="content"></div>
@@ -26,6 +32,16 @@ export default {
 
 
 <style scoped>
+.line_area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.line {
+  width: 50px;
+  margin: 0 10px;
+}
 .story {
   display: flex;
   flex-direction: column;

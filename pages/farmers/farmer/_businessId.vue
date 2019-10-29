@@ -7,7 +7,7 @@
     />
     <div class="top_area">
       <basicButton v-if="!isFollow" cls="follow_btn" @emitClick="follow">フォローする</basicButton>
-      <basicButton v-if="isFollow" cls="follow_btn" @emitClick="follow">フォロー中</basicButton>
+      <basicButton v-if="isFollow" cls="followed_btn" @emitClick="follow">フォロー中</basicButton>
     </div>
     <div class="index">
       <div

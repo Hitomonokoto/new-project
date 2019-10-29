@@ -88,6 +88,7 @@
 
       <basicButton class="qAndAlink" @emitClick="jumpToEtc">その他</basicButton>
     </div>
+    <scrollBotton />
   </div>
 </template>
 
@@ -181,8 +182,12 @@ table {
   border-collapse: collapse;
   margin-top: 30px;
 }
+tr {
+  padding: 5%;
+}
+
 th {
-  padding: 50px;
+  padding: 5%;
   border-top: 1px solid #707070;
   border-bottom: 1px solid #707070;
   border-right: 1px solid #707070;
@@ -190,7 +195,7 @@ th {
 }
 
 td {
-  width: 730px;
+  width: 100%;
   border-top: 1px solid #707070;
   border-bottom: 1px solid #707070;
 }

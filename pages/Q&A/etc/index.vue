@@ -61,6 +61,7 @@
 
       <basicButton class="qAndAlink" @emitClick="jumpToEtc">その他</basicButton>
     </div>
+    <scrollBotton />
   </div>
 </template>
 
