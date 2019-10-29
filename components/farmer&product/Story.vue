@@ -40,7 +40,6 @@ export default {
   margin-bottom: 50px;
 }
 .content {
-  /* text-align: center; */
   width: 80%;
 }
 @media screen and (max-width: 960px) {

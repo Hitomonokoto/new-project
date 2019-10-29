@@ -1,6 +1,6 @@
 <template>
   <main>
-    <mainImage :url="image_path" />
+    <mainImage cls="img" :url="image_path" />
     <div class="profile_area" v-if="isData">
       <div class="xxx">
         <div class="user_icon">

@@ -31,7 +31,8 @@ export default {
   width: 80%;
 }
 .product_name {
-  margin-bottom: 20px;
+  margin-top: 20px;
+  margin-bottom: 30px;
 }
 .content {
   width: 80%;

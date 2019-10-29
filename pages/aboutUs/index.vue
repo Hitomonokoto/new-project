@@ -1,6 +1,6 @@
 <template>
   <main>
-    <mainImage url="/mainImage/mainDamy1.jpg" />
+    <mainImage cls="basic" url="/mainImage/mainDamy1.jpg" />
     <h1>私たちについて</h1>
     <p>
       このページは運営側（株式会社ヒトとモノとコト）の紹介ページになります。

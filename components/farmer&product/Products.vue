@@ -1,7 +1,11 @@
 <template>
   <div class="products">
     <h2 class="home_title">Gift</h2>
-    <p class="home_sub_title">豊さを味わう</p>
+    <div class="line_area">
+      <hr class="line" />
+      <p class="home_sub_title">豊さを味わう</p>
+      <hr class="line" />
+    </div>
     <nuxt-link
       class="product"
       :to="'/products/product/'+products.productsByfarmer[0].sys.id"
@@ -45,6 +49,16 @@ export default {
 
 
 <style scoped>
+.line_area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.line {
+  width: 50px;
+  margin: 0 10px;
+}
 .products {
   display: flex;
   flex-direction: column;
