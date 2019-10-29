@@ -224,5 +224,6 @@ export default {
   background-color: #efefef;
   width: 70%;
   margin-left: 10px;
+  margin-right: 10px;
 }
 </style>
